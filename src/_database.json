@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "id": "204f9974-1782-402d-a954-029c09e46d63",
+      "id": "cf9088d8-a3db-435a-b6e7-b1eb483c3833",
       "email": "yanko86@gmail.com",
-      "password": "$2b$10$LtG4E0RvrPhHxxOJxtOQUeL0dqau.mbMHvAk.bNF3cgzxdVVJEPTa",
-      "dateCreated": 1608814531968
+      "password": "$2b$10$sq760zjOxwGAwWS2bNvq1emszfQUw9I07gyUgW6RSD/mNCoE28jHe",
+      "dateCreated": 1608816804299
     }
   ]
 }
