@@ -1,10 +1,10 @@
-import db from '../../_database';
-import { err, success } from '../../_response'
+import db from '../../utils/database';
+import { err, success } from '../../utils/response';
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
-export async function post(req, res) {
+export async function post(req, res, next) {
 	const data = db.read();
 
 	if (data.users.find(user => user.email === req.body.email)) {
@@ -23,5 +23,7 @@ export async function post(req, res) {
 	data.users.push(newUser);
 	db.write(data);
 
-	return success(res, newUser);
+	req.session.user = newUser;
+
+	return success(res, 201, newUser);
 }

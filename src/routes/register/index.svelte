@@ -1,21 +1,19 @@
 <script>
-  const handleRegister = async function(e) {
-    try {
-      const res = await fetch('register/register.json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: e.target.email.value,
-          password: e.target.password.value
-        })
-      });
-      const newUser = await res.json();
+  import { post } from '../../utils/request';
+  import { goto, stores } from '@sapper/app';
+  const { session } = stores();
 
-      console.log('Done', newUser);
-    } catch(err) {
-      console.log('Error', err);
+  const handleRegister = async function(e) {
+    const newUser = await post('register/register.json', {
+      email: e.target.email.value,
+      password: e.target.password.value
+    });
+
+    if (!newUser.error) {
+      $session.user = newUser.data;
+      goto('/');
+    } else {
+      console.log('ERROR: ', newUser.error);
     }
   }
 </script>

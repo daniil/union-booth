@@ -5,6 +5,12 @@
       "email": "yanko86@gmail.com",
       "password": "$2b$10$sq760zjOxwGAwWS2bNvq1emszfQUw9I07gyUgW6RSD/mNCoE28jHe",
       "dateCreated": 1608816804299
+    },
+    {
+      "id": "634eb51e-0227-4052-8e8e-4c617f1eb142",
+      "email": "test@test.com",
+      "password": "$2b$10$JhxSFv9JqkRTojE9uKy/meH2FYucpehFSSLj9o8jaLVaNzkbfJn8C",
+      "dateCreated": 1608826367696
     }
   ]
 }

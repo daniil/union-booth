@@ -1,5 +1,16 @@
 <script>
+	import { post } from '../utils/request';
+	import { goto, stores } from "@sapper/app";
+	const { session } = stores();
+
 	export let segment;
+
+	const handleLogout = async () => {
+		await post('login/logout.json');
+
+		$session.user = null;
+		goto('/');
+	}
 </script>
 
 <style>
@@ -24,6 +35,10 @@
 	li {
 		display: block;
 		float: left;
+	}
+
+	.right-aligned {
+		float: right;
 	}
 
 	[aria-current] {
@@ -55,5 +70,10 @@
 				🙋🏻‍♀️ Union Booth
 			</a>
 		</li>
+		{#if $session.user}
+			<li class="right-aligned">
+				<a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
+			</li>
+		{/if}
 	</ul>
 </nav>

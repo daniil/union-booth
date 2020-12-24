@@ -2,9 +2,14 @@
 	<title>Home</title>
 </svelte:head>
 
-<style>
+<script>
+	import { stores } from '@sapper/app';
+	const { session } = stores();
+</script>
 
-</style>
-
-<a href="/register">Register</a>
-<a href="/login">Login</a>
+{#if $session.user}
+	<h1>User Logged In: {$session.user.email}</h1>
+{:else}
+	<a href="/register">Register</a>
+	<a href="/login">Login</a>
+{/if}

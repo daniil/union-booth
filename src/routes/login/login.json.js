@@ -1,5 +1,5 @@
-import db from '../../_database';
-import { err, success } from '../../_response'
+import db from '../../utils/database';
+import { err, success } from '../../utils/response';
 import bcrypt from 'bcrypt';
 
 export async function post(req, res) {
@@ -16,5 +16,7 @@ export async function post(req, res) {
     return err(res, 403, 'Username and password do not match');
   }
 
-	return success(res, user);
+  req.session.user = user;
+
+	return success(res, 200, user);
 }

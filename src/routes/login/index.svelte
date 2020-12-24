@@ -1,21 +1,19 @@
 <script>
-  const handleLogin = async function(e) {
-    try {
-      const res = await fetch('login/login.json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: e.target.email.value,
-          password: e.target.password.value
-        })
-      });
-      const user = await res.json();
+  import { post } from '../../utils/request';
+  import { goto, stores } from "@sapper/app";
+  const { session } = stores();
 
-      console.log('Done', user);
-    } catch(err) {
-      console.log('Error', err);
+  const handleLogin = async function(e) {
+    const user = await post('login/login.json', {
+      email: e.target.email.value,
+      password: e.target.password.value
+    });
+
+    if (!user.error) {
+      $session.user = user.data;
+      goto('/');
+    } else {
+      console.log('ERROR', user.error);
     }
   }
 </script>
