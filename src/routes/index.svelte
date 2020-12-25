@@ -5,10 +5,11 @@
 <script>
 	import { stores } from '@sapper/app';
 	const { session } = stores();
+	import LiveDiscourse from '../components/LiveDiscourse.svelte';
 </script>
 
 {#if $session.user}
-	<h1>User Logged In: {$session.user.email}</h1>
+	<LiveDiscourse/>
 {:else}
 	<a href="/register">Register</a>
 	<a href="/login">Login</a>

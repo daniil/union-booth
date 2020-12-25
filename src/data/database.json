@@ -1,16 +1,33 @@
 {
   "users": [
     {
-      "id": "cf9088d8-a3db-435a-b6e7-b1eb483c3833",
-      "email": "yanko86@gmail.com",
-      "password": "$2b$10$sq760zjOxwGAwWS2bNvq1emszfQUw9I07gyUgW6RSD/mNCoE28jHe",
-      "dateCreated": 1608816804299
+      "id": "d19e5422-7407-4673-913f-02924383283d",
+      "email": "admin@ub.ca",
+      "password": "$2b$10$fyvIHDfSDpOUa3K0FMNr/uGsbVj8ijKD4LtPEFTFX8/PR0f/C.pXe",
+      "role": "admin",
+      "dateCreated": 1608904541241
     },
     {
-      "id": "634eb51e-0227-4052-8e8e-4c617f1eb142",
-      "email": "test@test.com",
-      "password": "$2b$10$JhxSFv9JqkRTojE9uKy/meH2FYucpehFSSLj9o8jaLVaNzkbfJn8C",
-      "dateCreated": 1608826367696
+      "id": "993ef170-5f50-4a91-a874-2e3bf1613f36",
+      "email": "moderator@ub.ca",
+      "password": "$2b$10$UKCMijuWeFsSd44BO93esOeX.Yz/cn0zn0RCbxPJHvRR4tNaxca42",
+      "role": "moderator",
+      "dateCreated": 1608904692737
+    },
+    {
+      "id": "a9e71629-09dd-4a57-bc97-de32b707f62e",
+      "email": "user@ub.ca",
+      "password": "$2b$10$5iNsZYdB0SJYqvBNmWqGgeGrEJosGzzSrQaJLYy9ExPB5njDtK/YK",
+      "role": "user",
+      "dateCreated": 1608904714750
+    }
+  ],
+  "discourses": [
+    {
+      "id": "1edcd351-7aa1-4fdc-b0b2-748afbc92a7c",
+      "topic": "HTML Intro",
+      "isActive": true,
+      "dateCreated": 1608910195793
     }
   ]
 }

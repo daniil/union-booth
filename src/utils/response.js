@@ -3,6 +3,7 @@ export function err(res, status, message) {
     'Content-Type': 'application/json',
     'X-Error-Code': message
   });
+  res.statusCode = status;
   let json = JSON.stringify({ error: message });
   return res.end(json);
 }

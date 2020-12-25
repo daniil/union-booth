@@ -74,6 +74,11 @@
 			<li class="right-aligned">
 				<a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
 			</li>
+			{#if $session.user.role === 'admin'}
+				<li class="right-aligned">
+					<a aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
+				</li>
+			{/if}
 		{/if}
 	</ul>
 </nav>

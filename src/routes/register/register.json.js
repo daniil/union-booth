@@ -17,6 +17,7 @@ export async function post(req, res, next) {
 		id: uuid(),
 		...req.body,
 		password: passwordHash,
+		role: 'user',
 		dateCreated: Date.now()
 	};
 
