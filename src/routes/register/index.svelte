@@ -31,7 +31,7 @@
     <label for="password-confirm">Confirm Password: </label>
     <input type="password" name="password-confirm" id="password-confirm" placeholder="Confirm Password" required>
   </div>
-  <div class="form-example">
+  <div class="form-element">
     <input type="submit" value="Register">
   </div>
 </form>

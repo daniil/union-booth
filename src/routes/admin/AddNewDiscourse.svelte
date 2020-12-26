@@ -10,7 +10,7 @@
     if (!discourse.error) {
       goto('/');
     } else {
-      console.log('ERROR', discourse.error);
+      console.log('ERROR: ', discourse.error);
     }
   }
 </script>

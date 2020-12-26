@@ -13,7 +13,7 @@
       $session.user = user.data;
       goto('/');
     } else {
-      console.log('ERROR', user.error);
+      console.log('ERROR: ', user.error);
     }
   }
 </script>
@@ -27,7 +27,7 @@
     <label for="password">Password: </label>
     <input type="password" name="password" id="password" placeholder="Password" required>
   </div>
-  <div class="form-example">
+  <div class="form-element">
     <input type="submit" value="Login">
   </div>
 </form>

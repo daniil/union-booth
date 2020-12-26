@@ -26,11 +26,34 @@
     {
       "id": "4344707b-bbe5-4af1-b448-8abbab83c30e",
       "topic": "HTML Intro",
-      "isActive": true,
+      "isActive": false,
       "dateCreated": 1608992096705
+    },
+    {
+      "id": "a62db27b-440f-4a2d-a49f-64cc7402b7d9",
+      "topic": "CSS and Stuffs",
+      "isActive": true,
+      "dateCreated": 1608997099199
     }
   ],
   "questions": {
-    "4344707b-bbe5-4af1-b448-8abbab83c30e": []
+    "4344707b-bbe5-4af1-b448-8abbab83c30e": [
+      {
+        "id": "b3ed8a1b-51f7-4fab-a4a5-ba869411906d",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": false,
+        "question": "How do I know which HTML element to use",
+        "dateCreated": 1608996920413
+      }
+    ],
+    "a62db27b-440f-4a2d-a49f-64cc7402b7d9": [
+      {
+        "id": "65d539bd-53d1-40c3-a3af-c1c800b80fbb",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": true,
+        "question": "What is the naming convention for CSS variables",
+        "dateCreated": 1608997117773
+      }
+    ]
   }
 }
