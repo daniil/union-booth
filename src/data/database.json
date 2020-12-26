@@ -24,10 +24,13 @@
   ],
   "discourses": [
     {
-      "id": "1edcd351-7aa1-4fdc-b0b2-748afbc92a7c",
+      "id": "4344707b-bbe5-4af1-b448-8abbab83c30e",
       "topic": "HTML Intro",
       "isActive": true,
-      "dateCreated": 1608910195793
+      "dateCreated": 1608992096705
     }
-  ]
+  ],
+  "questions": {
+    "4344707b-bbe5-4af1-b448-8abbab83c30e": []
+  }
 }

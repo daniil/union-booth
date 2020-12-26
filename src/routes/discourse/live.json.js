@@ -9,7 +9,5 @@ export async function get(req, res) {
   const data = db.read();
   const live = data.discourses.find(discourse => discourse.isActive);
 
-  if (live) {
-    success(res, 200, live);
-  }
+  success(res, 200, live ? live : null);
 }
