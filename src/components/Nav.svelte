@@ -71,6 +71,11 @@
 			</a>
 		</li>
 		{#if $session.user}
+			<li>
+				<a aria-current="{segment === 'discourse' ? 'page' : undefined}" href="/discourse/list">
+					All Topics
+				</a>
+			</li>
 			<li class="right-aligned">
 				<a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
 			</li>

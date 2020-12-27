@@ -1,18 +1,10 @@
 <script>
+  import { formatDate, formatTime } from '../utils/time';
+
   export let details;
 
-  const dateObj = new Date(details.dateCreated);
-
-  $: date = dateObj.toLocaleDateString('en-CA', {
-    month: 'short',
-    day: 'numeric'
-  });
-
-  $: time = dateObj.toLocaleTimeString('en-CA', {
-    hour: 'numeric',
-    minute: '2-digit',
-    second: '2-digit'
-  });
+  $: date = formatDate(details.dateCreated);
+  $: time = formatTime(details.dateCreated);
 </script>
 
 <h3>{details.question}</h3>
