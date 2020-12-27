@@ -72,7 +72,7 @@
 		</li>
 		{#if $session.user}
 			<li>
-				<a aria-current="{segment === 'discourse' ? 'page' : undefined}" href="/discourse/list">
+				<a rel="prefetch" aria-current="{segment === 'discourse' ? 'page' : undefined}" href="/discourse/list">
 					All Topics
 				</a>
 			</li>

@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { get } from '../utils/request';
+  import { slide } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
   import Loading from './Loading.svelte';
   import Question from './Question.svelte';
   import AskQuestion from './AskQuestion.svelte';
@@ -30,7 +32,9 @@
   <Loading/>
 {:else}
   {#each questions as question (question.id)}
-    <Question details={question}/>
+    <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
+      <Question details={question}/>
+    </div>
   {:else}
     <p>No questions yet, add a first one!</p>
   {/each}

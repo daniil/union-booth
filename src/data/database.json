@@ -53,6 +53,20 @@
         "isAnonymous": true,
         "question": "What is the naming convention for CSS variables",
         "dateCreated": 1608997117773
+      },
+      {
+        "id": "6f4694ae-34de-49ae-8ec5-3842f6ac4cc5",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": false,
+        "question": "How do you know which position value to use?",
+        "dateCreated": 1609081490039
+      },
+      {
+        "id": "ab6f997d-5b73-4019-885b-5b2b14f054af",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": false,
+        "question": "Is CSS synchronous?",
+        "dateCreated": 1609083103843
       }
     ]
   }

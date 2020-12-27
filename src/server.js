@@ -28,6 +28,11 @@ const helmetMiddleware = helmet({
 	contentSecurityPolicy: {
 		directives: {
 			defaultSrc: ["'self'", "blob: *"],
+			styleSrc: [
+				"'self'",
+				"blob: *",
+				"'unsafe-inline'"
+			],
 			scriptSrc: [
 				"'self'",
 				"blob: *",

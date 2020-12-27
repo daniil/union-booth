@@ -1,5 +1,5 @@
 <script>
-  import { formatDate, formatTime } from '../utils/time';
+  import { formatDate } from '../utils/time';
 
   export let details;
 
@@ -15,7 +15,10 @@
 
 <article class="wrapper">
   <a rel="prefetch" href="/discourse/{details.id}">
-    <h2>{details.topic}</h2>
+    <h2>
+      {details.topic}
+      {#if details.isActive}🟢{/if}
+    </h2>
   </a>
-  <p>{date}</p>
+  <time>{date}</time>
 </article>
