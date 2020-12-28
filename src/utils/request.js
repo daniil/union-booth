@@ -21,3 +21,7 @@ export async function get(url, context) {
 export async function post(url, data, context) {
   return makeRequest('POST', url, data, context);
 }
+
+export async function put(url, data, context) {
+  return makeRequest('PUT', url, data, context);
+}

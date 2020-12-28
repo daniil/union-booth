@@ -17,6 +17,7 @@
   });
 
   const fetchQuestions = async () => {
+    loading = true;
     const res = await get(`discourse/questions/${id}.json`);
     loading = false;
 
