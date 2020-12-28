@@ -23,6 +23,10 @@
 </script>
 
 <h1>{discourse.topic}</h1>
-{#each questions as question (question.id)}
-  <Question details={question}/>
-{/each}
+{#if questions.length}
+  {#each questions as question (question.id)}
+    <Question details={question}/>
+  {/each}
+{:else}
+  <p>No questions for this topic yet.</p>
+{/if}

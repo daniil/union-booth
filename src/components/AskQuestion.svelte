@@ -6,17 +6,19 @@
 
   const dispatch = createEventDispatcher();
 
+  let textareaEl;
+
   const handleSubmit = async e => {
-    const postQuestion = await post('discourse/ask.json', {
-      discourseId,
+    const res = await post(`discourse/questions/${discourseId}.json`, {
       question: e.target.question.value,
       isAnonymous: e.target['is-anonymous'].checked
     });
 
-    if (!postQuestion.error) {
+    if (!res.error) {
+      textareaEl.value = '';
       dispatch('question-added');
     } else {
-      console.log('ERROR', postQuestion.error);
+      console.log('ERROR: ', res.error);
     }
   }
 </script>
@@ -33,6 +35,7 @@
     <label for="question">Question: </label>
     <br />
     <textarea
+      bind:this={textareaEl}
       class="question-input"
       name="question"
       id="question"
@@ -41,7 +44,7 @@
   </div>
   <div class="form-element">
     <input type="checkbox" name="is-anonymous" id="is-anonymous">
-    <label for="is-anonymous">Ask Anonymously</label>
+    <label for="is-anonymous">Ask anonymously</label>
   </div>
   <div class="form-element">
     <input type="submit" value="Post Question">

@@ -43,53 +43,13 @@
     }
   ],
   "questions": {
-    "4344707b-bbe5-4af1-b448-8abbab83c30e": [
-      {
-        "id": "b3ed8a1b-51f7-4fab-a4a5-ba869411906d",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "How do I know which HTML element to use",
-        "dateCreated": 1608996920413
-      }
-    ],
-    "a62db27b-440f-4a2d-a49f-64cc7402b7d9": [
-      {
-        "id": "65d539bd-53d1-40c3-a3af-c1c800b80fbb",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": true,
-        "question": "What is the naming convention for CSS variables",
-        "dateCreated": 1608997117773
-      },
-      {
-        "id": "6f4694ae-34de-49ae-8ec5-3842f6ac4cc5",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "How do you know which position value to use?",
-        "dateCreated": 1609081490039
-      },
-      {
-        "id": "ab6f997d-5b73-4019-885b-5b2b14f054af",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "Is CSS synchronous?",
-        "dateCreated": 1609083103843
-      }
-    ],
+    "4344707b-bbe5-4af1-b448-8abbab83c30e": [],
+    "a62db27b-440f-4a2d-a49f-64cc7402b7d9": [],
     "bde9c6f2-7cfb-42b3-a7c9-6f2e86b2c5dc": [
-      {
-        "id": "f014f74a-f6c8-45a6-a965-1a0e30912150",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "Are they like properties on functions pretty much?",
-        "dateCreated": 1609173482272
-      },
-      {
-        "id": "3b4e8860-b34c-4dee-9a11-9a3a1641be83",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "What is a **prop** exactly? And asking for a *friend*? Please `tell me`",
-        "dateCreated": 1609174544939
-      }
+
     ]
+  },
+  "answers": {
+
   }
 }

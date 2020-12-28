@@ -1,6 +1,6 @@
+import { v4 as uuid } from 'uuid';
 import db from '../../utils/database';
 import { err, success } from '../../utils/response';
-import { v4 as uuid } from 'uuid';
 
 export async function post(req, res) {
   if (!req.session.user || req.session.user.role !== 'admin') {

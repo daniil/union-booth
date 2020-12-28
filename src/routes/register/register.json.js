@@ -1,7 +1,8 @@
-import db from '../../utils/database';
-import { err, success } from '../../utils/response';
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
+import db from '../../utils/database';
+import { err, success } from '../../utils/response';
+
 const saltRounds = 10;
 
 export async function post(req, res, next) {

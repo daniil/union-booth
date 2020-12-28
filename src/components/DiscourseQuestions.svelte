@@ -34,13 +34,16 @@
 {:else}
   {#each questions as question (question.id)}
     <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-      <Question details={question}/>
+      <Question
+        details={question}
+        interactive
+      />
     </div>
   {:else}
     <p>No questions yet, add a first one!</p>
   {/each}
-  <AskQuestion
-    discourse-id={id}
-    on:question-added={fetchQuestions}
-  />
 {/if}
+<AskQuestion
+  discourse-id={id}
+  on:question-added={fetchQuestions}
+/>
