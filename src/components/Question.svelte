@@ -1,8 +1,11 @@
 <script>
+  import marked from 'marked';
+  import DOMPurify from 'dompurify';
   import { formatDate, formatTime } from '../utils/time';
 
   export let details;
 
+  $: content = DOMPurify.sanitize(marked(details.question));
   $: date = formatDate(details.dateCreated);
   $: time = formatTime(details.dateCreated);
 </script>
@@ -21,7 +24,7 @@
 </style>
 
 <article class="question">
-  <h3>{details.question}</h3>
+  <h3>{@html content}</h3>
   <time>
     <span>{date}</span>
     <span>{time}</span></time>

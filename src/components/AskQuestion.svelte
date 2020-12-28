@@ -21,17 +21,29 @@
   }
 </script>
 
+<style>
+  .question-input {
+    width: 100%;
+    height: 5rem;
+  }
+</style>
+
 <form action="/discourse/ask" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
     <label for="question">Question: </label>
     <br />
-    <textarea name="question" id="question" placeholder="Ask your question" required></textarea>
+    <textarea
+      class="question-input"
+      name="question"
+      id="question"
+      placeholder="Ask your question"
+      required></textarea>
   </div>
   <div class="form-element">
     <input type="checkbox" name="is-anonymous" id="is-anonymous">
     <label for="is-anonymous">Ask Anonymously</label>
   </div>
   <div class="form-element">
-    <input type="submit" value="Ask">
+    <input type="submit" value="Post Question">
   </div>
 </form>
