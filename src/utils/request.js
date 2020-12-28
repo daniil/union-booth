@@ -1,6 +1,7 @@
-const makeRequest = async (method, url, data = null) => {
+const makeRequest = async (method, url, data = null, context = null) => {
   try {
-    const res = await fetch(url, {
+    const fetchFn = context ? context.fetch : fetch;
+    const res = await fetchFn(url, {
       method,
       headers: {
         'Content-Type': 'application/json'
@@ -13,10 +14,10 @@ const makeRequest = async (method, url, data = null) => {
   }
 }
 
-export async function get(url) {
-  return makeRequest('GET', url);
+export async function get(url, context) {
+  return makeRequest('GET', url, null, context);
 }
 
-export async function post(url, data) {
-  return makeRequest('POST', url, data);
+export async function post(url, data, context) {
+  return makeRequest('POST', url, data, context);
 }

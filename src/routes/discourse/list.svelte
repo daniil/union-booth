@@ -1,4 +1,5 @@
 <script context="module">
+  import { get } from '../../utils/request';
   import TopicListItem from '../../components/TopicListItem.svelte';
 
   export async function preload(_page, session) {
@@ -6,11 +7,10 @@
       return this.redirect(302, '');
     }
 
-    const res = await this.fetch('/discourse/list.json');
-    const topics = await res.json();
+    const res = await get('/discourse/list.json', this);
 
     if (!res.error) {
-      return { topics: topics.data }
+      return { topics: res.data }
     }
   }
 </script>

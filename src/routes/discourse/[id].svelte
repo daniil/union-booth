@@ -1,4 +1,5 @@
 <script context="module">
+  import { get } from '../../utils/request';
   import Question from '../../components/Question.svelte';
 
   export async function preload(page, session) {
@@ -6,14 +7,12 @@
       return this.redirect(302, '');
     }
 
-    const resDiscourse = await this.fetch(`/discourse/${page.params.id}.json`);
-    const discourse = await resDiscourse.json();
-    const resQuestions = await this.fetch(`/discourse/questions/${page.params.id}.json`);
-    const questions = await resQuestions.json();
+    const resDiscourse = await get(`/discourse/${page.params.id}.json`, this);
+    const resQuestions = await get(`/discourse/questions/${page.params.id}.json`, this);
 
     return {
-      discourse: discourse.data,
-      questions: questions.data
+      discourse: resDiscourse.data,
+      questions: resQuestions.data
     };
   }
 </script>
