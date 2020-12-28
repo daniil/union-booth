@@ -4,8 +4,9 @@
 
 <script>
 	import { stores } from '@sapper/app';
-	const { session } = stores();
 	import LiveDiscourse from '../components/LiveDiscourse.svelte';
+
+	const { session } = stores();
 </script>
 
 {#if $session.user}

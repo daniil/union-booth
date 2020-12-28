@@ -1,9 +1,11 @@
 <script>
 	import { post } from '../utils/request';
 	import { goto, stores } from "@sapper/app";
-	const { session } = stores();
+	import { onMount } from 'svelte';
 
 	export let segment;
+
+	const { session } = stores();
 
 	const handleLogout = async () => {
 		await post('login/logout.json');
@@ -11,6 +13,10 @@
 		$session.user = null;
 		goto('/');
 	}
+
+	onMount(() => {
+		$session.topicListRefresh = Date.now();
+	});
 </script>
 
 <style>
@@ -72,7 +78,7 @@
 		</li>
 		{#if $session.user}
 			<li>
-				<a rel="prefetch" aria-current="{segment === 'discourse' ? 'page' : undefined}" href="/discourse/list">
+				<a rel="prefetch" aria-current="{segment === 'discourse' ? 'page' : undefined}" href="/discourse/list?t={$session.topicListRefresh}">
 					All Topics
 				</a>
 			</li>

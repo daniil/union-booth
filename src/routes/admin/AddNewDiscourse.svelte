@@ -1,6 +1,8 @@
 <script>
-  import { goto } from '@sapper/app';
+  import { goto, stores } from "@sapper/app";
   import { post } from '../../utils/request';
+
+  const { session } = stores();
 
   const handleSubmit = async e => {
     const discourse = await post('admin/add-new-discourse.json', {
@@ -8,6 +10,7 @@
     });
 
     if (!discourse.error) {
+      $session.topicListRefresh = Date.now();
       goto('/');
     } else {
       console.log('ERROR: ', discourse.error);

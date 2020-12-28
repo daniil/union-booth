@@ -14,11 +14,11 @@
 </style>
 
 <article class="wrapper">
-  <a rel="prefetch" href="/discourse/{details.id}">
-    <h2>
+  <h2>
+    <a rel="prefetch" href="/discourse/{details.id}">
       {details.topic}
-      {#if details.isActive}🟢{/if}
-    </h2>
-  </a>
+    </a>
+    {#if details.isActive}🟢{/if}
+  </h2>
   <time>{date}</time>
 </article>

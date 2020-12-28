@@ -26,7 +26,7 @@
     {
       "id": "4344707b-bbe5-4af1-b448-8abbab83c30e",
       "topic": "HTML Intro",
-      "isActive": false,
+      "isActive": true,
       "dateCreated": 1608992096705
     },
     {
@@ -34,6 +34,12 @@
       "topic": "CSS and Stuffs",
       "isActive": false,
       "dateCreated": 1608997099199
+    },
+    {
+      "id": "bde9c6f2-7cfb-42b3-a7c9-6f2e86b2c5dc",
+      "topic": "React Props",
+      "isActive": false,
+      "dateCreated": 1609173446402
     }
   ],
   "questions": {
@@ -67,6 +73,15 @@
         "isAnonymous": false,
         "question": "Is CSS synchronous?",
         "dateCreated": 1609083103843
+      }
+    ],
+    "bde9c6f2-7cfb-42b3-a7c9-6f2e86b2c5dc": [
+      {
+        "id": "f014f74a-f6c8-45a6-a965-1a0e30912150",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": false,
+        "question": "Are they like properties on functions pretty much?",
+        "dateCreated": 1609173482272
       }
     ]
   }

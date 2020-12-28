@@ -1,9 +1,11 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { stores } from "@sapper/app";
   import { put } from '../../utils/request';
 
   export let details;
 
+  const { session } = stores();
   const dispatch = createEventDispatcher();
 
   const handleActiveChange = async e => {
@@ -12,6 +14,7 @@
     });
     if (!res.error) {
       dispatch('topic-updated');
+      $session.topicListRefresh = Date.now();
     }
   }
 </script>

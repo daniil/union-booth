@@ -1,6 +1,7 @@
 <script>
   import { post } from '../../utils/request';
   import { goto, stores } from '@sapper/app';
+
   const { session } = stores();
 
   const handleRegister = async function(e) {
