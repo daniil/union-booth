@@ -35,6 +35,7 @@
   {#each questions as question (question.id)}
     <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
       <Question
+        discourse-id={id}
         details={question}
         interactive
       />

@@ -31,6 +31,8 @@ export async function post(req, res) {
     userId: req.session.user.id,
     isAnonymous: req.body.isAnonymous,
     question: req.body.question,
+    beingAnsweredBy: [],
+    isAnswered: false,
     dateCreated: Date.now()
   };
 

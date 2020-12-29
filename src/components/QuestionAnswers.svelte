@@ -6,7 +6,9 @@
   import Answer from './Answer.svelte';
   import PostAnswer from './PostAnswer.svelte';
 
+  export let discourseId = $$props['discourse-id'];
   export let questionId = $$props['question-id'];
+  export let questionDetails;
 
   let answers = [];
 
@@ -49,7 +51,11 @@
     {/each}
   </section>
 {/if}
+
 <PostAnswer
+  discourse-id={discourseId}
   question-id={questionId}
+  questionDetails={questionDetails}
   on:answer-added={fetchAnswers}
+  on:answering
 />

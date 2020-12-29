@@ -51,6 +51,10 @@
         "userId": "d19e5422-7407-4673-913f-02924383283d",
         "isAnonymous": false,
         "question": "Can we have dynamic props like `propName={variableName}`?",
+        "beingAnsweredBy": [
+          "993ef170-5f50-4a91-a874-2e3bf1613f36"
+        ],
+        "isAnswered": false,
         "dateCreated": 1609245349970
       }
     ]
