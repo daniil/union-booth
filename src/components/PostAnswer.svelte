@@ -6,6 +6,7 @@
 
   const dispatch = createEventDispatcher();
 
+  let formVisible = false;
   let textareaEl;
 
   const handleSubmit = async e => {
@@ -20,9 +21,14 @@
       console.log('ERROR: ', res.error);
     }
   }
+
+  const toggleFormVisible = () => formVisible = !formVisible;
 </script>
 
 <style>
+  .toggle-form {
+    margin-top: 1rem;
+  }
   form {
     margin-top: 2rem;
   }
@@ -32,19 +38,26 @@
   }
 </style>
 
-<form action="/discourse/answers" method="post" on:submit|preventDefault={handleSubmit}>
-  <div class="form-element">
-    <label for="answer">Answer: </label>
-    <br />
-    <textarea
-      bind:this={textareaEl}
-      class="answer-input"
-      name="answer"
-      id="answer"
-      placeholder="Add your answer"
-      required></textarea>
-  </div>
-  <div class="form-element">
-    <input type="submit" value="Post Answer">
-  </div>
-</form>
+{#if formVisible}
+  <form action="/discourse/answers" method="post" on:submit|preventDefault={handleSubmit}>
+    <div class="form-element">
+      <label for="answer">Answer: </label>
+      <br />
+      <textarea
+        bind:this={textareaEl}
+        class="answer-input"
+        name="answer"
+        id="answer"
+        placeholder="Add your answer"
+        required></textarea>
+    </div>
+    <div class="form-element">
+      <input type="submit" value="Post Answer">
+      <input type="button" value="Cancel" on:click={toggleFormVisible}>
+    </div>
+  </form>
+{:else}
+  <button class="toggle-form" on:click={toggleFormVisible}>
+    💬 Answer
+  </button>
+{/if}

@@ -46,10 +46,16 @@
     "4344707b-bbe5-4af1-b448-8abbab83c30e": [],
     "a62db27b-440f-4a2d-a49f-64cc7402b7d9": [],
     "bde9c6f2-7cfb-42b3-a7c9-6f2e86b2c5dc": [
-
+      {
+        "id": "0b32abdd-d6d8-433f-a0f4-aa0dae447f01",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": false,
+        "question": "Can we have dynamic props like `propName={variableName}`?",
+        "dateCreated": 1609245349970
+      }
     ]
   },
   "answers": {
-
+    "0b32abdd-d6d8-433f-a0f4-aa0dae447f01": []
   }
 }
