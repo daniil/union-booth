@@ -4,8 +4,8 @@
   import { post } from '../utils/request';
   import AuthContent from '../components/AuthContent.svelte';
 
-  export let discourseId = $$props['discourse-id'];
-  export let questionId = $$props['question-id'];
+  export let topicId;
+  export let questionId;
   export let questionDetails;
 
   const { session } = stores();
@@ -17,7 +17,7 @@
   let textareaEl;
 
   const handleSubmit = async e => {
-    const res = await post(`/discourse/answers/${questionId}.json`, {
+    const res = await post(`/topics/answers/${questionId}.json`, {
       answer: e.target.answer.value
     });
 
@@ -32,7 +32,7 @@
   const toggleFormVisible = () => formVisible = !formVisible;
 
   const handleAnswerProgress = async () => {
-    const res = await post(`discourse/question/answering/${discourseId}/${questionId}.json`);
+    const res = await post(`topics/question/answering/${topicId}/${questionId}.json`);
 
     if (!res.error) {
       dispatch('answering');
@@ -60,7 +60,7 @@
 </style>
 
 {#if formVisible}
-  <form action="/discourse/answers" method="post" on:submit|preventDefault={handleSubmit}>
+  <form action="/topics/answers" method="post" on:submit|preventDefault={handleSubmit}>
     <div class="form-element">
       <label for="answer">Answer: </label>
       <br />

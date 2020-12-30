@@ -7,7 +7,11 @@ export async function get(req, res) {
   }
 
   const data = db.read();
-  const live = data.discourses.find(discourse => discourse.isActive);
+  const topic = data.topics.find(topic => topic.id === req.params.id);
 
-  success(res, 200, live ? live : null);
+  if (topic) {
+    success(res, 200, topic);
+  } else {
+    return err(res, 404, 'Can not find this topic');
+  }
 }

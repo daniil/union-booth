@@ -6,14 +6,14 @@
   import Answer from './Answer.svelte';
   import PostAnswer from './PostAnswer.svelte';
 
-  export let discourseId = $$props['discourse-id'];
-  export let questionId = $$props['question-id'];
+  export let topicId;
+  export let questionId;
   export let questionDetails;
 
   let answers = [];
 
   const fetchAnswers = async () => {
-    const res = await get(`/discourse/answers/${questionId}.json`);
+    const res = await get(`/topics/answers/${questionId}.json`);
 
     if (!res.error) {
       answers = res.data;
@@ -53,9 +53,9 @@
 {/if}
 
 <PostAnswer
-  discourse-id={discourseId}
-  question-id={questionId}
-  questionDetails={questionDetails}
+  {topicId}
+  {questionId}
+  {questionDetails}
   on:answer-added={fetchAnswers}
   on:answering
 />

@@ -2,14 +2,14 @@
   import { get } from '../../utils/request';
   import { onMount } from 'svelte';
   import Loading from '../../components/Loading.svelte';
-  import DiscourseTopic from './DiscoureTopic.svelte';
+  import Topic from './Topic.svelte';
 
   let topics = [];
   let loading = true;
 
   const fetchTopics = async () => {
     loading = true;
-    const res = await get('/discourse/list.json');
+    const res = await get('/topics/list.json');
     loading = false;
     topics = res.data;
   }
@@ -23,7 +23,7 @@
   <Loading/>
 {:else}
   {#each topics as topic (topic.id)}
-    <DiscourseTopic
+    <Topic
       details={topic}
       on:topic-updated={fetchTopics}
     />

@@ -18,7 +18,7 @@
 
   const fetchQuestions = async () => {
     loading = true;
-    const res = await get(`discourse/questions/${id}.json`);
+    const res = await get(`topics/questions/${id}.json`);
     loading = false;
 
     if (!res.error) {
@@ -35,7 +35,7 @@
   {#each questions as question (question.id)}
     <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
       <Question
-        discourse-id={id}
+        topicId={id}
         details={question}
         interactive
       />
@@ -45,6 +45,6 @@
   {/each}
 {/if}
 <AskQuestion
-  discourse-id={id}
+  topicId={id}
   on:question-added={fetchQuestions}
 />

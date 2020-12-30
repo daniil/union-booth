@@ -8,12 +8,12 @@ export async function get(req, res) {
   }
 
   const data = db.read();
-  const questions = data.questions[req.params.discourseId];
+  const questions = data.questions[req.params.topicId];
 
   if (questions) {
     return success(res, 200, questions);
   } else {
-    return err(res, 404, 'No questions found for this discourse');
+    return err(res, 404, 'No questions found for this topic');
   }
 }
 
@@ -23,7 +23,7 @@ export async function post(req, res) {
   }
 
   const data = db.read();
-  const questions = data.questions[req.params.discourseId];
+  const questions = data.questions[req.params.topicId];
 
   const id = uuid();
   const newQuestion = {

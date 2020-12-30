@@ -7,7 +7,7 @@ export async function get(req, res) {
   }
 
   const data = db.read();
-  data.discourses.sort((a, b) => b.dateCreated - a.dateCreated);
+  const live = data.topics.find(topic => topic.isActive);
 
-  success(res, 200, data.discourses);
+  success(res, 200, live ? live : null);
 }

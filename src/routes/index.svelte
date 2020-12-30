@@ -4,13 +4,13 @@
 
 <script>
 	import { stores } from '@sapper/app';
-	import LiveDiscourse from '../components/LiveDiscourse.svelte';
+	import LiveTopic from '../components/LiveTopic.svelte';
 
 	const { session } = stores();
 </script>
 
 {#if $session.user}
-	<LiveDiscourse/>
+	<LiveTopic/>
 {:else}
 	<a href="/register">Register</a>
 	<a href="/login">Login</a>

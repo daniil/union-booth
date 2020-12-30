@@ -7,7 +7,7 @@
       return this.redirect(302, '');
     }
 
-    const res = await get('/discourse/list.json', this);
+    const res = await get('/topics/list.json', this);
 
     if (!res.error) {
       return { topics: res.data }

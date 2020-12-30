@@ -2,14 +2,14 @@
   import { createEventDispatcher } from 'svelte';
   import { post } from '../utils/request';
 
-  export let discourseId = $$props['discourse-id'];
+  export let topicId;
 
   const dispatch = createEventDispatcher();
 
   let textareaEl;
 
   const handleSubmit = async e => {
-    const res = await post(`discourse/questions/${discourseId}.json`, {
+    const res = await post(`topics/questions/${topicId}.json`, {
       question: e.target.question.value,
       isAnonymous: e.target['is-anonymous'].checked
     });
@@ -30,7 +30,7 @@
   }
 </style>
 
-<form action="/discourse/ask" method="post" on:submit|preventDefault={handleSubmit}>
+<form action="/topics/ask" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
     <label for="question">Question: </label>
     <br />

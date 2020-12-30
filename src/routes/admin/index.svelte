@@ -1,6 +1,6 @@
 <script context="module">
-  import AddNewDiscourse from './AddNewDiscourse.svelte';
-  import DiscourseTopics from './DiscourseTopics.svelte';
+  import AddNewTopic from './AddNewTopic.svelte';
+  import Topics from './Topics.svelte';
 
   export async function preload(_page, session) {
     if (!session.user) {
@@ -18,11 +18,11 @@
 <h1>Admin Section</h1>
 
 <section>
-  <h2>Add New Discourse</h2>
-  <AddNewDiscourse/>
+  <h2>Add New Topic</h2>
+  <AddNewTopic/>
 </section>
 
 <section>
   <h2>Manage Existing Topics</h2>
-  <DiscourseTopics/>
+  <Topics/>
 </section>

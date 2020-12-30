@@ -1,21 +1,20 @@
 <script>
-  import marked from 'marked';
-  import DOMPurify from 'dompurify';
   import { get } from '../utils/request';
+  import { parseMD } from '../utils/markdown';
   import { formatDate, formatTime } from '../utils/time';
   import QuestionAnswers from './QuestionAnswers.svelte';
 
-  export let discourseId = $$props['discourse-id'];
+  export let topicId;
   export let details;
   export let interactive;
 
-  $: content = DOMPurify.sanitize(marked(details.question));
+  $: content = parseMD(details.question);
   $: date = formatDate(details.dateCreated);
   $: time = formatTime(details.dateCreated);
   $: isBeingAnswered = !!details.beingAnsweredBy.length;
 
   const handleAnswering = async () => {
-    const res = await get(`discourse/question/answering/${discourseId}/${details.id}.json`);
+    const res = await get(`topics/question/answering/${topicId}/${details.id}.json`);
 
     if (!res.error) {
       details = res.data;
@@ -57,8 +56,8 @@
   </time>
   {#if interactive}
     <QuestionAnswers
-      discourse-id={discourseId}
-      question-id={details.id}
+      {topicId}
+      questionId={details.id}
       questionDetails={details}
       on:answering={handleAnswering}
     />

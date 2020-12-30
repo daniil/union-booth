@@ -7,11 +7,7 @@ export async function get(req, res) {
   }
 
   const data = db.read();
-  const topic = data.discourses.find(discourse => discourse.id === req.params.id);
+  data.topics.sort((a, b) => b.dateCreated - a.dateCreated);
 
-  if (topic) {
-    success(res, 200, topic);
-  } else {
-    return err(res, 404, 'Can not find this discourse');
-  }
+  success(res, 200, data.topics);
 }

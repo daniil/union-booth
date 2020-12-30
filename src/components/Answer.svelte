@@ -1,10 +1,9 @@
 <script>
-  import marked from 'marked';
-  import DOMPurify from 'dompurify';
+  import { parseMD } from '../utils/markdown';
 
   export let details;
 
-  $: content = DOMPurify.sanitize(marked(details.answer));
+  $: content = parseMD(details.answer);
 </script>
 
 <style>

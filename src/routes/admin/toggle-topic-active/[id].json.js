@@ -7,15 +7,15 @@ export async function put(req, res) {
   }
 
   const data = db.read();
-  const discourses = data.discourses.map(discourse => {
-    if (discourse.id === req.params.id) {
-      return { ...discourse, isActive: req.body.isActive };
+  const topics = data.topics.map(topic => {
+    if (topic.id === req.params.id) {
+      return { ...topic, isActive: req.body.isActive };
     } else {
-      return { ...discourse, isActive: false };
+      return { ...topic, isActive: false };
     }
   });
 
-  data.discourses = discourses;
+  data.topics = topics;
   db.write(data);
 
   return success(res, 201, req.body.isActive);

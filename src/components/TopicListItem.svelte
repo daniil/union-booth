@@ -15,8 +15,8 @@
 
 <article class="wrapper">
   <h2>
-    <a rel="prefetch" href="/discourse/{details.id}">
-      {details.topic}
+    <a rel="prefetch" href="/topics/{details.id}">
+      {details.title}
     </a>
     {#if details.isActive}🟢{/if}
   </h2>

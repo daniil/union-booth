@@ -53,7 +53,8 @@ app
         maxAge: 31536000
       },
       store: new FileStore({
-        path: `.sessions`
+				path: `.sessions`,
+				retries: 0
       })
     }),
 		nonceMiddleware,

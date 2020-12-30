@@ -7,22 +7,22 @@
       return this.redirect(302, '');
     }
 
-    const resDiscourse = await get(`/discourse/${page.params.id}.json`, this);
-    const resQuestions = await get(`/discourse/questions/${page.params.id}.json`, this);
+    const resTopic = await get(`/topics/${page.params.id}.json`, this);
+    const resQuestions = await get(`/topics/questions/${page.params.id}.json`, this);
 
     return {
-      discourse: resDiscourse.data,
+      topic: resTopic.data,
       questions: resQuestions.data
     };
   }
 </script>
 
 <script>
-  export let discourse;
+  export let topic;
   export let questions = [];
 </script>
 
-<h1>{discourse.topic}</h1>
+<h1>{topic.title}</h1>
 {#if questions.length}
   {#each questions as question (question.id)}
     <Question details={question}/>

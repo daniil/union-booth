@@ -5,20 +5,20 @@
   const { session } = stores();
 
   const handleSubmit = async e => {
-    const discourse = await post('admin/add-new-discourse.json', {
+    const res = await post('admin/add-new-topic.json', {
       topic: e.target.topic.value
     });
 
-    if (!discourse.error) {
+    if (!res.error) {
       $session.topicListRefresh = Date.now();
       goto('/');
     } else {
-      console.log('ERROR: ', discourse.error);
+      console.log('ERROR: ', res.error);
     }
   }
 </script>
 
-<form action="/add-new-discourse" method="post" on:submit|preventDefault={handleSubmit}>
+<form action="/add-new-topic" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
     <label for="topic">Topic: </label>
     <input type="text" name="topic" id="topic" placeholder="Topic" required>

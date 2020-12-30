@@ -9,7 +9,7 @@
   const dispatch = createEventDispatcher();
 
   const handleActiveChange = async e => {
-    const res = await put(`/admin/toggle-discourse-active/${details.id}.json`, {
+    const res = await put(`/admin/toggle-topic-active/${details.id}.json`, {
       isActive: e.target.checked
     });
     if (!res.error) {
@@ -37,7 +37,7 @@
 
 <form action="update-topic" method="post">
   <div class="wrapper" class:is-live={details.isActive}>
-    <h3>{details.topic}</h3>
+    <h3>{details.title}</h3>
     <div class="form-element">
       <input
         type="checkbox"

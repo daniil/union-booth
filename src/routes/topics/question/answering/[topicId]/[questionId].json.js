@@ -7,10 +7,10 @@ export async function get(req, res) {
   }
 
   const data = db.read();
-  const questions = data.questions[req.params.discourseId];
+  const questions = data.questions[req.params.topicId];
 
   if (!questions) {
-    return err(res, 404, 'Can not find questions for this discourse');
+    return err(res, 404, 'Can not find questions for this topic');
   }
 
   const question = questions.find(question => question.id === req.params.questionId);
@@ -28,10 +28,10 @@ export async function post(req, res) {
   }
 
   const data = db.read();
-  const questions = data.questions[req.params.discourseId];
+  const questions = data.questions[req.params.topicId];
 
   if (!questions) {
-    return err(res, 404, 'Can not find questions for this discourse');
+    return err(res, 404, 'Can not find questions for this topic');
   }
 
   const question = questions.find(question => question.id === req.params.questionId);

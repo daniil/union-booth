@@ -8,20 +8,20 @@ export async function post(req, res) {
   }
 
   const data = db.read();
-  const discourses = data.discourses.map(discourse => ({ ...discourse, isActive: false }));
+  const topics = data.topics.map(topic => ({ ...topic, isActive: false }));
 
   const id = uuid();
-  const newDiscourse = {
+  const newTopic = {
     id,
-    topic: req.body.topic,
+    title: req.body.topic,
     isActive: true,
     dateCreated: Date.now()
   };
-  discourses.push(newDiscourse);
-  data.discourses = discourses;
+  topics.push(newTopic);
+  data.topics = topics;
   data.questions[id] = [];
 
   db.write(data);
 
-  return success(res, 201, newDiscourse);
+  return success(res, 201, newTopic);
 }
