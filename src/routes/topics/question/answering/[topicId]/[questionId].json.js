@@ -8,6 +8,7 @@ export async function get(req, res) {
 
   const data = db.read();
   const questions = data.questions[req.params.topicId];
+  const users = data.users;
 
   if (!questions) {
     return err(res, 404, 'Can not find questions for this topic');
@@ -18,6 +19,10 @@ export async function get(req, res) {
   if (!question) {
     return err(res, 404, 'Can not find this question');
   }
+
+  question.beingAnsweredByEmail = question.beingAnsweredBy.map(userId => {
+    return users.find(user => user.id === userId).email;
+  });
 
   return success(res, 201, question);
 }

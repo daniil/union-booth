@@ -3,6 +3,7 @@
   import { parseMD } from '../utils/markdown';
   import { formatDate, formatTime } from '../utils/time';
   import QuestionAnswers from './QuestionAnswers.svelte';
+  import BeingAnsweredBy from './BeingAnsweredBy.svelte';
 
   export let topicId;
   export let details;
@@ -40,15 +41,9 @@
     display: flex;
     justify-content: space-between;
   }
-  .answered-by {
-    position: absolute;
-    top: -2rem;
-    right: -1rem;
-    font-size: 2.5rem;
-  }
 </style>
 
-<article class="question" class:is-being-answered={isBeingAnswered}>
+<article class="question" class:is-being-answered={interactive && isBeingAnswered}>
   <h3>{@html content}</h3>
   <time>
     <span>{date}</span>
@@ -62,11 +57,7 @@
       on:answering={handleAnswering}
     />
   {/if}
-  {#if isBeingAnswered}
-    <div
-      class="answered-by"
-      title={details.beingAnsweredBy.map(user => user)}>
-      💭
-    </div>
+  {#if interactive && isBeingAnswered}
+    <BeingAnsweredBy users={details.beingAnsweredByEmail}/>
   {/if}
 </article>

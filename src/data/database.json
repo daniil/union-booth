@@ -50,59 +50,24 @@
   ],
   "questions": {
     "4344707b-bbe5-4af1-b448-8abbab83c30e": [],
-    "a62db27b-440f-4a2d-a49f-64cc7402b7d9": [
-      {
-        "id": "f59a5868-bcf0-42b4-bbf5-07e86a2ad17b",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "New questioon about CSS",
-        "beingAnsweredBy": [
-          "d19e5422-7407-4673-913f-02924383283d"
-        ],
-        "isAnswered": false,
-        "dateCreated": 1609343047029
-      }
-    ],
+    "a62db27b-440f-4a2d-a49f-64cc7402b7d9": [],
     "bde9c6f2-7cfb-42b3-a7c9-6f2e86b2c5dc": [
       {
-        "id": "0b32abdd-d6d8-433f-a0f4-aa0dae447f01",
+        "id": "9aff7da0-db1c-49b7-986c-9b3e8ae57d4e",
         "userId": "d19e5422-7407-4673-913f-02924383283d",
         "isAnonymous": false,
-        "question": "Can we have dynamic props like `propName={variableName}`?",
+        "question": "How are props different from state?",
         "beingAnsweredBy": [
+          "d19e5422-7407-4673-913f-02924383283d",
           "993ef170-5f50-4a91-a874-2e3bf1613f36"
         ],
         "isAnswered": false,
-        "dateCreated": 1609245349970
-      },
-      {
-        "id": "acf04955-e36f-43e6-83a0-ca0fff2b325e",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "isAnonymous": false,
-        "question": "Asking a new question",
-        "beingAnsweredBy": [],
-        "isAnswered": false,
-        "dateCreated": 1609341772902
+        "dateCreated": 1609425552693
       }
     ],
     "74908560-176d-4767-b043-9d885a216d6c": []
   },
   "answers": {
-    "0b32abdd-d6d8-433f-a0f4-aa0dae447f01": [
-      {
-        "id": "268f7be8-7eaf-424a-8f7b-6afac215e17c",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "answer": "New answer will be added",
-        "dateCreated": 1609342985065
-      },
-      {
-        "id": "b42146c3-50af-4720-803f-392671bccf00",
-        "userId": "d19e5422-7407-4673-913f-02924383283d",
-        "answer": "New **formatted** _answer_",
-        "dateCreated": 1609342999928
-      }
-    ],
-    "acf04955-e36f-43e6-83a0-ca0fff2b325e": [],
-    "f59a5868-bcf0-42b4-bbf5-07e86a2ad17b": []
+    "9aff7da0-db1c-49b7-986c-9b3e8ae57d4e": []
   }
 }
