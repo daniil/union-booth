@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Union Booth :: Register</title>
+</svelte:head>
+
 <script>
   import { post } from '../../utils/request';
   import { goto, stores } from '@sapper/app';

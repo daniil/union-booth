@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Union Booth :: Topic: {topic ? topic.title : 'Loading'}</title>
+</svelte:head>
+
 <script context="module">
   import { get } from '../../utils/request';
   import Question from '../../components/Question.svelte';

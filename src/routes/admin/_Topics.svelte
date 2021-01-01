@@ -2,7 +2,7 @@
   import { get } from '../../utils/request';
   import { onMount } from 'svelte';
   import Loading from '../../components/Loading.svelte';
-  import Topic from './Topic.svelte';
+  import Topic from './_Topic.svelte';
 
   let topics = [];
   let loading = true;

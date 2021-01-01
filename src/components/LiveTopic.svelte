@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Union Booth :: Live: {topic ? topic.title : 'Loading'}</title>
+</svelte:head>
+
 <script>
   import { onMount } from 'svelte';
   import { get } from '../utils/request';

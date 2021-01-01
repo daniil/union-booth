@@ -78,7 +78,7 @@
 		</li>
 		{#if $session.user}
 			<li>
-				<a rel="prefetch" aria-current="{segment === 'topic' ? 'page' : undefined}" href="/topics/list?t={$session.topicListRefresh}">
+				<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics/list?t={$session.topicListRefresh}">
 					All Topics
 				</a>
 			</li>

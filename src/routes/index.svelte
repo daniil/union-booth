@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Home</title>
+	<title>Union Booth :: Home</title>
 </svelte:head>
 
 <script>

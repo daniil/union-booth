@@ -1,6 +1,10 @@
+<svelte:head>
+	<title>Union Booth :: Admin</title>
+</svelte:head>
+
 <script context="module">
-  import AddNewTopic from './AddNewTopic.svelte';
-  import Topics from './Topics.svelte';
+  import AddNewTopic from './_AddNewTopic.svelte';
+  import Topics from './_Topics.svelte';
 
   export async function preload(_page, session) {
     if (!session.user) {

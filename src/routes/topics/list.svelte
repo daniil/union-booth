@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Union Booth :: All Topics</title>
+</svelte:head>
+
 <script context="module">
   import { get } from '../../utils/request';
   import TopicListItem from '../../components/TopicListItem.svelte';
