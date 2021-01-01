@@ -12,6 +12,7 @@
   const dispatch = createEventDispatcher();
 
   $: youAreAnswering = questionDetails.beingAnsweredBy.includes($session.user.id);
+  $: youAnswered = questionDetails.answeredBy.includes($session.user.id);
 
   let formVisible = false;
   let textareaEl;
@@ -23,6 +24,7 @@
 
     if (!res.error) {
       textareaEl.value = '';
+      toggleFormVisible();
       dispatch('answer-added');
     } else {
       console.log('ERROR: ', res.error);
@@ -36,6 +38,16 @@
 
     if (!res.error) {
       dispatch('answering');
+    } else {
+      console.log('ERROR: ', res.error);
+    }
+  }
+
+  const handleAnswered = async () => {
+    const res = await post(`topics/question/answered/${topicId}/${questionId}.json`);
+
+    if (!res.error) {
+      dispatch('answered');
     } else {
       console.log('ERROR: ', res.error);
     }
@@ -80,9 +92,13 @@
       <AuthContent role="moderator">
         <div class="admin-actions">
           {#if !youAreAnswering}
-            <button on:click|preventDefault={handleAnswerProgress}>
-              💭 Answering
-            </button>
+            {#if youAnswered}
+              ✅ You answered
+            {:else}
+              <button on:click|preventDefault={handleAnswerProgress}>
+                💭 Answering
+              </button>
+            {/if}
           {/if}
         </div>
       </AuthContent>
@@ -92,4 +108,9 @@
   <button class="toggle-form" on:click={toggleFormVisible}>
     💬 Answer
   </button>
+  {#if youAreAnswering}
+    <button class="toggle-answered" on:click={handleAnswered}>
+      ✅ Mark Answered
+    </button>
+  {/if}
 {/if}

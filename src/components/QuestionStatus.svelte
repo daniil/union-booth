@@ -2,9 +2,12 @@
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
 
-  export let users;
+  export let details;
 
   let tooltipVisible = false;
+
+  $: isBeingAnswered = !!details.beingAnsweredBy.length;
+  $: isAnswered = !!details.answeredBy.length;
 
   const handleMouseOver = e => {
     tooltipVisible = e.type === 'mouseover';
@@ -46,13 +49,22 @@
   class="answered-by"
   on:mouseover={handleMouseOver}
   on:mouseout={handleMouseOver}>
-  💭
+  {#if isBeingAnswered}💭{/if}
+  {#if isAnswered}✅{/if}
   {#if tooltipVisible}
     <div class="user-list" transition:fly="{{duration: 300, y: 5, opacity: 0, easing: quintOut }}">
-      <h4 class="title">Answering:</h4>
-      {#each users as user}
-        <p class="user">{user}</p>
-      {/each}
+      {#if isAnswered}
+        <h4 class="title">Answered by:</h4>
+        {#each details.answeredByEmail as user}
+          <p class="user">{user}</p>
+        {/each}
+      {/if}
+      {#if isBeingAnswered}
+        <h4 class="title">Answering:</h4>
+        {#each details.beingAnsweredByEmail as user}
+          <p class="user">{user}</p>
+        {/each}
+      {/if}
     </div>
   {/if}
 </div>

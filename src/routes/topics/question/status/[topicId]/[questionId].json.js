@@ -1,13 +1,15 @@
 import db from '../../../../../utils/database';
 import { err, success } from '../../../../../utils/response';
+import mapQuestionStatus from '../../../_mapQuestionStatus';
 
-export async function post(req, res) {
-  if (!req.session.user || !['admin', 'moderator'].includes(req.session.user.role)) {
+export async function get(req, res) {
+  if (!req.session.user) {
     return err(res, 403, 'Not authorized for this route');
   }
 
   const data = db.read();
   const questions = data.questions[req.params.topicId];
+  const users = data.users;
 
   if (!questions) {
     return err(res, 404, 'Can not find questions for this topic');
@@ -19,9 +21,7 @@ export async function post(req, res) {
     return err(res, 404, 'Can not find this question');
   }
 
-  question.beingAnsweredBy.push(req.session.user.id);
+  mapQuestionStatus(users, question);
 
-  db.write(data);
-
-  return success(res, 201, true);
+  return success(res, 201, question);
 }

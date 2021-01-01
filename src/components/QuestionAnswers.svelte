@@ -58,4 +58,5 @@
   {questionDetails}
   on:answer-added={fetchAnswers}
   on:answering
+  on:answered
 />

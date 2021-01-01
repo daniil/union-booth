@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import db from '../../../utils/database';
 import { err, success } from '../../../utils/response';
+import mapQuestionStatus from '../_mapQuestionStatus';
 
 export async function get(req, res) {
   if (!req.session.user) {
@@ -16,9 +17,7 @@ export async function get(req, res) {
   }
 
   questions.forEach(question => {
-    question.beingAnsweredByEmail = question.beingAnsweredBy.map(userId => {
-      return users.find(user => user.id === userId).email;
-    });
+    mapQuestionStatus(users, question);
   });
 
   return success(res, 200, questions);
@@ -39,7 +38,7 @@ export async function post(req, res) {
     isAnonymous: req.body.isAnonymous,
     question: req.body.question,
     beingAnsweredBy: [],
-    isAnswered: false,
+    answeredBy: [],
     dateCreated: Date.now()
   };
 

@@ -57,17 +57,29 @@
         "userId": "d19e5422-7407-4673-913f-02924383283d",
         "isAnonymous": false,
         "question": "How are props different from state?",
-        "beingAnsweredBy": [
-          "d19e5422-7407-4673-913f-02924383283d",
+        "beingAnsweredBy": [],
+        "answeredBy": [
           "993ef170-5f50-4a91-a874-2e3bf1613f36"
         ],
-        "isAnswered": false,
         "dateCreated": 1609425552693
       }
     ],
     "74908560-176d-4767-b043-9d885a216d6c": []
   },
   "answers": {
-    "9aff7da0-db1c-49b7-986c-9b3e8ae57d4e": []
+    "9aff7da0-db1c-49b7-986c-9b3e8ae57d4e": [
+      {
+        "id": "aee0df8a-6a33-4d84-afb1-5684df9db000",
+        "userId": "993ef170-5f50-4a91-a874-2e3bf1613f36",
+        "answer": "Props are external and state is internal",
+        "dateCreated": 1609515000098
+      },
+      {
+        "id": "3570314a-60ad-4cdc-be51-61edeafc22b2",
+        "userId": "993ef170-5f50-4a91-a874-2e3bf1613f36",
+        "answer": "They are different ways to pass data into your components",
+        "dateCreated": 1609515630131
+      }
+    ]
   }
 }

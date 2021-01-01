@@ -19,7 +19,8 @@ export async function post(req, res) {
     return err(res, 404, 'Can not find this question');
   }
 
-  question.beingAnsweredBy.push(req.session.user.id);
+  question.beingAnsweredBy = question.beingAnsweredBy.filter(id => id !== req.session.user.id);
+  question.answeredBy.push(req.session.user.id);
 
   db.write(data);
 
