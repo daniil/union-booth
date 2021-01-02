@@ -39,10 +39,22 @@ const typeDefs = gql`
   type Query {
     topics: [Topic]!
     topic(id: ID!): Topic
+    live: Topic
     questions: [Question]!
     question(id: ID!): Question
     answers: [Answer]!
     me: User
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): User
+    register(email: String!, password: String!): User
+    addTopic(title: String!): Topic
+    toggleTopicActive(id: ID!): Topic
+    addQuestion(user: User!, isAnonymous: Boolean!, question: String): Question
+    addQuestionAnswering(question: Question!, user: User!): Question
+    addQuestionAnswered(question: Question!, user: User!): Question
+    addAnswer(question: Question!, user: User!, answer: String!): Answer
   }
 `;
 
