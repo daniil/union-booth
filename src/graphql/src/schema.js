@@ -51,10 +51,10 @@ const typeDefs = gql`
     register(email: String!, password: String!): User
     addTopic(title: String!): Topic
     toggleTopicActive(id: ID!): Topic
-    addQuestion(user: User!, isAnonymous: Boolean!, question: String): Question
-    addQuestionAnswering(question: Question!, user: User!): Question
-    addQuestionAnswered(question: Question!, user: User!): Question
-    addAnswer(question: Question!, user: User!, answer: String!): Answer
+    addQuestion(userId: ID!, isAnonymous: Boolean!, question: String): Question
+    addQuestionAnswering(questionId: ID!, userId: ID!): Question
+    addQuestionAnswered(questionId: ID!, userId: ID!): Question
+    addAnswer(questionId: ID!, userId: ID!, answer: String!): Answer
   }
 `;
 
