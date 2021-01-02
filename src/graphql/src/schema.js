@@ -23,8 +23,8 @@ const typeDefs = gql`
     topic: Topic!
     question: String!
     isAnonymous: Boolean!
-    beingAnsweredBy: [User]
-    answeredBy: [User]
+    beingAnsweredBy: [User]!
+    answeredBy: [User]!
     dateCreated: Int!
   }
 
@@ -34,6 +34,15 @@ const typeDefs = gql`
     question: Question!
     answer: String!
     dateCreated: Int!
+  }
+
+  type Query {
+    topics: [Topic]!
+    topic(id: ID!): Topic
+    questions: [Question]!
+    question(id: ID!): Question
+    answers: [Answer]!
+    me: User
   }
 `;
 
