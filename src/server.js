@@ -1,6 +1,8 @@
 import sirv from 'sirv';
 import polka from 'polka';
 import compression from 'compression';
+import cors from 'cors';
+import morgan from 'morgan';
 import * as sapper from '@sapper/server';
 import { json } from 'body-parser';
 import session from 'express-session';
@@ -8,6 +10,9 @@ import sessionFileStore from 'session-file-store';
 import { v4 as uuid } from 'uuid';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import http from 'http';
+import { ApolloServer } from 'apollo-server-express';
+import typeDefs from './graphql/schema';
 
 dotenv.config();
 
@@ -42,9 +47,22 @@ const helmetMiddleware = helmet({
 	}
 });
 
+const graphQLServer = new ApolloServer({
+  introspection: true,
+  playground: true,
+  typeDefs
+});
+
+graphQLServer.applyMiddleware({ app, path: '/graphql' });
+
+const httpServer = http.createServer(app.handler);
+graphQLServer.installSubscriptionHandlers(httpServer);
+
 app
 	.use(
 		json(),
+		cors(),
+		morgan('dev'),
 		session({
       secret: SESSION_SECRET,
       resave: true,
@@ -62,13 +80,15 @@ app
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware({
+			ignore: '/graphql',
       session: (req) => {
         return ({
           user: req.session.user
 				});
 			}
     })
-	)
-	.listen(PORT, err => {
-		if (err) console.log('error', err);
-	});
+	);
+
+httpServer.listen(PORT, () => {
+	console.log(`🚀 Apollo Server running on http://localhost:${PORT}/graphql`);
+});
