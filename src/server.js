@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import sirv from 'sirv';
 import polka from 'polka';
 import compression from 'compression';
@@ -9,12 +10,10 @@ import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 import { v4 as uuid } from 'uuid';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import http from 'http';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './graphql/schema';
-
-dotenv.config();
+import { sequelize } from './graphql/models';
 
 const app = polka();
 
@@ -91,4 +90,8 @@ app
 
 httpServer.listen(PORT, () => {
 	console.log(`🚀 Apollo Server running on http://localhost:${PORT}/graphql`);
+});
+
+sequelize.authenticate().then(() => {
+	console.log('🚀 Sequelize connection has been established successfully.');
 });

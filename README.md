@@ -15,6 +15,17 @@ Current functionality is being able to register for an account, support for acco
 - `/topics/:topicId` - All Questions for a topic
 - `/admin` - Admin Section (add new topic, manage existing topics)
 
+### Environment Variables
+
+```
+.env
+
+SESSION_SECRET
+DATABASE
+DATABASE_USER
+DATABASE_PASSWORD
+```
+
 ### Running the project
 
 Once you have cloned the project, install dependencies and run the project in development mode:
