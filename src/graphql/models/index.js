@@ -1,4 +1,5 @@
-import Sequelize from 'sequelize';
+import Sequelize, { DataTypes } from 'sequelize';
+import topicModel from './topic';
 
 let sequelize = new Sequelize(
   process.env.DATABASE,
@@ -9,4 +10,12 @@ let sequelize = new Sequelize(
   },
 );
 
+const models = {
+  Topic: topicModel(sequelize, DataTypes)
+};
+
+sequelize.sync();
+
 export { sequelize };
+
+export default models;
