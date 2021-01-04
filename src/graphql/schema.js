@@ -1,12 +1,14 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
+  scalar Date
+
   type User {
     id: ID!
     email: String!
     password: String!
     role: String!
-    dateCreated: Int!
+    createdAt: Date!
   }
 
   type Topic {
@@ -14,7 +16,7 @@ const typeDefs = gql`
     user: User!
     title: String!
     isActive: Boolean!
-    dateCreated: Int!
+    createdAt: Date!
   }
 
   type Question {
@@ -25,7 +27,7 @@ const typeDefs = gql`
     isAnonymous: Boolean!
     beingAnsweredBy: [User]!
     answeredBy: [User]!
-    dateCreated: Int!
+    createdAt: Date!
   }
 
   type Answer {
@@ -33,7 +35,7 @@ const typeDefs = gql`
     user: User!
     question: Question!
     answer: String!
-    dateCreated: Int!
+    createdAt: Date!
   }
 
   type Query {

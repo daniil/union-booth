@@ -63,6 +63,15 @@
           "d19e5422-7407-4673-913f-02924383283d"
         ],
         "dateCreated": 1609425552693
+      },
+      {
+        "id": "4d4a76fa-4026-4b7d-83f1-40bc7122c465",
+        "userId": "d19e5422-7407-4673-913f-02924383283d",
+        "isAnonymous": false,
+        "question": "I don't understand props at all, where do I start?",
+        "beingAnsweredBy": [],
+        "answeredBy": [],
+        "dateCreated": 1609795536443
       }
     ],
     "74908560-176d-4767-b043-9d885a216d6c": []
@@ -81,6 +90,7 @@
         "answer": "They are different ways to pass data into your components",
         "dateCreated": 1609515630131
       }
-    ]
+    ],
+    "4d4a76fa-4026-4b7d-83f1-40bc7122c465": []
   }
 }

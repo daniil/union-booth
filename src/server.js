@@ -13,7 +13,8 @@ import helmet from 'helmet';
 import http from 'http';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './graphql/schema';
-import { sequelize } from './graphql/models';
+import resolvers from './graphql/resolvers';
+import models, { sequelize } from './graphql/models';
 
 const app = polka();
 
@@ -49,7 +50,21 @@ const helmetMiddleware = helmet({
 const graphQLServer = new ApolloServer({
   introspection: true,
   playground: true,
-  typeDefs
+	typeDefs,
+	resolvers,
+	context: async ({ req, connection }) => {
+    if (connection) {
+      return {
+        models
+      };
+    }
+
+    if (req) {
+      return {
+        models
+      };
+    }
+  }
 });
 
 graphQLServer.applyMiddleware({ app, path: '/graphql' });
