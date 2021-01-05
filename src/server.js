@@ -38,6 +38,7 @@ const helmetMiddleware = helmet({
 			scriptSrc: [
 				"'self'",
 				"blob: *",
+				"'sha256-PT+YOJyhu3IamY7Pf1cnvQbDxlHIK2FjqtA7GQoyN5U='",
 				(_req, res) => `'nonce-${res.locals.nonce}'`
 			]
 		}
@@ -48,16 +49,16 @@ app
 	.use(
 		json(),
 		cors({
-			origin: ['http://localhost:3000', 'https://studio.apollographql.com'],
+			origin: ['http://localhost:3000'],
 			credentials: true
 		}),
 		morgan('dev'),
 		session({
       secret: SESSION_SECRET,
       resave: true,
-      saveUninitialized: true,
+			saveUninitialized: true,
       cookie: {
-        maxAge: 31536000
+				maxAge: 31536000
       },
       store: new FileStore({
 				path: `.sessions`,

@@ -36,7 +36,14 @@ export default {
       }
     });
 
-    graphQLServer.applyMiddleware({ app, path: '/graphql', credentials: true });
+    graphQLServer.applyMiddleware({
+      app,
+      path: '/graphql',
+      cors: {
+			  origin: ['http://localhost:3000'],
+			  credentials: true
+      }
+    });
 
     const httpServer = http.createServer(app.handler);
     graphQLServer.installSubscriptionHandlers(httpServer);
