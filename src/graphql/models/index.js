@@ -1,5 +1,6 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import topicModel from './topic';
+import userModel from './user';
 
 let sequelize = new Sequelize(
   process.env.DATABASE,
@@ -11,7 +12,8 @@ let sequelize = new Sequelize(
 );
 
 const models = {
-  Topic: topicModel(sequelize, DataTypes)
+  Topic: topicModel(sequelize, DataTypes),
+  User: userModel(sequelize, DataTypes)
 };
 
 sequelize.sync();

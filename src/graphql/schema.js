@@ -53,7 +53,13 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): User
-    register(email: String!, password: String!): User
+    register(
+      firstName: String!
+      lastName: String!
+      username: String!
+      email: String!,
+      password: String!
+    ): User
     addTopic(title: String!): Topic
     toggleTopicActive(id: ID!): Topic
     addQuestion(userId: ID!, isAnonymous: Boolean!, question: String): Question
