@@ -10,11 +10,8 @@ import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 import { v4 as uuid } from 'uuid';
 import helmet from 'helmet';
-import http from 'http';
-import { ApolloServer } from 'apollo-server-express';
-import typeDefs from './graphql/schema';
-import resolvers from './graphql/resolvers';
-import models, { sequelize } from './graphql/models';
+import graphQLServer from './graphql';
+import { sequelize } from './graphql/models';
 
 const app = polka();
 
@@ -47,30 +44,7 @@ const helmetMiddleware = helmet({
 	}
 });
 
-const graphQLServer = new ApolloServer({
-  introspection: true,
-  playground: true,
-	typeDefs,
-	resolvers,
-	context: async ({ req, connection }) => {
-    if (connection) {
-      return {
-        models
-      };
-    }
-
-    if (req) {
-      return {
-        models
-      };
-    }
-  }
-});
-
-graphQLServer.applyMiddleware({ app, path: '/graphql' });
-
-const httpServer = http.createServer(app.handler);
-graphQLServer.installSubscriptionHandlers(httpServer);
+const httpServer = graphQLServer.init(app);
 
 app
 	.use(
