@@ -29,13 +29,14 @@ export default {
         if (req) {
           return {
             models,
-            loaders
+            loaders,
+            session: req.session
           };
         }
       }
     });
 
-    graphQLServer.applyMiddleware({ app, path: '/graphql' });
+    graphQLServer.applyMiddleware({ app, path: '/graphql', credentials: true });
 
     const httpServer = http.createServer(app.handler);
     graphQLServer.installSubscriptionHandlers(httpServer);

@@ -44,12 +44,13 @@ const helmetMiddleware = helmet({
 	}
 });
 
-const httpServer = graphQLServer.init(app);
-
 app
 	.use(
 		json(),
-		cors(),
+		cors({
+			origin: ['http://localhost:3000', 'https://studio.apollographql.com'],
+			credentials: true
+		}),
 		morgan('dev'),
 		session({
       secret: SESSION_SECRET,
@@ -68,14 +69,16 @@ app
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware({
-			ignore: '/graphql',
-      session: (req) => {
+			ignore: ['/graphql'],
+      session: req => {
         return ({
           user: req.session.user
 				});
 			}
     })
 	);
+
+const httpServer = graphQLServer.init(app);
 
 httpServer.listen(PORT, () => {
 	console.log(`🚀 Apollo Server running on http://localhost:${PORT}/graphql`);
