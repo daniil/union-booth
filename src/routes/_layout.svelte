@@ -1,25 +1,16 @@
-<script context="module">
-  import ApolloClient from 'apollo-boost';
-	import fetch from 'isomorphic-unfetch';
-
-  export async function preload() {
-    const gqlClient = new ApolloClient({
-      name: 'Union Booth',
-      fetch,
-      credentials: 'include'
-    });
-
-    return { gqlClient };
-  }
-</script>
-
 <script>
+	import ApolloClient from 'apollo-boost';
+	import fetch from 'isomorphic-unfetch';
 	import { setContext } from 'svelte';
 	import Nav from '../components/Nav.svelte';
 
 	export let segment;
-	export let gqlClient;
 
+	const gqlClient = new ApolloClient({
+		name: 'Union Booth',
+		fetch,
+		credentials: 'include'
+	});
 	setContext('gqlClient', gqlClient);
 </script>
 

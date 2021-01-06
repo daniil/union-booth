@@ -3,22 +3,26 @@
 </svelte:head>
 
 <script>
-  import { post } from '../../utils/request';
-  import { goto, stores } from "@sapper/app";
+  import { goto, stores } from '@sapper/app';
+  import { getContext } from 'svelte';
+  import { LOGIN_USER } from './_queries';
 
   const { session } = stores();
+  const gqlClient = getContext('gqlClient');
 
   const handleLogin = async function(e) {
-    const user = await post('login/login.json', {
-      email: e.target.email.value,
-      password: e.target.password.value
-    });
-
-    if (!user.error) {
+    try {
+      const user = await gqlClient.mutate({
+        mutation: LOGIN_USER,
+        variables: {
+          login: e.target.email.value,
+          password: e.target.password.value
+        }
+      });
       $session.user = user.data;
       goto('/');
-    } else {
-      console.log('ERROR: ', user.error);
+    } catch(err) {
+      console.log(err);
     }
   }
 </script>

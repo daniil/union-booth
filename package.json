@@ -9,8 +9,6 @@
     "start": "node __sapper__/build"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.6",
-    "apollo-boost": "^0.4.9",
     "apollo-server": "^2.19.1",
     "apollo-server-express": "^2.19.1",
     "bcrypt": "^5.0.0",
@@ -35,10 +33,11 @@
     "sequelize": "^6.3.5",
     "session-file-store": "^1.5.0",
     "sirv": "^1.0.0",
-    "svelte-apollo": "^0.4.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@apollo/client": "^3.3.6",
+    "apollo-boost": "^0.4.9",
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
@@ -53,6 +52,7 @@
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "sapper": "^0.28.0",
-    "svelte": "^3.17.3"
+    "svelte": "^3.17.3",
+    "svelte-apollo": "^0.4.0"
   }
 }
