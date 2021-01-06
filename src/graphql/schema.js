@@ -68,6 +68,10 @@ const typeDefs = gql`
     addQuestionAnswered(questionId: ID!, userId: ID!): Question
     addAnswer(questionId: ID!, userId: ID!, answer: String!): Answer
   }
+
+  type Subscription {
+    testSub: Topic
+  }
 `;
 
 module.exports = typeDefs;

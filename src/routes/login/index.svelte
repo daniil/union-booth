@@ -4,21 +4,19 @@
 
 <script>
   import { goto, stores } from '@sapper/app';
-  import { getContext } from 'svelte';
+  import { mutation } from 'svelte-apollo';
   import { LOGIN_USER } from './_queries';
 
   const { session } = stores();
-  const gqlClient = getContext('gqlClient');
+
+  const loginUser = mutation(LOGIN_USER);
 
   const handleLogin = async function(e) {
     try {
-      const user = await gqlClient.mutate({
-        mutation: LOGIN_USER,
-        variables: {
-          login: e.target.email.value,
-          password: e.target.password.value
-        }
-      });
+      const user = await loginUser({ variables: {
+        login: e.target.email.value,
+        password: e.target.password.value
+      } });
       $session.user = user.data;
       goto('/');
     } catch(err) {
