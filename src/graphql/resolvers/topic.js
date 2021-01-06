@@ -1,4 +1,4 @@
-const { PubSub } = require('apollo-server');
+const { PubSub, withFilter } = require('apollo-server');
 
 const pubsub = new PubSub();
 
@@ -11,14 +11,20 @@ export default {
   },
 
   Mutation: {
-    addTopic: async (_, args, { }) => {
+    addTopic: async (_, args) => {
       pubsub.publish('TEST_MESSAGE', { testSub: args });
     }
   },
 
   Subscription: {
     testSub: {
-      subscribe: () => pubsub.asyncIterator('TEST_MESSAGE')
+      subscribe: withFilter(
+        () => pubsub.asyncIterator('TEST_MESSAGE'),
+        (payload, variables) => {
+          console.log('Filter: ', payload, variables);
+          return true;
+        }
+      )
     }
   }
 }

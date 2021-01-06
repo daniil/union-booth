@@ -41,7 +41,6 @@
 		link: splitLink,
 		cache: new InMemoryCache(),
 		fetch,
-		credentials: 'include'
 	});
 	setClient(apolloClient);
 </script>

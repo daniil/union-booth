@@ -20,6 +20,19 @@ const dev = NODE_ENV === 'development';
 
 const FileStore = new sessionFileStore(session);
 
+const sessionMiddleware = session({
+	secret: SESSION_SECRET,
+	resave: true,
+	saveUninitialized: true,
+	cookie: {
+		maxAge: 31536000
+	},
+	store: new FileStore({
+		path: `.sessions`,
+		retries: 0
+	})
+});
+
 const nonceMiddleware = (_req, res, next) => {
 	res.locals = {};
 	res.locals.nonce = uuid();
@@ -53,18 +66,7 @@ app
 			credentials: true
 		}),
 		morgan('dev'),
-		session({
-      secret: SESSION_SECRET,
-      resave: true,
-			saveUninitialized: true,
-      cookie: {
-				maxAge: 31536000
-      },
-      store: new FileStore({
-				path: `.sessions`,
-				retries: 0
-      })
-    }),
+		sessionMiddleware,
 		nonceMiddleware,
 		helmetMiddleware,
 		compression({ threshold: 0 }),

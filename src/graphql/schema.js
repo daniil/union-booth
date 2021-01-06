@@ -70,7 +70,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    testSub: Topic
+    testSub(id: ID): Topic
   }
 `;
 
