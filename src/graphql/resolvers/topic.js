@@ -27,9 +27,19 @@ export default {
   },
 
   Mutation: {
-    addTopic: async (_, args) => {
-      pubsub.publish('TEST_MESSAGE', { testSub: args });
-    }
+    addTopic: combineResolvers(
+      isAuthenticated,
+      async (_, { title }, { models, session }) => {
+        const topic = await models.Topic.create({
+          title,
+          userId: session.user.id
+        });
+
+        pubsub.publish('TEST_MESSAGE', { testSub: title });
+
+        return topic;
+      }
+    )
   },
 
   Subscription: {
@@ -41,6 +51,12 @@ export default {
           return true;
         }
       )
+    }
+  },
+
+  Topic: {
+    user: async (parent, _, { loaders }) => {
+      return await loaders.user.load(parent.userId);
     }
   }
 };

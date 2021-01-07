@@ -16,7 +16,15 @@ const models = {
   User: userModel(sequelize, DataTypes)
 };
 
-sequelize.sync();
+// TODO: Move associations to a separate file
+models.User.hasMany(models.Topic, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+models.Topic.belongsTo(models.User);
+
+sequelize.sync({ alter: true });
 
 export { sequelize };
 

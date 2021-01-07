@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import bcrypt from 'bcrypt';
 
 const user = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('user', {
     id: {
       type: DataTypes.UUID,
       defaultValue: Sequelize.UUIDV4,

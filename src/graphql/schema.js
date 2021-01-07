@@ -64,10 +64,10 @@ const typeDefs = gql`
     ): User
     addTopic(title: String!): Topic
     toggleTopicActive(id: ID!): Topic
-    addQuestion(userId: ID!, isAnonymous: Boolean!, question: String): Question
-    addQuestionAnswering(questionId: ID!, userId: ID!): Question
-    addQuestionAnswered(questionId: ID!, userId: ID!): Question
-    addAnswer(questionId: ID!, userId: ID!, answer: String!): Answer
+    addQuestion(question: String, isAnonymous: Boolean!): Question
+    addQuestionAnswering(questionId: ID!): Question
+    addQuestionAnswered(questionId: ID!): Question
+    addAnswer(questionId: ID!, answer: String!): Answer
   }
 
   type Subscription {

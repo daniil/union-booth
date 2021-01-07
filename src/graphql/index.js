@@ -4,8 +4,9 @@ import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schema';
 import resolvers from './resolvers';
 import models from './models';
+import loaders from './loaders';
 
-const loaders = {
+const loadersContext = {
 	user: new DataLoader(keys =>
 		loaders.user.batchUsers(keys, models),
 	)
@@ -22,14 +23,14 @@ export default {
         if (connection) {
           return {
             models,
-            loaders
+            loaders: loadersContext
           };
         }
 
         if (req) {
           return {
             models,
-            loaders,
+            loaders: loadersContext,
             session: req.session
           };
         }

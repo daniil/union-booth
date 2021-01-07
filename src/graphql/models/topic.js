@@ -1,16 +1,12 @@
 import Sequelize from 'sequelize';
 
 const topic = (sequelize, DataTypes) => {
-  const Topic = sequelize.define('Topic', {
+  const Topic = sequelize.define('topic', {
     id: {
       type: DataTypes.UUID,
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       unique: true
-    },
-    userId: {
-      type: DataTypes.UUID,
-      allowNull: false
     },
     title: {
       type: DataTypes.STRING,
@@ -18,7 +14,7 @@ const topic = (sequelize, DataTypes) => {
     },
     isActive: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      defaultValue: false
     }
   });
 

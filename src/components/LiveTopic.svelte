@@ -46,9 +46,10 @@
       }
     `})
 
-    setInterval(() => {
-      addTopic({ variables: { title: (new Date()).toTimeString() }})
-    }, 1000);
+    // TODO: Remove this test code (this triggers the 'TEST_MESSAGE' sub publish)
+    // setInterval(() => {
+    //   addTopic({ variables: { title: (new Date()).toTimeString() }})
+    // }, 1000);
 
     const res = await get('topics/live.json');
     loading = false;
