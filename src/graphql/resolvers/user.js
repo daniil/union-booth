@@ -53,6 +53,11 @@ export default {
       session.user = userSessionValues(user);
 
       return user;
+    },
+
+    logout: async (_, __, { session }) => {
+      session.user = null;
+      return true;
     }
   }
 }

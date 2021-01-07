@@ -9,11 +9,13 @@
   const { session } = stores();
 
   const handleRegister = async function(e) {
+    // TODO: Convert to using GraphQL
     const newUser = await post('register/register.json', {
       email: e.target.email.value,
       password: e.target.password.value
     });
 
+    // TODO: Validate the registration for errors and display them
     if (!newUser.error) {
       $session.user = newUser.data;
       goto('/');

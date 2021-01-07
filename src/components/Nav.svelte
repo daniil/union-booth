@@ -7,6 +7,7 @@
 
 	const { session } = stores();
 
+	// TODO: Change logout to use GraphQL
 	const handleLogout = async () => {
 		await post('login/logout.json');
 
