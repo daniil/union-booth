@@ -1,22 +1,29 @@
 const { PubSub, withFilter } = require('apollo-server');
 import { combineResolvers } from 'graphql-resolvers';
+import { isAuthenticated } from './auth';
 
 const pubsub = new PubSub();
 
 export default {
   Query: {
-    topics: async (_, __, { models }) => {
-      const topics = await models.Topic.findAll();
-      return topics;
-    },
-    live: async (_, __, { models }) => {
-      const liveTopic = await models.Topic.findOne({
-        where: {
-          isActive: true
-        }
-      });
-      return liveTopic;
-    }
+    topics: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models }) => {
+        const topics = await models.Topic.findAll();
+        return topics;
+      }
+    ),
+    live: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models }) => {
+        const liveTopic = await models.Topic.findOne({
+          where: {
+            isActive: true
+          }
+        });
+        return liveTopic;
+      }
+    )
   },
 
   Mutation: {
@@ -36,4 +43,4 @@ export default {
       )
     }
   }
-}
+};

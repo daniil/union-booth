@@ -19,7 +19,7 @@ export default {
   Mutation: {
     register: async (
       _,
-      { firstName, lastName, username, email, password, role },
+      { firstName, lastName, username, email, password },
       { models, session }
     ) => {
       const user = await models.User.create({
