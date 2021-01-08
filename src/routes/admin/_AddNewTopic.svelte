@@ -1,5 +1,5 @@
 <script>
-  import { goto, stores } from "@sapper/app";
+  import { goto, stores } from '@sapper/app';
   import { post } from '../../utils/request';
 
   const { session } = stores();

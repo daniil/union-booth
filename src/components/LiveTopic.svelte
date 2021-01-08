@@ -7,7 +7,7 @@
   import { get } from '../utils/request';
   import Loading from './Loading.svelte';
   import TopicQuestions from './TopicQuestions.svelte';
-  import { mutation, subscribe, getClient } from "svelte-apollo";
+  import { mutation, subscribe, getClient } from 'svelte-apollo';
   import gql from 'graphql-tag';
 
   let topic;

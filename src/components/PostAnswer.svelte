@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { stores } from "@sapper/app";
+  import { stores } from '@sapper/app';
   import { post } from '../utils/request';
   import AuthContent from '../components/AuthContent.svelte';
 

@@ -1,6 +1,6 @@
 <script>
 	import { post } from '../utils/request';
-	import { goto, stores } from "@sapper/app";
+	import { goto, stores } from '@sapper/app';
 	import { onMount } from 'svelte';
 
 	export let segment;
