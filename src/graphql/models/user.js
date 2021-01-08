@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import bcrypt from 'bcrypt';
+import generateAvatar from '../../utils/generateAvatar';
 
 const user = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
@@ -43,6 +44,10 @@ const user = (sequelize, DataTypes) => {
 
   User.beforeCreate(async user => {
     user.password = await user.generatePasswordHash();
+  });
+
+  User.afterCreate(user => {
+    generateAvatar(user.id);
   });
 
   User.findByLogin = async login => {
