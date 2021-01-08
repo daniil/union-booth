@@ -5,21 +5,24 @@
 <script>
   import { goto, stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { LOGIN_USER } from './_queries';
+  import { LOGIN } from './_queries';
 
   const { session } = stores();
 
-  const loginUser = mutation(LOGIN_USER);
+  const loginUser = mutation(LOGIN);
 
   const handleLogin = async function(e) {
     try {
-      const user = await loginUser({ variables: {
-        login: e.target.email.value,
-        password: e.target.password.value
-      } });
+      const user = await loginUser({
+        variables: {
+          login: e.target.email.value,
+          password: e.target.password.value
+        }
+      });
       $session.user = user.data;
       goto('/');
     } catch(err) {
+      // TODO: Do an actual validation for errors
       console.log(err);
     }
   }

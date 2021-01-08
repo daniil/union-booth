@@ -22,36 +22,35 @@ export default {
       { firstName, lastName, username, email, password },
       { models, session }
     ) => {
-      const user = await models.User.create({
-        firstName,
-        lastName,
-        username,
-        email,
-        password
-      });
-
-      session.user = userSessionValues(user);
-
-      return user;
+      try {
+        const user = await models.User.create({
+          firstName,
+          lastName,
+          username,
+          email,
+          password
+        });
+        session.user = userSessionValues(user);
+        return user;
+      } catch(err) {
+        throw new UserInputError(err.errors[0].message);
+      }
     },
 
     login: async (_, { login, password }, { models, session }) => {
       const user = await models.User.findByLogin(login);
-
       if (!user) {
         throw new UserInputError(
-          'No user found with this login credentials.',
+          'No user found with this login credentials.'
         );
       }
 
       const passwordIsValid = await user.validatePassword(password);
-
       if (!passwordIsValid) {
         throw new AuthenticationError('Invalid password.');
       }
 
       session.user = userSessionValues(user);
-
       return user;
     },
 
