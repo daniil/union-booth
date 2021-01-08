@@ -64,4 +64,4 @@
     <input type="submit" value="Register">
   </div>
 </form>
-<FormErrors {errors} />
+<FormErrors {errors}/>
