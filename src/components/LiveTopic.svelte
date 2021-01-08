@@ -54,6 +54,7 @@
     const res = await get('topics/live.json');
     loading = false;
 
+    // TODO: Ensure that if there is an error, the topic gets reset
     if (!res.error) {
       topic = res.data;
     }

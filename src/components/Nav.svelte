@@ -1,15 +1,16 @@
 <script>
-	import { post } from '../utils/request';
 	import { goto, stores } from '@sapper/app';
 	import { onMount } from 'svelte';
+	import { mutation } from 'svelte-apollo';
+  import { LOGOUT } from '../routes/login/_queries';
 
 	export let segment;
 
 	const { session } = stores();
+	const logoutUser = mutation(LOGOUT);
 
-	// TODO: Change logout to use GraphQL
 	const handleLogout = async () => {
-		await post('login/logout.json');
+		await logoutUser();
 
 		$session.user = null;
 		goto('/');

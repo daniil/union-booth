@@ -13,6 +13,13 @@ const LOGIN = gql`
   }
 `;
 
+const LOGOUT = gql`
+  mutation Logout {
+    logout
+  }
+`;
+
 export {
-  LOGIN
+  LOGIN,
+  LOGOUT
 }
