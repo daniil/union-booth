@@ -20,6 +20,7 @@ Current functionality is being able to register for an account, support for acco
 ```
 .env
 
+SERVER_URL
 SESSION_SECRET
 DATABASE
 DATABASE_USER
@@ -42,3 +43,6 @@ This will start the development server on [localhost:3000](http://localhost:3000
 
 - Svelte
 - Sapper
+- Apollo GraphQL (Full-Stack)
+- PostgreSQL
+- Sequelize
