@@ -1,5 +1,5 @@
 <script>
-	import ApolloClient from "apollo-client";
+	import ApolloClient from 'apollo-client';
 	import { WebSocketLink } from 'apollo-link-ws';
 	import { HttpLink } from 'apollo-link-http';
 	import { split } from 'apollo-link';
@@ -36,6 +36,7 @@
 		httpLink,
 	);
 
+	// TODO: Move Apollo Client instantiation to a separate file
 	const apolloClient = new ApolloClient({
 		name: 'Union Booth',
 		link: splitLink,

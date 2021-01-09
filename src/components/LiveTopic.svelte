@@ -7,7 +7,7 @@
   import { get } from '../utils/request';
   import Loading from './Loading.svelte';
   import TopicQuestions from './TopicQuestions.svelte';
-  import { mutation, subscribe, getClient } from "svelte-apollo";
+  import { mutation, subscribe, getClient } from 'svelte-apollo';
   import gql from 'graphql-tag';
 
   let topic;
@@ -54,6 +54,7 @@
     const res = await get('topics/live.json');
     loading = false;
 
+    // TODO: Ensure that if there is an error, the topic gets reset
     if (!res.error) {
       topic = res.data;
     }

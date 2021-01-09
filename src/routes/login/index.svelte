@@ -5,22 +5,29 @@
 <script>
   import { goto, stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { LOGIN_USER } from './_queries';
+  import { LOGIN } from './_queries';
+  import parseError from '../../utils/parseError';
+  import FormErrors from '../../components/FormErrors.svelte';
 
   const { session } = stores();
+  const loginUser = mutation(LOGIN);
 
-  const loginUser = mutation(LOGIN_USER);
+  let errors;
 
   const handleLogin = async function(e) {
     try {
-      const user = await loginUser({ variables: {
-        login: e.target.email.value,
-        password: e.target.password.value
-      } });
+      errors = null;
+
+      const user = await loginUser({
+        variables: {
+          login: e.target.email.value,
+          password: e.target.password.value
+        }
+      });
       $session.user = user.data;
       goto('/');
     } catch(err) {
-      console.log(err);
+      errors = parseError(err);
     }
   }
 </script>
@@ -38,3 +45,4 @@
     <input type="submit" value="Login">
   </div>
 </form>
+<FormErrors {errors}/>

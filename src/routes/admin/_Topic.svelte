@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { stores } from "@sapper/app";
+  import { stores } from '@sapper/app';
   import { put } from '../../utils/request';
 
   export let details;
