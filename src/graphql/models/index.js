@@ -1,6 +1,7 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import topicModel from './topic';
 import userModel from './user';
+import { setupAssociations } from './associations';
 
 let sequelize = new Sequelize(
   process.env.DATABASE,
@@ -16,13 +17,7 @@ const models = {
   User: userModel(sequelize, DataTypes)
 };
 
-// TODO: Move associations to a separate file
-models.User.hasMany(models.Topic, {
-  foreignKey: {
-    allowNull: false
-  }
-});
-models.Topic.belongsTo(models.User);
+setupAssociations(models);
 
 sequelize.sync({ alter: true });
 
