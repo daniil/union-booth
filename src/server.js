@@ -10,7 +10,7 @@ import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 import { v4 as uuid } from 'uuid';
 import helmet from 'helmet';
-import graphQLServer from './graphql';
+import graphQLServer from './graphql/server';
 import { sequelize } from './graphql/models';
 
 const app = polka();
