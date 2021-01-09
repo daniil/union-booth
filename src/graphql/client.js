@@ -7,35 +7,39 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import WebSocket from 'isomorphic-ws';
 import fetch from 'isomorphic-unfetch';
 
-const httpLink = new HttpLink({
-  uri: 'http://localhost:3000/graphql'
-});
+export default session => {
+  const { SERVER_URL, PORT } = session;
 
-const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:3000/graphql',
-  options: {
-    reconnect: true
-  },
-  webSocketImpl: WebSocket
-});
+  const httpLink = new HttpLink({
+    uri: `http://${SERVER_URL}:${PORT}/graphql`
+  });
 
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
-    );
-  },
-  wsLink,
-  httpLink,
-);
+  const wsLink = new WebSocketLink({
+    uri: `ws://${SERVER_URL}:${PORT}/graphql`,
+    options: {
+      reconnect: true
+    },
+    webSocketImpl: WebSocket
+  });
 
-const apolloClient = new ApolloClient({
-  name: 'Union Booth',
-  link: splitLink,
-  cache: new InMemoryCache(),
-  fetch,
-});
+  const splitLink = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === 'OperationDefinition' &&
+        definition.operation === 'subscription'
+      );
+    },
+    wsLink,
+    httpLink,
+  );
 
-export default apolloClient;
+  const apolloClient = new ApolloClient({
+    name: 'Union Booth',
+    link: splitLink,
+    cache: new InMemoryCache(),
+    fetch,
+  });
+
+  return apolloClient;
+}

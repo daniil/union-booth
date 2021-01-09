@@ -15,7 +15,7 @@ import { sequelize } from './graphql/models';
 
 const app = polka();
 
-const { PORT, NODE_ENV, SESSION_SECRET } = process.env;
+const { SERVER_URL, PORT, NODE_ENV, SESSION_SECRET } = process.env;
 const dev = NODE_ENV === 'development';
 
 const FileStore = new sessionFileStore(session);
@@ -62,7 +62,7 @@ app
 	.use(
 		json(),
 		cors({
-			origin: ['http://localhost:3000'],
+			origin: [`http://${SERVER_URL}:${PORT}`],
 			credentials: true
 		}),
 		morgan('dev'),
@@ -75,7 +75,9 @@ app
 			ignore: ['/graphql'],
 			session: req => {
 				return ({
-					user: req.session.user
+					user: req.session.user,
+					SERVER_URL,
+					PORT
 				});
 			}
 		})
@@ -84,7 +86,7 @@ app
 const httpServer = graphQLServer.init(app);
 
 httpServer.listen(PORT, () => {
-	console.log(`🚀 Apollo Server running on http://localhost:${PORT}/graphql`);
+	console.log(`🚀 Apollo Server running on http://${SERVER_URL}:${PORT}/graphql`);
 });
 
 sequelize.authenticate().then(() => {

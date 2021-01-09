@@ -6,6 +6,8 @@ import resolvers from './resolvers';
 import models from './models';
 import loaders from './loaders';
 
+const { SERVER_URL, PORT } = process.env;
+
 const loadersContext = {
 	user: new DataLoader(keys =>
 		loaders.user.batchUsers(keys, models),
@@ -41,7 +43,7 @@ export default {
       app,
       path: '/graphql',
       cors: {
-			  origin: ['http://localhost:3000'],
+			  origin: [`http://${SERVER_URL}:${PORT}`],
 			  credentials: true
       }
     });

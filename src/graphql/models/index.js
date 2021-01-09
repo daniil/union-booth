@@ -3,10 +3,12 @@ import topicModel from './topic';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
+const { DATABASE, DATABASE_USER, DATABASE_PASSWORD } = process.env;
+
 let sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.DATABASE_USER,
-  process.env.DATABASE_PASSWORD,
+  DATABASE,
+  DATABASE_USER,
+  DATABASE_PASSWORD,
   {
     dialect: 'postgres',
   },

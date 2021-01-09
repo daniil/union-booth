@@ -1,9 +1,20 @@
+<script context="module">
+  export async function preload(_, session) {
+    return {
+			session
+		};
+  }
+</script>
+
 <script>
 	import { setClient } from 'svelte-apollo';
-	import apolloClient from '../graphql/client';
+	import initApolloClient from '../graphql/client';
 	import Nav from '../components/Nav.svelte';
 
 	export let segment;
+	export let session;
+
+	const apolloClient = initApolloClient(session);
 
 	setClient(apolloClient);
 </script>
