@@ -73,12 +73,12 @@ app
 		sirv('static', { dev }),
 		sapper.middleware({
 			ignore: ['/graphql'],
-      session: req => {
-        return ({
-          user: req.session.user
+			session: req => {
+				return ({
+					user: req.session.user
 				});
 			}
-    })
+		})
 	);
 
 const httpServer = graphQLServer.init(app);
@@ -89,4 +89,6 @@ httpServer.listen(PORT, () => {
 
 sequelize.authenticate().then(() => {
 	console.log('🚀 Sequelize connection has been established successfully.');
+}).catch(err => {
+	console.log('🚫 Sequelize could not connect to PostgreSQL. Check your connection settings');
 });
