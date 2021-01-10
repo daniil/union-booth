@@ -8,6 +8,7 @@
   const { session } = stores();
   const dispatch = createEventDispatcher();
 
+  // TODO: Update active topic toggle to use GraphQL
   const handleActiveChange = async e => {
     const res = await put(`/admin/toggle-topic-active/${details.id}.json`, {
       isActive: e.target.checked
