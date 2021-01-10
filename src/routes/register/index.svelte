@@ -27,7 +27,7 @@
           password: e.target.password.value
         }
       });
-      $session.user = user.data;
+      $session.user = user.data.register;
       goto('/');
     } catch(err) {
       errors = parseError(err);

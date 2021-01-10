@@ -24,7 +24,7 @@
           password: e.target.password.value
         }
       });
-      $session.user = user.data;
+      $session.user = user.data.login;
       goto('/');
     } catch(err) {
       errors = parseError(err);
@@ -34,7 +34,7 @@
 
 <form action="/login" method="post" on:submit|preventDefault={handleLogin}>
   <div class="form-element">
-    <label for="email">Email: </label>
+    <label for="email">Email or Username: </label>
     <input type="text" name="email" id="email" placeholder="Email" required>
   </div>
   <div class="form-element">
