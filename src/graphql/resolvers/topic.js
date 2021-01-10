@@ -1,6 +1,6 @@
 const { PubSub, withFilter } = require('apollo-server');
 import { combineResolvers } from 'graphql-resolvers';
-import { isAuthenticated } from './auth';
+import { isAuthenticated, checkRole } from './auth';
 
 const pubsub = new PubSub();
 
@@ -29,6 +29,7 @@ export default {
   Mutation: {
     addTopic: combineResolvers(
       isAuthenticated,
+      checkRole('admin'),
       async (_, { title }, { models, session }) => {
         const topic = await models.Topic.create({
           title,

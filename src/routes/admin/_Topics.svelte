@@ -1,12 +1,16 @@
 <script>
   import { onMount } from 'svelte';
+  import { stores } from '@sapper/app';
   import { query } from 'svelte-apollo';
   import Loading from '../../components/Loading.svelte';
   import Topic from './_Topic.svelte';
   import { TOPICS } from '../topics/_queries';
   import parseError from '../../utils/parseError';
 
+  const { session } = stores();
   const topics = query(TOPICS);
+
+  $: $session.topicListRefresh, reloadTopics();
 
   function reloadTopics() {
     topics.refetch();
