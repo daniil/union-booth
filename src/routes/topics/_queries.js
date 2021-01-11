@@ -5,7 +5,8 @@ const TOPICS = gql`
     topics {
       id,
       title,
-      isActive
+      isActive,
+      createdAt
     }
   }
 `;

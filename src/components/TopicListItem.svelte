@@ -3,7 +3,7 @@
 
   export let details;
 
-  $: date = formatDate(details.dateCreated);
+  $: date = formatDate(details.createdAt);
 </script>
 
 <style>

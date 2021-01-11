@@ -2,29 +2,31 @@
 	<title>Union Booth :: All Topics</title>
 </svelte:head>
 
-<script context="module">
-  import { get } from '../../utils/request';
-  import TopicListItem from '../../components/TopicListItem.svelte';
-
-  export async function preload(_page, session) {
-    if (!session.user) {
-      return this.redirect(302, '');
-    }
-
-    const res = await get('/topics/list.json', this);
-
-    if (!res.error) {
-      return { topics: res.data }
-    }
-  }
-</script>
-
 <script>
-  export let topics;
+  import { onMount } from 'svelte';
+  import { query } from 'svelte-apollo';
+  import Loading from '../../components/Loading.svelte';
+  import TopicListItem from '../../components/TopicListItem.svelte';
+  import { TOPICS } from './_queries';
+  import parseError from '../../utils/parseError';
+
+  const topics = query(TOPICS);
+
+  onMount(async () => {
+    topics.refetch();
+  });
 </script>
 
 <h1>All Topics</h1>
 
-{#each topics as topic (topic.id)}
-  <TopicListItem details={topic}/>
-{/each}
+{#if $topics.loading}
+  <Loading/>
+{:else if $topics.error}
+  <p>Error: {parseError($topics.error)}</p>
+{:else if $topics.data && $topics.data.topics.length > 0}
+  {#each $topics.data.topics as topic (topic.id)}
+    <TopicListItem details={topic}/>
+  {/each}
+{:else}
+  <p>No topics currently 🙍🏼‍♂️</p>
+{/if}
