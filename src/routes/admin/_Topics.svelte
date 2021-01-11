@@ -13,7 +13,9 @@
   $: $session.topicListRefresh, reloadTopics();
 
   function reloadTopics() {
-    topics.refetch();
+    if ($session.topicListRefresh) {
+      topics.refetch();
+    }
   }
 
   onMount(async () => {

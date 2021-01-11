@@ -2,6 +2,14 @@
 	<title>Union Booth :: All Topics</title>
 </svelte:head>
 
+<script context="module">
+  export async function preload(page, session) {
+    if (!session.user) {
+      return this.redirect(302, '');
+    }
+  }
+</script>
+
 <script>
   import { onMount } from 'svelte';
   import { query } from 'svelte-apollo';
