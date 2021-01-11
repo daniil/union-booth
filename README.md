@@ -11,7 +11,7 @@ Current functionality is being able to register for an account, support for acco
 - `/register` - Register a new student or educator
 - `/login` - Logs in a student or educator
 - `/` - Register/Login links for anonymous user, Live questions for current lecture for signed in user (ask a question, add an answer, mark question as being answered by the moderator)
-- `/topics/list` - All Topics in a list
+- `/topics` - All Topics in a list
 - `/topics/:topicId` - All Questions for a topic
 - `/admin` - Admin Section (add new topic, manage existing topics)
 

@@ -1,6 +1,5 @@
 <script>
 	import { goto, stores } from '@sapper/app';
-	import { onMount } from 'svelte';
 	import { mutation } from 'svelte-apollo';
   import { LOGOUT } from '../routes/login/_queries';
 
@@ -15,10 +14,6 @@
 		$session.user = null;
 		goto('/');
 	}
-
-	onMount(() => {
-		$session.topicListRefresh = Date.now();
-	});
 </script>
 
 <style>
@@ -80,7 +75,7 @@
 		</li>
 		{#if $session.user}
 			<li>
-				<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics/list?t={$session.topicListRefresh}">
+				<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics">
 					All Topics
 				</a>
 			</li>
