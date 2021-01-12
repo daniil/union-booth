@@ -4,26 +4,40 @@
 
 <script context="module">
   import { get } from '../../utils/request';
-  import Question from '../../components/Question.svelte';
+  import { TOPIC } from './_queries';
 
   export async function preload(page, session) {
     if (!session.user) {
       return this.redirect(302, '');
     }
 
-    const resTopic = await get(`/topics/${page.params.id}.json`, this);
+    await session.apolloClient.query({
+      query: TOPIC,
+      variables: { id: page.params.id }
+    });
+
     const resQuestions = await get(`/topics/questions/${page.params.id}.json`, this);
 
     return {
-      topic: resTopic.data,
+      id: page.params.id,
       questions: resQuestions.data
     };
   }
 </script>
 
 <script>
-  export let topic;
+  import { stores } from '@sapper/app';
+  import Question from '../../components/Question.svelte';
+
+  export let id;
   export let questions = [];
+
+  const { session } = stores();
+
+  let topic = $session.apolloClient.readQuery({
+    query: TOPIC,
+    variables: { id }
+  }).topic;
 </script>
 
 <h1>{topic.title}</h1>

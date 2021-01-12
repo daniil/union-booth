@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+import gql from 'graphql-tag';
 
 const typeDefs = gql`
   scalar Date
@@ -74,4 +74,4 @@ const typeDefs = gql`
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

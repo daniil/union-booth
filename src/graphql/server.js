@@ -8,7 +8,7 @@ import loaders from './loaders';
 
 const { SERVER_URL, PORT } = process.env;
 
-const loadersContext = {
+export const loadersContext = {
 	user: new DataLoader(keys =>
 		loaders.user.batchUsers(keys, models),
 	)

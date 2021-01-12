@@ -11,6 +11,17 @@ const TOPICS = gql`
   }
 `;
 
+const TOPIC = gql`
+  query Topic($id: ID!) {
+    topic(id: $id) {
+      title,
+      isActive,
+      createdAt
+    }
+  }
+`;
+
 export {
-  TOPICS
+  TOPICS,
+  TOPIC
 }

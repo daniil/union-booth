@@ -1,22 +1,25 @@
-<script context="module">
-  export async function preload(_, session) {
-    return {
-			session
-		};
-  }
-</script>
-
 <script>
+	import { stores } from '@sapper/app';
+	import { onDestroy } from 'svelte';
 	import { setClient } from 'svelte-apollo';
 	import initApolloClient from '../graphql/client';
 	import Nav from '../components/Nav.svelte';
 
 	export let segment;
-	export let session;
 
-	const apolloClient = initApolloClient(session);
+	const { session } = stores();
 
+	const apolloClient = initApolloClient($session);
 	setClient(apolloClient);
+
+	if (!process.browser) {
+		onDestroy(() => {
+			$session.apolloClient = $session.apolloClient.extract();
+		});
+	} else {
+		apolloClient.restore($session.apolloClient);
+		$session.apolloClient = apolloClient;
+	}
 </script>
 
 <style>

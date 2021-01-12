@@ -38,7 +38,7 @@ export default session => {
     name: 'Union Booth',
     link: splitLink,
     cache: new InMemoryCache(),
-    fetch,
+    fetch
   });
 
   return apolloClient;
