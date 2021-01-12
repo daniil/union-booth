@@ -18,6 +18,7 @@ const typeDefs = gql`
     id: ID!
     user: User!
     title: String!
+    slug: String!
     isActive: Boolean!
     createdAt: Date!
   }
@@ -43,7 +44,7 @@ const typeDefs = gql`
 
   type Query {
     topics: [Topic]!
-    topic(id: ID!): Topic!
+    topic(slug: ID!): Topic!
     live: Topic!
     questions: [Question]!
     question(id: ID!): Question!

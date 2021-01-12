@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import SequelizeSlugify from 'sequelize-slugify';
 
 const topic = (sequelize, DataTypes) => {
   const Topic = sequelize.define('topic', {
@@ -12,10 +13,18 @@ const topic = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    slug: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
+  });
+
+  SequelizeSlugify.slugifyModel(Topic, {
+    source: ['title']
   });
 
   return Topic;

@@ -13,13 +13,13 @@
 
     await session.apolloClient.query({
       query: TOPIC,
-      variables: { id: page.params.id }
+      variables: { slug: page.params.slug }
     });
 
-    const resQuestions = await get(`/topics/questions/${page.params.id}.json`, this);
+    const resQuestions = await get(`/topics/questions/${page.params.slug}.json`, this);
 
     return {
-      id: page.params.id,
+      slug: page.params.slug,
       questions: resQuestions.data
     };
   }
@@ -29,14 +29,14 @@
   import { stores } from '@sapper/app';
   import Question from '../../components/Question.svelte';
 
-  export let id;
+  export let slug;
   export let questions = [];
 
   const { session } = stores();
 
   let topic = $session.apolloClient.readQuery({
     query: TOPIC,
-    variables: { id }
+    variables: { slug }
   }).topic;
 </script>
 

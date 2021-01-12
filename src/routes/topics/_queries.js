@@ -5,6 +5,7 @@ const TOPICS = gql`
     topics {
       id,
       title,
+      slug,
       isActive,
       createdAt
     }
@@ -12,8 +13,8 @@ const TOPICS = gql`
 `;
 
 const TOPIC = gql`
-  query Topic($id: ID!) {
-    topic(id: $id) {
+  query Topic($slug: ID!) {
+    topic(slug: $slug) {
       title,
       isActive,
       createdAt

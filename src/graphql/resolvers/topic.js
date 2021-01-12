@@ -16,10 +16,10 @@ export default {
 
     topic: combineResolvers(
       isAuthenticated,
-      async (_, { id }, { models }) => {
+      async (_, { slug }, { models }) => {
         const topic = await models.Topic.findOne({
           where: {
-            id
+            slug
           }
         });
 
