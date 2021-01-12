@@ -43,12 +43,12 @@ const typeDefs = gql`
 
   type Query {
     topics: [Topic]!
-    topic(id: ID!): Topic
+    topic(id: ID!): Topic!
     live: Topic!
     questions: [Question]!
     question(id: ID!): Question!
     answers: [Answer]!
-    me: User
+    me: User!
   }
 
   type Mutation {

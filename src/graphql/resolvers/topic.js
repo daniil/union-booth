@@ -1,4 +1,4 @@
-const { PubSub, withFilter } = require('apollo-server');
+const { PubSub, withFilter, UserInputError } = require('apollo-server');
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 
@@ -13,6 +13,26 @@ export default {
         return topics;
       }
     ),
+
+    topic: combineResolvers(
+      isAuthenticated,
+      async (_, { id }, { models }) => {
+        const topic = await models.Topic.findOne({
+          where: {
+            id
+          }
+        });
+
+        if (!topic) {
+          throw new UserInputError(
+            'This topic can not be found'
+          );
+        }
+
+        return topic;
+      }
+    ),
+
     live: combineResolvers(
       isAuthenticated,
       async (_, __, { models }) => {
