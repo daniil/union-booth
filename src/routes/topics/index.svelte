@@ -3,36 +3,32 @@
 </svelte:head>
 
 <script context="module">
-  export async function preload(page, session) {
+  import { TOPICS } from './_queries';
+
+  export async function preload(_, session) {
     if (!session.user) {
       return this.redirect(302, '');
+    }
+
+    if (!process.browser) {
+      await session.apolloClient.query({ query: TOPICS });
     }
   }
 </script>
 
 <script>
-  import { onMount } from 'svelte';
-  import { query } from 'svelte-apollo';
-  import Loading from '../../components/Loading.svelte';
+  import { stores } from '@sapper/app';
   import TopicListItem from '../../components/TopicListItem.svelte';
-  import { TOPICS } from './_queries';
-  import parseError from '../../utils/parseError';
 
-  const topics = query(TOPICS);
+  const { session } = stores();
 
-  onMount(async () => {
-    topics.refetch();
-  });
+  let topics = $session.apolloClient.readQuery({ query: TOPICS }).topics;
 </script>
 
 <h1>All Topics</h1>
 
-{#if $topics.loading}
-  <Loading/>
-{:else if $topics.error}
-  <p>Error: {parseError($topics.error)}</p>
-{:else if $topics.data && $topics.data.topics.length > 0}
-  {#each $topics.data.topics as topic (topic.id)}
+{#if topics.length > 0}
+  {#each topics as topic (topic.id)}
     <TopicListItem details={topic}/>
   {/each}
 {:else}

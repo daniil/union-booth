@@ -93,6 +93,6 @@ httpServer.listen(PORT, () => {
 
 sequelize.authenticate().then(() => {
 	console.log('🚀 Sequelize connection has been established successfully.');
-}).catch(err => {
+}).catch(() => {
 	console.log('🚫 Sequelize could not connect to PostgreSQL. Check your connection settings');
 });
