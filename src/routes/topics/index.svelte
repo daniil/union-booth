@@ -10,9 +10,9 @@
       return this.redirect(302, '');
     }
 
-    if (!process.browser) {
+    try {
       await session.apolloClient.query({ query: TOPICS });
-    }
+    } catch(err) {};
   }
 </script>
 
