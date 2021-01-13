@@ -1,5 +1,6 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import programModel from './program';
+import cohortModel from './cohort';
 import topicModel from './topic';
 import userModel from './user';
 import { setupAssociations } from './associations';
@@ -15,6 +16,7 @@ let sequelize = new Sequelize(
 
 const models = {
   Program: programModel(sequelize, DataTypes),
+  Cohort: cohortModel(sequelize, DataTypes),
   Topic: topicModel(sequelize, DataTypes),
   User: userModel(sequelize, DataTypes)
 };

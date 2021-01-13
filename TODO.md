@@ -1,8 +1,6 @@
 ## Tasks
 
-- Add program model/schema
 - Add register choice for being an admin of the program
-- Add cohort model/schema
 - Add cohort field to user registration
 - Add cohort to user session
 - Add tabs to admin page
