@@ -1,4 +1,5 @@
 import Sequelize, { DataTypes } from 'sequelize';
+import programModel from './program';
 import topicModel from './topic';
 import userModel from './user';
 import { setupAssociations } from './associations';
@@ -9,12 +10,11 @@ let sequelize = new Sequelize(
   DATABASE,
   DATABASE_USER,
   DATABASE_PASSWORD,
-  {
-    dialect: 'postgres',
-  },
+  { dialect: 'postgres' }
 );
 
 const models = {
+  Program: programModel(sequelize, DataTypes),
   Topic: topicModel(sequelize, DataTypes),
   User: userModel(sequelize, DataTypes)
 };
