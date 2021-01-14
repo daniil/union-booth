@@ -6,7 +6,6 @@
 - Add tabs to admin page
 - Add Program UI (to add a program)
 - Add cohort UI (to add a cohort)
-- Add cohort/topic table/model to track unlocked/live topics
 - Add hooks to program model to update cohort/topic table
 - Change topics to be tied to the program
 - Add an FAQ model/schema tied to the topic

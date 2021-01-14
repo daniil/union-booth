@@ -16,10 +16,6 @@ const topic = (sequelize, DataTypes) => {
     slug: {
       type: DataTypes.STRING,
       unique: true
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   });
 
