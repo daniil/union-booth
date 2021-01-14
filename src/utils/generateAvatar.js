@@ -3,9 +3,15 @@ import multiavatar from '@multiavatar/multiavatar';
 import fs from 'fs';
 import path from 'path';
 
+const avatarsFolder = path.resolve(__dirname, '../../../static/avatars');
+
+if (!fs.existsSync(avatarsFolder)){
+  fs.mkdirSync(avatarsFolder);
+}
+
 export default userId => {
   fs.writeFileSync(
-    path.resolve(__dirname, `../../../static/avatars/${userId}.svg`),
+    `${avatarsFolder}/${userId}.svg`,
     multiavatar(uuid())
   );
 }

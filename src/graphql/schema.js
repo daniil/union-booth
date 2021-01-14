@@ -60,7 +60,8 @@ const typeDefs = gql`
       lastName: String!
       username: String!
       email: String!,
-      password: String!
+      password: String!,
+      isProgramOwner: Boolean!
     ): User
     addTopic(title: String!): Topic
     toggleTopicActive(id: ID!): Topic

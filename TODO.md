@@ -1,6 +1,5 @@
 ## Tasks
 
-- Add register choice for being an admin of the program
 - Add cohort field to user registration
 - Add cohort to user session
 - Add tabs to admin page
@@ -10,6 +9,9 @@
 - Change topics to be tied to the program
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
+- Add user admin UI
+- Add generate new avatar functionality for user
+- When user is deleted, invalidate their session
 
 ## Ongoing
 

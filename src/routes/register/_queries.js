@@ -6,14 +6,16 @@ const REGISTER = gql`
     $lastName: String!,
     $username: String!,
     $email: String!,
-    $password: String!
+    $password: String!,
+    $isProgramOwner: Boolean!
   ) {
     register(
       firstName: $firstName,
       lastName: $lastName,
       username: $username,
       email: $email,
-      password: $password
+      password: $password,
+      isProgramOwner: $isProgramOwner
     ) {
       id
       firstName

@@ -24,7 +24,8 @@
           lastName: e.target.lastName.value,
           username: e.target.username.value,
           email: e.target.email.value,
-          password: e.target.password.value
+          password: e.target.password.value,
+          isProgramOwner: e.target.isProgramOwner.checked
         }
       });
       $session.user = user.data.register;
@@ -59,6 +60,10 @@
   <div class="form-element">
     <label for="passwordConfirm">Confirm Password: </label>
     <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password" required>
+  </div>
+  <div class="form-element">
+    <input type="checkbox" name="isProgramOwner" id="isProgramOwner">
+    <label for="isProgramOwner">Register as Program Owner</label>
   </div>
   <div class="form-element">
     <input type="submit" value="Register">

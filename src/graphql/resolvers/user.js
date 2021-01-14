@@ -19,17 +19,23 @@ export default {
   Mutation: {
     register: async (
       _,
-      { firstName, lastName, username, email, password },
+      { firstName, lastName, username, email, password, isProgramOwner },
       { models, session }
     ) => {
       try {
-        const user = await models.User.create({
+        const newUser = {
           firstName,
           lastName,
           username,
           email,
           password
-        });
+        };
+
+        if (isProgramOwner) {
+          newUser.role = 'admin';
+        }
+
+        const user = await models.User.create(newUser);
         session.user = userSessionValues(user);
         return user;
       } catch(err) {
