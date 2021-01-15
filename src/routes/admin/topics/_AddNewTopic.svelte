@@ -27,8 +27,6 @@
   <div class="form-element">
     <label for="topic">Topic: </label>
     <input bind:this={topicEl} type="text" name="topic" id="topic" placeholder="Topic" required>
-  </div>
-  <div class="form-example">
     <input type="submit" value="Add">
   </div>
 </form>

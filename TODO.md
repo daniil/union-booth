@@ -11,6 +11,7 @@
 - Add user admin UI
 - Add generate new avatar functionality for user
 - When user is deleted, invalidate their session
+- Add a program/cohort admin privileges
 
 ## Ongoing
 
