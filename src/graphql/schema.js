@@ -3,6 +3,14 @@ import gql from 'graphql-tag';
 const typeDefs = gql`
   scalar Date
 
+  type Program {
+    id: ID!
+    user: User!
+    title: String!
+    slug: String!
+    createdAt: Date!
+  }
+
   type User {
     id: ID!
     firstName: String!
@@ -63,7 +71,8 @@ const typeDefs = gql`
       password: String!,
       isProgramOwner: Boolean!
     ): User
-    addTopic(title: String!): Topic
+    addProgram(title: String!)
+    addTopic(programId: ID!, title: String!): Topic
     toggleTopicActive(id: ID!): Topic
     addQuestion(question: String, isAnonymous: Boolean!): Question
     addQuestionAnswering(questionId: ID!): Question
