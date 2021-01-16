@@ -51,6 +51,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    programs: [Program]!
     topics: [Topic]!
     topic(slug: ID!): Topic!
     live: Topic!
@@ -71,13 +72,13 @@ const typeDefs = gql`
       password: String!,
       isProgramOwner: Boolean!
     ): User
-    addProgram(title: String!)
-    addTopic(programId: ID!, title: String!): Topic
-    toggleTopicActive(id: ID!): Topic
-    addQuestion(question: String, isAnonymous: Boolean!): Question
-    addQuestionAnswering(questionId: ID!): Question
-    addQuestionAnswered(questionId: ID!): Question
-    addAnswer(questionId: ID!, answer: String!): Answer
+    addProgram(title: String!): Program!
+    addTopic(programId: ID!, title: String!): Topic!
+    toggleTopicActive(id: ID!): Topic!
+    addQuestion(question: String, isAnonymous: Boolean!): Question!
+    addQuestionAnswering(questionId: ID!): Question!
+    addQuestionAnswered(questionId: ID!): Question!
+    addAnswer(questionId: ID!, answer: String!): Answer!
   }
 
   type Subscription {
