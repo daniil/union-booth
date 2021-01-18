@@ -1,8 +1,18 @@
 <script>
+  import { mutation } from 'svelte-apollo';
+  import { ADD_PROGRAM } from './_queries';
+
+  const addProgram = mutation(ADD_PROGRAM);
+
   let programEl;
 
   const handleSubmit = async e => {
     try {
+      await addProgram({
+        variables: {
+          title: e.target.program.value
+        }
+      });
       programEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);

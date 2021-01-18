@@ -1,11 +1,12 @@
 ## Tasks
 
-- Add Program UI (to add a program)
+- Add Program List UI
 - Add cohort UI (to add a cohort)
 - Add cohort field to user registration
 - Add cohort to user session
 - Add hooks to program model to update cohort/topic table
 - Change topics to be tied to the program
+- Update topics to be fetched server side
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI
