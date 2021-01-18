@@ -22,12 +22,12 @@
 <h2>Topics</h2>
 
 <section>
-  <h3>Add New Topic</h3>
+  <h3>Add New Program Topic</h3>
   <AddNewTopic/>
 </section>
 
 <section>
-  <h3>Manage Existing Topics</h3>
+  <h3>Manage Program Topics</h3>
   <Topics/>
 </section>
 

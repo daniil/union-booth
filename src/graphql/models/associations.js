@@ -10,6 +10,7 @@ export const setupAssociations = models => {
   models.Program.belongsTo(models.User);
 
   models.Cohort.hasMany(models.CohortTopic);
+  models.Cohort.belongsTo(models.User);
   models.Cohort.belongsTo(models.Program);
   models.Cohort.belongsToMany(models.Topic, { through: models.CohortTopic });
 
@@ -22,5 +23,6 @@ export const setupAssociations = models => {
   models.CohortTopic.belongsTo(models.Topic);
 
   models.User.hasMany(models.Program, foreignKeyNonNull);
+  models.User.hasMany(models.Cohort, foreignKeyNonNull);
   models.User.hasMany(models.Topic, foreignKeyNonNull);
 }

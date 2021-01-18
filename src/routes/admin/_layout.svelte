@@ -48,6 +48,9 @@
           <a aria-current="{segment === 'programs' ? 'page' : undefined}" href="/admin/programs">Programs</a>
         </li>
         <li>
+          <a aria-current="{segment === 'cohorts' ? 'page' : undefined}" href="/admin/cohorts">Cohorts</a>
+        </li>
+        <li>
           <a aria-current="{segment === 'topics' ? 'page' : undefined}" href="/admin/topics">Topics</a>
         </li>
       </ul>
