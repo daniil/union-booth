@@ -1,18 +1,21 @@
 <script>
   import { mutation } from 'svelte-apollo';
+  import { createEventDispatcher } from 'svelte';
   import { ADD_PROGRAM } from './_queries';
 
   const addProgram = mutation(ADD_PROGRAM);
+  const dispatch = createEventDispatcher();
 
   let programEl;
 
   const handleSubmit = async e => {
     try {
-      await addProgram({
+      const program = await addProgram({
         variables: {
           title: e.target.program.value
         }
       });
+      dispatch('program-added', { program: program.data.addProgram });
       programEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);

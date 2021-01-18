@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Union Booth :: Admin :: Topics</title>
+	<title>Union Booth :: Admin - Topics</title>
 </svelte:head>
 
 <script context="module">
