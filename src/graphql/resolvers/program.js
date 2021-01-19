@@ -1,4 +1,3 @@
-const { UserInputError } = require('apollo-server');
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 

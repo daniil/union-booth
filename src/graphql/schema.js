@@ -11,6 +11,15 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
+  type Cohort {
+    id: ID!
+    user: User!
+    program: Program!
+    title: String!
+    slug: String!
+    createdAt: Date!
+  }
+
   type User {
     id: ID!
     firstName: String!
@@ -52,6 +61,7 @@ const typeDefs = gql`
 
   type Query {
     programs: [Program]!
+    cohorts: [Cohort]!
     topics: [Topic]!
     topic(slug: ID!): Topic!
     live: Topic!
@@ -73,6 +83,7 @@ const typeDefs = gql`
       isProgramOwner: Boolean!
     ): User
     addProgram(title: String!): Program!
+    addCohort(programId: ID!, title: String!): Cohort!
     addTopic(programId: ID!, title: String!): Topic!
     toggleTopicActive(id: ID!): Topic!
     addQuestion(question: String, isAnonymous: Boolean!): Question!
