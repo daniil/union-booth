@@ -1,8 +1,6 @@
 ## Tasks
 
 - Add cohort UI (to add a cohort)
-- Update Programs to be fetched for the user
-- Update Cohorts to be fetched for the program
 - Do error catching and reporting for program and cohort add
 - Add cohort field to user registration
 - Add cohort to user session
