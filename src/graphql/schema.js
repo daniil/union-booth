@@ -61,7 +61,7 @@ const typeDefs = gql`
 
   type Query {
     programs: [Program]!
-    cohorts: [Cohort]!
+    cohorts(programId: ID!): [Cohort]!
     topics: [Topic]!
     topic(slug: ID!): Topic!
     live: Topic!
