@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const ADD_COHORT = gql`
-  mutation AddCohort($title: String!) {
-    addCohort(title: $title) {
+  mutation AddCohort($programId: ID!, $title: String!) {
+    addCohort(programId: $programId, title: $title) {
       id,
       title,
       slug
@@ -11,8 +11,8 @@ const ADD_COHORT = gql`
 `;
 
 const COHORTS = gql`
-  query Cohorts {
-    cohorts {
+  query Cohorts($programId: ID!) {
+    cohorts(programId: $programId) {
       id,
       title,
       slug
