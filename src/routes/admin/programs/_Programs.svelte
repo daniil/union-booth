@@ -1,10 +1,12 @@
 <script>
+  import Program from './_Program.svelte';
+
   export let programs;
 </script>
 
 {#if programs.length}
   {#each programs as program (program.id)}
-    <p>{program.title}</p>
+    <Program details={program}/>
   {/each}
 {:else}
   <p>No programs currently 🙍🏼‍♂️</p>

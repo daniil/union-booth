@@ -24,6 +24,7 @@
   }
 
   let programs = readQuery();
+  let cohorts = [];
 
   const handleCohortAdded = async e => {
     console.log('Cohort Added!', e.detail.cohort);
@@ -46,10 +47,9 @@
       on:cohort-added={handleCohortAdded}
     />
   </section>
-
   <section>
     <h3>Program Cohorts</h3>
-    <Cohorts/>
+    <Cohorts {cohorts}/>
   </section>
 {:else}
   <p>No programs currently 🙍🏼‍♂️. Please <a href="/admin/programs">create one</a></p>

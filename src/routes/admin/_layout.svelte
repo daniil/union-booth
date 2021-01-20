@@ -21,6 +21,9 @@
   .nav-container {
     margin-right: 3rem;
   }
+  .admin-section {
+    flex-grow: 1;
+  }
   .nav-list {
     margin: 0;
     padding-left: 0;
@@ -56,7 +59,7 @@
       </ul>
     </nav>
   </aside>
-  <section>
+  <section class="admin-section">
     <slot></slot>
   </section>
 </div>
