@@ -25,7 +25,7 @@
 
 <form action="/add-program" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
-    <label for="topic">Program Name: </label>
+    <label for="program">Program Name: </label>
     <input bind:this={programEl} type="text" name="program" id="program" placeholder="Program Name" required>
     <input type="submit" value="Create">
   </div>

@@ -1,6 +1,6 @@
 ## Tasks
 
-- Add cohort UI (to add a cohort)
+- Add cohort list UI
 - Do error catching and reporting for program and cohort add
 - Add cohort field to user registration
 - Add cohort to user session

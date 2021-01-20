@@ -2,7 +2,7 @@
   export let programs;
 </script>
 
-{#if programs.length > 0}
+{#if programs.length}
   {#each programs as program (program.id)}
     <p>{program.title}</p>
   {/each}
