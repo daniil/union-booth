@@ -1,16 +1,22 @@
 <script>
-  import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
+  import { createEventDispatcher } from 'svelte';
+  import { TOGGLE_PROGRAM_SELECT } from './_queries';
 
   export let details;
 
-  const { session } = stores();
+  const toggleProgramSelect = mutation(TOGGLE_PROGRAM_SELECT);
+  const dispatch = createEventDispatcher();
 
-  // TODO: this wouldn't work with page refresh and the SSR fetch, so needs to be refactored to use server-side session or DB
-  const handleActiveChange = () => {
-    $session.activeProgram = details;
+  const handleActiveChange = async e => {
+    const program = await toggleProgramSelect({
+      variables: {
+        id: details.id,
+        isSelected: e.target.checked
+      }
+    });
+    dispatch('program-selected', { program: program.data.toggleProgramSelect });
   }
-
-  $: isActive = $session.activeProgram && details.id === $session.activeProgram.id;
 </script>
 
 <style>
@@ -30,14 +36,14 @@
 </style>
 
 <form action="update-program" method="post">
-  <div class="wrapper" class:isActive={isActive}>
+  <div class="wrapper" class:isActive={details.isSelected}>
     <h4>{details.title}</h4>
     <div class="form-element">
       <input
         type="checkbox"
         name="is-active-{details.id}"
         id="is-active-{details.id}"
-        checked={isActive}
+        checked={details.isSelected}
         on:change={handleActiveChange}>
       <label for="is-active-{details.id}">Active</label>
     </div>

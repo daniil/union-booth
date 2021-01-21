@@ -37,6 +37,18 @@
     });
     programs = readQuery();
   }
+
+  const handleProgramSelected = async e => {
+    await $session.apolloClient.writeQuery({
+      query: PROGRAMS,
+      data: {
+        programs: programs.map(program => {
+          return program.id === e.detail.program.id ? e.detail.program : { ...program, isSelected: false };
+        })
+      }
+    });
+    programs = readQuery();
+  }
 </script>
 
 <style>
@@ -56,5 +68,8 @@
 
 <section>
   <h3>Your Programs</h3>
-  <Programs {programs}/>
+  <Programs
+    {programs}
+    on:program-selected={handleProgramSelected}
+  />
 </section>

@@ -15,12 +15,25 @@ const PROGRAMS = gql`
     programs {
       id,
       title,
-      slug
+      slug,
+      isSelected
+    }
+  }
+`;
+
+const TOGGLE_PROGRAM_SELECT = gql`
+  mutation ToggleProgramSelect($id: ID!, $isSelected: Boolean!) {
+    toggleProgramSelect(id: $id, isSelected: $isSelected) {
+      id,
+      title,
+      slug,
+      isSelected
     }
   }
 `;
 
 export {
   ADD_PROGRAM,
-  PROGRAMS
+  PROGRAMS,
+  TOGGLE_PROGRAM_SELECT
 }

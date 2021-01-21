@@ -1,7 +1,8 @@
 ## Tasks
 
-- Add select active program functionality (backend driven)
-- Add cohort list UI
+- Update Program to a fragment
+- Change cohort program UI to currently selected program
+- Add cohort list UI (driven by current selected program)
 - Refactor writeQuery to updateQuery util
 - Do error catching and reporting for program and cohort add
 - Add cohort field to user registration
