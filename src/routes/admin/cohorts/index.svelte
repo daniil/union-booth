@@ -3,28 +3,34 @@
 </svelte:head>
 
 <script context="module">
-  import { PROGRAMS } from '../programs/_queries';
+  import { SELECTED_PROGRAM } from '../programs/_queries';
 
   export async function preload(_, session) {
     try {
-      await session.apolloClient.query({ query: PROGRAMS });
+      await session.apolloClient.query({ query: SELECTED_PROGRAM });
     } catch(err) {};
   }
 </script>
 
 <script>
   import { stores } from '@sapper/app';
+  import { onMount } from 'svelte';
   import AddNewCohort from './_AddNewCohort.svelte';
   import Cohorts from './_Cohorts.svelte';
+
+  let cohorts = [];
 
   const { session } = stores();
 
   const readQuery = () => {
-    return $session.apolloClient.readQuery({ query: PROGRAMS }).programs;
+    return $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
   }
 
-  let programs = readQuery();
-  let cohorts = [];
+  let selectedProgram = readQuery();
+  
+  onMount(() => {
+    selectedProgram = readQuery();
+  });
 
   const handleCohortAdded = async e => {
     console.log('Cohort Added!', e.detail.cohort);
@@ -39,11 +45,11 @@
 
 <h2>Cohorts</h2>
 
-{#if programs.length}
+{#if selectedProgram}
   <section>
     <h3>Create New Program Cohort</h3>
     <AddNewCohort
-      {programs}
+      selectedProgram={selectedProgram}
       on:cohort-added={handleCohortAdded}
     />
   </section>
@@ -52,5 +58,5 @@
     <Cohorts {cohorts}/>
   </section>
 {:else}
-  <p>No programs currently 🙍🏼‍♂️. Please <a href="/admin/programs">create one</a></p>
+  <p>No active program selected currently 🙍🏼‍♂️. Please <a href="/admin/programs">select one</a></p>
 {/if}

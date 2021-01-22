@@ -1,9 +1,12 @@
 <script>
+  import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { createEventDispatcher } from 'svelte';
-  import { TOGGLE_PROGRAM_SELECT } from './_queries';
+  import { TOGGLE_PROGRAM_SELECT, SELECTED_PROGRAM } from './_queries';
 
   export let details;
+
+  const { session } = stores();
 
   const toggleProgramSelect = mutation(TOGGLE_PROGRAM_SELECT);
   const dispatch = createEventDispatcher();
@@ -13,6 +16,16 @@
       variables: {
         id: details.id,
         isSelected: e.target.checked
+      },
+      update: (_, mutationResult) => {
+        const toggledProgram = mutationResult.data.toggleProgramSelect;
+
+        $session.apolloClient.writeQuery({
+          query: SELECTED_PROGRAM,
+          data: {
+            selectedProgram: toggledProgram.isSelected ? toggledProgram : null
+          }
+        });
       }
     });
     dispatch('program-selected', { program: program.data.toggleProgramSelect });

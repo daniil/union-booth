@@ -6,21 +6,19 @@
   const addCohort = mutation(ADD_COHORT);
   const dispatch = createEventDispatcher();
 
-  let programEl;
   let cohortEl;
 
-  export let programs;
+  export let selectedProgram;
 
   const handleSubmit = async e => {
     try {
       const cohort = await addCohort({
         variables: {
-          programId: e.target.program.value,
+          programId: selectedProgram.id,
           title: e.target.cohort.value
         }
       });
       dispatch('cohort-added', { cohort: cohort.data.addCohort });
-      programEl.value = '';
       cohortEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);
@@ -28,18 +26,14 @@
   }
 </script>
 
+<style>
+  .program-title {
+    margin-bottom: 0;
+  }
+</style>
+
 <form action="/add-cohort" method="post" on:submit|preventDefault={handleSubmit}>
-  <div class="form-element">
-    <label for="program">Program: </label>
-    <select bind:this={programEl} name="program" id="program">
-      <option value="">- Select -</option>
-      {#each programs as program (program.id)}
-        <option value={program.id}>
-          {program.title}
-        </option>
-      {/each}
-    </select>
-  </div>
+  <p class="program-title">Program: <strong>{selectedProgram.title}</strong></p>
   <div class="form-element">
     <label for="cohort">Cohort Name: </label>
     <input bind:this={cohortEl} type="text" name="cohort" id="cohort" placeholder="Cohort Name" required>

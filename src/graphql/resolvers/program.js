@@ -14,6 +14,19 @@ export default {
         });
         return programs;
       }
+    ),
+
+    selectedProgram: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models, session }) => {
+        const program = await models.Program.findOne({
+          where: {
+            userId: session.user.id,
+            isSelected: true
+          }
+        });
+        return program;
+      }
     )
   },
 

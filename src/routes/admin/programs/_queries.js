@@ -36,8 +36,18 @@ const TOGGLE_PROGRAM_SELECT = gql`
   ${programInformation}
 `;
 
+const SELECTED_PROGRAM = gql`
+  query SelectedProgram {
+    selectedProgram {
+      ...ProgramInformation
+    }
+  },
+  ${programInformation}
+`;
+
 export {
   ADD_PROGRAM,
   PROGRAMS,
-  TOGGLE_PROGRAM_SELECT
+  TOGGLE_PROGRAM_SELECT,
+  SELECTED_PROGRAM
 }
