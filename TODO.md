@@ -1,8 +1,8 @@
 ## Tasks
 
-- Update Program to a fragment
 - Change cohort program UI to currently selected program
 - Add cohort list UI (driven by current selected program)
+- Update product queries to use watchQuery mechanism
 - Refactor writeQuery to updateQuery util
 - Do error catching and reporting for program and cohort add
 - Add cohort field to user registration
