@@ -14,7 +14,6 @@
 
 <script>
   import { stores } from '@sapper/app';
-  import { onMount } from 'svelte';
   import AddNewCohort from './_AddNewCohort.svelte';
   import Cohorts from './_Cohorts.svelte';
 
@@ -22,15 +21,13 @@
 
   const { session } = stores();
 
-  const readQuery = () => {
-    return $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
-  }
+  let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
 
-  let selectedProgram = readQuery();
-  
-  onMount(() => {
-    selectedProgram = readQuery();
-  });
+  $session.apolloClient
+    .watchQuery({ query: SELECTED_PROGRAM })
+    .subscribe(({ data }) => {
+      selectedProgram = data.selectedProgram;
+    });
 
   const handleCohortAdded = async e => {
     console.log('Cohort Added!', e.detail.cohort);
