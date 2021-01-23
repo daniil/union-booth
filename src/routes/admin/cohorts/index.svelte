@@ -4,10 +4,17 @@
 
 <script context="module">
   import { SELECTED_PROGRAM } from '../programs/_queries';
+  import { COHORTS } from './_queries';
 
   export async function preload(_, session) {
     try {
-      await session.apolloClient.query({ query: SELECTED_PROGRAM });
+      const selectedProgramQuery = await session.apolloClient.query({ query: SELECTED_PROGRAM });
+      await session.apolloClient.query({
+        query: COHORTS,
+        variables: {
+          programId: selectedProgramQuery.data.selectedProgram.id
+        }
+      });
     } catch(err) {};
   }
 </script>
@@ -17,8 +24,6 @@
   import AddNewCohort from './_AddNewCohort.svelte';
   import Cohorts from './_Cohorts.svelte';
 
-  let cohorts = [];
-
   const { session } = stores();
 
   let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
@@ -27,6 +32,24 @@
     .watchQuery({ query: SELECTED_PROGRAM })
     .subscribe(({ data }) => {
       selectedProgram = data.selectedProgram;
+    });
+  
+  let cohorts = $session.apolloClient.readQuery({
+    query: COHORTS,
+    variables: {
+      programId: selectedProgram.id
+    }
+  }).cohorts;
+
+  $session.apolloClient
+    .watchQuery({
+      query: COHORTS,
+      variables: {
+        programId: selectedProgram.id
+      }
+    })
+    .subscribe(({ data }) => {
+      console.log('Cohorts Sub: ', data);
     });
 
   const handleCohortAdded = async e => {
