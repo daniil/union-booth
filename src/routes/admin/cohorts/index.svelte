@@ -49,12 +49,8 @@
       }
     })
     .subscribe(({ data }) => {
-      console.log('Cohorts Sub: ', data);
+      cohorts = data.cohorts;
     });
-
-  const handleCohortAdded = async e => {
-    console.log('Cohort Added!', e.detail.cohort);
-  }
 </script>
 
 <style>
@@ -70,7 +66,6 @@
     <h3>Create New Program Cohort</h3>
     <AddNewCohort
       selectedProgram={selectedProgram}
-      on:cohort-added={handleCohortAdded}
     />
   </section>
   <section>

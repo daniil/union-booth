@@ -1,24 +1,41 @@
 <script>
+  import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { createEventDispatcher } from 'svelte';
-  import { ADD_COHORT } from './_queries';
+  import { ADD_COHORT, COHORTS } from './_queries';
+  
+  export let selectedProgram;
 
+  const { session } = stores();
+  
   const addCohort = mutation(ADD_COHORT);
-  const dispatch = createEventDispatcher();
 
   let cohortEl;
 
-  export let selectedProgram;
-
   const handleSubmit = async e => {
     try {
-      const cohort = await addCohort({
+      await addCohort({
         variables: {
           programId: selectedProgram.id,
           title: e.target.cohort.value
+        },
+        update: (_, mutationResult) => {
+          const cohorts = $session.apolloClient.readQuery({
+            query: COHORTS,
+            variables: {
+              programId: selectedProgram.id
+            }
+          }).cohorts;
+          $session.apolloClient.writeQuery({
+            query: COHORTS,
+            variables: {
+              programId: selectedProgram.id
+            },
+            data: {
+              cohorts: [...cohorts, mutationResult.data.addCohort]
+            }
+          });
         }
       });
-      dispatch('cohort-added', { cohort: cohort.data.addCohort });
       cohortEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);
