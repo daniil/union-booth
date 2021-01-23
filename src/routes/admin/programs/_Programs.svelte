@@ -6,10 +6,7 @@
 
 {#if programs.length}
   {#each programs as program (program.id)}
-    <Program
-      details={program}
-      on:program-selected
-    />
+    <Program details={program}/>
   {/each}
 {:else}
   <p>No programs currently 🙍🏼‍♂️</p>

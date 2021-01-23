@@ -1,18 +1,16 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { createEventDispatcher } from 'svelte';
-  import { TOGGLE_PROGRAM_SELECT, SELECTED_PROGRAM } from './_queries';
+  import { PROGRAMS, TOGGLE_PROGRAM_SELECT, SELECTED_PROGRAM } from './_queries';
 
   export let details;
 
   const { session } = stores();
 
   const toggleProgramSelect = mutation(TOGGLE_PROGRAM_SELECT);
-  const dispatch = createEventDispatcher();
 
   const handleActiveChange = async e => {
-    const program = await toggleProgramSelect({
+    await toggleProgramSelect({
       variables: {
         id: details.id,
         isSelected: e.target.checked
@@ -26,9 +24,19 @@
             selectedProgram: toggledProgram.isSelected ? toggledProgram : null
           }
         });
+
+        const programs = $session.apolloClient.readQuery({ query: PROGRAMS }).programs;
+        
+        $session.apolloClient.writeQuery({
+          query: PROGRAMS,
+          data: {
+            programs: programs.map(program => {
+              return program.id === toggledProgram.id ? toggledProgram : { ...program, isSelected: false };
+            })
+          }
+        });
       }
     });
-    dispatch('program-selected', { program: program.data.toggleProgramSelect });
   }
 </script>
 

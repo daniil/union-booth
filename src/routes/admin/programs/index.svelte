@@ -19,11 +19,13 @@
 
   const { session } = stores();
 
-  const readQuery = () => {
-    return $session.apolloClient.readQuery({ query: PROGRAMS }).programs;
-  }
+  let programs = $session.apolloClient.readQuery({ query: PROGRAMS }).programs;
 
-  let programs = readQuery();
+  $session.apolloClient
+    .watchQuery({ query: PROGRAMS })
+    .subscribe(({ data }) => {
+      programs = data.programs;
+    });
 
   const handleProgramAdded = async e => {
     await $session.apolloClient.writeQuery({
@@ -33,18 +35,6 @@
           ...programs,
           e.detail.program
         ]
-      }
-    });
-    programs = readQuery();
-  }
-
-  const handleProgramSelected = async e => {
-    await $session.apolloClient.writeQuery({
-      query: PROGRAMS,
-      data: {
-        programs: programs.map(program => {
-          return program.id === e.detail.program.id ? e.detail.program : { ...program, isSelected: false };
-        })
       }
     });
     programs = readQuery();
@@ -68,8 +58,5 @@
 
 <section>
   <h3>Your Programs</h3>
-  <Programs
-    {programs}
-    on:program-selected={handleProgramSelected}
-  />
+  <Programs {programs}/>
 </section>

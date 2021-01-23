@@ -25,6 +25,7 @@
               programId: selectedProgram.id
             }
           }).cohorts;
+
           $session.apolloClient.writeQuery({
             query: COHORTS,
             variables: {
@@ -36,6 +37,7 @@
           });
         }
       });
+      
       cohortEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);
