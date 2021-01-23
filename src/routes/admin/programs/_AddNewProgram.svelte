@@ -1,21 +1,35 @@
 <script>
+  import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { createEventDispatcher } from 'svelte';
-  import { ADD_PROGRAM } from './_queries';
+  import { PROGRAMS, ADD_PROGRAM } from './_queries';
 
+  const { session } = stores();
+  
   const addProgram = mutation(ADD_PROGRAM);
-  const dispatch = createEventDispatcher();
 
   let programEl;
 
   const handleSubmit = async e => {
     try {
-      const program = await addProgram({
+      await addProgram({
         variables: {
           title: e.target.program.value
+        },
+        update: (_, mutationResult) => {
+          const programs = $session.apolloClient.readQuery({ query: PROGRAMS }).programs;
+
+          $session.apolloClient.writeQuery({
+            query: PROGRAMS,
+            data: {
+              programs: [
+                ...programs,
+                mutationResult.data.addProgram
+              ]
+            }
+          });
         }
       });
-      dispatch('program-added', { program: program.data.addProgram });
+
       programEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);

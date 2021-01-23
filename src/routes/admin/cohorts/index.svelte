@@ -34,23 +34,28 @@
       selectedProgram = data.selectedProgram;
     });
   
-  let cohorts = $session.apolloClient.readQuery({
-    query: COHORTS,
-    variables: {
-      programId: selectedProgram.id
-    }
-  }).cohorts;
+  let cohorts = [];
 
-  $session.apolloClient
-    .watchQuery({
+  if (selectedProgram) {
+    cohorts = $session.apolloClient.readQuery({
       query: COHORTS,
       variables: {
         programId: selectedProgram.id
       }
-    })
-    .subscribe(({ data }) => {
-      cohorts = data.cohorts;
-    });
+    }).cohorts;
+
+    $session.apolloClient
+      .watchQuery({
+        query: COHORTS,
+        variables: {
+          programId: selectedProgram.id
+        }
+      })
+      .subscribe(({ data }) => {
+        cohorts = data.cohorts;
+      });
+  }
+  
 </script>
 
 <style>
@@ -64,9 +69,7 @@
 {#if selectedProgram}
   <section>
     <h3>Create New Program Cohort</h3>
-    <AddNewCohort
-      selectedProgram={selectedProgram}
-    />
+    <AddNewCohort {selectedProgram}/>
   </section>
   <section>
     <h3>Program Cohorts</h3>

@@ -1,6 +1,5 @@
 ## Tasks
 
-- Update product queries to use watchQuery mechanism
 - Update README with new endpoints
 - Do error catching and reporting for program and cohort add
 - Add cohort field to user registration

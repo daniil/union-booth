@@ -26,19 +26,6 @@
     .subscribe(({ data }) => {
       programs = data.programs;
     });
-
-  const handleProgramAdded = async e => {
-    await $session.apolloClient.writeQuery({
-      query: PROGRAMS,
-      data: {
-        programs: [
-          ...programs,
-          e.detail.program
-        ]
-      }
-    });
-    programs = readQuery();
-  }
 </script>
 
 <style>
@@ -51,9 +38,7 @@
 
 <section>
   <h3>Create New Program</h3>
-  <AddNewProgram
-    on:program-added={handleProgramAdded}
-  />
+  <AddNewProgram/>
 </section>
 
 <section>
