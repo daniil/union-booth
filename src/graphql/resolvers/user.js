@@ -37,6 +37,14 @@ export default {
         }
 
         if (cohortId) {
+          const cohort = await models.Cohort.findOne({
+            where: { id: cohortId }
+          });
+
+          if (!cohort) {
+            throw new UserInputError('Invalid Cohort ID');
+          }
+
           newUser.cohortId = cohortId;
         }
 
@@ -51,9 +59,7 @@ export default {
     login: async (_, { login, password }, { models, session }) => {
       const user = await models.User.findByLogin(login);
       if (!user) {
-        throw new UserInputError(
-          'No user found with this login credentials.'
-        );
+        throw new UserInputError('No user found with this login credentials.');
       }
 
       const passwordIsValid = await user.validatePassword(password);
