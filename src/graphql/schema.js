@@ -29,6 +29,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     role: String!
+    cohort: Cohort
     createdAt: Date!
   }
 
@@ -82,7 +83,8 @@ const typeDefs = gql`
       username: String!
       email: String!,
       password: String!,
-      isProgramOwner: Boolean!
+      isProgramOwner: Boolean!,
+      cohortId: ID
     ): User
     addProgram(title: String!): Program!
     toggleProgramSelect(id: ID!, isSelected: Boolean!): Program!

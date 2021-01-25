@@ -20,7 +20,7 @@ export default {
   Mutation: {
     register: async (
       _,
-      { firstName, lastName, username, email, password, isProgramOwner },
+      { firstName, lastName, username, email, password, isProgramOwner, cohortId },
       { models, session }
     ) => {
       try {
@@ -34,6 +34,10 @@ export default {
 
         if (isProgramOwner) {
           newUser.role = 'admin';
+        }
+
+        if (cohortId) {
+          newUser.cohortId = cohortId;
         }
 
         const user = await models.User.create(newUser);
