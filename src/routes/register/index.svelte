@@ -13,6 +13,8 @@
   const registerUser = mutation(REGISTER);
 
   let errors;
+  let cohortIdRequired = true;
+  let cohortIdEl;
 
   const handleRegister = async function(e) {
     try {
@@ -25,7 +27,8 @@
           username: e.target.username.value,
           email: e.target.email.value,
           password: e.target.password.value,
-          isProgramOwner: e.target.isProgramOwner.checked
+          isProgramOwner: e.target.isProgramOwner.checked,
+          cohortId: e.target.cohortId.value
         }
       });
       $session.user = user.data.register;
@@ -34,7 +37,18 @@
       errors = parseError(err);
     }
   }
+
+  const toggleCohortIdField = () => {
+    cohortIdRequired = !cohortIdRequired;
+    cohortIdEl.value = null;
+  }
 </script>
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
 
 <form action="/register" method="post" on:submit|preventDefault={handleRegister}>
   <div class="form-element">
@@ -62,8 +76,12 @@
     <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password" required>
   </div>
   <div class="form-element">
-    <input type="checkbox" name="isProgramOwner" id="isProgramOwner">
+    <input type="checkbox" name="isProgramOwner" id="isProgramOwner" on:change={toggleCohortIdField}>
     <label for="isProgramOwner">Register as Program Owner</label>
+  </div>
+  <div class="form-element" class:hidden={!cohortIdRequired}>
+    <label for="cohortId">Cohort ID: </label>
+    <input bind:this={cohortIdEl} type="text" name="cohortId" id="cohortId" placeholder="Cohort ID" required={cohortIdRequired}>
   </div>
   <div class="form-element">
     <input type="submit" value="Register">

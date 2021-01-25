@@ -1,7 +1,5 @@
 ## Tasks
 
-- Update README with new endpoints
-- Do error catching and reporting for program and cohort add
 - Add cohort field to user registration
 - Add cohort to user session (driven by user "me" function)
 - Add Sequelize hooks to program model to update cohort/topic table
@@ -13,6 +11,7 @@
 - Add generate new avatar functionality for user
 - When user is deleted, invalidate their session
 - Add a program/cohort admin privileges
+- Do error catching and reporting for program and cohort add
 
 ## Ongoing
 
