@@ -5,6 +5,7 @@
 - Add Sequelize hooks to program model to update cohort/topic table
 - Change topics to be tied to the program
 - Update admin topics to be fetched server side, using watchQuery
+- Update topics page to have a watchQuery
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI
