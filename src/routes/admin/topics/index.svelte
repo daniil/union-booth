@@ -3,13 +3,57 @@
 </svelte:head>
 
 <script context="module">
+  import { SELECTED_PROGRAM } from '../programs/_queries';
+  import { TOPICS } from './_queries';
+
+  export async function preload(_, session) {
+    try {
+      const selectedProgramQuery = await session.apolloClient.query({ query: SELECTED_PROGRAM });
+      await session.apolloClient.query({
+        query: TOPICS,
+        variables: {
+          programId: selectedProgramQuery.data.selectedProgram.id
+        }
+      });
+    } catch(err) {};
+  }
+</script>
+
+<script>
+  import { stores } from '@sapper/app';
   import AddNewTopic from './_AddNewTopic.svelte';
   import Topics from './_Topics.svelte';
 
-  export async function preload(_page, session) {
-    if (!session.user) {
-      return this.redirect(302, '');
-    }
+  const { session } = stores();
+
+  let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
+
+  $session.apolloClient
+    .watchQuery({ query: SELECTED_PROGRAM })
+    .subscribe(({ data }) => {
+      selectedProgram = data.selectedProgram;
+    });
+  
+  let topics = [];
+
+  if (selectedProgram) {
+    topics = $session.apolloClient.readQuery({
+      query: TOPICS,
+      variables: {
+        programId: selectedProgram.id
+      }
+    }).topics;
+
+    $session.apolloClient
+      .watchQuery({
+        query: TOPICS,
+        variables: {
+          programId: selectedProgram.id
+        }
+      })
+      .subscribe(({ data }) => {
+        topics = data.topics;
+      });
   }
 </script>
 
@@ -21,13 +65,16 @@
 
 <h2>Topics</h2>
 
-<section>
-  <h3>Add New Program Topic</h3>
-  <AddNewTopic/>
-</section>
-
-<section>
-  <h3>Manage Program Topics</h3>
-  <Topics/>
-</section>
+{#if selectedProgram}
+  <section>
+    <h3>Add New Program Topic</h3>
+    <AddNewTopic/>
+  </section>
+  <section>
+    <h3>Program Topics</h3>
+    <Topics {topics}/>
+  </section>
+{:else}
+  <p>No active program selected currently 🙍🏼‍♂️. Please <a href="/admin/programs">select one</a></p>
+{/if}
 

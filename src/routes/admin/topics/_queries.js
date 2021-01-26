@@ -9,6 +9,17 @@ const ADD_TOPIC = gql`
   }
 `;
 
+const TOPICS = gql`
+  query Topics($programId: ID!) {
+    topics(programId: $programId) {
+      id,
+      title,
+      slug
+    }
+  }
+`;
+
 export {
-  ADD_TOPIC
+  ADD_TOPIC,
+  TOPICS
 }

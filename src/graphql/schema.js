@@ -36,6 +36,7 @@ const typeDefs = gql`
   type Topic {
     id: ID!
     user: User!
+    program: Program!
     title: String!
     slug: String!
     isActive: Boolean!
@@ -65,7 +66,7 @@ const typeDefs = gql`
     programs: [Program]!
     selectedProgram: Program
     cohorts(programId: ID!): [Cohort]!
-    topics: [Topic]!
+    topics(programId: ID!): [Topic]!
     topic(slug: ID!): Topic!
     live: Topic!
     questions: [Question]!

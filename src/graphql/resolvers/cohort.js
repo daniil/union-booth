@@ -9,9 +9,7 @@ export default {
       isAuthenticated,
       async (_, { programId }, { models }) => {
         const cohorts = await models.Cohort.findAll({
-          where: {
-            programId
-          }
+          where: { programId }
         });
         return cohorts;
       }

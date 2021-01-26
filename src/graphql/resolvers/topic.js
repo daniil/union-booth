@@ -8,8 +8,10 @@ export default {
   Query: {
     topics: combineResolvers(
       isAuthenticated,
-      async (_, __, { models }) => {
-        const topics = await models.Topic.findAll();
+      async (_, { programId }, { models }) => {
+        const topics = await models.Topic.findAll({
+          where: { programId }
+        });
         return topics;
       }
     ),
@@ -18,9 +20,7 @@ export default {
       isAuthenticated,
       async (_, { slug }, { models }) => {
         const topic = await models.Topic.findOne({
-          where: {
-            slug
-          }
+          where: { slug }
         });
 
         if (!topic) {
@@ -78,6 +78,9 @@ export default {
   Topic: {
     user: async (parent, _, { loaders }) => {
       return await loaders.user.load(parent.userId);
+    },
+    program: async(parent, _, { loaders }) => {
+      return await loaders.program.load(parent.programId);
     }
   }
 };
