@@ -45,19 +45,10 @@
   }
 </script>
 
-<style>
-  .program-title {
-    margin-bottom: 0;
-  }
-</style>
-
 <form action="/add-cohort" method="post" on:submit|preventDefault={handleSubmit}>
-  <p class="program-title">Program: <strong>{selectedProgram.title}</strong></p>
   <div class="form-element">
     <label for="cohort">Cohort Name: </label>
     <input bind:this={cohortEl} type="text" name="cohort" id="cohort" placeholder="Cohort Name" required>
-  </div>
-  <div class="form-element">
     <input type="submit" value="Create">
   </div>
 </form>

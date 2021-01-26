@@ -62,17 +62,20 @@
   section {
     margin-bottom: 2rem;
   }
+  .selected-program {
+    color: rgba(85, 67, 72, 0.75);
+  }
 </style>
 
 <h2>Cohorts</h2>
 
 {#if selectedProgram}
   <section>
-    <h3>Create New Program Cohort</h3>
+    <h3>Create New <span class="selected-program">{selectedProgram.title}</span> Cohort</h3>
     <AddNewCohort {selectedProgram}/>
   </section>
   <section>
-    <h3>Program Cohorts</h3>
+    <h3><span class="selected-program">{selectedProgram.title}</span> Cohorts</h3>
     <Cohorts {cohorts}/>
   </section>
 {:else}
