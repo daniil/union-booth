@@ -18,11 +18,19 @@ export default {
 
     selectedProgram: combineResolvers(
       isAuthenticated,
+      checkRole('admin'),
       async (_, __, { models, session }) => {
+        const user = await models.User.findOne({
+          where: {
+            id: session.user.id
+          }
+        });
+
+        if (!user.selectedProgram) return null;
+
         const program = await models.Program.findOne({
           where: {
-            userId: session.user.id,
-            isSelected: true
+            id: user.selectedProgram
           }
         });
         return program;
@@ -58,15 +66,15 @@ export default {
           throw new AuthenticationError('You are not the owner of this program');
         }
 
-        await models.Program.update({ isSelected: false }, {
+        await models.User.update({
+          selectedProgram: isSelected ? id : null
+        }, {
           where: {
-            userId: session.user.id
+            id: session.user.id
           }
         });
 
-        await program.update({ isSelected });
-
-        return program;
+        return isSelected ? program : null;
       }
     )
   },

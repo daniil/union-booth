@@ -3,7 +3,6 @@
 - Update topics page to have a watchQuery
 - Add Sequelize hooks to program, cohort and topic model to update cohort/topic table
 - Add selected Cohort functionality for admin
-- Update selected Program functionality to be per user (not isSelected on Program model)
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI

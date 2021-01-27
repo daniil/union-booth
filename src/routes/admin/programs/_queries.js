@@ -4,8 +4,7 @@ const programInformation = gql`
   fragment ProgramInformation on Program {
     id,
     title,
-    slug,
-    isSelected
+    slug
   }
 `;
 

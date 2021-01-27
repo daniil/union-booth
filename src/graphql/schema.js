@@ -9,7 +9,6 @@ const typeDefs = gql`
     title: String!
     slug: String!
     createdAt: Date!
-    isSelected: Boolean!
   }
 
   type Cohort {
@@ -88,7 +87,7 @@ const typeDefs = gql`
       cohortId: ID
     ): User
     addProgram(title: String!): Program!
-    toggleProgramSelect(id: ID!, isSelected: Boolean!): Program!
+    toggleProgramSelect(id: ID!, isSelected: Boolean!): Program
     addCohort(programId: ID!, title: String!): Cohort!
     addTopic(programId: ID!, title: String!): Topic!
     toggleTopicActive(id: ID!): Topic!
