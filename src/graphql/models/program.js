@@ -16,10 +16,6 @@ const program = (sequelize, DataTypes) => {
     slug: {
       type: DataTypes.STRING,
       unique: true
-    },
-    isSelected: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   });
 

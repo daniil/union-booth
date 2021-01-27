@@ -34,7 +34,7 @@
             data: {
               topics: [...topics, mutationResult.data.addTopic]
             }
-          })
+          });
         }
       });
 

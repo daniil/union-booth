@@ -1,6 +1,5 @@
 ## Tasks
 
-- Create an "updateQuery" util
 - Update topics page to have a watchQuery
 - Add Sequelize hooks to program, cohort and topic model to update cohort/topic table
 - Add selected Cohort functionality for admin

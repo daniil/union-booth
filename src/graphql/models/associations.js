@@ -7,6 +7,7 @@ const foreignKeyNonNull = {
 export const setupAssociations = models => {
   models.Program.hasMany(models.Topic, foreignKeyNonNull);
   models.Program.hasMany(models.Cohort, foreignKeyNonNull);
+  models.Program.hasMany(models.User, { foreignKey: 'selectedProgram', constraints: false });
   models.Program.belongsTo(models.User);
 
   models.Cohort.hasMany(models.CohortTopic);
@@ -26,5 +27,6 @@ export const setupAssociations = models => {
   models.User.hasMany(models.Program, foreignKeyNonNull);
   models.User.hasMany(models.Cohort, foreignKeyNonNull);
   models.User.hasMany(models.Topic, foreignKeyNonNull);
+  models.User.belongsTo(models.Program, { foreignKey: 'selectedProgram', constraints: false });
   models.User.belongsTo(models.Cohort, { constraints: false });
 }

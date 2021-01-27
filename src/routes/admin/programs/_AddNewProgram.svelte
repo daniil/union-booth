@@ -21,10 +21,7 @@
           $session.apolloClient.writeQuery({
             query: PROGRAMS,
             data: {
-              programs: [
-                ...programs,
-                mutationResult.data.addProgram
-              ]
+              programs: [...programs, mutationResult.data.addProgram]
             }
           });
         }
