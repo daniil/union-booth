@@ -1,10 +1,11 @@
 import gql from 'graphql-tag';
 
 const ADD_TOPIC = gql`
-  mutation AddTopic($title: String!) {
-    addTopic(title: $title) {
+  mutation AddTopic($programId: ID!, $title: String!) {
+    addTopic(programId: $programId, title: $title) {
       id,
-      title
+      title,
+      slug
     }
   }
 `;

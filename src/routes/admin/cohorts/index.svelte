@@ -62,8 +62,12 @@
   section {
     margin-bottom: 2rem;
   }
+  h3 {
+    margin-bottom: 1rem;
+    color: rgba(85, 67, 72, 0.7);
+  }
   .selected-program {
-    color: rgba(85, 67, 72, 0.75);
+    color: rgba(85, 67, 72, 0.9);
   }
 </style>
 

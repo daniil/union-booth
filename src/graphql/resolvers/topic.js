@@ -50,15 +50,20 @@ export default {
     addTopic: combineResolvers(
       isAuthenticated,
       checkRole('admin'),
-      async (_, { title }, { models, session }) => {
-        const topic = await models.Topic.create({
-          title,
-          userId: session.user.id
-        });
+      async (_, { programId, title }, { models, session }) => {
+        try {
+          const topic = await models.Topic.create({
+            title,
+            programId,
+            userId: session.user.id
+          });
 
-        pubsub.publish('TEST_MESSAGE', { testSub: title });
+          pubsub.publish('TEST_MESSAGE', { testSub: title });
 
-        return topic;
+          return topic;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
       }
     )
   },

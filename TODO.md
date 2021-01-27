@@ -1,10 +1,8 @@
 ## Tasks
 
-- Change topics to be tied to the program
-- Update "Add Topic" functionality
-- Update admin topics to be fetched server side, using watchQuery
+- Create an "updateQuery" util
 - Update topics page to have a watchQuery
-- Add Sequelize hooks to cohort and topic model to update cohort/topic table
+- Add Sequelize hooks to program, cohort and topic model to update cohort/topic table
 - Add selected Cohort functionality for admin
 - Update selected Program functionality to be per user (not isSelected on Program model)
 - Add an FAQ model/schema tied to the topic
@@ -22,3 +20,4 @@
 - Authenticate WebSocket requests
 - Error handling
 - Auth handling
+- Add preloaders 

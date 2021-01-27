@@ -61,8 +61,12 @@
   section {
     margin-bottom: 2rem;
   }
+  h3 {
+    margin-bottom: 1rem;
+    color: rgba(85, 67, 72, 0.7);
+  }
   .selected-program {
-    color: rgba(85, 67, 72, 0.75);
+    color: rgba(85, 67, 72, 0.9);
   }
 </style>
 
@@ -71,7 +75,7 @@
 {#if selectedProgram}
   <section>
     <h3>Add New <span class="selected-program">{selectedProgram.title}</span> Topic</h3>
-    <AddNewTopic/>
+    <AddNewTopic {selectedProgram}/>
   </section>
   <section>
     <h3><span class="selected-program">{selectedProgram.title}</span> Topics</h3>
