@@ -13,6 +13,27 @@ export default {
         });
         return cohorts;
       }
+    ),
+
+    selectedCohort: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, __, { models, session }) => {
+        const user = await models.User.findOne({
+          where: {
+            id: session.user.id
+          }
+        });
+
+        if (!user.cohortId) return null;
+
+        const cohort = await models.Cohort.findOne({
+          where: {
+            id: user.cohortId
+          }
+        });
+        return cohort;
+      }
     )
   },
 
@@ -32,6 +53,28 @@ export default {
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }
+      }
+    ),
+
+    toggleCohortSelect: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, { id, isSelected }, { models, session }) => {
+        const cohort = await models.Cohort.findOne({
+          where: {
+            id
+          }
+        });
+
+        await models.User.update({
+          cohortId: isSelected ? id : null
+        }, {
+          where: {
+            id: session.user.id
+          }
+        });
+
+        return isSelected ? cohort : null;
       }
     )
   },

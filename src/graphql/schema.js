@@ -65,6 +65,7 @@ const typeDefs = gql`
     programs: [Program]!
     selectedProgram: Program
     cohorts(programId: ID!): [Cohort]!
+    selectedCohort: Cohort
     topics(programId: ID!): [Topic]!
     topic(slug: ID!): Topic!
     live: Topic!
@@ -89,6 +90,7 @@ const typeDefs = gql`
     addProgram(title: String!): Program!
     toggleProgramSelect(id: ID!, isSelected: Boolean!): Program
     addCohort(programId: ID!, title: String!): Cohort!
+    toggleCohortSelect(id: ID!, isSelected: Boolean!): Cohort
     addTopic(programId: ID!, title: String!): Topic!
     toggleTopicActive(id: ID!): Topic!
     addQuestion(question: String, isAnonymous: Boolean!): Question!
