@@ -40,7 +40,7 @@ const SELECTED_PROGRAM = gql`
     selectedProgram {
       ...ProgramInformation
     }
-  },
+  }
   ${programInformation}
 `;
 
