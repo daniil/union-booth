@@ -1,11 +1,35 @@
 <script>
+  import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
+  import { TOGGLE_COHORT_SELECT, SELECTED_COHORT } from './_queries';
+
+  export let selectedCohort;
   export let details;
 
-  const handleActiveChange = () => {
+  const { session } = stores();
 
+  const toggleCohortSelect = mutation(TOGGLE_COHORT_SELECT);
+
+  const handleActiveChange = async e => {
+    await toggleCohortSelect({
+      variables: {
+        id: details.id,
+        isSelected: e.target.checked
+      },
+      update: (_, mutationResult) => {
+        const toggledCohort = mutationResult.data.toggleCohortSelect;
+
+        $session.apolloClient.writeQuery({
+          query: SELECTED_COHORT,
+          data: {
+            selectedCohort: toggledCohort
+          }
+        });
+      }
+    });
   }
 
-  $: isSelected = false;
+  $: isSelected = selectedCohort && details.id === selectedCohort.id;
 </script>
 
 <style>

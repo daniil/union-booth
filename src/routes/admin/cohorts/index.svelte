@@ -4,7 +4,7 @@
 
 <script context="module">
   import { SELECTED_PROGRAM } from '../programs/_queries';
-  import { COHORTS } from './_queries';
+  import { COHORTS, SELECTED_COHORT } from './_queries';
 
   export async function preload(_, session) {
     try {
@@ -15,6 +15,7 @@
           programId: selectedProgramQuery.data.selectedProgram.id
         }
       });
+      await session.apolloClient.query({ query: SELECTED_COHORT });
     } catch(err) {};
   }
 </script>
@@ -35,6 +36,7 @@
     });
   
   let cohorts = [];
+  let selectedCohort;
 
   if (selectedProgram) {
     cohorts = $session.apolloClient.readQuery({
@@ -53,6 +55,14 @@
       })
       .subscribe(({ data }) => {
         cohorts = data.cohorts;
+      });
+
+    selectedCohort = $session.apolloClient.readQuery({ query: SELECTED_COHORT }).selectedCohort;
+
+    $session.apolloClient
+      .watchQuery({ query: SELECTED_COHORT })
+      .subscribe(({ data }) => {
+        selectedCohort = data.selectedCohort;
       });
   }
   
@@ -80,7 +90,10 @@
   </section>
   <section>
     <h3><span class="selected-program">{selectedProgram.title}</span> Cohorts</h3>
-    <Cohorts {cohorts}/>
+    <Cohorts
+      {selectedCohort}
+      {cohorts}
+    />
   </section>
 {:else}
   <p>No active program selected currently 🙍🏼‍♂️. Please <a href="/admin/programs">select one</a></p>
