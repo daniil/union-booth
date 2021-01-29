@@ -32,6 +32,8 @@
   }
 </script>
 
+<h1>Login</h1>
+
 <form action="/login" method="post" on:submit|preventDefault={handleLogin}>
   <div class="form-element">
     <label for="email">Email or Username: </label>

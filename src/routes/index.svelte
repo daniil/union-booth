@@ -9,9 +9,22 @@
 	const { session } = stores();
 </script>
 
+<style>
+	.actions {
+		display: flex;
+		justify-content: center;
+	}
+	a {
+		padding: 0 1rem;
+		font-size: 1.5rem;
+	}
+</style>
+
 {#if $session.user}
 	<LiveTopic/>
 {:else}
-	<a href="/register">Register</a>
-	<a href="/login">Login</a>
+	<section class="actions">
+		<a href="/register">Register</a>
+		<a href="/login">Login</a>
+	</section>
 {/if}
