@@ -10,7 +10,7 @@ export const setupAssociations = models => {
   models.Program.hasMany(models.User, { foreignKey: 'selectedProgram', constraints: false });
   models.Program.belongsTo(models.User);
 
-  models.Cohort.hasMany(models.CohortTopic);
+  models.Cohort.hasMany(models.CohortTopic, { onDelete: 'cascade', hooks: true });
   models.Cohort.hasMany(models.User, { constraints: false });
   models.Cohort.belongsTo(models.User);
   models.Cohort.belongsTo(models.Program);
