@@ -48,6 +48,18 @@ export default {
             programId,
             userId: session.user.id
           });
+
+          const topics = await models.Topic.findAll({
+            attributes: ['id'],
+            where: { programId }
+          });
+
+          await models.CohortTopic.bulkCreate(topics.map(topic => {
+            return {
+              cohortId: cohort.id,
+              topicId: topic.id
+            };
+          }));
   
           return cohort;
         } catch(err) {

@@ -60,9 +60,7 @@ export default {
 
           const cohorts = await models.Cohort.findAll({
             attributes: ['id'],
-            where: {
-              programId
-            }
+            where: { programId }
           });
 
           await models.CohortTopic.bulkCreate(cohorts.map(cohort => {
