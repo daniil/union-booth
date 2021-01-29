@@ -58,6 +58,20 @@ export default {
             userId: session.user.id
           });
 
+          const cohorts = await models.Cohort.findAll({
+            attributes: ['id'],
+            where: {
+              programId
+            }
+          });
+
+          await models.CohortTopic.bulkCreate(cohorts.map(cohort => {
+            return {
+              cohortId: cohort.id,
+              topicId: topic.id
+            };
+          }));
+
           pubsub.publish('TEST_MESSAGE', { testSub: title });
 
           return topic;

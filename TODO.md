@@ -1,5 +1,6 @@
 ## Tasks
 
+- Update all select queries to fetch only required attributes
 - Update topics page to have a watchQuery
 - Add Sequelize hooks to program, cohort and topic model to update cohort/topic table
 - Add an FAQ model/schema tied to the topic
@@ -8,6 +9,7 @@
 - Add generate new avatar functionality for user
 - When user is deleted, invalidate their session
 - Add a program/cohort admin privileges
+- Update site color scheme
 - Do error catching and reporting for program and cohort add
 
 ## Ongoing
