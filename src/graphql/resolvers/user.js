@@ -39,6 +39,7 @@ export default {
 
         if (cohortId) {
           const cohort = await models.Cohort.findOne({
+            attributes: ['id'],
             where: { id: cohortId }
           });
 

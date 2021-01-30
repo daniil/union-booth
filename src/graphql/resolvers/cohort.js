@@ -20,6 +20,7 @@ export default {
       checkRole('admin'),
       async (_, __, { models, session }) => {
         const user = await models.User.findOne({
+          attributes: ['cohortId'],
           where: {
             id: session.user.id
           }

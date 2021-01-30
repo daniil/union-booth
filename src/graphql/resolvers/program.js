@@ -21,6 +21,7 @@ export default {
       checkRole('admin'),
       async (_, __, { models, session }) => {
         const user = await models.User.findOne({
+          attributes: ['selectedProgram'],
           where: {
             id: session.user.id
           }
