@@ -11,7 +11,7 @@
 </script>
 
 <script>
-  import Nav from './_Nav.svelte';
+  import Nav from 'routes/admin/_Nav.svelte';
 
   export let segment;
 </script>

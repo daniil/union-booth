@@ -6,6 +6,7 @@ import url from '@rollup/plugin-url';
 import svelte from 'rollup-plugin-svelte';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
+import includePaths from 'rollup-plugin-includepaths';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
@@ -62,7 +63,9 @@ export default {
 
 			!dev && terser({
 				module: true
-			})
+			}),
+
+			includePaths({ paths: ["./src"] })
 		],
 
 		preserveEntrySignatures: false,
@@ -93,7 +96,8 @@ export default {
 			resolve({
 				dedupe: ['svelte']
 			}),
-			commonjs()
+			commonjs(),
+			includePaths({ paths: ["./src"] })
 		],
 		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 
