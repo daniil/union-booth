@@ -1,6 +1,9 @@
 ## Tasks
 
-- Update all select queries to fetch only required attributes
+- Add active cohort tab
+- Remove "toggle-topic-active" Sapper endpoint
+- Refactor route components to be in components folder
+- Refactor queries to be in queries folder
 - Set admin forms to disabled while it's sending query
 - Update topics page to have a watchQuery
 - Add Sequelize hooks to program, cohort and topic model to update cohort/topic table
