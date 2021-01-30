@@ -1,7 +1,5 @@
 ## Tasks
 
-- Add active cohort tab
-- Remove "toggle-topic-active" Sapper endpoint
 - Refactor route components to be in components folder
 - Refactor queries to be in queries folder
 - Set admin forms to disabled while it's sending query
