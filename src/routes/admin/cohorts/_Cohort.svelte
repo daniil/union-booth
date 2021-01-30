@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { TOGGLE_COHORT_SELECT, SELECTED_COHORT } from './_queries';
+  import { TOGGLE_COHORT_SELECT, SELECTED_COHORT } from 'graphql/queries/admin/cohorts';
 
   export let selectedCohort;
   export let details;

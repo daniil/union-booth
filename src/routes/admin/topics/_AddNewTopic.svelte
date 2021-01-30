@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { ADD_TOPIC, TOPICS } from './_queries';
+  import { ADD_TOPIC, TOPICS } from 'graphql/queries/admin/topics';
 
   export let selectedProgram;
 

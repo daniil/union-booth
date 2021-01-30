@@ -4,7 +4,7 @@
 
 <script context="module">
   import { get } from '../../utils/request';
-  import { TOPIC } from './_queries';
+  import { TOPIC } from 'graphql/queries/topics';
 
   export async function preload(page, session) {
     if (!session.user) {

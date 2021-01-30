@@ -3,8 +3,8 @@
 </svelte:head>
 
 <script context="module">
-  import { SELECTED_PROGRAM } from '../programs/_queries';
-  import { TOPICS } from './_queries';
+  import { SELECTED_PROGRAM } from 'graphql/queries/admin/programs';
+  import { TOPICS } from 'graphql/queries/admin/topics';
 
   export async function preload(_, session) {
     try {

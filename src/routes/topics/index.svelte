@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script context="module">
-  import { TOPICS } from './_queries';
+  import { TOPICS } from 'graphql/queries/topics';
 
   export async function preload(_, session) {
     if (!session.user) {

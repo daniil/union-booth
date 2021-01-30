@@ -5,7 +5,7 @@
 <script>
   import { goto, stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { REGISTER } from './_queries';
+  import { REGISTER } from 'graphql/queries/register';
   import parseError from '../../utils/parseError';
   import FormErrors from '../../components/FormErrors.svelte';
 

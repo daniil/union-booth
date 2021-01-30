@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { ADD_COHORT, COHORTS } from './_queries';
+  import { ADD_COHORT, COHORTS } from 'graphql/queries/admin/cohorts';
   
   export let selectedProgram;
 

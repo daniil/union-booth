@@ -1,7 +1,7 @@
 <script>
 	import { goto, stores } from '@sapper/app';
 	import { mutation } from 'svelte-apollo';
-  import { LOGOUT } from '../routes/login/_queries';
+  import { LOGOUT } from 'graphql/queries/login';
 
 	export let segment;
 

@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { PROGRAMS, ADD_PROGRAM } from './_queries';
+  import { PROGRAMS, ADD_PROGRAM } from 'graphql/queries/admin/programs';
 
   const { session } = stores();
   

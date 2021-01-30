@@ -1,10 +1,9 @@
 ## Tasks
 
 - Refactor route components to be in components folder
-- Refactor queries to be in queries folder
+- Add Active Cohort topics UI
 - Set admin forms to disabled while it's sending query
 - Update topics page to have a watchQuery
-- Add Sequelize hooks to program, cohort and topic model to update cohort/topic table
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI
@@ -17,6 +16,7 @@
 
 ## Ongoing
 
+- Refactor relative paths to absolute paths
 - Clean up Sapper backend files
 - Add cascading functionality to all managed tables
 - Authenticate WebSocket requests
