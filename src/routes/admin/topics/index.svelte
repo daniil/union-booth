@@ -21,8 +21,8 @@
 
 <script>
   import { stores } from '@sapper/app';
-  import AddNewTopic from './_AddNewTopic.svelte';
-  import Topics from './_Topics.svelte';
+  import AddNewTopic from 'components/admin/topics/AddNewTopic.svelte';
+  import Topics from 'components/admin/topics/Topics.svelte';
 
   const { session } = stores();
 

@@ -1,5 +1,5 @@
 <script>
-  import Topic from './_Topic.svelte';
+  import Topic from 'components/admin/topics/Topic.svelte';
 
   export let topics;
 </script>
