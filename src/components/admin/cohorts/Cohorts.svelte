@@ -1,5 +1,5 @@
 <script>
-  import Cohort from './_Cohort.svelte';
+  import Cohort from 'components/admin/cohorts/Cohort.svelte';
 
   export let selectedCohort;
   export let cohorts;

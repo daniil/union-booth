@@ -22,8 +22,8 @@
 
 <script>
   import { stores } from '@sapper/app';
-  import AddNewCohort from './_AddNewCohort.svelte';
-  import Cohorts from './_Cohorts.svelte';
+  import AddNewCohort from 'components/admin/cohorts/AddNewCohort.svelte';
+  import Cohorts from 'components/admin/cohorts/Cohorts.svelte';
 
   const { session } = stores();
 
