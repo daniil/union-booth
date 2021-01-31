@@ -15,8 +15,8 @@
 
 <script>
   import { stores } from '@sapper/app';
-  import AddNewProgram from './_AddNewProgram.svelte';
-  import Programs from './_Programs.svelte';
+  import AddNewProgram from 'components/admin/programs/AddNewProgram.svelte';
+  import Programs from 'components/admin/programs/Programs.svelte';
 
   const { session } = stores();
 

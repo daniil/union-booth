@@ -1,5 +1,5 @@
 <script>
-  import Program from './_Program.svelte';
+  import Program from 'components/admin/programs/Program.svelte';
 
   export let selectedProgram;
   export let programs;
