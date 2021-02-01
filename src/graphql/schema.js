@@ -42,6 +42,13 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
+  type CohortTopic {
+    cohortId: ID!
+    topic: Topic!
+    isUnlocked: Boolean!
+    isLive: Boolean!
+  }
+
   type Question {
     id: ID!
     user: User!
@@ -68,6 +75,7 @@ const typeDefs = gql`
     selectedCohort: Cohort
     topics(programId: ID!): [Topic]!
     topic(slug: ID!): Topic!
+    cohortTopics(cohortId: ID!): [CohortTopic]!
     live: Topic!
     questions: [Question]!
     question(id: ID!): Question!
