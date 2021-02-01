@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 const programInformation = gql`
   fragment ProgramInformation on Program {
-    id,
-    title,
+    id
+    title
     slug
   }
 `;

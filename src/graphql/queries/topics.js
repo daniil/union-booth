@@ -3,11 +3,11 @@ import gql from 'graphql-tag';
 const TOPICS = gql`
   query Topics {
     topics {
-      id,
-      title,
-      slug,
-      isActive,
-      createdAt
+      id
+      title
+      slug
+      isActive
+      createdA
     }
   }
 `;
@@ -15,8 +15,8 @@ const TOPICS = gql`
 const TOPIC = gql`
   query Topic($slug: ID!) {
     topic(slug: $slug) {
-      title,
-      isActive,
+      title
+      isActive
       createdAt
     }
   }

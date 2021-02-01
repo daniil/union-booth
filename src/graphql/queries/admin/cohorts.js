@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 const cohortInformation = gql`
   fragment CohortInformation on Cohort {
-    id,
-    title,
+    id
+    title
     slug
   }
 `;
