@@ -1,7 +1,11 @@
 ## Tasks
 
-- Refactor route components to be in components folder
 - Add Active Cohort topics UI
+  - Output cohort topics
+  - Create topic "unlocked" functionality
+  - Output Unlocked topics on topics page
+  - Create topic "active" functionality
+  - Output Active topic on Live Topic page
 - Set admin forms to disabled while it's sending query
 - Update topics page to have a watchQuery
 - Add an FAQ model/schema tied to the topic
