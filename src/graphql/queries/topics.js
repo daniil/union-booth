@@ -7,7 +7,7 @@ const TOPICS = gql`
       title
       slug
       isActive
-      createdA
+      createdAt
     }
   }
 `;

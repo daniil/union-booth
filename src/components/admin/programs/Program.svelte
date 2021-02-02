@@ -2,6 +2,7 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { TOGGLE_PROGRAM_SELECT, SELECTED_PROGRAM } from 'graphql/queries/admin/programs';
+  import { SELECTED_COHORT } from 'graphql/queries/admin/cohorts';
 
   export let selectedProgram;
   export let details;
@@ -23,6 +24,13 @@
           query: SELECTED_PROGRAM,
           data: {
             selectedProgram: toggledProgram
+          }
+        });
+
+        $session.apolloClient.writeQuery({
+          query: SELECTED_COHORT,
+          data: {
+            selectedCohort: null
           }
         });
       }

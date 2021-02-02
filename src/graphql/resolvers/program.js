@@ -68,7 +68,8 @@ export default {
         }
 
         await models.User.update({
-          selectedProgram: isSelected ? id : null
+          selectedProgram: isSelected ? id : null,
+          cohortId: null
         }, {
           where: {
             id: session.user.id
