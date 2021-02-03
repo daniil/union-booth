@@ -38,7 +38,7 @@
     justify-content: space-between;
     padding: 0.25rem 0.5rem;
   }
-  .wrapper.isActive {
+  .wrapper.is-active {
     background-color: rgba(212, 224, 155, 0.5);
     border: 1px solid rgb(212, 224, 155);
     border-radius: 4px;
@@ -49,7 +49,7 @@
 </style>
 
 <form action="update-cohort" method="post">
-  <div class="wrapper" class:isActive={isSelected}>
+  <div class="wrapper" class:is-active={isSelected}>
     <h4>{details.title}</h4>
     <div class="form-element">
       <input
