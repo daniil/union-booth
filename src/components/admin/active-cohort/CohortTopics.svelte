@@ -1,10 +1,12 @@
 <script>
+  import CohortTopic from 'components/admin/active-cohort/CohortTopic.svelte';
+
   export let cohortTopics;
 </script>
 
 {#if cohortTopics.length}
   {#each cohortTopics as cohortTopic (cohortTopic.topic.id)}
-    <h4>{cohortTopic.topic.title}</h4>
+    <CohortTopic details={cohortTopic.topic}/>
   {/each}
 {:else}
   <p>No topics currently 🤷🏽‍♂️</p>
