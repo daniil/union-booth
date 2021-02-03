@@ -5,17 +5,25 @@
 <script context="module">
   import { SELECTED_PROGRAM } from 'graphql/queries/admin/programs';
   import { SELECTED_COHORT } from 'graphql/queries/admin/cohorts';
+  import { COHORT_TOPICS } from 'graphql/queries/admin/active-cohort';
 
   export async function preload(_, session) {
     try {
       await session.apolloClient.query({ query: SELECTED_PROGRAM });
-      await session.apolloClient.query({ query: SELECTED_COHORT });
+      const selectedCohortQuery = await session.apolloClient.query({ query: SELECTED_COHORT });
+      await session.apolloClient.query({
+        query: COHORT_TOPICS,
+        variables: {
+          cohortId: selectedCohortQuery.data.selectedCohort.id
+        }
+      })
     } catch(err) {};
   }
 </script>
 
 <script>
   import { stores } from '@sapper/app';
+  import CohortTopics from 'components/admin/active-cohort/CohortTopics.svelte';
 
   const { session } = stores();
 
@@ -34,6 +42,28 @@
     .subscribe(({ data }) => {
       selectedCohort = data.selectedCohort;
     });
+  
+  let cohortTopics = [];
+
+  if (selectedCohort) {
+    cohortTopics = $session.apolloClient.readQuery({
+      query: COHORT_TOPICS,
+      variables: {
+        cohortId: selectedCohort.id
+      }
+    }).cohortTopics;
+
+    $session.apolloClient
+      .watchQuery({
+        query: COHORT_TOPICS,
+        variables: {
+          cohortId: selectedCohort.id
+        }
+      })
+      .subscribe(({ data }) => {
+        cohortTopics = data.cohortTopics;
+      });
+  }
 </script>
 
 <style>
@@ -57,6 +87,7 @@
       <h3>
         <span class="selected">{selectedProgram.title}:</span> <span class="selected">{selectedCohort.title}</span> Topics
       </h3>
+      <CohortTopics {cohortTopics}/>
     </section>
   {:else}
     <p>No active cohort selected currently 🙍🏼‍♂️. Please <a href="/admin/cohorts">select one</a></p>
