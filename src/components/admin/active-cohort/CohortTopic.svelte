@@ -1,11 +1,7 @@
 <script>
+  import ToggleUnlocked from 'components/admin/active-cohort/ToggleUnlocked.svelte';
+
   export let details;
-
-  const handleUnlockedChange = e => {
-    isUnlocked = e.target.checked;
-  }
-
-  $: isUnlocked = false;
 </script>
 
 <style>
@@ -29,15 +25,10 @@
 </style>
 
 <form action="update-cohort-topic" method="post">
-  <div class="wrapper" class:is-unlocked={isUnlocked}>
+  <div class="wrapper" class:is-unlocked={details.isUnlocked}>
     <h4>{details.title}</h4>
     <div class="form-element">
-      <input
-        type="checkbox"
-        name="is-unlocked-{details.id}"
-        id="is-unlocked-{details.id}"
-        on:change={handleUnlockedChange}>
-      <label for="is-unlocked-{details.id}">Unlocked</label>
+      <ToggleUnlocked {details}/>
     </div>
   </div>
 </form>
