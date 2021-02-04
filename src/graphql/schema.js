@@ -100,7 +100,12 @@ const typeDefs = gql`
     addCohort(programId: ID!, title: String!): Cohort!
     toggleCohortSelect(id: ID!, isSelected: Boolean!): Cohort
     addTopic(programId: ID!, title: String!): Topic!
-    toggleTopicActive(id: ID!): Topic!
+    toggleCohortTopicStatus(
+      cohortId: ID!,
+      topicId: ID!,
+      statusType: String!,
+      status: Boolean!
+    ): CohortTopic!
     addQuestion(question: String, isAnonymous: Boolean!): Question!
     addQuestionAnswering(questionId: ID!): Question!
     addQuestionAnswered(questionId: ID!): Question!

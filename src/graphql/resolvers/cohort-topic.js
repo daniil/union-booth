@@ -1,5 +1,6 @@
+import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
-import { isAuthenticated } from './auth';
+import { isAuthenticated, checkRole } from './auth';
 
 export default {
   Query: {
@@ -10,6 +11,35 @@ export default {
           where: { cohortId }
         });
         return cohortTopics;
+      }
+    )
+  },
+
+  Mutation: {
+    toggleCohortTopicStatus: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, { cohortId, topicId, statusType, status }, { models }) => {
+        if (!['isUnlocked', 'isLive'].includes(statusType)) {
+          throw new UserInputError('Unknown status type');
+        }
+
+        const cohortTopic = await models.CohortTopic.findOne({
+          where: {
+            cohortId,
+            topicId
+          }
+        });
+
+        if (!cohortTopic) {
+          throw new UserInputError('Cohort Topic not found');
+        }
+
+        await cohortTopic.update({
+          [statusType]: status
+        });
+
+        return cohortTopic;
       }
     )
   },
