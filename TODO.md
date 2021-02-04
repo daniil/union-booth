@@ -1,13 +1,13 @@
 ## Tasks
 
 - Add Active Cohort topics UI
-  - Output cohort topics
-  - Create topic "unlocked" functionality
   - Output Unlocked topics on topics page
   - Create topic "active" functionality
   - Output Active topic on Live Topic page
 - Set admin forms to disabled while it's sending query
 - Update topics page to have a watchQuery
+- Update admin cohorts to fetch new cohorts on selected program subscription
+- Update active cohort to fetch new topics on selected cohort subscription
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI

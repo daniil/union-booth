@@ -87,7 +87,10 @@
       <h3>
         <span class="selected">{selectedProgram.title}:</span> <span class="selected">{selectedCohort.title}</span> Topics
       </h3>
-      <CohortTopics {cohortTopics}/>
+      <CohortTopics
+        {selectedCohort}
+        {cohortTopics}
+      />
     </section>
   {:else}
     <p>No active cohort selected currently 🙍🏼‍♂️. Please <a href="/admin/cohorts">select one</a></p>
