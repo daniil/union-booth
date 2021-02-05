@@ -1,5 +1,6 @@
-const { PubSub, withFilter, UserInputError } = require('apollo-server');
+import { PubSub, withFilter, UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
+import { Op } from 'sequelize';
 import { isAuthenticated, checkRole } from './auth';
 
 const pubsub = new PubSub();
@@ -8,6 +9,7 @@ export default {
   Query: {
     topics: combineResolvers(
       isAuthenticated,
+      checkRole('admin'),
       async (_, { programId }, { models }) => {
         const topics = await models.Topic.findAll({
           where: { programId }
@@ -30,6 +32,27 @@ export default {
         }
 
         return topic;
+      }
+    ),
+
+    unlockedTopics: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models, session }) => {
+        const unlockedTopics = await models.CohortTopic.findAll({
+          attributes: ['topicId'],
+          where: {
+            cohortId: session.user.cohortId,
+            isUnlocked: true
+          }
+        });
+        const topics = await models.Topic.findAll({
+          where: {
+            id: {
+              [Op.in]: unlockedTopics.map(topic => topic.topicId)
+            }
+          }
+        });
+        return topics;
       }
     ),
 
