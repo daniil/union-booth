@@ -45,22 +45,26 @@
   
   let cohortTopics = [];
 
-  if (selectedCohort) {
-    cohortTopics = $session.apolloClient.readQuery({
-      query: COHORT_TOPICS,
-      variables: {
-        cohortId: selectedCohort.id
-      }
-    }).cohortTopics;
+  $: if (selectedCohort) {
+    try {
+      cohortTopics = $session.apolloClient.readQuery({
+        query: COHORT_TOPICS,
+        variables: {
+          cohortId: selectedCohort.id
+        }
+      }).cohortTopics;
+    } catch(e) {};
 
     $session.apolloClient
       .watchQuery({
         query: COHORT_TOPICS,
         variables: {
           cohortId: selectedCohort.id
-        }
+        },
+        fetchPolicy: 'cache-and-network'
       })
       .subscribe(({ data }) => {
+        if (!data) return;
         cohortTopics = data.cohortTopics;
       });
   }

@@ -38,13 +38,15 @@
   let cohorts = [];
   let selectedCohort;
 
-  if (selectedProgram) {
-    cohorts = $session.apolloClient.readQuery({
-      query: COHORTS,
-      variables: {
-        programId: selectedProgram.id
-      }
-    }).cohorts;
+  $: if (selectedProgram) {
+    try {
+      cohorts = $session.apolloClient.readQuery({
+        query: COHORTS,
+        variables: {
+          programId: selectedProgram.id
+        }
+      }).cohorts;
+    } catch(e) {}
 
     $session.apolloClient
       .watchQuery({
