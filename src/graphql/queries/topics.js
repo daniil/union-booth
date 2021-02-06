@@ -1,12 +1,11 @@
 import gql from 'graphql-tag';
 
-const TOPICS = gql`
-  query Topics {
-    topics {
+const UNLOCKED_TOPICS = gql`
+  query UnlockedTopics {
+    unlockedTopics {
       id
       title
-      slug
-      isActive
+      slug,
       createdAt
     }
   }
@@ -23,6 +22,6 @@ const TOPIC = gql`
 `;
 
 export {
-  TOPICS,
+  UNLOCKED_TOPICS,
   TOPIC
 }

@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script context="module">
-  import { TOPICS } from 'graphql/queries/topics';
+  import { UNLOCKED_TOPICS } from 'graphql/queries/topics';
 
   export async function preload(_, session) {
     if (!session.user) {
@@ -11,7 +11,7 @@
     }
 
     try {
-      await session.apolloClient.query({ query: TOPICS });
+      await session.apolloClient.query({ query: UNLOCKED_TOPICS });
     } catch(err) {};
   }
 </script>
@@ -22,7 +22,16 @@
 
   const { session } = stores();
 
-  let topics = $session.apolloClient.readQuery({ query: TOPICS }).topics;
+  let topics = $session.apolloClient.readQuery({ query: UNLOCKED_TOPICS }).unlockedTopics;
+
+  $session.apolloClient
+    .watchQuery({
+      query: UNLOCKED_TOPICS,
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      topics = data.unlockedTopics;
+    });
 </script>
 
 <h1>All Topics</h1>
