@@ -6,8 +6,7 @@ const userSessionValues = user => {
     id: user.id,
     email: user.email,
     username: user.username,
-    role: user.role,
-    cohortId: user.cohortId
+    role: user.role
   };
 }
 
@@ -46,8 +45,6 @@ export default {
           if (!cohort) {
             throw new UserInputError('Invalid Cohort ID');
           }
-
-          newUser.cohortId = cohortId;
         }
 
         const user = await models.User.create(newUser);

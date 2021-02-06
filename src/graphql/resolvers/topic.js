@@ -38,10 +38,17 @@ export default {
     unlockedTopics: combineResolvers(
       isAuthenticated,
       async (_, __, { models, session }) => {
+        const user = await models.User.findOne({
+          attributes: ['cohortId'],
+          where: {
+            id: session.user.id
+          }
+        });
+
         const unlockedTopics = await models.CohortTopic.findAll({
           attributes: ['topicId'],
           where: {
-            cohortId: session.user.cohortId,
+            cohortId: user.cohortId,
             isUnlocked: true
           }
         });
