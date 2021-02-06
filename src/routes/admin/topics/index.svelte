@@ -36,13 +36,15 @@
   
   let topics = [];
 
-  if (selectedProgram) {
-    topics = $session.apolloClient.readQuery({
-      query: TOPICS,
-      variables: {
-        programId: selectedProgram.id
-      }
-    }).topics;
+  $: if (selectedProgram) {
+    try {
+      topics = $session.apolloClient.readQuery({
+        query: TOPICS,
+        variables: {
+          programId: selectedProgram.id
+        }
+      }).topics;
+    } catch(e) {}
 
     $session.apolloClient
       .watchQuery({
