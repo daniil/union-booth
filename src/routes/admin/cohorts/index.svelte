@@ -30,7 +30,10 @@
   let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
 
   $session.apolloClient
-    .watchQuery({ query: SELECTED_PROGRAM })
+    .watchQuery({
+      query: SELECTED_PROGRAM,
+      fetchPolicy: 'cache-and-network'
+    })
     .subscribe(({ data }) => {
       selectedProgram = data.selectedProgram;
     });
@@ -53,7 +56,8 @@
         query: COHORTS,
         variables: {
           programId: selectedProgram.id
-        }
+        },
+        fetchPolicy: 'cache-and-network'
       })
       .subscribe(({ data }) => {
         cohorts = data.cohorts;
@@ -62,7 +66,10 @@
     selectedCohort = $session.apolloClient.readQuery({ query: SELECTED_COHORT }).selectedCohort;
 
     $session.apolloClient
-      .watchQuery({ query: SELECTED_COHORT })
+      .watchQuery({
+        query: SELECTED_COHORT,
+        fetchPolicy: 'cache-and-network'
+      })
       .subscribe(({ data }) => {
         selectedCohort = data.selectedCohort;
       });

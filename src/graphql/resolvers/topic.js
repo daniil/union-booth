@@ -52,6 +52,7 @@ export default {
             isUnlocked: true
           }
         });
+
         const topics = await models.Topic.findAll({
           where: {
             id: {
@@ -59,6 +60,7 @@ export default {
             }
           }
         });
+        
         return topics;
       }
     ),

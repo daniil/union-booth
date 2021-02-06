@@ -1,18 +1,18 @@
 ## Tasks
 
 - Add Active Cohort topics UI
-  - Output Unlocked topics on topics page
   - Create topic "active" functionality
+  - Fix individual topic page
   - Output Active topic on Live Topic page
-- Update all watchQueries to use cache-and-network fetchPolicy
 - Update admin sections to use preload
 - Unsubscribe from watchQuery
 - Order queries by createdAt
+- Update unlockedTopics query to use a DataLoader
 - Set admin forms to disabled while it's sending query
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI
-- Add generate new avatar functionality for user
+  - Add generate new avatar functionality for user
 - When user is deleted, invalidate their session
 - Add a program/cohort admin privileges
 - Update site color scheme

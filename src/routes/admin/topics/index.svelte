@@ -29,7 +29,10 @@
   let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
 
   $session.apolloClient
-    .watchQuery({ query: SELECTED_PROGRAM })
+    .watchQuery({
+      query: SELECTED_PROGRAM,
+      fetchPolicy: 'cache-and-network'
+    })
     .subscribe(({ data }) => {
       selectedProgram = data.selectedProgram;
     });
@@ -51,7 +54,8 @@
         query: TOPICS,
         variables: {
           programId: selectedProgram.id
-        }
+        },
+        fetchPolicy: 'cache-and-network'
       })
       .subscribe(({ data }) => {
         topics = data.topics;
