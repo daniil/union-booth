@@ -12,7 +12,10 @@ export default {
       checkRole('admin'),
       async (_, { programId }, { models }) => {
         const topics = await models.Topic.findAll({
-          where: { programId }
+          where: { programId },
+          order: [
+            ['createdAt', 'DESC']
+          ]
         });
         return topics;
       }
@@ -58,7 +61,10 @@ export default {
             id: {
               [Op.in]: unlockedTopics.map(topic => topic.topicId)
             }
-          }
+          },
+          order: [
+            ['createdAt', 'DESC']
+          ]
         });
         
         return topics;

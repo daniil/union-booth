@@ -10,7 +10,10 @@ export default {
         const programs = await models.Program.findAll({
           where: {
             userId: session.user.id
-          }
+          },
+          order: [
+            ['createdAt', 'DESC']
+          ]
         });
         return programs;
       }

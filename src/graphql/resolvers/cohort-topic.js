@@ -14,7 +14,7 @@ export default {
             attributes: ['createdAt']
           },
           order: [
-            [models.CohortTopic.associations.topic, 'createdAt']
+            [models.CohortTopic.associations.topic, 'createdAt', 'DESC']
           ]
         });
         return cohortTopics;
