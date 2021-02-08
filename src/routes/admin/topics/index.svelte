@@ -88,6 +88,6 @@
     <Topics {topics}/>
   </section>
 {:else}
-  <p>No active program selected currently 🙍🏼‍♂️. Please <a href="/admin/programs">select one</a></p>
+  <p>No active program selected currently 🙍🏼‍♂️. Please <a rel="prefetch" href="/admin/programs">select one</a></p>
 {/if}
 

@@ -84,7 +84,7 @@
 			</li>
 			{#if $session.user.role === 'admin'}
 				<li class="right-aligned">
-					<a aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
+					<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
 				</li>
 			{/if}
 		{/if}

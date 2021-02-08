@@ -4,7 +4,6 @@
   - Create topic "active" functionality
   - Fix individual topic page
   - Output Active topic on Live Topic page
-- Update admin sections to use preload
 - Unsubscribe from watchQuery
 - Order queries by createdAt
 - Update unlockedTopics query to use a DataLoader
