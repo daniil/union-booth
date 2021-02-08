@@ -8,7 +8,14 @@ export default {
       isAuthenticated,
       async (_, { cohortId }, { models }) => {
         const cohortTopics = await models.CohortTopic.findAll({
-          where: { cohortId }
+          where: { cohortId },
+          include: {
+            model: models.Topic,
+            attributes: ['createdAt']
+          },
+          order: [
+            [models.CohortTopic.associations.topic, 'createdAt']
+          ]
         });
         return cohortTopics;
       }
