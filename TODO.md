@@ -4,8 +4,6 @@
   - Create topic "active" functionality
   - Fix individual topic page
   - Output Active topic on Live Topic page
-- Unsubscribe from watchQuery
-- Order queries by createdAt
 - Update unlockedTopics query to use a DataLoader
 - Set admin forms to disabled while it's sending query
 - Add an FAQ model/schema tied to the topic

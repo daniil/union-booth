@@ -18,13 +18,14 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import TopicListItem from '../../components/TopicListItem.svelte';
 
   const { session } = stores();
 
   let topics = $session.apolloClient.readQuery({ query: UNLOCKED_TOPICS }).unlockedTopics;
 
-  $session.apolloClient
+  const unlockedTopicsSub = $session.apolloClient
     .watchQuery({
       query: UNLOCKED_TOPICS,
       fetchPolicy: 'cache-and-network'
@@ -32,6 +33,8 @@
     .subscribe(({ data }) => {
       topics = data.unlockedTopics;
     });
+
+  onDestroy(() => unlockedTopicsSub.unsubscribe());
 </script>
 
 <h1>All Topics</h1>

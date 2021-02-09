@@ -21,6 +21,7 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import AddNewTopic from 'components/admin/topics/AddNewTopic.svelte';
   import Topics from 'components/admin/topics/Topics.svelte';
 
@@ -28,7 +29,7 @@
 
   let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
 
-  $session.apolloClient
+  const selectedProgramSub = $session.apolloClient
     .watchQuery({
       query: SELECTED_PROGRAM,
       fetchPolicy: 'cache-and-network'
@@ -36,6 +37,8 @@
     .subscribe(({ data }) => {
       selectedProgram = data.selectedProgram;
     });
+
+  onDestroy(() => selectedProgramSub.unsubscribe());
   
   let topics = [];
 
@@ -49,7 +52,7 @@
       }).topics;
     } catch(e) {}
 
-    $session.apolloClient
+    const topicsSub = $session.apolloClient
       .watchQuery({
         query: TOPICS,
         variables: {
@@ -60,6 +63,8 @@
       .subscribe(({ data }) => {
         topics = data.topics;
       });
+
+    onDestroy(() => topicsSub.unsubscribe());
   }
 </script>
 

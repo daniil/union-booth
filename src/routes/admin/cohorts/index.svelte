@@ -22,6 +22,7 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import AddNewCohort from 'components/admin/cohorts/AddNewCohort.svelte';
   import Cohorts from 'components/admin/cohorts/Cohorts.svelte';
 
@@ -29,7 +30,7 @@
 
   let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
 
-  $session.apolloClient
+  const selectedProgramSub = $session.apolloClient
     .watchQuery({
       query: SELECTED_PROGRAM,
       fetchPolicy: 'cache-and-network'
@@ -37,6 +38,8 @@
     .subscribe(({ data }) => {
       selectedProgram = data.selectedProgram;
     });
+  
+  onDestroy(() => selectedProgramSub.unsubscribe());
   
   let cohorts = [];
   let selectedCohort;
@@ -51,7 +54,7 @@
       }).cohorts;
     } catch(e) {}
 
-    $session.apolloClient
+    const cohortsSub = $session.apolloClient
       .watchQuery({
         query: COHORTS,
         variables: {
@@ -62,10 +65,12 @@
       .subscribe(({ data }) => {
         cohorts = data.cohorts;
       });
+    
+    onDestroy(() => cohortsSub.unsubscribe());
 
     selectedCohort = $session.apolloClient.readQuery({ query: SELECTED_COHORT }).selectedCohort;
 
-    $session.apolloClient
+    const selectedCohortSub = $session.apolloClient
       .watchQuery({
         query: SELECTED_COHORT,
         fetchPolicy: 'cache-and-network'
@@ -73,6 +78,8 @@
       .subscribe(({ data }) => {
         selectedCohort = data.selectedCohort;
       });
+
+    onDestroy(() => selectedCohortSub.unsubscribe());
   }
   
 </script>
