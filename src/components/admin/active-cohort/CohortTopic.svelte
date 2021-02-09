@@ -1,5 +1,6 @@
 <script>
   import ToggleUnlocked from 'components/admin/active-cohort/ToggleUnlocked.svelte';
+  import ToggleLive from 'components/admin/active-cohort/ToggleLive.svelte';
 
   export let selectedCohort;
   export let details;
@@ -23,13 +24,20 @@
   .wrapper.is-unlocked h4 {
     color: #333;
   }
+  .status-toggles {
+    display: flex;
+  }
 </style>
 
 <form action="update-cohort-topic" method="post">
   <div class="wrapper" class:is-unlocked={details.isUnlocked}>
     <h4>{details.topic.title}</h4>
-    <div class="form-element">
+    <div class="status-toggles">
       <ToggleUnlocked
+        {selectedCohort}
+        {details}
+      />
+      <ToggleLive
         {selectedCohort}
         {details}
       />
