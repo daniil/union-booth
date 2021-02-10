@@ -45,6 +45,40 @@ export default {
 
         return cohortTopic;
       }
+    ),
+
+    toggleCohortTopicLive: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, { cohortId, topicId, status }, { models }) => {
+        const cohortTopic = await models.CohortTopic.findOne({
+          where: {
+            cohortId,
+            topicId
+          }
+        });
+
+        if (!cohortTopic) {
+          throw new UserInputError('Cohort Topic not found');
+        }
+
+        if (status) {
+          if (!cohortTopic.isUnlocked) {
+            throw new UserInputError('Cohort Topic is not unlocked');
+          }
+          await models.CohortTopic.update({
+            isLive: false
+          }, {
+            where: { cohortId }
+          });
+        }
+
+        await cohortTopic.update({
+          isLive: status
+        });
+
+        return cohortTopic;
+      }
     )
   },
 
