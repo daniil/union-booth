@@ -88,9 +88,9 @@ const typeDefs = gql`
     login(login: String!, password: String!): User!
     logout: Boolean!
     register(
-      firstName: String!
-      lastName: String!
-      username: String!
+      firstName: String!,
+      lastName: String!,
+      username: String!,
       email: String!,
       password: String!,
       isProgramOwner: Boolean!,
@@ -101,12 +101,7 @@ const typeDefs = gql`
     addCohort(programId: ID!, title: String!): Cohort!
     toggleCohortSelect(id: ID!, isSelected: Boolean!): Cohort
     addTopic(programId: ID!, title: String!): Topic!
-    toggleCohortTopicStatus(
-      cohortId: ID!,
-      topicId: ID!,
-      statusType: String!,
-      status: Boolean!
-    ): CohortTopic!
+    toggleCohortTopicUnlocked(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
     addQuestion(question: String, isAnonymous: Boolean!): Question!
     addQuestionAnswering(questionId: ID!): Question!
     addQuestionAnswered(questionId: ID!): Question!

@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  import { TOGGLE_COHORT_TOPIC_STATUS } from 'graphql/queries/admin/active-cohort';
+  import { TOGGLE_COHORT_TOPIC_UNLOCKED } from 'graphql/queries/admin/active-cohort';
   import { COHORT_TOPICS } from 'graphql/queries/admin/active-cohort';
 
   export let selectedCohort;
@@ -9,18 +9,17 @@
 
   const { session } = stores();
 
-  const toggleCohortTopicStatus = mutation(TOGGLE_COHORT_TOPIC_STATUS);
+  const toggleCohortTopicUnlocked = mutation(TOGGLE_COHORT_TOPIC_UNLOCKED);
 
   const handleUnlockedChange = e => {
-    toggleCohortTopicStatus({
+    toggleCohortTopicUnlocked({
       variables: {
         cohortId: selectedCohort.id,
         topicId: details.topic.id,
-        statusType: 'isUnlocked',
         status: e.target.checked
       },
       update: (_, mutationResult) => {
-        const toggledCohortTopic = mutationResult.data.toggleCohortTopicStatus;
+        const toggledCohortTopic = mutationResult.data.toggleCohortTopicUnlocked;
 
         const cohortTopics = $session.apolloClient.readQuery({
           query: COHORT_TOPICS,

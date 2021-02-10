@@ -23,14 +23,10 @@ export default {
   },
 
   Mutation: {
-    toggleCohortTopicStatus: combineResolvers(
+    toggleCohortTopicUnlocked: combineResolvers(
       isAuthenticated,
       checkRole('admin'),
-      async (_, { cohortId, topicId, statusType, status }, { models }) => {
-        if (!['isUnlocked', 'isLive'].includes(statusType)) {
-          throw new UserInputError('Unknown status type');
-        }
-
+      async (_, { cohortId, topicId, status }, { models }) => {
         const cohortTopic = await models.CohortTopic.findOne({
           where: {
             cohortId,
@@ -43,7 +39,8 @@ export default {
         }
 
         await cohortTopic.update({
-          [statusType]: status
+          isUnlocked: status,
+          isLive: status ? cohortTopic.isLive : false
         });
 
         return cohortTopic;

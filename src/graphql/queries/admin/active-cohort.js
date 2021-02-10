@@ -20,9 +20,9 @@ const COHORT_TOPICS = gql`
   ${cohortTopicInformation}
 `;
 
-const TOGGLE_COHORT_TOPIC_STATUS = gql`
-  mutation ToggleCohortTopicStatus($cohortId: ID!, $topicId: ID!, $statusType: String!, $status: Boolean!) {
-    toggleCohortTopicStatus(cohortId: $cohortId, topicId: $topicId, statusType: $statusType, status: $status) {
+const TOGGLE_COHORT_TOPIC_UNLOCKED = gql`
+  mutation toggleCohortTopicUnlocked($cohortId: ID!, $topicId: ID!, $status: Boolean!) {
+    toggleCohortTopicUnlocked(cohortId: $cohortId, topicId: $topicId, status: $status) {
       ...CohortTopicInformation
     }
   }
@@ -31,5 +31,5 @@ const TOGGLE_COHORT_TOPIC_STATUS = gql`
 
 export {
   COHORT_TOPICS,
-  TOGGLE_COHORT_TOPIC_STATUS
+  TOGGLE_COHORT_TOPIC_UNLOCKED
 }
