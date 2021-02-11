@@ -21,8 +21,17 @@ const COHORT_TOPICS = gql`
 `;
 
 const TOGGLE_COHORT_TOPIC_UNLOCKED = gql`
-  mutation toggleCohortTopicUnlocked($cohortId: ID!, $topicId: ID!, $status: Boolean!) {
+  mutation ToggleCohortTopicUnlocked($cohortId: ID!, $topicId: ID!, $status: Boolean!) {
     toggleCohortTopicUnlocked(cohortId: $cohortId, topicId: $topicId, status: $status) {
+      ...CohortTopicInformation
+    }
+  }
+  ${cohortTopicInformation}
+`;
+
+const TOGGLE_COHORT_TOPIC_LIVE = gql`
+  mutation ToggleCohortTopicLive($cohortId: ID!, $topicId: ID!, $status: Boolean!) {
+    toggleCohortTopicLive(cohortId: $cohortId, topicId: $topicId, status: $status) {
       ...CohortTopicInformation
     }
   }
@@ -31,5 +40,6 @@ const TOGGLE_COHORT_TOPIC_UNLOCKED = gql`
 
 export {
   COHORT_TOPICS,
-  TOGGLE_COHORT_TOPIC_UNLOCKED
+  TOGGLE_COHORT_TOPIC_UNLOCKED,
+  TOGGLE_COHORT_TOPIC_LIVE
 }
