@@ -3,7 +3,7 @@
 
   export let details;
 
-  $: date = formatDate(details.createdAt);
+  $: date = formatDate(details.topic.createdAt);
 </script>
 
 <style>
@@ -15,10 +15,10 @@
 
 <article class="wrapper">
   <h2>
-    <a rel="prefetch" href="/topics/{details.slug}">
-      {details.title}
+    <a rel="prefetch" href="/topics/{details.topic.slug}">
+      {details.topic.title}
     </a>
-    {#if details.isActive}🟢{/if}
+    {#if details.isLive}🟢{/if}
   </h2>
   <time>{date}</time>
 </article>

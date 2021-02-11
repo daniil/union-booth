@@ -19,6 +19,34 @@ export default {
         });
         return cohortTopics;
       }
+    ),
+
+    unlockedTopics: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models, session }) => {
+        const user = await models.User.findOne({
+          attributes: ['cohortId'],
+          where: {
+            id: session.user.id
+          }
+        });
+
+        const unlockedTopics = await models.CohortTopic.findAll({
+          where: {
+            cohortId: user.cohortId,
+            isUnlocked: true
+          },
+          include: {
+            model: models.Topic,
+            attributes: ['createdAt']
+          },
+          order: [
+            [models.CohortTopic.associations.topic, 'createdAt', 'DESC']
+          ]
+        });
+        
+        return unlockedTopics;
+      }
     )
   },
 

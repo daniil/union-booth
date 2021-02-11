@@ -38,7 +38,6 @@ const typeDefs = gql`
     program: Program!
     title: String!
     slug: String!
-    isActive: Boolean!
     createdAt: Date!
   }
 
@@ -76,7 +75,7 @@ const typeDefs = gql`
     topics(programId: ID!): [Topic]!
     topic(slug: ID!): Topic!
     cohortTopics(cohortId: ID!): [CohortTopic]!
-    unlockedTopics: [Topic]!
+    unlockedTopics: [CohortTopic]!
     live: Topic!
     questions: [Question]!
     question(id: ID!): Question!

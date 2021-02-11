@@ -1,6 +1,5 @@
 import { PubSub, withFilter, UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
-import { Op } from 'sequelize';
 import { isAuthenticated, checkRole } from './auth';
 
 const pubsub = new PubSub();
@@ -35,39 +34,6 @@ export default {
         }
 
         return topic;
-      }
-    ),
-
-    unlockedTopics: combineResolvers(
-      isAuthenticated,
-      async (_, __, { models, session }) => {
-        const user = await models.User.findOne({
-          attributes: ['cohortId'],
-          where: {
-            id: session.user.id
-          }
-        });
-
-        const unlockedTopics = await models.CohortTopic.findAll({
-          attributes: ['topicId'],
-          where: {
-            cohortId: user.cohortId,
-            isUnlocked: true
-          }
-        });
-
-        const topics = await models.Topic.findAll({
-          where: {
-            id: {
-              [Op.in]: unlockedTopics.map(topic => topic.topicId)
-            }
-          },
-          order: [
-            ['createdAt', 'DESC']
-          ]
-        });
-        
-        return topics;
       }
     ),
 

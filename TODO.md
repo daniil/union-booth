@@ -6,6 +6,7 @@
   - Output Active topic on Live Topic page
 - Update unlockedTopics query to use a DataLoader
 - Set admin forms to disabled while it's sending query
+- Remove unnecessary fields of GraphQL schema (ie Program in Topic)
 - Add an FAQ model/schema tied to the topic
 - Update Question and Answer to use GraphQL
 - Add user admin UI

@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script context="module">
-  import { UNLOCKED_TOPICS } from 'graphql/queries/topics';
+  import { UNLOCKED_TOPICS } from 'graphql/queries/active-cohort';
 
   export async function preload(_, session) {
     if (!session.user) {
@@ -23,7 +23,7 @@
 
   const { session } = stores();
 
-  let topics = $session.apolloClient.readQuery({ query: UNLOCKED_TOPICS }).unlockedTopics;
+  let unlockedTopics = $session.apolloClient.readQuery({ query: UNLOCKED_TOPICS }).unlockedTopics;
 
   const unlockedTopicsSub = $session.apolloClient
     .watchQuery({
@@ -31,7 +31,7 @@
       fetchPolicy: 'cache-and-network'
     })
     .subscribe(({ data }) => {
-      topics = data.unlockedTopics;
+      unlockedTopics = data.unlockedTopics;
     });
 
   onDestroy(() => unlockedTopicsSub.unsubscribe());
@@ -39,9 +39,9 @@
 
 <h1>All Topics</h1>
 
-{#if topics.length > 0}
-  {#each topics as topic (topic.id)}
-    <TopicListItem details={topic}/>
+{#if unlockedTopics.length > 0}
+  {#each unlockedTopics as unlockedTopic (unlockedTopic.topic.id)}
+    <TopicListItem details={unlockedTopic}/>
   {/each}
 {:else}
   <p>No topics currently 🙍🏼‍♂️</p>
