@@ -47,7 +47,40 @@ export default {
         
         return unlockedTopics;
       }
-    )
+    ),
+
+    topic: combineResolvers(
+      isAuthenticated,
+      async (_, { slug }, { models, session }) => {
+        const user = await models.User.findOne({
+          attributes: ['cohortId'],
+          where: {
+            id: session.user.id
+          }
+        });
+
+        const topic = await models.CohortTopic.findOne({
+          where: {
+            cohortId: user.cohortId,
+            isUnlocked: true,
+            '$topic.slug$': slug
+          },
+          include: [{
+            model: models.Topic,
+            attributes: ['slug'],
+            as: 'topic'
+          }]
+        });
+
+        if (!topic) {
+          throw new UserInputError(
+            'This topic can not be found'
+          );
+        }
+
+        return topic;
+      }
+    ),
   },
 
   Mutation: {

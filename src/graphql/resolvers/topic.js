@@ -20,23 +20,6 @@ export default {
       }
     ),
 
-    topic: combineResolvers(
-      isAuthenticated,
-      async (_, { slug }, { models }) => {
-        const topic = await models.Topic.findOne({
-          where: { slug }
-        });
-
-        if (!topic) {
-          throw new UserInputError(
-            'This topic can not be found'
-          );
-        }
-
-        return topic;
-      }
-    ),
-
     live: combineResolvers(
       isAuthenticated,
       async (_, __, { models }) => {

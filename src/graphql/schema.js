@@ -73,9 +73,9 @@ const typeDefs = gql`
     cohorts(programId: ID!): [Cohort]!
     selectedCohort: Cohort
     topics(programId: ID!): [Topic]!
-    topic(slug: ID!): Topic!
     cohortTopics(cohortId: ID!): [CohortTopic]!
     unlockedTopics: [CohortTopic]!
+    topic(slug: ID!): CohortTopic!
     live: Topic!
     questions: [Question]!
     question(id: ID!): Question!
