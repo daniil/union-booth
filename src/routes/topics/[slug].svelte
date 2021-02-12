@@ -1,9 +1,8 @@
 <svelte:head>
-	<title>Union Booth :: Topic: {topic ? topic.title : 'Loading'}</title>
+	<title>Union Booth :: Topic: {cohortTopic.topic ? cohortTopic.topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script context="module">
-  import { get } from '../../utils/request';
   import { TOPIC } from 'graphql/queries/cohort-topic';
 
   export async function preload(page, session) {
@@ -16,35 +15,27 @@
       variables: { slug: page.params.slug }
     });
 
-    const resQuestions = await get(`/topics/questions/${page.params.slug}.json`, this);
-
     return {
-      slug: page.params.slug,
-      questions: resQuestions.data
+      slug: page.params.slug
     };
   }
 </script>
 
 <script>
   import { stores } from '@sapper/app';
-  import Question from '../../components/Question.svelte';
 
   export let slug;
-  export let questions = [];
 
   const { session } = stores();
 
-  let topic = $session.apolloClient.readQuery({
+  let cohortTopic = $session.apolloClient.readQuery({
     query: TOPIC,
     variables: { slug }
   }).topic;
 </script>
 
-<h1>{topic.title}</h1>
-{#if questions.length}
-  {#each questions as question (question.id)}
-    <Question details={question}/>
-  {/each}
-{:else}
-  <p>No questions for this topic yet.</p>
-{/if}
+<h1>{cohortTopic.topic.title}</h1>
+
+<h2>Frequently Asked Questions</h2>
+
+<h2>Resources</h2>

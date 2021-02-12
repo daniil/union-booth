@@ -17,8 +17,11 @@ const UNLOCKED_TOPICS = gql`
 const TOPIC = gql`
   query Topic($slug: ID!) {
     topic(slug: $slug) {
-      title
-      createdAt
+      topic {
+        id
+        title
+      }
+      isLive
     }
   }
 `;
