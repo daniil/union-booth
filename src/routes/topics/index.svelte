@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script context="module">
-  import { UNLOCKED_TOPICS } from 'graphql/queries/active-cohort';
+  import { UNLOCKED_TOPICS } from 'graphql/queries/cohort-topic';
 
   export async function preload(_, session) {
     if (!session.user) {

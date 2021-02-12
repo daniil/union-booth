@@ -5,7 +5,7 @@
 <script context="module">
   import { SELECTED_PROGRAM } from 'graphql/queries/admin/programs';
   import { SELECTED_COHORT } from 'graphql/queries/admin/cohorts';
-  import { COHORT_TOPICS } from 'graphql/queries/admin/active-cohort';
+  import { COHORT_TOPICS } from 'graphql/queries/admin/cohort-topic';
 
   export async function preload(_, session) {
     try {
