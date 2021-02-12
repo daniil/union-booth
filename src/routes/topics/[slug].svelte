@@ -34,7 +34,28 @@
   }).topic;
 </script>
 
-<h1>{cohortTopic.topic.title}</h1>
+<style>
+  .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .live {
+    background-color: rgb(212, 224, 155);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    color: white;
+    text-shadow: 0px 1px 0 rgb(0 0 0 / 30%);
+    font-size: 1.25rem;
+  }
+</style>
+
+<div class="title-wrapper">
+  <h1>{cohortTopic.topic.title}</h1>
+  {#if cohortTopic.isLive}
+    <div class="live">LIVE</div>
+  {/if}
+</div>
 
 <h2>Frequently Asked Questions</h2>
 
