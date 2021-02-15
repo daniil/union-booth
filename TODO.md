@@ -1,18 +1,18 @@
 ## Tasks
 
-- Add Active Cohort topics UI
-  - Create topic "active" functionality
-  - Fix individual topic page
-  - Output Active topic on Live Topic page
-- Update unlockedTopics query to use a DataLoader
-- Set admin forms to disabled while it's sending query
-- Remove unnecessary fields of GraphQL schema (ie Program in Topic)
+- Output Active topic on Live Topic page
+- Update Question to use GraphQL
+- Update Answer to use GraphQL
 - Add an FAQ model/schema tied to the topic
-- Update Question and Answer to use GraphQL
+- Add UI for changing live questions to FAQ
+- Update individual topic page with FAQ questions
+- Investigate slow loading of queries or ORM
+- Look for queries that can be updated to use DataLoader
+- Set admin forms to disabled while it's sending query
 - Add user admin UI
   - Add generate new avatar functionality for user
 - When user is deleted, invalidate their session
-- Add a program/cohort admin privileges
+- Add a program/cohort admin privileges for other roles
 - Update site color scheme
 - Add admin remove functionality for programs, cohorts and topics
 - Do error catching and reporting for program and cohort add
