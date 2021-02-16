@@ -3,6 +3,7 @@ import programModel from './program';
 import cohortModel from './cohort';
 import topicModel from './topic';
 import cohortTopicModel from './cohort-topic';
+import cohortQuestionModel from './cohort-question';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
@@ -20,6 +21,7 @@ const models = {
   Cohort: cohortModel(sequelize, DataTypes),
   Topic: topicModel(sequelize, DataTypes),
   CohortTopic: cohortTopicModel(sequelize, DataTypes),
+  CohortQuestion: cohortQuestionModel(sequelize, DataTypes),
   User: userModel(sequelize, DataTypes)
 };
 
