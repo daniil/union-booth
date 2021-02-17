@@ -48,25 +48,6 @@ const typeDefs = gql`
     isLive: Boolean!
   }
 
-  type Question {
-    id: ID!
-    user: User!
-    topic: Topic!
-    question: String!
-    isAnonymous: Boolean!
-    beingAnsweredBy: [User]!
-    answeredBy: [User]!
-    createdAt: Date!
-  }
-
-  type Answer {
-    id: ID!
-    user: User!
-    question: Question!
-    answer: String!
-    createdAt: Date!
-  }
-
   type Query {
     programs: [Program]!
     selectedProgram: Program
@@ -76,10 +57,6 @@ const typeDefs = gql`
     cohortTopics(cohortId: ID!): [CohortTopic]!
     unlockedTopics: [CohortTopic]!
     topic(slug: ID!): CohortTopic!
-    live: Topic!
-    questions: [Question]!
-    question(id: ID!): Question!
-    answers: [Answer]!
     me: User!
   }
 
@@ -102,10 +79,6 @@ const typeDefs = gql`
     addTopic(programId: ID!, title: String!): Topic!
     toggleCohortTopicUnlocked(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
     toggleCohortTopicLive(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
-    addQuestion(question: String, isAnonymous: Boolean!): Question!
-    addQuestionAnswering(questionId: ID!): Question!
-    addQuestionAnswered(questionId: ID!): Question!
-    addAnswer(questionId: ID!, answer: String!): Answer!
   }
 
   type Subscription {
