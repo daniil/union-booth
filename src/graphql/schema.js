@@ -48,6 +48,16 @@ const typeDefs = gql`
     isLive: Boolean!
   }
 
+  type CohortQuestion {
+    id: ID!
+    cohort: Cohort!
+    topic: Topic!
+    user: User!
+    question: String!
+    isAnonymous: Boolean!
+    createdAt: Date!
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program
