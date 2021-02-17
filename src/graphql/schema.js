@@ -67,6 +67,7 @@ const typeDefs = gql`
     cohortTopics(cohortId: ID!): [CohortTopic]!
     unlockedTopics: [CohortTopic]!
     topic(slug: ID!): CohortTopic!
+    live: CohortTopic!
     me: User!
   }
 
@@ -89,6 +90,7 @@ const typeDefs = gql`
     addTopic(programId: ID!, title: String!): Topic!
     toggleCohortTopicUnlocked(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
     toggleCohortTopicLive(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
+    addCohortQuestion(topicId: ID!, question: String!, isAnonymous: Boolean!): CohortQuestion!
   }
 
   type Subscription {

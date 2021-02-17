@@ -2,7 +2,9 @@
 
 - Output Active topic on Live Topic page
 - Update Question to use GraphQL
+- Create subscription for Question
 - Update Answer to use GraphQL
+- Create subscription for Answer
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ
 - Update individual topic page with FAQ questions

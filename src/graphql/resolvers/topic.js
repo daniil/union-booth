@@ -1,6 +1,7 @@
 import { PubSub, withFilter, UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
+import parseSequelizeError from 'utils/parseSequelizeError';
 
 const pubsub = new PubSub();
 

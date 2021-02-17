@@ -1,5 +1,5 @@
 import { AuthenticationError, UserInputError } from 'apollo-server';
-import parseSequelizeError from '../../utils/parseSequelizeError';
+import parseSequelizeError from 'utils/parseSequelizeError';
 
 const userSessionValues = user => {
   return {

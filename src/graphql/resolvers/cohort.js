@@ -1,7 +1,7 @@
 import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
-import parseSequelizeError from '../../utils/parseSequelizeError';
+import parseSequelizeError from 'utils/parseSequelizeError';
 
 export default {
   Query: {

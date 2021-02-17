@@ -4,6 +4,7 @@ import programResolver from './program';
 import cohortResolver from './cohort';
 import topicResolvers from './topic';
 import cohortTopicResolvers from './cohort-topic';
+import cohortQuestionResolvers from './cohort-question';
 import userResolvers from './user';
 
 const customScalarResolver = {
@@ -16,5 +17,6 @@ export default [
   cohortResolver,
   topicResolvers,
   cohortTopicResolvers,
+  cohortQuestionResolvers,
   userResolvers
 ];
