@@ -81,6 +81,27 @@ export default {
         return topic;
       }
     ),
+
+    live: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models, session }) => {
+        const user = await models.User.findOne({
+          attributes: ['cohortId'],
+          where: {
+            id: session.user.id
+          }
+        });
+
+        const topic = await models.CohortTopic.findOne({
+          where: {
+            cohortId: user.cohortId,
+            isLive: true
+          }
+        });
+
+        return topic;
+      }
+    )
   },
 
   Mutation: {

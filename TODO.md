@@ -11,6 +11,7 @@
 - Investigate slow loading of queries or ORM
 - Look for queries that can be updated to use DataLoader
 - Set admin forms to disabled while it's sending query
+- Refactor user cohort queries to be cached
 - Add user admin UI
   - Add generate new avatar functionality for user
 - When user is deleted, invalidate their session

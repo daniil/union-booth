@@ -19,19 +19,6 @@ export default {
         });
         return topics;
       }
-    ),
-
-    live: combineResolvers(
-      isAuthenticated,
-      async (_, __, { models }) => {
-        // TODO: Refactor this query to user CohortTopics table
-        const liveTopic = await models.Topic.findOne({
-          where: {
-            isActive: true
-          }
-        });
-        return liveTopic;
-      }
     )
   },
 
