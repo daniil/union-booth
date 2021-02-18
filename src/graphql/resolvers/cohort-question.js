@@ -34,6 +34,17 @@ export default {
           }
         });
 
+        const topic = await models.CohortTopic.findOne({
+          where: {
+            topicId,
+            isLive: true
+          }
+        });
+
+        if (!topic) {
+          throw new UserInputError('This topic is not live. Can only add questions to live topics');
+        }
+
         try {
           const newQuestion = await models.CohortQuestion.create({
             userId: session.user.id,
