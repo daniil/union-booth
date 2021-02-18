@@ -68,7 +68,7 @@ const typeDefs = gql`
     unlockedTopics: [CohortTopic]!
     topic(slug: ID!): CohortTopic!
     live: CohortTopic
-    questions(topicId: ID!): CohortQuestion!
+    liveQuestions(cohortId: ID!, topicId: ID!): [CohortQuestion]!
     me: User!
   }
 

@@ -4,6 +4,25 @@ import { isAuthenticated } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
 
 export default {
+  Query: {
+    liveQuestions: combineResolvers(
+      isAuthenticated,
+      async (_, { cohortId, topicId }, { models }) => {
+        const questions = await models.CohortQuestion.findAll({
+          where: {
+            cohortId,
+            topicId
+          },
+          order: [
+            ['createdAt', 'DESC']
+          ]
+        });
+
+        return questions; 
+      }
+    )
+  },
+
   Mutation: {
     addCohortQuestion: combineResolvers(
       isAuthenticated,
