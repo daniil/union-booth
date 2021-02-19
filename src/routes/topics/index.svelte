@@ -19,7 +19,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-  import TopicListItem from '../../components/TopicListItem.svelte';
+  import TopicListItem from 'components/TopicListItem.svelte';
 
   const { session } = stores();
 

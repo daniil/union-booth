@@ -7,6 +7,9 @@ const LIVE_QUESTIONS = gql`
       question
       isAnonymous
       createdAt
+      user {
+        username
+      }
     }
   }
 `;

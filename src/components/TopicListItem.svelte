@@ -1,5 +1,5 @@
 <script>
-  import { formatDate } from '../utils/time';
+  import { formatDate } from 'utils/time';
 
   export let details;
 

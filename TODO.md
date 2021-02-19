@@ -1,8 +1,8 @@
 ## Tasks
 
-- Add cohort question data loaders
-- Output Active topic on Live Topic page
-- Update Question to use GraphQL
+- Move Question into a separate component
+- Refactor "by user" to use avatars
+- Create add a Question functionality
 - Create subscription for Question
 - Update Answer to use GraphQL
 - Create subscription for Answer

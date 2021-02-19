@@ -60,5 +60,11 @@ export default {
         }
       }
     )
+  },
+
+  CohortQuestion: {
+    user: async (parent, _, { loaders }) => {
+      return await loaders.user.load(parent.userId);
+    }
   }
 }
