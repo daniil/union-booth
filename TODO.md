@@ -1,5 +1,6 @@
 ## Tasks
 
+- Add cohort question data loaders
 - Output Active topic on Live Topic page
 - Update Question to use GraphQL
 - Create subscription for Question

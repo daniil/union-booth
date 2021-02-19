@@ -4,7 +4,7 @@
 
 <script>
 	import { stores } from '@sapper/app';
-	import LiveTopic from '../components/LiveTopic.svelte';
+	import LiveTopic from 'components/LiveTopic.svelte';
 
 	const { session } = stores();
 </script>

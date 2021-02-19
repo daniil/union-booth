@@ -1,78 +1,37 @@
 <svelte:head>
-	<title>Union Booth :: Live: {topic ? topic.title : 'Loading'}</title>
+	<title>Union Booth :: Live: {cohortTopic ? cohortTopic.topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script>
-  import { onMount } from 'svelte';
-  import { get } from '../utils/request';
-  import Loading from './Loading.svelte';
-  import TopicQuestions from './TopicQuestions.svelte';
-  import { mutation, subscribe, getClient } from 'svelte-apollo';
-  import gql from 'graphql-tag';
+  import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
+  import { LIVE } from 'graphql/queries/cohort-topic';
+  import Loading from 'components/Loading.svelte';
 
-  let topic;
+  const { session } = stores();
+
+  let cohortTopic;
   let loading = true;
 
-  const testSub = subscribe(gql`
-    subscription NewTopic($id: ID) {
-      testSub(id: $id) {
-        title
-      }
-    }
-  `, {
-    variables: {
-      id: 123
-    }
-  });
+  const liveTopicSub = $session.apolloClient
+    .watchQuery({
+      query: LIVE,
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      if (!data) return;
+      cohortTopic = data.live;
+      loading = false;
+    });
 
-  const addTopic = mutation(gql`
-    mutation AddTopic($title: String!) {
-      addTopic(title: $title) {
-        title
-      }
-    }
-  `);
-
-  const client = getClient();
-
-  onMount(async () => {
-    client.query({ query: gql`
-      query Me {
-        me {
-          email
-          firstName
-          lastName
-        }
-      }
-    `})
-
-    // TODO: Remove this test code (this triggers the 'TEST_MESSAGE' sub publish)
-    // setInterval(() => {
-    //   addTopic({ variables: { title: (new Date()).toTimeString() }})
-    // }, 1000);
-
-    const res = await get('topics/live.json');
-    loading = false;
-
-    // TODO: Ensure that if there is an error, the topic gets reset
-    if (!res.error) {
-      topic = res.data;
-    }
-  });
+  onDestroy(() => liveTopicSub.unsubscribe());
 </script>
-
-{#await $testSub}
-  Waiting for new topic...
-{:then result}
-  Test WS Sub: {result.data && result.data.testSub.title}
-{/await}
 
 {#if loading}
   <Loading/>
 {:else}
-  {#if topic}
-    <h1>{topic.title}</h1>
-    <TopicQuestions id={topic.id}/>
+  {#if cohortTopic}
+    <h1>{cohortTopic.topic.title}</h1>
   {:else}
     <p>No Live Topic currently 🤷🏽‍♀️</p>
   {/if}

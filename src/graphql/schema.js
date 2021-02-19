@@ -69,7 +69,6 @@ const typeDefs = gql`
     topic(slug: ID!): CohortTopic!
     live: CohortTopic
     liveQuestions(cohortId: ID!, topicId: ID!): [CohortQuestion]!
-    me: User!
   }
 
   type Mutation {

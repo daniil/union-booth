@@ -11,12 +11,6 @@ const userSessionValues = user => {
 }
 
 export default {
-  Query: {
-    me: async (_, __, { models, session }) => {
-      console.log('Session: ', session);
-    }
-  },
-
   Mutation: {
     register: async (
       _,

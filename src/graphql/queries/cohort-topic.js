@@ -26,7 +26,20 @@ const TOPIC = gql`
   }
 `;
 
+const LIVE = gql`
+  query Live {
+    live {
+      topic {
+        id
+        title
+      }
+      cohortId
+    }
+  }
+`;
+
 export {
   UNLOCKED_TOPICS,
-  TOPIC
+  TOPIC,
+  LIVE
 }
