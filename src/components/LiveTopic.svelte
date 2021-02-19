@@ -7,6 +7,7 @@
   import { onDestroy } from 'svelte';
   import { LIVE } from 'graphql/queries/cohort-topic';
   import Loading from 'components/Loading.svelte';
+  import TopicQuestions from 'components/TopicQuestions.svelte';
 
   const { session } = stores();
 
@@ -32,6 +33,7 @@
 {:else}
   {#if cohortTopic}
     <h1>{cohortTopic.topic.title}</h1>
+    <TopicQuestions topic={cohortTopic}/>
   {:else}
     <p>No Live Topic currently 🤷🏽‍♀️</p>
   {/if}

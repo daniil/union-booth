@@ -1,32 +1,34 @@
 <script>
-  import { onMount } from 'svelte';
-  import { get } from '../utils/request';
+  import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+  import { LIVE_QUESTIONS } from 'graphql/queries/cohort-question';
   import Loading from './Loading.svelte';
-  import Question from './Question.svelte';
-  import AskQuestion from './AskQuestion.svelte';
 
-  export let id;
+  const { session } = stores();
+
+  export let topic;
 
   let questions = [];
   let loading = true;
 
-  onMount(async () => {
-    fetchQuestions();
-  });
+  $: liveQuestionsSub = $session.apolloClient
+    .watchQuery({
+      query: LIVE_QUESTIONS,
+      variables: {
+        cohortId: topic.cohortId,
+        topicId: topic.topic.id
+      },
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      if (!data) return;
+      questions = data.liveQuestions;
+      loading = false;
+    });
 
-  const fetchQuestions = async () => {
-    loading = true;
-    const res = await get(`topics/questions/${id}.json`);
-    loading = false;
-
-    if (!res.error) {
-      questions = res.data;
-    } else {
-      console.log('ERROR: ', res.error);
-    }
-  }
+  onDestroy(() => liveQuestionsSub.unsubscribe());
 </script>
 
 {#if loading}
@@ -34,17 +36,9 @@
 {:else}
   {#each questions as question (question.id)}
     <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-      <Question
-        topicId={id}
-        details={question}
-        interactive
-      />
+      {question.question}
     </div>
   {:else}
     <p>No questions yet, add a first one!</p>
   {/each}
 {/if}
-<AskQuestion
-  topicId={id}
-  on:question-added={fetchQuestions}
-/>
