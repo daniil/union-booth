@@ -5,6 +5,7 @@
 	import { cubicOut } from 'svelte/easing';
   import { LIVE_QUESTIONS } from 'graphql/queries/cohort-question';
   import Loading from 'components/Loading.svelte';
+  import Question from 'components/Question.svelte';
 
   const { session } = stores();
 
@@ -36,14 +37,10 @@
 {:else}
   {#each questions as question (question.id)}
     <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-      <h2>{question.question}</h2>
-      <p>
-        {#if !question.isAnonymous}
-          by {question.user.username}
-        {:else}
-          🦹🏾
-        {/if}
-      </p>
+      <Question
+        topicId={topic.topic.id}
+        details={question}
+      />
     </div>
   {:else}
     <p>No questions yet, add a first one!</p>

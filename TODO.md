@@ -1,6 +1,5 @@
 ## Tasks
 
-- Move Question into a separate component
 - Refactor "by user" to use avatars
 - Create add a Question functionality
 - Create subscription for Question
