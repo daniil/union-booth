@@ -8,6 +8,7 @@ const LIVE_QUESTIONS = gql`
       isAnonymous
       createdAt
       user {
+        id
         username
       }
     }

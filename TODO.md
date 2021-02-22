@@ -1,6 +1,6 @@
 ## Tasks
 
-- Refactor "by user" to use avatars
+- Add a nice tooltip to "Posted by" avatar in Live Question component
 - Create add a Question functionality
 - Create subscription for Question
 - Update Answer to use GraphQL

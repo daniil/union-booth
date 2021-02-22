@@ -18,16 +18,33 @@
     border-radius: 4px;
     margin-bottom: 1rem;
   }
+  .meta {
+    display: flex;
+    align-items: center;
+  }
+  .avatar {
+    width: 30px;
+    margin-right: 1rem;
+  }
   time {
     display: flex;
+    flex: 1;
     justify-content: space-between;
   }
 </style>
 
 <article class="question">
   <h3>{@html content}</h3>
-  <time>
-    <span>{date}</span>
-    <span>{time}</span>
-  </time>
+  <footer class="meta">
+    <img
+      class="avatar"
+      src={`avatars/${details.user.id}.svg`}
+      alt={`Posted by: ${details.user.username}`}
+      title={`Posted by: ${details.user.username}`}
+    />
+    <time>
+      <span>{date}</span>
+      <span>{time}</span>
+    </time>
+  </footer>
 </article>
