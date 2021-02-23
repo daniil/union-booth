@@ -1,4 +1,7 @@
 <script>
+  import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
+  
   export let topicId;
 
   let textareaEl;
