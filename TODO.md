@@ -1,7 +1,6 @@
 ## Tasks
 
 - Add a nice tooltip to "Posted by" avatar in Live Question component
-- Add conditional avatar for anonymous poster
 - Create subscription for Question
 - Update Answer to use GraphQL
 - Create subscription for Answer

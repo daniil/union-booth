@@ -38,13 +38,10 @@
 {:else}
   {#each questions as question (question.id)}
     <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-      <Question
-        topicId={topic.topic.id}
-        details={question}
-      />
+      <Question details={question}/>
     </div>
   {:else}
     <p>No questions yet, add a first one!</p>
   {/each}
 {/if}
-<AskQuestion liveTopic={topic} />
+<AskQuestion liveTopic={topic}/>

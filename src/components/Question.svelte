@@ -2,7 +2,6 @@
   import { parseMD } from '../utils/markdown';
   import { formatDate, formatTime } from '../utils/time';
 
-  export let topicId;
   export let details;
 
   $: content = parseMD(details.question);
@@ -26,6 +25,15 @@
     width: 30px;
     margin-right: 1rem;
   }
+  .anon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #D3D3D3;
+    color: #808080;
+  }
   time {
     display: flex;
     flex: 1;
@@ -36,12 +44,16 @@
 <article class="question">
   <h3>{@html content}</h3>
   <footer class="meta">
-    <img
-      class="avatar"
-      src={`avatars/${details.user.id}.svg`}
-      alt={`Posted by: ${details.user.username}`}
-      title={`Posted by: ${details.user.username}`}
-    />
+    {#if details.isAnonymous}
+      <div class="avatar anon">?</div>
+    {:else}
+      <img
+        class="avatar"
+        src={`avatars/${details.user.id}.svg`}
+        alt={`Posted by: ${details.user.username}`}
+        title={`Posted by: ${details.user.username}`}
+      />
+    {/if}
     <time>
       <span>{date}</span>
       <span>{time}</span>
