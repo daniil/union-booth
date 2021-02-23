@@ -1,16 +1,22 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  import { post } from '../utils/request';
+
   export let topicId;
+
+  const dispatch = createEventDispatcher();
 
   let textareaEl;
 
   const handleSubmit = async e => {
-    console.log({
+    const res = await post(`topics/questions/${topicId}.json`, {
       question: e.target.question.value,
       isAnonymous: e.target['is-anonymous'].checked
     });
 
     if (!res.error) {
       textareaEl.value = '';
+      dispatch('question-added');
     } else {
       console.log('ERROR: ', res.error);
     }
@@ -21,10 +27,6 @@
   .question-input {
     width: 100%;
     height: 5rem;
-  }
-  .form-controls {
-    display: flex;
-    justify-content: space-between;
   }
 </style>
 
@@ -40,13 +42,11 @@
       placeholder="Ask your question"
       required></textarea>
   </div>
-  <div class="form-controls">
-    <div class="form-element">
-      <input type="checkbox" name="is-anonymous" id="is-anonymous">
-      <label for="is-anonymous">Ask anonymously</label>
-    </div>
-    <div class="form-element">
-      <input type="submit" value="Post Question">
-    </div>
+  <div class="form-element">
+    <input type="checkbox" name="is-anonymous" id="is-anonymous">
+    <label for="is-anonymous">Ask anonymously</label>
+  </div>
+  <div class="form-element">
+    <input type="submit" value="Post Question">
   </div>
 </form>

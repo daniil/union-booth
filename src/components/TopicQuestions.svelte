@@ -6,6 +6,7 @@
   import { LIVE_QUESTIONS } from 'graphql/queries/cohort-question';
   import Loading from 'components/Loading.svelte';
   import Question from 'components/Question.svelte';
+  import AskQuestion from 'components/AskQuestion.svelte';
 
   const { session } = stores();
 
@@ -46,3 +47,4 @@
     <p>No questions yet, add a first one!</p>
   {/each}
 {/if}
+<AskQuestion topicId={topic.topic.id} />
