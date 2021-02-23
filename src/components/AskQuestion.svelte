@@ -2,8 +2,9 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
+  import { LIVE_QUESTIONS } from 'graphql/queries/cohort-question';
 
-  export let topicId;
+  export let liveTopic;
 
   const { session } = stores();
 
@@ -15,12 +16,29 @@
     try {
       await addCohortQuestion({
         variables: {
-          topicId: topicId,
+          topicId: liveTopic.topic.id,
           question: e.target.question.value,
           isAnonymous: e.target['is-anonymous'].checked
         },
         update: (_, mutationResult) => {
-          console.log('Result: ', mutationResult);
+          const liveQuestions = $session.apolloClient.readQuery({
+            query: LIVE_QUESTIONS,
+            variables: {
+              cohortId: liveTopic.cohortId,
+              topicId: liveTopic.topic.id
+            }
+          }).liveQuestions;
+
+          $session.apolloClient.writeQuery({
+            query: LIVE_QUESTIONS,
+            variables: {
+              cohortId: liveTopic.cohortId,
+              topicId: liveTopic.topic.id
+            },
+            data: {
+              liveQuestions: [mutationResult.data.addCohortQuestion, ...liveQuestions]
+            }
+          });
         }
       })
       textareaEl.value = '';
@@ -34,6 +52,8 @@
   .question-input {
     width: 100%;
     height: 5rem;
+    padding: 1rem;
+    font-size: 1rem;
   }
   .form-controls {
     display: flex;

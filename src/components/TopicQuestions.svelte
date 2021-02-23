@@ -47,4 +47,4 @@
     <p>No questions yet, add a first one!</p>
   {/each}
 {/if}
-<AskQuestion topicId={topic.topic.id} />
+<AskQuestion liveTopic={topic} />
