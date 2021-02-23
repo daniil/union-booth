@@ -1,21 +1,31 @@
 <script>
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
-  
+  import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
+
   export let topicId;
+
+  const { session } = stores();
+
+  const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
   let textareaEl;
 
   const handleSubmit = async e => {
-    console.log({
-      question: e.target.question.value,
-      isAnonymous: e.target['is-anonymous'].checked
-    });
-
-    if (!res.error) {
+    try {
+      await addCohortQuestion({
+        variables: {
+          topicId: topicId,
+          question: e.target.question.value,
+          isAnonymous: e.target['is-anonymous'].checked
+        },
+        update: (_, mutationResult) => {
+          console.log('Result: ', mutationResult);
+        }
+      })
       textareaEl.value = '';
-    } else {
-      console.log('ERROR: ', res.error);
+    } catch(err) {
+      console.log('ERROR: ', err);
     }
   }
 </script>
