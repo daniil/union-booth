@@ -17,6 +17,9 @@
     border-radius: 4px;
     margin-bottom: 1rem;
   }
+  h3 > :global(p) {
+    margin-top: 0;
+  }
   .meta {
     display: flex;
     align-items: center;
@@ -55,8 +58,8 @@
       />
     {/if}
     <time>
-      <span>{date}</span>
       <span>{time}</span>
+      <span>{date}</span>
     </time>
   </footer>
 </article>

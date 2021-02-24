@@ -1,6 +1,5 @@
 ## Tasks
 
-- Rename LiveTopic and TopicQuestion prop to liveTopic
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - Update Answer to use GraphQL
 - Create subscription for Answer
@@ -9,6 +8,7 @@
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ
 - Update individual topic page with FAQ questions
+- Add Markdown editor to question and answer textareas
 - Investigate slow loading of queries or ORM
 - Look for queries that can be updated to use DataLoader
 - Set admin forms to disabled while it's sending query

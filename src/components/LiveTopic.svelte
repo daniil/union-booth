@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Union Booth :: Live: {cohortTopic ? cohortTopic.topic.title : 'Loading'}</title>
+	<title>Union Booth :: Live: {liveTopic ? liveTopic.topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script>
@@ -11,7 +11,7 @@
 
   const { session } = stores();
 
-  let cohortTopic;
+  let liveTopic;
   let loading = true;
 
   const liveTopicSub = $session.apolloClient
@@ -21,7 +21,7 @@
     })
     .subscribe(({ data }) => {
       if (!data) return;
-      cohortTopic = data.live;
+      liveTopic = data.live;
       loading = false;
     });
 
@@ -31,9 +31,9 @@
 {#if loading}
   <Loading/>
 {:else}
-  {#if cohortTopic}
-    <h1>{cohortTopic.topic.title}</h1>
-    <TopicQuestions topic={cohortTopic}/>
+  {#if liveTopic}
+    <h1>{liveTopic.topic.title}</h1>
+    <TopicQuestions {liveTopic}/>
   {:else}
     <p>No Live Topic currently 🤷🏽‍♀️</p>
   {/if}

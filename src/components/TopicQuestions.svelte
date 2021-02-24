@@ -11,7 +11,7 @@
 
   const { session } = stores();
 
-  export let topic;
+  export let liveTopic;
 
   let questions = [];
   let loading = true;
@@ -20,8 +20,8 @@
     .watchQuery({
       query: LIVE_QUESTIONS,
       variables: {
-        cohortId: topic.cohortId,
-        topicId: topic.topic.id
+        cohortId: liveTopic.cohortId,
+        topicId: liveTopic.topic.id
       },
       fetchPolicy: 'cache-and-network'
     })
@@ -35,8 +35,8 @@
 
   const newCohortQuestion = subscribe(NEW_COHORT_QUESTION, {
     variables: {
-      cohortId: topic.cohortId,
-      topicId: topic.topic.id
+      cohortId: liveTopic.cohortId,
+      topicId: liveTopic.topic.id
     }
   });
 
@@ -45,8 +45,8 @@
       $session.apolloClient.writeQuery({
         query: LIVE_QUESTIONS,
         variables: {
-          cohortId: topic.cohortId,
-          topicId: topic.topic.id
+          cohortId: liveTopic.cohortId,
+          topicId: liveTopic.topic.id
         },
         data: {
           liveQuestions: [value.data.newCohortQuestion, ...questions]
@@ -69,4 +69,4 @@
     <p>No questions yet, add a first one!</p>
   {/each}
 {/if}
-<AskQuestion liveTopic={topic}/>
+<AskQuestion {liveTopic}/>
