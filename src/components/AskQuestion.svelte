@@ -19,28 +19,8 @@
           topicId: liveTopic.topic.id,
           question: e.target.question.value,
           isAnonymous: e.target['is-anonymous'].checked
-        },
-        update: (_, mutationResult) => {
-          const liveQuestions = $session.apolloClient.readQuery({
-            query: LIVE_QUESTIONS,
-            variables: {
-              cohortId: liveTopic.cohortId,
-              topicId: liveTopic.topic.id
-            }
-          }).liveQuestions;
-
-          $session.apolloClient.writeQuery({
-            query: LIVE_QUESTIONS,
-            variables: {
-              cohortId: liveTopic.cohortId,
-              topicId: liveTopic.topic.id
-            },
-            data: {
-              liveQuestions: [mutationResult.data.addCohortQuestion, ...liveQuestions]
-            }
-          });
         }
-      })
+      });
       textareaEl.value = '';
     } catch(err) {
       console.log('ERROR: ', err);

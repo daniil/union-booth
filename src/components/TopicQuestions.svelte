@@ -3,7 +3,8 @@
   import { onDestroy } from 'svelte';
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
-  import { LIVE_QUESTIONS } from 'graphql/queries/cohort-question';
+  import { subscribe } from 'svelte-apollo';
+  import { LIVE_QUESTIONS, NEW_COHORT_QUESTION } from 'graphql/queries/cohort-question';
   import Loading from 'components/Loading.svelte';
   import Question from 'components/Question.svelte';
   import AskQuestion from 'components/AskQuestion.svelte';
@@ -31,6 +32,30 @@
     });
 
   onDestroy(() => liveQuestionsSub.unsubscribe());
+
+  const newCohortQuestion = subscribe(NEW_COHORT_QUESTION, {
+    variables: {
+      cohortId: topic.cohortId,
+      topicId: topic.topic.id
+    }
+  });
+
+  const newCohortQuestionUnsub = newCohortQuestion.subscribe(value => {
+    if (value.data) {
+      $session.apolloClient.writeQuery({
+        query: LIVE_QUESTIONS,
+        variables: {
+          cohortId: topic.cohortId,
+          topicId: topic.topic.id
+        },
+        data: {
+          liveQuestions: [value.data.newCohortQuestion, ...questions]
+        }
+      });
+    }
+  });
+
+  onDestroy(newCohortQuestionUnsub);
 </script>
 
 {#if loading}
