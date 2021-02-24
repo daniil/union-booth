@@ -71,8 +71,8 @@ export default {
       subscribe: withFilter(
         () => pubsub.asyncIterator(['NEW_COHORT_QUESTION']),
         (payload, variables) => {
-          console.log('Filter: ', payload, variables);
-          return true;
+          return payload.newCohortQuestion.cohortId === variables.cohortId &&
+                 payload.newCohortQuestion.topicId === variables.topicId;
         }
       )
     }
