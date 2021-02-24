@@ -4,6 +4,7 @@
 - Create subscription for Question
 - Update Answer to use GraphQL
 - Create subscription for Answer
+- Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ

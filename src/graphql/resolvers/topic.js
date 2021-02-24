@@ -1,9 +1,7 @@
-import { PubSub, withFilter, UserInputError } from 'apollo-server';
+import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
-
-const pubsub = new PubSub();
 
 export default {
   Query: {
@@ -46,26 +44,12 @@ export default {
             };
           }));
 
-          pubsub.publish('TEST_MESSAGE', { testSub: title });
-
           return topic;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
     )
-  },
-
-  Subscription: {
-    testSub: {
-      subscribe: withFilter(
-        () => pubsub.asyncIterator('TEST_MESSAGE'),
-        (payload, variables) => {
-          console.log('Filter: ', payload, variables);
-          return true;
-        }
-      )
-    }
   },
 
   Topic: {

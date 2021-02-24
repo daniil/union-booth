@@ -94,7 +94,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    testSub(id: ID): Topic
+    newCohortQuestion(cohortId: ID!, topicId: ID!): CohortQuestion!
   }
 `;
 
