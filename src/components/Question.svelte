@@ -13,7 +13,8 @@
   .question {
     position: relative;
     padding: 1rem;
-    border: 1px solid #91B7C7;
+    border: 1px solid #DBD3D8;
+    border-bottom-width: 2px;
     border-radius: 4px;
     margin-bottom: 1rem;
   }
