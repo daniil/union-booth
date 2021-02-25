@@ -4,6 +4,7 @@ import cohortModel from './cohort';
 import topicModel from './topic';
 import cohortTopicModel from './cohort-topic';
 import cohortQuestionModel from './cohort-question';
+import cohortAnswerModel from './cohort-answer';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
@@ -22,6 +23,7 @@ const models = {
   Topic: topicModel(sequelize, DataTypes),
   CohortTopic: cohortTopicModel(sequelize, DataTypes),
   CohortQuestion: cohortQuestionModel(sequelize, DataTypes),
+  CohortAnswer: cohortAnswerModel(sequelize, DataTypes),
   User: userModel(sequelize, DataTypes)
 };
 
