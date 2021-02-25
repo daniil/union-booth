@@ -58,6 +58,14 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
+  type CohortAnswer {
+    id: ID!
+    question: CohortQuestion!
+    user: User!
+    answer: String!
+    createdAt: Date!
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program
