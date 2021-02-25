@@ -2,7 +2,7 @@
 
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - Update Answer to use GraphQL
-  - Create server schema and mutations
+  - Add cohort question loader
   - Create query for answers
   - Connect UI for fetching answers
   - Connect UI for adding answers
@@ -25,6 +25,7 @@
 - Add admin remove functionality for programs, cohorts and topics
 - Do error catching and reporting for program and cohort add
 - Add text-to-speech question posting
+- Write automated tests
 
 ## Ongoing
 
