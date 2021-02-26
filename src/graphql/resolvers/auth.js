@@ -1,5 +1,5 @@
 import { ForbiddenError } from 'apollo-server';
-import { combineResolvers, skip } from 'graphql-resolvers';
+import { skip } from 'graphql-resolvers';
 
 export const roleMap = {
   user: ['user'],
@@ -11,13 +11,10 @@ export const isAuthenticated = (_, __, { session }) => {
   return session.user ? skip : new ForbiddenError('Not authenticated as user.');
 };
 
-export const checkRole = role => combineResolvers(
-  isAuthenticated,
-  (_, __, { session }) => {
-    const userRoles = roleMap[session.user.role];
+export const checkRole = role => (_, __, { session }) => {
+  const userRoles = roleMap[session.user.role];
 
-    return userRoles.includes(role)
-      ? skip
-      : new ForbiddenError('Not authorized for this action');
-  }
-);
+  return userRoles.includes(role)
+    ? skip
+    : new ForbiddenError('Not authorized for this action');
+};
