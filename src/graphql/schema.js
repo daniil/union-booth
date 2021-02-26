@@ -60,7 +60,7 @@ const typeDefs = gql`
 
   type CohortAnswer {
     id: ID!
-    question: CohortQuestion!
+    cohortQuestion: CohortQuestion!
     user: User!
     answer: String!
     createdAt: Date!

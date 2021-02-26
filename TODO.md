@@ -2,7 +2,6 @@
 
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - Update Answer to use GraphQL
-  - Add cohort question loader
   - Create query for answers
   - Connect UI for fetching answers
   - Connect UI for adding answers

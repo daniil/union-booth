@@ -57,6 +57,9 @@ export default {
   CohortAnswer: {
     user: async (parent, _, { loaders }) => {
       return await loaders.user.load(parent.userId);
+    },
+    cohortQuestion: async (parent, _, { loaders }) => {
+      return await loaders.cohortQuestion.load(parent.cohortQuestionId);
     }
   }
 }
