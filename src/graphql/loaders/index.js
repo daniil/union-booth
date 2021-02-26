@@ -1,11 +1,13 @@
-import * as program from './program';
 import * as user from './user';
+import * as program from './program';
+import * as cohort from './cohort';
 import * as topic from './topic';
 import * as cohortQuestion from './cohortQuestion';
 
 export default {
-  program,
   user,
+  program,
+  cohort,
   topic,
   cohortQuestion
 };

@@ -11,6 +11,7 @@ const { SERVER_URL, PORT } = process.env;
 export const loadersContext = {
 	user: new DataLoader(keys => loaders.user.batchUsers(keys, models)),
   program: new DataLoader(keys => loaders.program.batchPrograms(keys, models)),
+  cohort: new DataLoader(keys => loaders.cohort.batchCohorts(keys, models)),
   topic: new DataLoader(keys => loaders.topic.batchTopics(keys, models)),
   cohortQuestion: new DataLoader(keys => loaders.cohortQuestion.batchCohortQuestions(keys, models))
 };

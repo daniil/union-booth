@@ -81,6 +81,12 @@ export default {
   CohortQuestion: {
     user: async (parent, _, { loaders }) => {
       return await loaders.user.load(parent.userId);
+    },
+    cohort: async (parent, _, { loaders }) => {
+      return await loaders.cohort.load(parent.cohortId);
+    },
+    topic: async (parent, _, { loaders }) => {
+      return await loaders.topic.load(parent.topicId);
     }
   }
 }
