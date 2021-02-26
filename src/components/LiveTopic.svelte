@@ -5,7 +5,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-  import { LIVE } from 'graphql/queries/cohort-topic';
+  import { LIVE_TOPIC } from 'graphql/queries/cohort-topic';
   import Loading from 'components/Loading.svelte';
   import TopicQuestions from 'components/TopicQuestions.svelte';
 
@@ -16,12 +16,12 @@
 
   const liveTopicSub = $session.apolloClient
     .watchQuery({
-      query: LIVE,
+      query: LIVE_TOPIC,
       fetchPolicy: 'cache-and-network'
     })
     .subscribe(({ data }) => {
       if (!data) return;
-      liveTopic = data.live;
+      liveTopic = data.liveTopic;
       loading = false;
     });
 

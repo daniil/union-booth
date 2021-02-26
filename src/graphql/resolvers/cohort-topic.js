@@ -82,7 +82,7 @@ export default {
       }
     ),
 
-    live: combineResolvers(
+    liveTopic: combineResolvers(
       isAuthenticated,
       async (_, __, { models, session }) => {
         const user = await models.User.findOne({

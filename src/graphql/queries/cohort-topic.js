@@ -26,9 +26,9 @@ const TOPIC = gql`
   }
 `;
 
-const LIVE = gql`
-  query Live {
-    live {
+const LIVE_TOPIC = gql`
+  query LiveTopic {
+    liveTopic {
       topic {
         id
         title
@@ -41,5 +41,5 @@ const LIVE = gql`
 export {
   UNLOCKED_TOPICS,
   TOPIC,
-  LIVE
+  LIVE_TOPIC
 }

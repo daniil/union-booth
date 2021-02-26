@@ -1,7 +1,6 @@
 ## Tasks
 
 - Add a nice tooltip to "Posted by" avatar in Live Question component
-- Rename "live" query to "liveTopic"
 - Update Answer to use GraphQL
   - Connect UI for fetching answers
   - Connect UI for adding answers
