@@ -1,62 +1,23 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  import { stores } from '@sapper/app';
-  import { post } from '../utils/request';
   import AuthContent from '../components/AuthContent.svelte';
 
-  export let topicId;
   export let questionId;
-  export let questionDetails;
-
-  const { session } = stores();
-  const dispatch = createEventDispatcher();
-
-  $: youAreAnswering = questionDetails.beingAnsweredBy.includes($session.user.id);
-  $: youAnswered = questionDetails.answeredBy.includes($session.user.id);
 
   let formVisible = false;
   let textareaEl;
 
   const handleSubmit = async e => {
-    const res = await post(`/topics/answers/${questionId}.json`, {
-      answer: e.target.answer.value
-    });
-
-    if (!res.error) {
-      textareaEl.value = '';
-      toggleFormVisible();
-      dispatch('answer-added');
-    } else {
-      console.log('ERROR: ', res.error);
-    }
+    console.log('Value: ', e.target.answer.value);
+    textareaEl.value = '';
+    toggleFormVisible();
   }
 
   const toggleFormVisible = () => formVisible = !formVisible;
-
-  const handleAnswerProgress = async () => {
-    const res = await post(`topics/question/answering/${topicId}/${questionId}.json`);
-
-    if (!res.error) {
-      dispatch('answering');
-    } else {
-      console.log('ERROR: ', res.error);
-    }
-  }
-
-  const handleAnswered = async () => {
-    const res = await post(`topics/question/answered/${topicId}/${questionId}.json`);
-
-    if (!res.error) {
-      dispatch('answered');
-    } else {
-      console.log('ERROR: ', res.error);
-    }
-  }
 </script>
 
 <style>
   .toggle-form {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
   form {
     margin-top: 2rem;
@@ -91,15 +52,7 @@
       </div>
       <AuthContent role="moderator">
         <div class="admin-actions">
-          {#if !youAreAnswering}
-            {#if youAnswered}
-              ✅ You answered
-            {:else}
-              <button on:click|preventDefault={handleAnswerProgress}>
-                💭 Answering
-              </button>
-            {/if}
-          {/if}
+          <span>Moderator Actions</span>
         </div>
       </AuthContent>
     </div>
@@ -108,9 +61,4 @@
   <button class="toggle-form" on:click={toggleFormVisible}>
     💬 Answer
   </button>
-  {#if youAreAnswering}
-    <button class="toggle-answered" on:click={handleAnswered}>
-      ✅ Mark Answered
-    </button>
-  {/if}
 {/if}

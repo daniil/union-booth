@@ -1,6 +1,7 @@
 <script>
-  import { parseMD } from '../utils/markdown';
-  import { formatDate, formatTime } from '../utils/time';
+  import { parseMD } from 'utils/markdown';
+  import { formatDate, formatTime } from 'utils/time';
+  import QuestionAnswers from 'components/QuestionAnswers.svelte';
 
   export let details;
 
@@ -63,4 +64,5 @@
       <span>{date}</span>
     </time>
   </footer>
+  <QuestionAnswers questionId={details.id}/>
 </article>

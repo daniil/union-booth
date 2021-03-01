@@ -1,5 +1,5 @@
 <script>
-  import { parseMD } from '../utils/markdown';
+  import { parseMD } from 'utils/markdown';
 
   export let details;
 

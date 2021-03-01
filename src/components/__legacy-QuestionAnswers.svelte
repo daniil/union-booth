@@ -1,16 +1,30 @@
 <script>
+  import { onMount } from 'svelte';
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
-  import Answer from 'components/Answer.svelte';
-  import PostAnswer from 'components/PostAnswer.svelte';
+  import { get } from '../utils/request';
+  import Answer from './Answer.svelte';
+  import PostAnswer from './PostAnswer.svelte';
 
+  export let topicId;
   export let questionId;
+  export let questionDetails;
 
   let answers = [];
 
   const fetchAnswers = async () => {
-    console.log('Fetch: ', fetch);
+    const res = await get(`/topics/answers/${questionId}.json`);
+
+    if (!res.error) {
+      answers = res.data;
+    } else {
+      console.log('ERROR: ', res.error);
+    }
   };
+
+  onMount(async () => {
+    fetchAnswers();
+  });
 </script>
 
 <style>
@@ -37,4 +51,12 @@
     {/each}
   </section>
 {/if}
-<PostAnswer {questionId}/>
+
+<PostAnswer
+  {topicId}
+  {questionId}
+  {questionDetails}
+  on:answer-added={fetchAnswers}
+  on:answering
+  on:answered
+/>
