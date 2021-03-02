@@ -1,16 +1,35 @@
 <script>
+  import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+  import { LIVE_ANSWERS } from 'graphql/queries/cohort-answer';
+  import Loading from 'components/Loading.svelte';
   import Answer from 'components/Answer.svelte';
   import PostAnswer from 'components/PostAnswer.svelte';
+
+  const { session } = stores();
 
   export let questionId;
 
   let answers = [];
+  let loading = true;
 
-  const fetchAnswers = async () => {
-    console.log('Fetch: ', fetch);
-  };
+  $: liveAnswersSub = $session.apolloClient
+    .watchQuery({
+      query: LIVE_ANSWERS,
+      variables: {
+        cohortQuestionId: questionId
+      },
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      if (!data) return;
+      answers = data.liveAnswers;
+      loading = false;
+    });
+  
+  onDestroy(() => liveAnswersSub.unsubscribe());
 </script>
 
 <style>
@@ -27,14 +46,18 @@
   }
 </style>
 
-{#if answers.length}
-  <section>
-    <h3>Answers</h3>
-    {#each answers as answer (answer.id)}
-      <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-        <Answer details={answer}/>
-      </div>
-    {/each}
-  </section>
+{#if loading}
+  <Loading/>
+{:else}
+  {#if answers.length}
+    <section>
+      <h3>Answers</h3>
+      {#each answers as answer (answer.id)}
+        <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
+          <Answer details={answer}/>
+        </div>
+      {/each}
+    </section>
+  {/if}
 {/if}
 <PostAnswer {questionId}/>
