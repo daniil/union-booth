@@ -34,14 +34,12 @@
 
 <style>
   section {
-    margin: 2rem 0;
-    padding: 1rem 0;
-    border-top: 1px solid #91B7C7;
-    border-bottom: 1px solid #91B7C7;
+    margin: 2rem 0 0;
+    border-bottom: 1px solid #DBD3D8;
   }
   h3 {
     margin-bottom: 1rem;
-    color: #91B7C7;
+    color: #3E6990;
     font-size: 1rem;
   }
 </style>

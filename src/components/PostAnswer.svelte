@@ -17,7 +17,19 @@
 
 <style>
   .toggle-form {
+    display: flex;
+    align-items: center;
+    background: rgba(219, 211, 216, 0.3);
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
     margin-top: 2rem;
+    font-size: 1.3rem;
+  }
+  .button-text {
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    color: #05668D;
   }
   form {
     margin-top: 2rem;
@@ -59,6 +71,6 @@
   </form>
 {:else}
   <button class="toggle-form" on:click={toggleFormVisible}>
-    💬 Answer
+    💬 <span class="button-text">Answer</span>
   </button>
 {/if}

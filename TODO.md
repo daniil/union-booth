@@ -2,7 +2,6 @@
 
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - Update Answer to use GraphQL
-  - Style answers UI
   - Connect UI for adding answers
   - Create subscription for Answer
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)

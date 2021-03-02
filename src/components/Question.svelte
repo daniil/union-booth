@@ -1,6 +1,7 @@
 <script>
   import { parseMD } from 'utils/markdown';
   import { formatDate, formatTime } from 'utils/time';
+  import Avatar from 'components/Avatar.svelte';
   import QuestionAnswers from 'components/QuestionAnswers.svelte';
 
   export let details;
@@ -26,19 +27,6 @@
     display: flex;
     align-items: center;
   }
-  .avatar {
-    width: 30px;
-    margin-right: 1rem;
-  }
-  .anon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #D3D3D3;
-    color: #808080;
-  }
   time {
     display: flex;
     flex: 1;
@@ -50,14 +38,9 @@
   <h3>{@html content}</h3>
   <footer class="meta">
     {#if details.isAnonymous}
-      <div class="avatar anon">?</div>
+      <Avatar/>
     {:else}
-      <img
-        class="avatar"
-        src={`avatars/${details.user.id}.svg`}
-        alt={`Posted by: ${details.user.username}`}
-        title={`Posted by: ${details.user.username}`}
-      />
+      <Avatar user={details.user}/>
     {/if}
     <time>
       <span>{time}</span>
