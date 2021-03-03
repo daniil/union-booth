@@ -1,6 +1,5 @@
 ## Tasks
 
-- Add a nice tooltip to "Posted by" avatar in Live Question component
 - Update Answer to use GraphQL
   - Connect UI for adding answers
   - Create subscription for Answer
@@ -9,20 +8,25 @@
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ
 - Update individual topic page with FAQ questions
-- Add Markdown editor to question and answer textareas
 - Investigate slow loading of queries or ORM
 - Look for queries that can be updated to use DataLoader
 - Set admin forms to disabled while it's sending query
 - Refactor user cohort queries to be cached
 - Add user admin UI
   - Add generate new avatar functionality for user
-- When user is deleted, invalidate their session
 - Add a program/cohort admin privileges for other roles
 - Update site color scheme
 - Add admin remove functionality for programs, cohorts and topics
 - Do error catching and reporting for program and cohort add
 - Add text-to-speech question posting
 - Write automated tests
+
+## Tweaks
+
+- Update Button component to have different types
+- Add a nice tooltip to "Posted by" avatar in Live Question component
+- Add Markdown editor to question and answer textareas
+- When user is deleted, invalidate their session
 
 ## Ongoing
 
