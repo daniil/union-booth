@@ -18,7 +18,7 @@
     border: 1px solid #DBD3D8;
     border-bottom-width: 2px;
     border-radius: 4px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   h3 > :global(p) {
     margin-top: 0;

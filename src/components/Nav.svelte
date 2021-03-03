@@ -2,6 +2,7 @@
 	import { goto, stores } from '@sapper/app';
 	import { mutation } from 'svelte-apollo';
   import { LOGOUT } from 'graphql/queries/login';
+	import AuthContent from 'components/AuthContent.svelte';
 
 	export let segment;
 
@@ -82,11 +83,11 @@
 			<li class="right-aligned">
 				<a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
 			</li>
-			{#if $session.user.role === 'admin'}
+			<AuthContent role="admin">
 				<li class="right-aligned">
 					<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
 				</li>
-			{/if}
+			</AuthContent>
 		{/if}
 	</ul>
 </nav>

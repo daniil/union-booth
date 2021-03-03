@@ -1,4 +1,5 @@
 <script>
+  export let type;
   export let icon;
   export let label;
   export let action;
@@ -6,14 +7,13 @@
 
 <style>
   .button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     background: rgba(219, 211, 216, 0.3);
     border: none;
     border-radius: 4px;
     padding: 0.25rem 0.75rem;
     cursor: pointer;
-    margin-top: 2rem;
     font-size: 1.3rem;
   }
   .button:hover {
@@ -29,7 +29,7 @@
   }
 </style>
 
-<button class="button" on:click={action}>
+<button type={type} class="button" on:click={action}>
   {icon}
   <span class="button-text">{label}</span>
 </button>

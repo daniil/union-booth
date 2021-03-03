@@ -8,6 +8,9 @@
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ
 - Update individual topic page with FAQ questions
+- Add a Resources model/schema tied to the topic
+- Add UI for managing resources
+- Update individual topic page with Resources
 - Investigate slow loading of queries or ORM
 - Look for queries that can be updated to use DataLoader
 - Set admin forms to disabled while it's sending query
@@ -23,6 +26,7 @@
 
 ## Tweaks
 
+- Update Answers to be expandable
 - Update Button component to have different types
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - Add Markdown editor to question and answer textareas
