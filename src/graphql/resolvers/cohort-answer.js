@@ -1,7 +1,9 @@
-import { UserInputError } from 'apollo-server';
+import { PubSub, withFilter, UserInputError } from 'apollo-server';
 import { pipeResolvers } from 'graphql-resolvers';
 import { isAuthenticated } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
+
+const pubsub = new PubSub();
 
 const validateAndReturnTopicIdOfCohortQuestion = async (_, { cohortQuestionId }, { models, session }) => {
   const user = await models.User.findOne({
@@ -70,6 +72,8 @@ export default {
             answer
           });
 
+          pubsub.publish('NEW_COHORT_ANSWER', { newCohortAnswer: newAnswer });
+
           return newAnswer;
         } catch(err) {
           console.log('ERR? ', err)
@@ -77,6 +81,17 @@ export default {
         }
       }
     )
+  },
+
+  Subscription: {
+    newCohortAnswer: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['NEW_COHORT_ANSWER']),
+        (payload, variables) => {
+          return payload.newCohortAnswer.cohortQuestionId === variables.cohortQuestionId;
+        }
+      )
+    }
   },
 
   CohortAnswer: {

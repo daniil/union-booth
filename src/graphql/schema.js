@@ -105,6 +105,7 @@ const typeDefs = gql`
 
   type Subscription {
     newCohortQuestion(cohortId: ID!, topicId: ID!): CohortQuestion!
+    newCohortAnswer(cohortQuestionId: ID!): CohortAnswer!
   }
 `;
 
