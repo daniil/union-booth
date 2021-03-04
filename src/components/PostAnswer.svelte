@@ -1,16 +1,29 @@
 <script>
+  import { mutation } from 'svelte-apollo';
+  import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
   import AuthContent from 'components/AuthContent.svelte';
   import Button from 'components/Button.svelte';
 
   export let questionId;
 
+  const addCohortAnswer = mutation(ADD_COHORT_ANSWER);
+
   let formVisible = false;
   let textareaEl;
 
   const handleSubmit = async e => {
-    console.log('Value: ', e.target.answer.value);
-    textareaEl.value = '';
-    toggleFormVisible();
+    try {
+      await addCohortAnswer({
+        variables: {
+          cohortQuestionId: questionId,
+          answer: e.target.answer.value
+        }
+      });
+      textareaEl.value = '';
+      toggleFormVisible();
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 
   const toggleFormVisible = () => formVisible = !formVisible;
