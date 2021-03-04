@@ -16,7 +16,7 @@ export default {
             topicId
           },
           order: [
-            ['createdAt', 'DESC']
+            ['createdAt', 'ASC']
           ]
         });
 

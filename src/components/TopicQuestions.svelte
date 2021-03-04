@@ -49,7 +49,7 @@
           topicId: liveTopic.topic.id
         },
         data: {
-          liveQuestions: [value.data.newCohortQuestion, ...questions]
+          liveQuestions: [...questions, value.data.newCohortQuestion]
         }
       });
     }

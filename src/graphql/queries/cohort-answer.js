@@ -30,7 +30,17 @@ const ADD_COHORT_ANSWER = gql`
   ${cohortAnswerInformation}
 `;
 
+const NEW_COHORT_ANSWER = gql`
+  subscription NewCohortAnswer($cohortQuestionId: ID!) {
+    newCohortAnswer(cohortQuestionId: $cohortQuestionId) {
+      ...CohortAnswerInformation
+    }
+  }
+  ${cohortAnswerInformation}
+`;
+
 export {
   LIVE_ANSWERS,
-  ADD_COHORT_ANSWER
+  ADD_COHORT_ANSWER,
+  NEW_COHORT_ANSWER
 }

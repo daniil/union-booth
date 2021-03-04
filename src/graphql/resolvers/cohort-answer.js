@@ -51,7 +51,10 @@ export default {
         const answers = models.CohortAnswer.findAll({
           where: {
             cohortQuestionId
-          }
+          },
+          order: [
+            ['createdAt', 'ASC']
+          ]
         });
 
         return answers;

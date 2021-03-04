@@ -1,8 +1,9 @@
 ## Tasks
 
 - Update Answer to use GraphQL
-  - Connect UI for adding answers
-  - Create subscription for Answer
+  - Add "Mark Answering" functionality
+  - Add "Being Answered By" functionality
+  - Add "Answered by" functionality
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
 - Add an FAQ model/schema tied to the topic
