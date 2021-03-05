@@ -1,5 +1,6 @@
 ## Tasks
 
+- Style Register and Login pages
 - Update Answer to use GraphQL
   - Add "Mark Answering" functionality
   - Add "Being Answered By" functionality
