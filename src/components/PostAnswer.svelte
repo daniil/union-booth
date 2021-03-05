@@ -27,6 +27,10 @@
   }
 
   const toggleFormVisible = () => formVisible = !formVisible;
+
+  const handleAnswerProgress = () => {
+
+  }
 </script>
 
 <style>
@@ -71,17 +75,17 @@
     <div class="action-bar">
       <div class="form-element">
         <Button type="submit" icon="📮" label="Post Answer"/>
-        <Button icon="💨" label="Cancel" action={toggleFormVisible}/>
+        <Button icon="💨" label="Cancel" action={toggleFormVisible} preventDefault/>
       </div>
       <AuthContent role="moderator">
         <div class="admin-actions">
-          <span>Moderator Actions</span>
+          <Button icon="💬" label="Answering" action={handleAnswerProgress} preventDefault/>
         </div>
       </AuthContent>
     </div>
   </form>
 {:else}
   <div class="post-answer">
-    <Button icon="💬" label="Answer" action={toggleFormVisible}/>
+    <Button icon="🧠" label="Answer" action={toggleFormVisible}/>
   </div>
 {/if}

@@ -3,6 +3,12 @@
   export let icon;
   export let label;
   export let action;
+  export let preventDefault;
+
+  const handleAction = e => {
+    !!preventDefault && e.preventDefault();
+    !!action && action(e);
+  }
 </script>
 
 <style>
@@ -29,7 +35,7 @@
   }
 </style>
 
-<button type={type} class="button" on:click={action}>
+<button type={type} class="button" on:click={handleAction}>
   {icon}
   <span class="button-text">{label}</span>
 </button>
