@@ -25,7 +25,7 @@ const models = {
   CohortTopic: cohortTopicModel(sequelize, DataTypes),
   CohortQuestion: cohortQuestionModel(sequelize, DataTypes),
   CohortAnswer: cohortAnswerModel(sequelize, DataTypes),
-  CohortAnswerInProgress: cohortAnswerInProgressModel(sequelize),
+  CohortAnswerInProgress: cohortAnswerInProgressModel(sequelize, DataTypes),
   User: userModel(sequelize, DataTypes)
 };
 

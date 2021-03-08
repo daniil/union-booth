@@ -66,6 +66,13 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
+  type CohortAnswerInProgress {
+    user: User!
+    cohortQuestion: CohortQuestion!
+    isActive: Boolean!
+    createdAt: Date!
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program

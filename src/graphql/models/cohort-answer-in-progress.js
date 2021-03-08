@@ -1,5 +1,10 @@
-const cohortAnswerInProgress = (sequelize) => {
-  const CohortAnswerInProgress = sequelize.define('cohort-answer-in-progress', {}, {
+const cohortAnswerInProgress = (sequelize, DataTypes) => {
+  const CohortAnswerInProgress = sequelize.define('cohort-answer-in-progress', {
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
+  }, {
     freezeTableName: true
   });
 
