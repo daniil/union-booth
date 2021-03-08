@@ -1,6 +1,7 @@
 ## Tasks
 
 - Style Register and Login pages
+- Fix bug with no questions not working with subscription (of after switching of the current live topic)
 - Update Answer to use GraphQL
   - Add "Mark Answering" functionality
   - Add "Being Answered By" functionality

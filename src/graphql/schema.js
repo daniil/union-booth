@@ -108,6 +108,7 @@ const typeDefs = gql`
     toggleCohortTopicLive(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
     addCohortQuestion(topicId: ID!, question: String!, isAnonymous: Boolean!): CohortQuestion!
     addCohortAnswer(cohortQuestionId: ID!, answer: String!): CohortAnswer!
+    updateCohortAnswerProgress(cohortQuestionId: ID!, userID: ID!): CohortAnswerInProgress!
   }
 
   type Subscription {
