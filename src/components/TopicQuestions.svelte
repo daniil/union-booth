@@ -33,20 +33,24 @@
 
   onDestroy(() => liveQuestionsSub.unsubscribe());
 
-  const newCohortQuestion = subscribe(NEW_COHORT_QUESTION, {
+  $: newCohortQuestion = subscribe(NEW_COHORT_QUESTION, {
     variables: {
       cohortId: liveTopic.cohortId,
       topicId: liveTopic.topic.id
     }
   });
 
-  const newCohortQuestionUnsub = newCohortQuestion.subscribe(value => {
-    if (value.data) {
+  $: newCohortQuestionUnsub = subscribeToChanges(liveTopic.cohortId, liveTopic.topic.id);
+
+  const subscribeToChanges = (cohortId, topicId) => newCohortQuestion.subscribe(value => {
+    const needsUpdating = value.data && !questions.find(question => question.id === value.data.newCohortQuestion.id);
+    
+    if (needsUpdating) {
       $session.apolloClient.writeQuery({
         query: LIVE_QUESTIONS,
         variables: {
-          cohortId: liveTopic.cohortId,
-          topicId: liveTopic.topic.id
+          cohortId,
+          topicId
         },
         data: {
           liveQuestions: [...questions, value.data.newCohortQuestion]
@@ -55,7 +59,7 @@
     }
   });
 
-  onDestroy(newCohortQuestionUnsub);
+  onDestroy(() => newCohortQuestionUnsub());
 </script>
 
 {#if loading}

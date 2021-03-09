@@ -1,7 +1,7 @@
 ## Tasks
 
 - Style Register and Login pages
-- Fix bug with no questions not working with subscription (of after switching of the current live topic)
+- Add reactive watch for questionId change for new answer subscription
 - Update Answer to use GraphQL
   - Add "Mark Answering" functionality
   - Add "Being Answered By" functionality
@@ -17,6 +17,7 @@
 - Investigate slow loading of queries or ORM
 - Look for queries that can be updated to use DataLoader
 - Set admin forms to disabled while it's sending query
+- Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
 - Add user admin UI
   - Add generate new avatar functionality for user
