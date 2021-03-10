@@ -67,8 +67,8 @@ const typeDefs = gql`
   }
 
   type CohortAnswerInProgress {
-    user: User!
     cohortQuestion: CohortQuestion!
+    user: User!
     isActive: Boolean!
     createdAt: Date!
   }
@@ -108,7 +108,7 @@ const typeDefs = gql`
     toggleCohortTopicLive(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
     addCohortQuestion(topicId: ID!, question: String!, isAnonymous: Boolean!): CohortQuestion!
     addCohortAnswer(cohortQuestionId: ID!, answer: String!): CohortAnswer!
-    updateCohortAnswerProgress(cohortQuestionId: ID!, userID: ID!): CohortAnswerInProgress!
+    updateCohortAnswerProgress(cohortQuestionId: ID!, status: Boolean!): CohortAnswerInProgress!
   }
 
   type Subscription {

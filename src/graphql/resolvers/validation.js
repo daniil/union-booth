@@ -7,7 +7,7 @@ export const validateAndReturnTopicIdOfCohortQuestion = async (_, { cohortQuesti
       id: session.user.id
     }
   });
-
+  
   const question = await models.CohortQuestion.findOne({
     attributes: ['topicId'],
     where: {
@@ -20,12 +20,16 @@ export const validateAndReturnTopicIdOfCohortQuestion = async (_, { cohortQuesti
     throw new UserInputError('This question does not exist in your cohort. Can only answer questions from your own cohort');
   }
 
-  return question.dataValues;
+  return {
+    cohortId: user.cohortId,
+    topicId: question.topicId
+  }
 };
 
-export const validateTopicLive = async ({ topicId }, {  }, { models }) => {
+export const validateTopicLive = async ({ cohortId, topicId }, {  }, { models }) => {
   const topic = await models.CohortTopic.findOne({
     where: {
+      cohortId,
       topicId,
       isLive: true
     }

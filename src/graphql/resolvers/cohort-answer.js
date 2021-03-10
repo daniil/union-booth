@@ -44,7 +44,6 @@ export default {
 
           return newAnswer;
         } catch(err) {
-          console.log('ERR? ', err)
           throw new UserInputError(parseSequelizeError(err));
         }
       }

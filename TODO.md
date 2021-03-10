@@ -15,6 +15,7 @@
 - Update individual topic page with Resources
 - Investigate slow loading of queries or ORM
 - Look for queries that can be updated to use DataLoader
+- Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
 - Set admin forms to disabled while it's sending query
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
