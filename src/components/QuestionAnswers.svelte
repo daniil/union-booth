@@ -32,27 +32,33 @@
   
   onDestroy(() => liveAnswersSub.unsubscribe());
 
-  const newCohortAnswer = subscribe(NEW_COHORT_ANSWER, {
+  $: newCohortAnswer = subscribe(NEW_COHORT_ANSWER, {
     variables: {
       cohortQuestionId: questionId
     }
   });
 
-  const newCohortAnswerUnsub = newCohortAnswer.subscribe(value => {
-    if (value.data) {
-      $session.apolloClient.writeQuery({
-        query: LIVE_ANSWERS,
-        variables: {
-          cohortQuestionId: questionId
-        },
-        data: {
-          liveAnswers: [...answers, value.data.newCohortAnswer]
-        }
-      });
-    }
-  });
+  $: newCohortAnswerUnsub = subscribeToChanges(questionId);
 
-  onDestroy(newCohortAnswerUnsub);
+  const subscribeToChanges = questionId => {
+    return newCohortAnswer.subscribe(value => {
+      const needsUpdating = value.data && !answers.find(answer => answer.id === value.data.newCohortAnswer.id);
+
+      if (needsUpdating) {
+        $session.apolloClient.writeQuery({
+          query: LIVE_ANSWERS,
+          variables: {
+            cohortQuestionId: questionId
+          },
+          data: {
+            liveAnswers: [...answers, value.data.newCohortAnswer]
+          }
+        });
+      }
+    });
+  }
+
+  onDestroy(() => newCohortAnswerUnsub());
 </script>
 
 <style>

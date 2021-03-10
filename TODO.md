@@ -1,7 +1,6 @@
 ## Tasks
 
 - Style Register and Login pages
-- Add reactive watch for questionId change for new answer subscription
 - Update Answer to use GraphQL
   - Add "Mark Answering" functionality
   - Add "Being Answered By" functionality
