@@ -1,12 +1,14 @@
 <script>
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
+  import { UPDATE_COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
   import AuthContent from 'components/AuthContent.svelte';
   import Button from 'components/Button.svelte';
 
   export let questionId;
 
   const addCohortAnswer = mutation(ADD_COHORT_ANSWER);
+  const updateCohortAnswerProgress = mutation(UPDATE_COHORT_ANSWER_PROGRESS);
 
   let formVisible = false;
   let textareaEl;
@@ -28,8 +30,17 @@
 
   const toggleFormVisible = () => formVisible = !formVisible;
 
-  const handleAnswerProgress = () => {
-
+  const handleAnswerProgress = async () => {
+    try {
+      await updateCohortAnswerProgress({
+        variables: {
+          cohortQuestionId: questionId,
+          status: true
+        }
+      });
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 

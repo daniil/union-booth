@@ -13,7 +13,7 @@
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
 - Update individual topic page with Resources
-- Investigate slow loading of queries or ORM
+- Investigate slow loading of queries or ORM (??? Might have went away by itself by updating MacOS)
 - Look for queries that can be updated to use DataLoader
 - Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
 - Set admin forms to disabled while it's sending query
@@ -42,6 +42,6 @@
 - Clean up Sapper backend files
 - Add cascading functionality to all managed tables
 - Authenticate WebSocket requests
-- Error handling
+- Error handling (Add global error state and UI to replace all console.logs)
 - Auth handling
 - Add preloaders 

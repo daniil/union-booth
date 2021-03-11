@@ -18,6 +18,11 @@ export default {
             cohortQuestionId,
             userId: session.user.id,
             isActive: status
+          }, {
+            where: {
+              cohortQuestionId,
+              userId: session.user.id
+            }
           });
 
           const [answerProgressModel] = answerProgress;
