@@ -9,6 +9,7 @@
 - Create remove a question functionality
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ
+- Add UI for adding FAQ questions from scratch
 - Update individual topic page with FAQ questions
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources

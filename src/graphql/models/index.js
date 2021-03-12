@@ -9,14 +9,20 @@ import cohortAnswerInProgressModel from './cohort-answer-in-progress';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
-const { DATABASE, DATABASE_USER, DATABASE_PASSWORD } = process.env;
+const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, DATABASE_URL } = process.env;
 
-let sequelize = new Sequelize(
-  DATABASE,
-  DATABASE_USER,
-  DATABASE_PASSWORD,
-  { dialect: 'postgres' }
-);
+let sequelize;
+
+if (NODE_ENV === 'production') {
+  sequelize = new Sequelize(DATABASE_URL);
+} else {
+  sequelize = new Sequelize(
+    DATABASE,
+    DATABASE_USER,
+    DATABASE_PASSWORD,
+    { dialect: 'postgres' }
+  );
+}
 
 const models = {
   Program: programModel(sequelize, DataTypes),
