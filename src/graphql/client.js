@@ -8,14 +8,14 @@ import WebSocket from 'isomorphic-ws';
 import fetch from 'isomorphic-unfetch';
 
 export default session => {
-  const { SERVER_URL, PORT, httpProtocol, wsProtocol } = session;
+  const { SERVER_URL, PORT, prod } = session;
 
   const httpLink = new HttpLink({
-    uri: `${httpProtocol}://${SERVER_URL}:${PORT}/graphql`
+    uri: prod ? `https://${SERVER_URL}/graphql` : `http://${SERVER_URL}:${PORT}/graphql`
   });
 
   const wsLink = new WebSocketLink({
-    uri: `${wsProtocol}://${SERVER_URL}:${PORT}/graphql`,
+    uri: prod ? `wss://${SERVER_URL}/graphql` : `ws://${SERVER_URL}:${PORT}/graphql`,
     options: {
       reconnect: true
     },
