@@ -18,7 +18,8 @@ if (NODE_ENV === 'production') {
     dialect: 'postgres',
     protocol: 'postgres',
     dialectOptions: {
-      ssl: true
+      ssl: true,
+      rejectUnauthorized: false
     }
 });
 } else {
