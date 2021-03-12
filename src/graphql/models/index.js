@@ -17,9 +17,12 @@ if (NODE_ENV === 'production') {
   sequelize = new Sequelize(DATABASE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
+    ssl: true,
     dialectOptions: {
-      ssl: true,
-      rejectUnauthorized: false
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
     }
 });
 } else {
