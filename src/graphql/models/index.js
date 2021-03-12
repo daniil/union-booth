@@ -14,7 +14,13 @@ const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, DATABASE_URL } = p
 let sequelize;
 
 if (NODE_ENV === 'production') {
-  sequelize = new Sequelize(DATABASE_URL);
+  sequelize = new Sequelize(DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: true
+    }
+});
 } else {
   sequelize = new Sequelize(
     DATABASE,
