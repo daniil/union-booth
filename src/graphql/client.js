@@ -6,16 +6,17 @@ import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import WebSocket from 'isomorphic-ws';
 import fetch from 'isomorphic-unfetch';
+import { httpProtocol, wsProtocol } from './server';
 
 export default session => {
   const { SERVER_URL, PORT } = session;
 
   const httpLink = new HttpLink({
-    uri: `http://${SERVER_URL}:${PORT}/graphql`
+    uri: `${httpProtocol}://${SERVER_URL}:${PORT}/graphql`
   });
 
   const wsLink = new WebSocketLink({
-    uri: `ws://${SERVER_URL}:${PORT}/graphql`,
+    uri: `${wsProtocol}://${SERVER_URL}:${PORT}/graphql`,
     options: {
       reconnect: true
     },

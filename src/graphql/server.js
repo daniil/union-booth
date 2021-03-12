@@ -5,6 +5,7 @@ import typeDefs from './schema';
 import resolvers from './resolvers';
 import models from './models';
 import loaders from './loaders';
+import { httpProtocol } from '../graphql/server';
 
 const { SERVER_URL, PORT } = process.env;
 
@@ -45,7 +46,7 @@ export default {
       app,
       path: '/graphql',
       cors: {
-			  origin: [`http://${SERVER_URL}:${PORT}`],
+			  origin: [`${httpProtocol}://${SERVER_URL}:${PORT}`],
 			  credentials: true
       }
     });

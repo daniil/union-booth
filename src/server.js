@@ -18,6 +18,9 @@ const app = polka();
 
 const { SERVER_URL, PORT, NODE_ENV, SESSION_SECRET } = process.env;
 const dev = NODE_ENV === 'development';
+const prod = NODE_ENV === 'production';
+export const httpProtocol = prod ? 'https' : 'http';
+export const wsProtocol = prod ? 'wss' : 'ws';
 
 const FileStore = new sessionFileStore(session);
 
@@ -63,7 +66,7 @@ app
 	.use(
 		json(),
 		cors({
-			origin: [`http://${SERVER_URL}:${PORT}`],
+			origin: [`${httpProtocol}://${SERVER_URL}:${PORT}`],
 			credentials: true
 		}),
 		morgan('dev'),
@@ -88,7 +91,7 @@ app
 const httpServer = graphQLServer.init(app);
 
 httpServer.listen(PORT, () => {
-	console.log(`🚀 Apollo Server running on http://${SERVER_URL}:${PORT}/graphql`);
+	console.log(`🚀 Apollo Server running on ${httpProtocol}://${SERVER_URL}:${PORT}/graphql`);
 });
 
 sequelize.authenticate().then(() => {
