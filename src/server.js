@@ -19,8 +19,8 @@ const app = polka();
 const { SERVER_URL, PORT, NODE_ENV, SESSION_SECRET } = process.env;
 const dev = NODE_ENV === 'development';
 const prod = NODE_ENV === 'production';
-export const httpProtocol = prod ? 'https' : 'http';
-export const wsProtocol = prod ? 'wss' : 'ws';
+const httpProtocol = prod ? 'https' : 'http';
+const wsProtocol = prod ? 'wss' : 'ws';
 
 const FileStore = new sessionFileStore(session);
 
@@ -82,6 +82,8 @@ app
 					user: req.session.user,
 					SERVER_URL,
 					PORT,
+					httpProtocol,
+					wsProtocol,
 					apolloClient: initSSRClient(req.session)
 				});
 			}

@@ -5,9 +5,11 @@ import typeDefs from './schema';
 import resolvers from './resolvers';
 import models from './models';
 import loaders from './loaders';
-import { httpProtocol } from '../graphql/server';
 
-const { SERVER_URL, PORT } = process.env;
+const { NODE_ENV, SERVER_URL, PORT } = process.env;
+
+const prod = NODE_ENV === 'production';
+const httpProtocol = prod ? 'https' : 'http';
 
 export const loadersContext = {
 	user: new DataLoader(keys => loaders.user.batchUsers(keys, models)),
