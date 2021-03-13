@@ -30,6 +30,8 @@ DATABASE_USER
 DATABASE_PASSWORD
 ```
 
+Check `.env.example` for an example of `.env` file.
+
 ### Running the project
 
 Once you have cloned the project, create the PostgreSQL DB (defined in .env file), install dependencies and run the project in development mode:
@@ -52,3 +54,39 @@ GraphQL Playground is available at [http://localhost:3000/graphql](http://localh
 - PostgreSQL
 - Sequelize
 - Markdown
+
+### Deployment
+
+Currently the app is configured to be deployed on Heroku. Make sure you [install Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) for deployment tasks.
+
+After cloning the repo, create a new app with `heroku create` and then you can deploy it by running `heroku push heroku main`.
+
+If for whatever reason, your Heroku remote isn't available you can always add a new one with this command:
+
+```
+heroku git:remote -a heroku-appname-12345
+```
+
+In the Heroku settings for your deployed app, make following changes:
+
+- Under *Resources > Add-ons* add **Heroku Postgres**
+- Under *Settings > Buildpacks* add a Buildpack for **heroku/nodejs**.
+- Under *Settings > Config Vars* add following Config Vars:
+  - `SERVER_URL` - this should be the app host, ie: **heroku-appname-12345.herokuapp.com**
+  - `SESSION_SECRET` - randomly generated hash
+    - Can generate it by running `node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"`
+  - Confirm that `DATABASE_URL` config var is present
+
+For any troubleshooting, you can check the logs, or SSH into your Dyno.
+
+*Logging*
+
+```
+heroku logs --tail
+```
+
+*SSH Tunnelling*
+
+```
+heroku ps:exec
+```
