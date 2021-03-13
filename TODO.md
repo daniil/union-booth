@@ -1,5 +1,7 @@
 ## Tasks
 
+- Add README instructions for Heroku deployment
+- Update avatar storage to use S3
 - Style Register and Login pages
 - Update Answer to use GraphQL
   - Add "Mark Answering" functionality

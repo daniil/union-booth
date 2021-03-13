@@ -22,8 +22,8 @@ export const loadersContext = {
 export default {
   init: app => {
     const graphQLServer = new ApolloServer({
-      introspection: true,
-      playground: true,
+      introspection: !prod,
+      playground: !prod,
       typeDefs,
       resolvers,
       context: async ({ req, connection }) => {
