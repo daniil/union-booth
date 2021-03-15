@@ -11,6 +11,15 @@ const cohortAnswerInProgressInformation = gql`
   }
 `;
 
+const ANSWERS_IN_PROGRESS = gql`
+  query AnswersInProgress($cohortQuestionId: ID!) {
+    answersInProgress(cohortQuestionId: $cohortQuestionId) {
+      ...CohortAnswerInProgressInformation
+    }
+  }
+  ${cohortAnswerInProgressInformation}
+`;
+
 const UPDATE_COHORT_ANSWER_PROGRESS = gql`
   mutation UpdateCohortAnswerProgress($cohortQuestionId:ID!, $status:Boolean!) {
     updateCohortAnswerProgress(cohortQuestionId: $cohortQuestionId, status: $status) {
@@ -21,5 +30,6 @@ const UPDATE_COHORT_ANSWER_PROGRESS = gql`
 `;
 
 export {
+  ANSWERS_IN_PROGRESS,
   UPDATE_COHORT_ANSWER_PROGRESS
 }
