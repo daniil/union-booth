@@ -1,10 +1,10 @@
 ## Tasks
 
-- Add README instructions for Heroku deployment
 - Update avatar storage to use S3
 - Style Register and Login pages
 - Update Answer to use GraphQL
   - Add "Mark Answering" functionality
+  - Add "Stop Answering" functionality
   - Add "Being Answered By" functionality
   - Add "Answered by" functionality
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
@@ -16,7 +16,6 @@
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
 - Update individual topic page with Resources
-- Investigate slow loading of queries or ORM (??? Might have went away by itself by updating MacOS)
 - Look for queries that can be updated to use DataLoader
 - Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
 - Set admin forms to disabled while it's sending query
@@ -28,7 +27,7 @@
 - Update site color scheme
 - Add admin remove functionality for programs, cohorts and topics
 - Do error catching and reporting for program and cohort add
-- Add text-to-speech question posting
+- Add speech-to-text question posting
 - Write automated tests
 
 ## Tweaks

@@ -7,6 +7,26 @@ import parseSequelizeError from 'utils/parseSequelizeError';
 const pubsub = new PubSub();
 
 export default {
+  Query: {
+    answersInProgress: pipeResolvers(
+      isAuthenticated,
+      validateAndReturnTopicIdOfCohortQuestion,
+      validateTopicLive,
+      async (_, { cohortQuestionId }, { models }) => {
+        const answersInProgress = models.CohortAnswerInProgress.findAll({
+          where: {
+            cohortQuestionId
+          },
+          order: [
+            ['createdAt', 'ASC']
+          ]
+        });
+
+        return answersInProgress;
+      }
+    )
+  },
+
   Mutation: {
     updateCohortAnswerProgress: pipeResolvers(
       isAuthenticated,
