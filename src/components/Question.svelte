@@ -31,7 +31,12 @@
     })
     .subscribe(({ data }) => {
       if (!data) return;
-      console.log(data.answersInProgress);
+      beingAnsweredBy = data.answersInProgress.filter(item => {
+        return item.isActive
+      });
+      answeredBy = data.answersInProgress.filter(item => {
+        return !item.isActive;
+      })
     });
   
   onDestroy(() => answersInProgressSub.unsubscribe());
@@ -88,6 +93,9 @@
   </footer>
   <QuestionAnswers questionId={details.id}/>
   {#if isBeingAnswered || isAnswered}
-    <!-- <QuestionStatus {details}/> -->
+    <QuestionStatus
+      {beingAnsweredBy}
+      {answeredBy}
+    />
   {/if}
 </article>
