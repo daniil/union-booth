@@ -13,6 +13,13 @@ const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, DATABASE_URL } = p
 
 let sequelize;
 
+const poolSettings = {
+  max: 5,
+  min: 0,
+  acquire: 30000,
+  idle: 10000
+};
+
 if (NODE_ENV === 'production') {
   sequelize = new Sequelize(DATABASE_URL, {
     dialect: 'postgres',
@@ -23,14 +30,18 @@ if (NODE_ENV === 'production') {
         require: true,
         rejectUnauthorized: false
       }
-    }
+    },
+    pool: poolSettings
 });
 } else {
   sequelize = new Sequelize(
     DATABASE,
     DATABASE_USER,
     DATABASE_PASSWORD,
-    { dialect: 'postgres' }
+    {
+      dialect: 'postgres',
+      pool: poolSettings
+    }
   );
 }
 
