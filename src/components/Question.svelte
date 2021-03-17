@@ -52,14 +52,12 @@
     margin-bottom: 2rem;
   }
   .is-being-answered {
-    background-color: rgba(212, 224, 155, 0.15);
     border-color: rgb(212, 224, 155);
   }
 
   .is-answered {
-    background-color: rgba(212, 224, 155, 0.3);
+    background-color: rgba(212, 224, 155, 0.15);
     border-color: rgb(212, 224, 155);
-    border-top-width: 3px;
   }
   h3 > :global(p) {
     margin-top: 0;
