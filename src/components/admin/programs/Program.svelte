@@ -44,6 +44,7 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.25rem 0.5rem;
   }
   .wrapper.isActive {
