@@ -47,12 +47,25 @@ export default {
 
           const [answerProgressModel] = answerProgress;
 
+          pubsub.publish('COHORT_ANSWER_PROGRESS', { cohortAnswerProgress: answerProgressModel });
+
           return answerProgressModel;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
     )
+  },
+
+  Subscription: {
+    cohortAnswerProgress: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['COHORT_ANSWER_PROGRESS']),
+        (payload, variables) => {
+          return payload.cohortAnswerProgress.cohortQuestionId === variables.cohortQuestionId;
+        }
+      )
+    }
   },
 
   CohortAnswerInProgress: {
