@@ -2,9 +2,8 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import { parseMD } from 'utils/markdown';
-  import { formatDate, formatTime } from 'utils/time';
   import { ANSWERS_IN_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
-  import Avatar from 'components/Avatar.svelte';
+  import QuestionFooter from 'components/QuestionFooter.svelte';
   import QuestionAnswers from 'components/QuestionAnswers.svelte';
   import QuestionStatus from 'components/QuestionStatus.svelte'
 
@@ -16,8 +15,6 @@
   let answeredBy = [];
 
   $: content = parseMD(details.question);
-  $: date = formatDate(details.createdAt);
-  $: time = formatTime(details.createdAt);
   $: isBeingAnswered = !!beingAnsweredBy.length;
   $: isAnswered = !!answeredBy.length;
 
@@ -50,26 +47,17 @@
     border-bottom-width: 2px;
     border-radius: 4px;
     margin-bottom: 2rem;
+    transition: border-color 0.25s ease-out, background-color 0.25s ease-out;
   }
   .is-being-answered {
     border-color: rgb(212, 224, 155);
   }
-
   .is-answered {
     background-color: rgba(212, 224, 155, 0.15);
     border-color: rgb(212, 224, 155);
   }
   h3 > :global(p) {
     margin-top: 0;
-  }
-  .meta {
-    display: flex;
-    align-items: center;
-  }
-  time {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
   }
 </style>
 
@@ -78,17 +66,7 @@
   class:is-being-answered={isBeingAnswered}
   class:is-answered={isAnswered}>
   <h3>{@html content}</h3>
-  <footer class="meta">
-    {#if details.isAnonymous}
-      <Avatar/>
-    {:else}
-      <Avatar user={details.user}/>
-    {/if}
-    <time>
-      <span>{time}</span>
-      <span>{date}</span>
-    </time>
-  </footer>
+  <QuestionFooter {details}/>
   <QuestionAnswers questionId={details.id}/>
   {#if isBeingAnswered || isAnswered}
     <QuestionStatus
