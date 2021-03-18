@@ -3,6 +3,7 @@
 - Update avatar storage to use S3
 - Style Register and Login pages
 - Update Answer to use GraphQL
+  - Add "Currently Answering" and "Already Answered" notification in the Answer UI for active answer
   - Add "Mark Answering" functionality
   - Add "Stop Answering" functionality
   - Add "Being Answered By" functionality

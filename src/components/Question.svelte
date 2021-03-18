@@ -1,8 +1,9 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+  import { subscribe } from 'svelte-apollo';
   import { parseMD } from 'utils/markdown';
-  import { ANSWERS_IN_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
+  import { ANSWERS_IN_PROGRESS, COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
   import QuestionFooter from 'components/QuestionFooter.svelte';
   import QuestionAnswers from 'components/QuestionAnswers.svelte';
   import QuestionStatus from 'components/QuestionStatus.svelte'
@@ -11,6 +12,7 @@
 
   export let details;
 
+  let answersInProgress = [];
   let beingAnsweredBy = [];
   let answeredBy = [];
 
@@ -26,17 +28,64 @@
       },
       fetchPolicy: 'cache-and-network'
     })
-    .subscribe(({ data }) => {
-      if (!data) return;
-      beingAnsweredBy = data.answersInProgress.filter(item => {
-        return item.isActive
-      });
-      answeredBy = data.answersInProgress.filter(item => {
-        return !item.isActive;
-      })
+    .subscribe(handleAnswersInProgressSub);
+  
+  const handleAnswersInProgressSub = ({ data }) => {
+    if (!data) return;
+
+    answersInProgress = data.answersInProgress;
+    beingAnsweredBy = answersInProgress.filter(item => {
+      return item.isActive
     });
+    answeredBy = answersInProgress.filter(item => {
+      return !item.isActive;
+    })
+  }
   
   onDestroy(() => answersInProgressSub.unsubscribe());
+
+  $: cohortAnswerProgress = subscribe(COHORT_ANSWER_PROGRESS, {
+    variables: {
+      cohortQuestionId: details.id
+    }
+  });
+
+  $: cohortAnswerProgressUnsub = subscribeToChanges(details.id);
+
+  const subscribeToChanges = questionId => {
+    return cohortAnswerProgress.subscribe(value => {
+      if (!value.data) return;
+      
+      const newAnswerInProgress = value.data.cohortAnswerProgress;
+      const inTheList = answersInProgress.find(answer => answer.user.username === newAnswerInProgress.user.username);
+      let newAnswersInProgressData;
+
+      if (inTheList) {
+        newAnswersInProgressData = answersInProgress.map(answer => {
+          if (answer.user.username === inTheList.user.username) {
+            return newAnswerInProgress;
+          }
+          return answer;
+        })
+      } else {
+        if (newAnswerInProgress.isActive) {
+          newAnswersInProgressData = [...answersInProgress, newAnswerInProgress];
+        }
+      }
+
+      $session.apolloClient.writeQuery({
+        query: ANSWERS_IN_PROGRESS,
+        variables: {
+          cohortQuestionId: questionId
+        },
+        data: {
+          answersInProgress: newAnswersInProgressData
+        }
+      });
+    })
+  }
+
+  onDestroy(() => cohortAnswerProgressUnsub());
 </script>
 
 <style>

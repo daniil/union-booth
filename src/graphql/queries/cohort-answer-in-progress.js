@@ -29,7 +29,17 @@ const UPDATE_COHORT_ANSWER_PROGRESS = gql`
   ${cohortAnswerInProgressInformation}
 `;
 
+const COHORT_ANSWER_PROGRESS = gql`
+  subscription CohortAnswerProgress($cohortQuestionId: ID!) {
+    cohortAnswerProgress(cohortQuestionId: $cohortQuestionId) {
+      ...CohortAnswerInProgressInformation
+    }
+  }
+  ${cohortAnswerInProgressInformation}
+`;
+
 export {
   ANSWERS_IN_PROGRESS,
-  UPDATE_COHORT_ANSWER_PROGRESS
+  UPDATE_COHORT_ANSWER_PROGRESS,
+  COHORT_ANSWER_PROGRESS
 }
