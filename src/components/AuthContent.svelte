@@ -1,8 +1,9 @@
 <script>
   import { stores } from '@sapper/app';
-  const { session } = stores();
 
   export let role;
+
+  const { session } = stores();
 
   const roleMap = {
     user: ['user'],

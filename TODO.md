@@ -3,11 +3,7 @@
 - Update avatar storage to use S3
 - Style Register and Login pages
 - Update Answer to use GraphQL
-  - Add "Currently Answering" and "Already Answered" notification in the Answer UI for active answer
-  - Add "Mark Answering" functionality
-  - Add "Stop Answering" functionality
-  - Add "Being Answered By" functionality
-  - Add "Answered by" functionality
+  - When answer is posted, if it's coming from educator, mark it answered
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
 - Add an FAQ model/schema tied to the topic
