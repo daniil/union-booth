@@ -116,7 +116,11 @@
   class:is-answered={isAnswered}>
   <h3>{@html content}</h3>
   <QuestionFooter {details}/>
-  <QuestionAnswers questionId={details.id}/>
+  <QuestionAnswers
+    questionId={details.id}
+    {beingAnsweredBy}
+    {answeredBy}
+  />
   {#if isBeingAnswered || isAnswered}
     <QuestionStatus
       {beingAnsweredBy}

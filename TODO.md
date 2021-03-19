@@ -17,6 +17,10 @@
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
 - Update individual topic page with Resources
+- Open Studio Queue functionality
+  - Queue for an educator
+  - Educator can keep track of students they are currently helping / need help
+  - Average answer time (based off startTime and endTime)
 - Look for queries that can be updated to use DataLoader
 - Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
 - Set admin forms to disabled while it's sending query

@@ -12,6 +12,8 @@
   const { session } = stores();
 
   export let questionId;
+  export let beingAnsweredBy;
+  export let answeredBy;
 
   let answers = [];
   let loading = true;
@@ -87,4 +89,8 @@
     </section>
   {/if}
 {/if}
-<PostAnswer {questionId}/>
+<PostAnswer
+  {questionId}
+  {beingAnsweredBy}
+  {answeredBy}
+/>

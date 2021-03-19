@@ -1,14 +1,14 @@
 <script>
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
-  import { UPDATE_COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
-  import AuthContent from 'components/AuthContent.svelte';
   import Button from 'components/Button.svelte';
+  import AnswerAdminActions from 'components/AnswerAdminActions.svelte'
 
   export let questionId;
+  export let beingAnsweredBy;
+  export let answeredBy;
 
   const addCohortAnswer = mutation(ADD_COHORT_ANSWER);
-  const updateCohortAnswerProgress = mutation(UPDATE_COHORT_ANSWER_PROGRESS);
 
   let formVisible = false;
   let textareaEl;
@@ -29,19 +29,6 @@
   }
 
   const toggleFormVisible = () => formVisible = !formVisible;
-
-  const handleAnswerProgress = async () => {
-    try {
-      await updateCohortAnswerProgress({
-        variables: {
-          cohortQuestionId: questionId,
-          status: true
-        }
-      });
-    } catch(err) {
-      console.log('ERROR: ', err);
-    }
-  }
 </script>
 
 <style>
@@ -88,11 +75,11 @@
         <Button type="submit" icon="📮" label="Post Answer"/>
         <Button icon="💨" label="Cancel" action={toggleFormVisible} preventDefault/>
       </div>
-      <AuthContent role="moderator">
-        <div class="admin-actions">
-          <Button icon="💬" label="Answering" action={handleAnswerProgress} preventDefault/>
-        </div>
-      </AuthContent>
+      <AnswerAdminActions
+        {questionId}
+        {beingAnsweredBy}
+        {answeredBy}
+      />
     </div>
   </form>
 {:else}
