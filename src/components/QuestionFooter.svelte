@@ -17,6 +17,8 @@
     display: flex;
     flex: 1;
     justify-content: space-between;
+    color: rgba(1, 22, 56, 0.75);
+    font-size: 0.9rem;
   }
 </style>
 

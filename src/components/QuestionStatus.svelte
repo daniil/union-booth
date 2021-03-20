@@ -34,15 +34,23 @@
     font-size: 0.8rem;
   }
   .title {
-    font-size: 1rem;
+    margin-top: 0;
+    font-size: 0.7rem;
     font-weight: 700;
     color: #554348;
+    white-space: nowrap;
   }
   .user {
     margin: 0 0 0.5rem;
   }
   .user:last-child {
     margin: 0;
+  }
+  .answering {
+    color: #B7990D;
+  }
+  .answered {
+    color: #395647;
   }
 </style>
 
@@ -55,13 +63,13 @@
   {#if tooltipVisible}
     <div class="user-list" transition:fly="{{duration: 300, y: 5, opacity: 0, easing: quintOut }}">
       {#if isAnswered}
-        <h4 class="title">Answered by:</h4>
+        <p class="title answered">Answered by:</p>
         {#each answeredBy as answerInProgress}
           <p class="user">{answerInProgress.user.username}</p>
         {/each}
       {/if}
       {#if isBeingAnswered}
-        <h4 class="title">Answering:</h4>
+        <p class="title answering">Answering:</p>
         {#each beingAnsweredBy as answerInProgress}
           <p class="user">{answerInProgress.user.username}</p>
         {/each}
