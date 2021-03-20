@@ -1,9 +1,8 @@
 ## Tasks
 
+- Fix new question subscription issue when isAnswering isn't set yet
 - Update avatar storage to use S3
 - Style Register and Login pages
-- Update Answer to use GraphQL
-  - When answer is posted, if it's coming from educator, mark it answered
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
 - Add an FAQ model/schema tied to the topic

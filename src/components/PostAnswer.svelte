@@ -1,14 +1,20 @@
 <script>
+  import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
+  import { UPDATE_COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
   import Button from 'components/Button.svelte';
   import AnswerAdminActions from 'components/AnswerAdminActions.svelte'
+  import roleMap from 'utils/role-map';
 
   export let questionId;
   export let beingAnsweredBy;
   export let answeredBy;
 
+  const { session } = stores();
+
   const addCohortAnswer = mutation(ADD_COHORT_ANSWER);
+  const updateCohortAnswerProgress = mutation(UPDATE_COHORT_ANSWER_PROGRESS);
 
   let formVisible = false;
   let textareaEl;
@@ -21,6 +27,16 @@
           answer: e.target.answer.value
         }
       });
+
+      if (roleMap[$session.user.role].includes('moderator')) {
+        await updateCohortAnswerProgress({
+          variables: {
+            cohortQuestionId: questionId,
+            status: false
+          }
+        });
+      }
+
       textareaEl.value = '';
       toggleFormVisible();
     } catch(err) {

@@ -2,8 +2,8 @@
 	import { stores } from '@sapper/app';
 	import { onDestroy } from 'svelte';
 	import { setClient } from 'svelte-apollo';
-	import initApolloClient from '../graphql/client';
-	import Nav from '../components/Nav.svelte';
+	import initApolloClient from 'graphql/client';
+	import Nav from 'components/Nav.svelte';
 
 	export let segment;
 

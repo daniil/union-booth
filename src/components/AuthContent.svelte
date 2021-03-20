@@ -1,15 +1,10 @@
 <script>
   import { stores } from '@sapper/app';
+  import roleMap from 'utils/role-map';
 
   export let role;
 
   const { session } = stores();
-
-  const roleMap = {
-    user: ['user'],
-    moderator: ['user', 'moderator'],
-    admin: ['user', 'moderator', 'admin']
-  }
 
   export function checkAuth() {
     const userRoles = roleMap[$session.user.role];
