@@ -44,14 +44,27 @@
     border: 1px solid rgb(212, 224, 155);
     border-radius: 4px;
   }
+  .details {
+    display: flex;
+    align-items: flex-end;
+  }
   h4 {
     margin-bottom: 0;
+  }
+  .cohort-id {
+    margin-left: 0.7rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: rgba(85, 67, 72, 0.7);
   }
 </style>
 
 <form action="update-cohort" method="post">
   <div class="wrapper" class:is-active={isSelected}>
-    <h4>{details.title}</h4>
+    <div class="details">
+      <h4>{details.title}</h4>
+      <span class="cohort-id">{details.id}</span>
+    </div>
     <div class="form-element">
       <input
         type="checkbox"
