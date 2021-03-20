@@ -68,9 +68,7 @@
           return answer;
         })
       } else {
-        if (newAnswerInProgress.isActive) {
-          newAnswersInProgressData = [...answersInProgress, newAnswerInProgress];
-        }
+        newAnswersInProgressData = [...answersInProgress, newAnswerInProgress];
       }
 
       $session.apolloClient.writeQuery({
