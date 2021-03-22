@@ -27,6 +27,7 @@
 - Add admin remove functionality for programs, cohorts and topics
 - Do error catching and reporting for program and cohort add
 - Add speech-to-text question posting
+- Add SSO Login options
 - Write automated tests
 
 ## Tweaks
@@ -41,7 +42,6 @@
 ## Ongoing
 
 - Refactor relative paths to absolute paths
-- Clean up Sapper backend files
 - Add cascading functionality to all managed tables
 - Authenticate WebSocket requests
 - Error handling (Add global error state and UI to replace all console.logs)
