@@ -53,6 +53,7 @@
   h1 {
     text-align: center;
     font-size: 1.5rem;
+    color: rgba(0,0,0,0.7);
   }
   .form-element {
     margin-bottom: 1rem;
@@ -65,14 +66,30 @@
   }
   label:not(.inline) {
     display: block;
+    margin-bottom: 0.25rem;
+    color: #7D6D61;
+    font-size: 0.8rem;
   }
   input[type="text"],
   input[type="email"],
   input[type="password"] {
     width: 100%;
+    border: 1px solid #DBD3D8;
+    border-radius: 4px;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.9rem;
   }
   .hidden {
     display: none;
+  }
+  .register-type {
+    display: flex;
+    align-items: center;
+  }
+  .register-type > label {
+    margin-left: 0.5rem;
+    color: #7D6D61;
+    font-size: 0.9rem;
   }
 </style>
 
@@ -104,7 +121,7 @@
         <label for="passwordConfirm">Confirm Password</label>
         <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password" required>
       </div>
-      <div class="form-element">
+      <div class="form-element register-type">
         <input type="checkbox" name="isProgramOwner" id="isProgramOwner" on:change={toggleCohortIdField}>
         <label for="isProgramOwner" class="inline">Register as Program Owner</label>
       </div>
