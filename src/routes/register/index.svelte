@@ -8,6 +8,7 @@
   import { REGISTER } from 'graphql/queries/register';
   import parseError from 'utils/parseError';
   import FormErrors from 'components/FormErrors.svelte';
+  import TextInput from 'components/TextInput.svelte';
   import Button from 'components/Button.svelte';
 
   const { session } = stores();
@@ -15,7 +16,7 @@
 
   let errors;
   let cohortIdRequired = true;
-  let cohortIdEl;
+  let cohortIdValue;
 
   const handleRegister = async function(e) {
     try {
@@ -41,7 +42,7 @@
 
   const toggleCohortIdField = () => {
     cohortIdRequired = !cohortIdRequired;
-    cohortIdEl.value = null;
+    cohortIdValue = '';
   }
 </script>
 
@@ -64,21 +65,6 @@
     padding-top: 1rem;
     border-top: 1px solid #DBD3D8;
   }
-  label:not(.inline) {
-    display: block;
-    margin-bottom: 0.25rem;
-    color: #7D6D61;
-    font-size: 0.8rem;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    border: 1px solid #DBD3D8;
-    border-radius: 4px;
-    padding: 0.5rem 0.5rem;
-    font-size: 0.9rem;
-  }
   .hidden {
     display: none;
   }
@@ -98,41 +84,36 @@
     <h1>Register</h1>
     <form action="/register" method="post" on:submit|preventDefault={handleRegister}>
       <div class="form-element">
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+        <TextInput id="firstName" type="text" label="First Name" required/>
       </div>
       <div class="form-element">
-        <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+        <TextInput id="lastName" type="text" label="Last Name" required/>
       </div>
       <div class="form-element">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Username" required>
+        <TextInput id="username" type="text" label="Username" required/>
       </div>
       <div class="form-element">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" required>
+        <TextInput id="email" type="email" label="Email" required/>
       </div>
       <div class="form-element">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Password" required>
+        <TextInput id="password" type="password" label="Password" required/>
       </div>
       <div class="form-element">
-        <label for="passwordConfirm">Confirm Password</label>
-        <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password" required>
+        <TextInput id="passwordConfirm" type="password" label="Confirm Password" required/>
       </div>
       <div class="form-element register-type">
         <input type="checkbox" name="isProgramOwner" id="isProgramOwner" on:change={toggleCohortIdField}>
         <label for="isProgramOwner" class="inline">Register as Program Owner</label>
       </div>
       <div class="form-element" class:hidden={!cohortIdRequired}>
-        <label for="cohortId">Cohort ID</label>
-        <input bind:this={cohortIdEl} type="text" name="cohortId" id="cohortId" placeholder="Cohort ID" required={cohortIdRequired}>
+        <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={cohortIdRequired}/>
       </div>
       <div class="form-element action">
         <Button type="submit" variant="success" icon="🎫" label="Register"/>
       </div>
     </form>
-    <FormErrors {errors}/>
   </div>
+</div>
+<div class="container">
+  <FormErrors {errors}/>
 </div>
