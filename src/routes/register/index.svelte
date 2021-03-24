@@ -130,7 +130,7 @@
         <input bind:this={cohortIdEl} type="text" name="cohortId" id="cohortId" placeholder="Cohort ID" required={cohortIdRequired}>
       </div>
       <div class="form-element action">
-        <Button type="submit" icon="🎫" label="Register"/>
+        <Button type="submit" variant="success" icon="🎫" label="Register"/>
       </div>
     </form>
     <FormErrors {errors}/>

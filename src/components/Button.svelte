@@ -1,5 +1,6 @@
 <script>
   export let type;
+  export let variant;
   export let icon;
   export let label;
   export let action;
@@ -33,9 +34,23 @@
     margin-left: 0.5rem;
     color: #05668D;
   }
+  .button.success {
+    background: rgba(188, 217, 121, 0.3);
+  }
+  .button.success:hover {
+    background: rgba(188, 217, 121, 0.5);
+  }
+  .button.success > .button-text {
+    color: #395647;
+  }
 </style>
 
-<button type={type} class="button" on:click={handleAction}>
+<button
+  type={type}
+  class="button"
+  class:success="{variant === 'success'}"
+  on:click={handleAction}
+>
   {icon}
   <span class="button-text">{label}</span>
 </button>
