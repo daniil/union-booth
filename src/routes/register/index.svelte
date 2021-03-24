@@ -19,6 +19,11 @@
   let cohortIdValue;
 
   const handleRegister = async function(e) {
+    if (e.target.password.value !== e.target.passwordConfirm.value) {
+      errors = '⚠️ Passwords do not match';
+      return;
+    }
+
     try {
       errors = null;
 
