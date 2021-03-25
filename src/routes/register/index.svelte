@@ -9,6 +9,7 @@
   import parseError from 'utils/parseError';
   import FormErrors from 'components/FormErrors.svelte';
   import TextInput from 'components/TextInput.svelte';
+  import Checkbox from 'components/Checkbox.svelte';
   import Button from 'components/Button.svelte';
 
   const { session } = stores();
@@ -77,11 +78,6 @@
     display: flex;
     align-items: center;
   }
-  .register-type > label {
-    margin-left: 0.5rem;
-    color: #7D6D61;
-    font-size: 0.9rem;
-  }
 </style>
 
 <div class="container">
@@ -107,8 +103,7 @@
         <TextInput id="passwordConfirm" type="password" label="Confirm Password" required/>
       </div>
       <div class="form-element register-type">
-        <input type="checkbox" name="isProgramOwner" id="isProgramOwner" on:change={toggleCohortIdField}>
-        <label for="isProgramOwner" class="inline">Register as Program Owner</label>
+        <Checkbox id="isProgramOwner" label="Register as Program Owner" on:change={toggleCohortIdField}/>
       </div>
       <div class="form-element" class:hidden={!cohortIdRequired}>
         <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={cohortIdRequired}/>
