@@ -6,8 +6,10 @@
   import { goto, stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { LOGIN } from 'graphql/queries/login';
-  import parseError from '../../utils/parseError';
-  import FormErrors from '../../components/FormErrors.svelte';
+  import parseError from 'utils/parseError';
+  import FormErrors from 'components/FormErrors.svelte';
+  import TextInput from 'components/TextInput.svelte';
+  import Button from 'components/Button.svelte';
 
   const { session } = stores();
   const loginUser = mutation(LOGIN);
@@ -32,19 +34,43 @@
   }
 </script>
 
-<h1>Login</h1>
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgba(0,0,0,0.7);
+  }
+  .form-element {
+    margin-bottom: 1rem;
+  }
+  .form-element.action {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    border-top: 1px solid #DBD3D8;
+  }
+</style>
 
-<form action="/login" method="post" on:submit|preventDefault={handleLogin}>
-  <div class="form-element">
-    <label for="email">Email or Username: </label>
-    <input type="text" name="email" id="email" placeholder="Email" required>
+<div class="container">
+  <div class="wrapper">
+    <h1>Login</h1>
+    <form action="/login" method="post" on:submit|preventDefault={handleLogin}>
+      <div class="form-element">
+        <TextInput id="email" type="text" label="Email or Username" required/>
+      </div>
+      <div class="form-element">
+        <TextInput id="password" type="password" label="Password" required/>
+      </div>
+      <div class="form-element action">
+        <Button type="submit" variant="success" icon="🔑" label="Login"/>
+      </div>
+    </form>
   </div>
-  <div class="form-element">
-    <label for="password">Password: </label>
-    <input type="password" name="password" id="password" placeholder="Password" required>
-  </div>
-  <div class="form-element">
-    <input type="submit" value="Login">
-  </div>
-</form>
-<FormErrors {errors}/>
+</div>
+<div class="container">
+  <FormErrors {errors}/>
+</div>
