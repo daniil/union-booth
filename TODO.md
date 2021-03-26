@@ -28,6 +28,8 @@
 - Do error catching and reporting for program and cohort add
 - Add speech-to-text question posting
 - Add SSO Login options
+- Select random student to answer question
+- Setup notifications system (new question, new answer, watch answer, etc.)
 - Write automated tests
 
 ## Tweaks
