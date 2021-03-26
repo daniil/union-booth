@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import bcrypt from 'bcrypt';
-import generateAvatar from '../../utils/generateAvatar';
+import generateAvatar from 'utils/generateAvatar';
 
 const user = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {

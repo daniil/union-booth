@@ -1,7 +1,6 @@
 ## Tasks
 
 - Update avatar storage to use S3
-- Style Register and Login pages
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
 - Add an FAQ model/schema tied to the topic
@@ -44,7 +43,6 @@
 
 ## Ongoing
 
-- Refactor relative paths to absolute paths
 - Add cascading functionality to all managed tables
 - Authenticate WebSocket requests
 - Error handling (Add global error state and UI to replace all console.logs)
