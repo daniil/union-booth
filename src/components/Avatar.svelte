@@ -24,7 +24,7 @@
   <img
     class="avatar"
     src={`avatars/${user.id}.svg`}
-    alt={`Posted by: ${user.username}`}
-    title={`Posted by: ${user.username}`}
+    alt={`Posted by: ${user.firstName} ${user.lastName}`}
+    title={`Posted by: ${user.firstName} ${user.lastName}`}
   />
 {/if}

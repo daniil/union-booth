@@ -6,6 +6,8 @@ const userSessionValues = user => {
     id: user.id,
     email: user.email,
     username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
     role: user.role
   };
 }

@@ -6,6 +6,8 @@ const cohortAnswerInProgressInformation = gql`
     user {
       id
       username
+      firstName
+      lastName
     }
     isActive
   }

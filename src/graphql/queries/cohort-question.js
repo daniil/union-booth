@@ -9,6 +9,8 @@ const cohortQuestionInformation = gql`
     user {
       id
       username
+      firstName
+      lastName
     }
   }
 `;

@@ -42,6 +42,7 @@
   }
   .user {
     margin: 0 0 0.5rem;
+    white-space: nowrap;
   }
   .user:last-child {
     margin: 0;
@@ -65,13 +66,13 @@
       {#if isAnswered}
         <p class="title answered">Answered by:</p>
         {#each answeredBy as answerInProgress}
-          <p class="user">{answerInProgress.user.username}</p>
+          <p class="user">{answerInProgress.user.firstName} {answerInProgress.user.lastName}</p>
         {/each}
       {/if}
       {#if isBeingAnswered}
         <p class="title answering">Answering:</p>
         {#each beingAnsweredBy as answerInProgress}
-          <p class="user">{answerInProgress.user.username}</p>
+          <p class="user">{answerInProgress.user.firstName} {answerInProgress.user.lastName}</p>
         {/each}
       {/if}
     </div>

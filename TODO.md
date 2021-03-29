@@ -33,7 +33,6 @@
 
 ## Tweaks
 
-- Update app to use first name and last name instead of username
 - Add a back button on individual topic page back to list of topics
 - Update Answers to be expandable
 - Update Button component to have different types
