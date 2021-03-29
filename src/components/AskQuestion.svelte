@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
   import Button from 'components/Button.svelte';
@@ -8,17 +9,26 @@
   const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
   let textareaEl;
+  let SimpleMDE;
+
+  onMount(async () => {
+    const SimpleMDEImport = await import('simplemde');
+    SimpleMDE = new SimpleMDEImport.default({
+      element: textareaEl,
+      placeholder: 'Ask your question'
+    });
+  });
 
   const handleSubmit = async e => {
     try {
       await addCohortQuestion({
         variables: {
           topicId: liveTopic.topic.id,
-          question: e.target.question.value,
+          question: SimpleMDE.value(),
           isAnonymous: e.target['is-anonymous'].checked
         }
       });
-      textareaEl.value = '';
+      SimpleMDE.value('');
     } catch(err) {
       console.log('ERROR: ', err);
     }
@@ -54,9 +64,7 @@
       bind:this={textareaEl}
       class="question-input"
       name="question"
-      id="question"
-      placeholder="Ask your question"
-      required></textarea>
+      id="question"></textarea>
   </div>
   <div class="form-controls">
     <Button type="submit" icon="🖐🏽" label="Post Question"/>
