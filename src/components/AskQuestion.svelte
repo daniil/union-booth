@@ -1,54 +1,36 @@
 <script>
-  import { onMount } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
   import Button from 'components/Button.svelte';
+  import MDEditor from 'components/MDEditor.svelte';
 
   export let liveTopic;
 
   const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
-  let textareaEl;
-  let SimpleMDE;
-
-  onMount(async () => {
-    const SimpleMDEImport = await import('simplemde');
-    SimpleMDE = new SimpleMDEImport.default({
-      element: textareaEl,
-      placeholder: 'Ask your question'
-    });
-  });
+  let questionText;
 
   const handleSubmit = async e => {
     try {
       await addCohortQuestion({
         variables: {
           topicId: liveTopic.topic.id,
-          question: SimpleMDE.value(),
+          question: questionText,
           isAnonymous: e.target['is-anonymous'].checked
         }
       });
-      SimpleMDE.value('');
+      questionText = '';
     } catch(err) {
       console.log('ERROR: ', err);
     }
   }
+
+  const handleEditorChange = event => {
+    questionText = event.detail.value;
+  }
 </script>
 
 <style>
-  .label {
-    display: inline-block;
-    margin-bottom: 0.25rem;
-    color: #3E6990;
-    font-size: 1rem;
-  }
-  .question-input {
-    width: 100%;
-    height: 5rem;
-    padding: 1rem;
-    margin-bottom: 0.25rem;
-    font-size: 1rem;
-  }
   .form-controls {
     display: flex;
     justify-content: space-between;
@@ -58,13 +40,13 @@
 
 <form action="/topics/ask" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
-    <label class="label" for="question">Question</label>
-    <br />
-    <textarea
-      bind:this={textareaEl}
-      class="question-input"
-      name="question"
-      id="question"></textarea>
+    <MDEditor
+      id="question"
+      label="Question"
+      placeholder="Ask your question"
+      value={questionText}
+      on:change={handleEditorChange}
+    />
   </div>
   <div class="form-controls">
     <Button type="submit" icon="🖐🏽" label="Post Question"/>
