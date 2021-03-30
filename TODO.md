@@ -1,8 +1,12 @@
 ## Tasks
 
+- Convert Answer component to use Markdown editor
 - Update avatar storage to use S3
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
+- Create edit a question functionality
+- Create remove an answer functionality
+- Create edit an answer functionality
 - Add an FAQ model/schema tied to the topic
 - Add UI for changing live questions to FAQ
 - Add UI for adding FAQ questions from scratch
@@ -16,7 +20,6 @@
   - Average answer time (based off startTime and endTime)
 - Look for queries that can be updated to use DataLoader
 - Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
-- Set admin forms to disabled while it's sending query
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
 - Add user admin UI
@@ -33,11 +36,11 @@
 
 ## Tweaks
 
+- Set admin forms to disabled while it's sending query
 - Add a back button on individual topic page back to list of topics
 - Update Answers to be expandable
 - Update Button component to have different types
 - Add a nice tooltip to "Posted by" avatar in Live Question component
-- Add Markdown editor to question and answer textareas
 - When user is deleted, invalidate their session
 
 ## Ongoing

@@ -21,7 +21,9 @@
     const SimpleMDEImport = await import('simplemde');
     SimpleMDE = new SimpleMDEImport.default({
       element: textareaEl,
-      placeholder
+      placeholder,
+      hideIcons: ['heading'],
+      showIcons: ['code']
     });
     SimpleMDE.codemirror.on("change", function(){
       dispatch('change', {
@@ -34,7 +36,7 @@
 <style>
   .label {
     display: inline-block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     color: #3E6990;
     font-size: 1rem;
   }
