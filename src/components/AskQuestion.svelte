@@ -3,6 +3,7 @@
   import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
   import Button from 'components/Button.svelte';
   import MDEditor from 'components/MDEditor.svelte';
+  import Checkbox from 'components/Checkbox.svelte';
 
   export let liveTopic;
 
@@ -16,7 +17,7 @@
         variables: {
           topicId: liveTopic.topic.id,
           question: questionText,
-          isAnonymous: e.target['is-anonymous'].checked
+          isAnonymous: e.target.isAnonymous.checked
         }
       });
       questionText = '';
@@ -50,9 +51,6 @@
   </div>
   <div class="form-controls">
     <Button type="submit" icon="🖐🏽" label="Post Question"/>
-    <div class="form-element">
-      <input type="checkbox" name="is-anonymous" id="is-anonymous">
-      <label for="is-anonymous">Ask anonymously</label>
-    </div>
+    <Checkbox id="isAnonymous" label="Ask anonymously"/>
   </div>
 </form>

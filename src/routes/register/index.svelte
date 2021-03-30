@@ -74,10 +74,6 @@
   .hidden {
     display: none;
   }
-  .register-type {
-    display: flex;
-    align-items: center;
-  }
 </style>
 
 <div class="container">
@@ -102,7 +98,7 @@
       <div class="form-element">
         <TextInput id="passwordConfirm" type="password" label="Confirm Password" required/>
       </div>
-      <div class="form-element register-type">
+      <div class="form-element">
         <Checkbox id="isProgramOwner" label="Register as Program Owner" on:change={toggleCohortIdField}/>
       </div>
       <div class="form-element" class:hidden={!cohortIdRequired}>
