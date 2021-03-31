@@ -21,6 +21,7 @@
     top: -2rem;
     right: -1rem;
     font-size: 2.5rem;
+    transform: translate3d(0, 0, 0);
   }
   .user-list {
     position: absolute;

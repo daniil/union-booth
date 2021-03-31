@@ -3,6 +3,7 @@
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
   import { UPDATE_COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
+  import MDEditor from 'components/MDEditor.svelte';
   import Button from 'components/Button.svelte';
   import AnswerAdminActions from 'components/AnswerAdminActions.svelte'
   import roleMap from 'utils/role-map';
@@ -17,14 +18,14 @@
   const updateCohortAnswerProgress = mutation(UPDATE_COHORT_ANSWER_PROGRESS);
 
   let formVisible = false;
-  let textareaEl;
+  let answerText;
 
   const handleSubmit = async e => {
     try {
       await addCohortAnswer({
         variables: {
           cohortQuestionId: questionId,
-          answer: e.target.answer.value
+          answer: answerText
         }
       });
 
@@ -37,7 +38,7 @@
         });
       }
 
-      textareaEl.value = '';
+      answerText = '';
       toggleFormVisible();
     } catch(err) {
       console.log('ERROR: ', err);
@@ -45,24 +46,15 @@
   }
 
   const toggleFormVisible = () => formVisible = !formVisible;
+
+  const handleEditorChange = event => {
+    answerText = event.detail.value;
+  }
 </script>
 
 <style>
   form {
     margin-top: 2rem;
-  }
-  .label {
-    display: inline-block;
-    margin-bottom: 0.25rem;
-    color: #3E6990;
-    font-size: 1rem;
-  }
-  .answer-input {
-    width: 100%;
-    height: 5rem;
-    padding: 1rem;
-    margin-bottom: 0.25rem;
-    font-size: 1rem;
   }
   .action-bar {
     display: flex;
@@ -76,15 +68,13 @@
 {#if formVisible}
   <form action="/topics/answers" method="post" on:submit|preventDefault={handleSubmit}>
     <div class="form-element">
-      <label class="label" for="answer">Answer</label>
-      <br />
-      <textarea
-        bind:this={textareaEl}
-        class="answer-input"
-        name="answer"
+      <MDEditor
         id="answer"
+        label="Answer"
         placeholder="Add your answer"
-        required></textarea>
+        value={answerText}
+        on:change={handleEditorChange}
+      />
     </div>
     <div class="action-bar">
       <div class="form-element">
