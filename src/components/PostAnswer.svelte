@@ -20,6 +20,8 @@
   let formVisible = false;
   let answerText;
 
+  $: postBtnDisabled = answerText === undefined || answerText === '';
+
   const handleSubmit = async e => {
     try {
       await addCohortAnswer({
@@ -45,7 +47,10 @@
     }
   }
 
-  const toggleFormVisible = () => formVisible = !formVisible;
+  const toggleFormVisible = () => {
+    answerText = '';
+    formVisible = !formVisible;
+  }
 
   const handleEditorChange = event => {
     answerText = event.detail.value;
@@ -78,7 +83,7 @@
     </div>
     <div class="action-bar">
       <div class="form-element">
-        <Button type="submit" icon="📮" label="Post Answer"/>
+        <Button type="submit" icon="📮" label="Post Answer" disabled={postBtnDisabled}/>
         <Button icon="💨" label="Cancel" action={toggleFormVisible} preventDefault/>
       </div>
       <AnswerAdminActions

@@ -10,6 +10,8 @@
   const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
   let questionText;
+  
+  $: postBtnDisabled = questionText === undefined || questionText === '';
 
   const handleSubmit = async e => {
     try {
@@ -50,7 +52,7 @@
     />
   </div>
   <div class="form-controls">
-    <Button type="submit" icon="🖐🏽" label="Post Question"/>
+    <Button type="submit" icon="🖐🏽" label="Post Question" disabled={postBtnDisabled}/>
     <Checkbox id="isAnonymous" label="Ask anonymously"/>
   </div>
 </form>

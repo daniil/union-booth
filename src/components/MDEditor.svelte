@@ -12,7 +12,7 @@
   let SimpleMDE;
 
   $: {
-    if (value !== undefined && value !== SimpleMDE.value()) {
+    if (SimpleMDE !== undefined && value !== undefined && value !== SimpleMDE.value()) {
       SimpleMDE.value(value);
     }
   }

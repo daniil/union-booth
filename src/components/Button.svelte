@@ -4,6 +4,7 @@
   export let icon;
   export let label;
   export let action;
+  export let disabled;
   export let preventDefault;
 
   const handleAction = e => {
@@ -23,11 +24,16 @@
     cursor: pointer;
     font-size: 1.3rem;
   }
-  .button:hover {
+  .button:not(:disabled):hover {
     background: rgba(219, 211, 216, 0.5);
   }
   .button:hover .button-text {
     text-shadow: 1px 1px 0px rgba(255,255,255,0.75);
+  }
+  .button:disabled {
+    opacity: 0.6;
+    filter: grayscale(1);
+    cursor: not-allowed;
   }
   .button-text {
     font-size: 0.9rem;
@@ -49,6 +55,7 @@
   type={type}
   class="button"
   class:success="{variant === 'success'}"
+  disabled={disabled}
   on:click={handleAction}
 >
   {icon}
