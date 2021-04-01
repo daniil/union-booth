@@ -33,7 +33,7 @@
 		position: absolute;
     top: 50%;
 	}
-	a {
+	.action {
 		margin: 0 1rem;
     font-size: 1.5rem;
     color: #9D695B;
@@ -41,9 +41,19 @@
     border-bottom: 3px solid #D496A7;
     padding-bottom: 0.25rem;
 	}
-	a:hover {
+	.action:hover {
 		border-bottom-color: #9D695B;
 		opacity: 0.8;
+	}
+	.attribution {
+		position: absolute;
+    bottom: 2%;
+    font-size: 0.7rem;
+    color: rgb(161, 187, 182);
+		text-decoration: none;
+	}
+	.attribution:hover {
+		text-decoration: underline;
 	}
 </style>
 
@@ -55,8 +65,9 @@
 		<h2>Q/A Platform for the now</h2>
 		<img src="home-banner.svg" alt="Union Booth banner"/>
 		<section class="actions">
-			<a href="/register">Register</a>
-			<a href="/login">Login</a>
+			<a class="action" href="/register">Register</a>
+			<a class="action" href="/login">Login</a>
 		</section>
+		<a class="attribution" href="https://www.freepik.com/vectors/poster" target="_blank">Poster vector created by pch.vector - www.freepik.com</a>
 	</section>
 {/if}

@@ -1,7 +1,7 @@
 ## Tasks
 
-- Convert Answer component to use Markdown editor
-- Update avatar storage to use S3
+- Add validation for posting question and answer
+- Update avatar storage to use what can work on Heroku
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Create remove a question functionality
 - Create edit a question functionality
