@@ -34,5 +34,8 @@
     <li>
       <a rel="prefetch" aria-current="{segment === 'active-cohort' ? 'page' : undefined}" href="/admin/active-cohort">Active Cohort</a>
     </li>
+    <li>
+      <a rel="prefetch" aria-current="{segment === 'faqs' ? 'page' : undefined}" href="/admin/faqs">FAQs</a>
+    </li>
   </ul>
 </nav>
