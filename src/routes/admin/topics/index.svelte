@@ -43,6 +43,10 @@
   let topics = [];
 
   $: if (selectedProgram) {
+    fetchTopics();
+  }
+
+  const fetchTopics = () => {
     try {
       topics = $session.apolloClient.readQuery({
         query: TOPICS,

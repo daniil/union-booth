@@ -41,6 +41,10 @@
   let topics = [];
 
   $: if (selectedProgram) {
+    fetchTopics();
+  }
+
+  const fetchTopics = () => {
     try {
       topics = $session.apolloClient.readQuery({
         query: TOPICS,
@@ -73,6 +77,9 @@
   h3 {
     margin-bottom: 1rem;
     color: rgba(85, 67, 72, 0.7);
+  }
+  .selected-program {
+    color: rgba(85, 67, 72, 0.9);
   }
 </style>
 

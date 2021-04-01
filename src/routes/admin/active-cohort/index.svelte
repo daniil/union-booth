@@ -57,6 +57,10 @@
   let cohortTopics = [];
 
   $: if (selectedCohort) {
+    fetchCohortTopics();
+  }
+
+  const fetchCohortTopics = () => {
     try {
       cohortTopics = $session.apolloClient.readQuery({
         query: COHORT_TOPICS,

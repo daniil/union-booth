@@ -45,6 +45,11 @@
   let selectedCohort;
 
   $: if (selectedProgram) {
+    fetchCohorts();
+    fetchSelectedCohort();
+  }
+
+  const fetchCohorts = () => {
     try {
       cohorts = $session.apolloClient.readQuery({
         query: COHORTS,
@@ -67,7 +72,9 @@
       });
     
     onDestroy(() => cohortsSub.unsubscribe());
+  }
 
+  const fetchSelectedCohort = () => {
     selectedCohort = $session.apolloClient.readQuery({ query: SELECTED_COHORT }).selectedCohort;
 
     const selectedCohortSub = $session.apolloClient
