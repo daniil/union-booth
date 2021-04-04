@@ -36,6 +36,7 @@
 
 ## Tweaks
 
+- Update head title to reflect correct admin section
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
 - Add a back button on individual topic page back to list of topics

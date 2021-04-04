@@ -73,6 +73,10 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
+  type TopicFAQAdmin {
+    topic: Topic
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program
@@ -86,6 +90,7 @@ const typeDefs = gql`
     liveQuestions(cohortId: ID!, topicId: ID!): [CohortQuestion]!
     liveAnswers(cohortQuestionId: ID!): [CohortAnswer]!
     answersInProgress(cohortQuestionId: ID!): [CohortAnswerInProgress]!
+    topicFAQAdmin(slug: ID!): TopicFAQAdmin!
   }
 
   type Mutation {
