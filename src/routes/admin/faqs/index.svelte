@@ -22,6 +22,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+  import Topics from 'components/admin/faqs/Topics.svelte';
 
   const { session } = stores();
 
@@ -88,7 +89,7 @@
 {#if selectedProgram}
   <section>
     <h3><span class="selected-program">{selectedProgram.title}</span> Topics</h3>
-    {topics}
+    <Topics {topics}/>
   </section>
 {:else}
   <p>No active program selected currently 🙍🏼‍♂️. Please <a rel="prefetch" href="/admin/programs">select one</a></p>
