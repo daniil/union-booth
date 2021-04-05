@@ -3,10 +3,17 @@
 </svelte:head>
 
 <script context="module">
+  import { TOPIC_FAQ_ADMIN } from 'graphql/queries/admin/topic-faq';
+
   export async function preload(page, session) {
     if (!session.user) {
       return this.redirect(302, '');
     }
+
+    await session.apolloClient.query({
+      query: TOPIC_FAQ_ADMIN,
+      variables: { slug: page.params.slug }
+    });
 
     return {
       slug: page.params.slug
@@ -21,7 +28,10 @@
 
   const { session } = stores();
 
-  let cohortTopic = {};
+  let cohortTopic = $session.apolloClient.readQuery({
+    query: TOPIC_FAQ_ADMIN,
+    variables: { slug }
+  }).topicFAQAdmin;
 </script>
 
 <style>
@@ -35,7 +45,7 @@
 </style>
 
 <section>
-  <h2>Current Topic FAQs</h2>
+  <h2>{cohortTopic.topic.title} FAQs</h2>
   <h3>Published Q and A</h3>
   <h3>Cohort Questions</h3>
   <a href="/admin/faqs">&#10092; back</a>
