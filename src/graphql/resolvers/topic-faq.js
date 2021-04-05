@@ -16,7 +16,7 @@ export default {
     )
   },
 
-  TopicFAQAdmin: {
+  TopicFAQ: {
     topic: async (parent, _, { loaders }) => {
       return await loaders.topic.load(parent.get('topicId'));
     }
