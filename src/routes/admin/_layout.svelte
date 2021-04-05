@@ -1,7 +1,3 @@
-<svelte:head>
-	<title>Union Booth :: Admin</title>
-</svelte:head>
-
 <script context="module">
   export async function preload(_, session) {
     if (!session.user) {
