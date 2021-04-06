@@ -6,6 +6,17 @@ const TOPIC_FAQ_ADMIN = gql`
       topic {
         title
       }
+      cohortQuestions {
+        id
+        question
+        convertedToFAQ
+        cohort {
+          title
+        }
+        cohortAnswers {
+          answer
+        }
+      }
     }
   }
 `;
