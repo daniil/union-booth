@@ -57,6 +57,7 @@ const typeDefs = gql`
     isAnonymous: Boolean!
     cohortAnswers: [CohortAnswer]!
     createdAt: Date!
+    convertedToFAQ: Boolean!
   }
 
   type CohortAnswer {

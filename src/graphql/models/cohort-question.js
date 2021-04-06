@@ -14,6 +14,10 @@ const cohortQuestion = (sequelize, DataTypes) => {
     },
     question: {
       type: DataTypes.TEXT
+    },
+    convertedToFAQ: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 
