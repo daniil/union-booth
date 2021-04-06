@@ -14,6 +14,7 @@ const TOPIC_FAQ_ADMIN = gql`
           title
         }
         cohortAnswers {
+          id
           answer
         }
       }

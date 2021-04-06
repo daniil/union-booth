@@ -23,6 +23,7 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import CohortQuestions from 'components/admin/faqs/CohortQuestions.svelte';
 
   export let slug;
 
@@ -42,11 +43,16 @@
     margin-bottom: 1rem;
     color: rgba(85, 67, 72, 0.7);
   }
+  .back {
+    display: block;
+    margin-top: 2rem;
+  }
 </style>
 
 <section>
   <h2>{cohortTopic.topic.title} FAQs</h2>
   <h3>Published Q and A</h3>
   <h3>Cohort Questions</h3>
-  <a href="/admin/faqs">&#10092; back</a>
+  <CohortQuestions questions={cohortTopic.cohortQuestions}/>
+  <a class="back" href="/admin/faqs">&#10092; back</a>
 </section>
