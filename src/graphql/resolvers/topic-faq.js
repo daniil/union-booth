@@ -19,6 +19,16 @@ export default {
   TopicFAQ: {
     topic: async (parent, _, { loaders }) => {
       return await loaders.topic.load(parent.get('topicId'));
+    },
+    cohortQuestions: async (parent, _, { models }) => {
+      return await models.CohortQuestion.findAll({
+        where: {
+          topicId: parent.get('topicId')
+        },
+        order: [
+          ['createdAt', 'ASC']
+        ]
+      });
     }
   }
 };

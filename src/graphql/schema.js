@@ -74,7 +74,8 @@ const typeDefs = gql`
   }
 
   type TopicFAQ {
-    topic: Topic
+    topic: Topic!
+    cohortQuestions: [CohortQuestion]!
   }
 
   type Query {
