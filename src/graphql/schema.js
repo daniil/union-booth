@@ -55,6 +55,7 @@ const typeDefs = gql`
     user: User!
     question: String!
     isAnonymous: Boolean!
+    cohortAnswers: [CohortAnswer]!
     createdAt: Date!
   }
 
