@@ -24,11 +24,13 @@
 <script>
   import { stores } from '@sapper/app';
   import CohortQuestions from 'components/admin/faqs/CohortQuestions.svelte';
+  import QAEditor from 'components/admin/faqs/QAEditor.svelte';
   import Button from 'components/Button.svelte';
 
   export let slug;
 
   const { session } = stores();
+  let editorIsVisible = false;
 
   let cohortTopic = $session.apolloClient.readQuery({
     query: TOPIC_FAQ_ADMIN,
@@ -36,7 +38,7 @@
   }).topicFAQAdmin;
 
   const toggleQAEditor = () => {
-    console.log('Toggle editor');
+    editorIsVisible = !editorIsVisible;
   }
 </script>
 
@@ -62,10 +64,11 @@
 <section>
   <h2 class="title">
     {cohortTopic.topic.title} FAQs
-    <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor}/>
+    <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor} disabled={editorIsVisible}/>
   </h2>
   <h3>Published Q and A</h3>
   <h3>Cohort Questions</h3>
   <CohortQuestions questions={cohortTopic.cohortQuestions}/>
   <a class="back" href="/admin/faqs">&#10092; back</a>
 </section>
+<QAEditor visible={editorIsVisible}/>
