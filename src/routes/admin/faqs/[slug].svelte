@@ -24,6 +24,7 @@
 <script>
   import { stores } from '@sapper/app';
   import CohortQuestions from 'components/admin/faqs/CohortQuestions.svelte';
+  import Button from 'components/Button.svelte';
 
   export let slug;
 
@@ -33,11 +34,20 @@
     query: TOPIC_FAQ_ADMIN,
     variables: { slug }
   }).topicFAQAdmin;
+
+  const toggleQAEditor = () => {
+    console.log('Toggle editor');
+  }
 </script>
 
 <style>
   section {
     margin-bottom: 2rem;
+  }
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
   }
   h3 {
     margin-bottom: 1rem;
@@ -50,7 +60,10 @@
 </style>
 
 <section>
-  <h2>{cohortTopic.topic.title} FAQs</h2>
+  <h2 class="title">
+    {cohortTopic.topic.title} FAQs
+    <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor}/>
+  </h2>
   <h3>Published Q and A</h3>
   <h3>Cohort Questions</h3>
   <CohortQuestions questions={cohortTopic.cohortQuestions}/>
