@@ -27,6 +27,7 @@
     });
     SimpleMDE.codemirror.on("change", function(){
       dispatch('change', {
+        id,
         value: SimpleMDE.value()
       });
     });
