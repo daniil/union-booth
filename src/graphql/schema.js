@@ -80,6 +80,16 @@ const typeDefs = gql`
     cohortQuestions: [CohortQuestion]!
   }
 
+  type TopicFAQQuestion {
+    id: ID!
+    question: String!
+    answer: String!
+    createdAt: Date!
+    updatedAt: Date!
+    topic: Topic!
+    cohortQuestion: CohortQuestion!
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program
