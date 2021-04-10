@@ -40,6 +40,10 @@
   const toggleQAEditor = () => {
     editorIsVisible = !editorIsVisible;
   }
+
+  const handleClose = () => {
+    editorIsVisible = false;
+  }
 </script>
 
 <style>
@@ -71,4 +75,7 @@
   <CohortQuestions questions={cohortTopic.cohortQuestions}/>
   <a class="back" href="/admin/faqs">&#10092; back</a>
 </section>
-<QAEditor visible={editorIsVisible}/>
+<QAEditor
+  visible={editorIsVisible}
+  on:close={handleClose}
+/>
