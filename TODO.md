@@ -2,9 +2,6 @@
 
 - Update avatar storage to use what can work on Heroku
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
-- Add an FAQ model/schema tied to the topic
-  - Schema: id, topicID, cohortTopicId, question, answer
-  - Update cohort-questions table to mark question as converted to FAQ
 - Add UI for changing live questions to FAQ
 - Add UI for adding FAQ questions from scratch
 - Update individual topic page with FAQ questions

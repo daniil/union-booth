@@ -1,6 +1,7 @@
 import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
+import parseSequelizeError from 'utils/parseSequelizeError';
 
 export default {
   Mutation: {
@@ -9,6 +10,23 @@ export default {
       checkRole('admin'),
       async (_, { id, topicId, cohortQuestionId, question, answer }, { models }) => {
         try {
+          if (cohortQuestionId) {
+            const cohortQuestion = await models.CohortQuestion.findOne({
+              where: {
+                id: cohortQuestionId,
+                topicId
+              }
+            });
+
+            if (!cohortQuestion) {
+              throw new UserInputError('This cohort question does not belong to this topic');
+            }
+
+            await cohortQuestion.update({
+              convertedToFAQ: true
+            });
+          }
+
           const topicFAQQuestion = await models.TopicFAQ.upsert({
             id,
             topicId,
