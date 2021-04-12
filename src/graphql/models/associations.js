@@ -19,7 +19,7 @@ export const setupAssociations = models => {
 
   models.Topic.hasMany(models.CohortTopic, foreignKeyNonNull);
   models.Topic.hasMany(models.CohortQuestion, foreignKeyNonNull);
-  models.Topic.hasMany(models.FAQ, foreignKeyNonNull);
+  models.Topic.hasMany(models.TopicFAQ, foreignKeyNonNull);
   models.Topic.belongsTo(models.User);
   models.Topic.belongsTo(models.Program);
   models.Topic.belongsToMany(models.Cohort, { through: models.CohortTopic });
@@ -29,7 +29,7 @@ export const setupAssociations = models => {
 
   models.CohortQuestion.hasMany(models.CohortAnswer, foreignKeyNonNull);
   models.CohortQuestion.hasMany(models.CohortAnswerInProgress, foreignKeyNonNull);
-  models.CohortQuestion.hasMany(models.FAQ);
+  models.CohortQuestion.hasMany(models.TopicFAQ);
   models.CohortQuestion.belongsTo(models.Cohort);
   models.CohortQuestion.belongsTo(models.Topic);
   models.CohortQuestion.belongsTo(models.User);
@@ -41,8 +41,8 @@ export const setupAssociations = models => {
   models.CohortAnswerInProgress.belongsTo(models.User);
   models.CohortAnswerInProgress.belongsTo(models.CohortQuestion);
 
-  models.FAQ.belongsTo(models.CohortQuestion);
-  models.FAQ.belongsTo(models.Topic);
+  models.TopicFAQ.belongsTo(models.CohortQuestion);
+  models.TopicFAQ.belongsTo(models.Topic);
   
   models.User.hasMany(models.Program, foreignKeyNonNull);
   models.User.hasMany(models.Cohort, foreignKeyNonNull);

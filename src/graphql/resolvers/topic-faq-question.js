@@ -9,7 +9,7 @@ export default {
       checkRole('admin'),
       async (_, { id, topicId, cohortQuestionId, question, answer }, { models }) => {
         try {
-          const topicFAQQuestion = await models.FAQ.upsert({
+          const topicFAQQuestion = await models.TopicFAQ.upsert({
             id,
             topicId,
             cohortQuestionId,

@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
-const faq = (sequelize, DataTypes) => {
-  const FAQ = sequelize.define('faq', {
+const topicFAQ = (sequelize, DataTypes) => {
+  const TopicFAQ = sequelize.define('topic-faq', {
     id: {
       type: DataTypes.UUID,
       defaultValue: Sequelize.UUIDV4,
@@ -16,7 +16,7 @@ const faq = (sequelize, DataTypes) => {
     }
   });
 
-  return FAQ;
+  return TopicFAQ;
 }
 
-export default faq;
+export default topicFAQ;
