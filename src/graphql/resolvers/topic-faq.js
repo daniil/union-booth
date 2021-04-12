@@ -20,6 +20,16 @@ export default {
     topic: async (parent, _, { loaders }) => {
       return await loaders.topic.load(parent.get('topicId'));
     },
+    topicFAQQuestions: async (parent, _, { models }) => {
+      return await models.TopicFAQ.findAll({
+        where: {
+          topicId: parent.get('topicId')
+        },
+        order: [
+          ['createdAt', 'ASC']
+        ]
+      })
+    },
     cohortQuestions: async (parent, _, { models }) => {
       return await models.CohortQuestion.findAll({
         where: {
