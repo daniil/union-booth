@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Union Booth :: FAQs: {cohortTopic.topic ? cohortTopic.topic.title : 'Loading'}</title>
+	<title>Union Booth :: FAQs: {topicFAQ.topic ? topicFAQ.topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script context="module">
@@ -23,6 +23,7 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import PublishedQAs from 'components/admin/faqs/PublishedQAs.svelte';
   import CohortQuestions from 'components/admin/faqs/CohortQuestions.svelte';
   import QAEditor from 'components/admin/faqs/QAEditor.svelte';
@@ -33,10 +34,22 @@
   const { session } = stores();
   let editorIsVisible = false;
 
-  let cohortTopic = $session.apolloClient.readQuery({
+  let topicFAQ = $session.apolloClient.readQuery({
     query: TOPIC_FAQ_ADMIN,
     variables: { slug }
   }).topicFAQAdmin;
+
+  const topicFAQSub = $session.apolloClient
+    .watchQuery({
+      query: TOPIC_FAQ_ADMIN,
+      variables: { slug },
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      topicFAQ = data.topicFAQAdmin;
+    });
+  
+  onDestroy(() => topicFAQSub.unsubscribe());
 
   const toggleQAEditor = () => {
     editorIsVisible = !editorIsVisible;
@@ -68,17 +81,17 @@
 
 <section>
   <h2 class="title">
-    {cohortTopic.topic.title} FAQs
+    {topicFAQ.topic.title} FAQs
     <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor} disabled={editorIsVisible}/>
   </h2>
   <h3>Published Q and A</h3>
-  <PublishedQAs questions={cohortTopic.topicFAQQuestions}/>
+  <PublishedQAs questions={topicFAQ.topicFAQQuestions}/>
   <h3>Cohort Questions</h3>
-  <CohortQuestions questions={cohortTopic.cohortQuestions}/>
+  <CohortQuestions questions={topicFAQ.cohortQuestions}/>
   <a class="back" href="/admin/faqs">&#10092; back</a>
 </section>
 <QAEditor
-  topicId={cohortTopic.topic.id}
+  {topicFAQ}
   visible={editorIsVisible}
   on:close={handleClose}
 />

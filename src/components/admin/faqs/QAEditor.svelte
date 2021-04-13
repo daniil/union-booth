@@ -4,9 +4,9 @@
   import { createEventDispatcher } from 'svelte';
   import MDEditor from 'components/MDEditor.svelte';
   import Button from 'components/Button.svelte';
-  import { ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
+  import { TOPIC_FAQ_ADMIN, ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
-  export let topicId;
+  export let topicFAQ;
   export let visible;
 
   const { session } = stores();
@@ -29,9 +29,33 @@
     try {
       await addTopicFAQQuestion({
         variables: {
-          topicId,
+          topicId: topicFAQ.topic.id,
           question: editorValues.question,
           answer: editorValues.answer
+        },
+        update: (_, mutationResult) => {
+          let topicFAQData = $session.apolloClient.readQuery({
+            query: TOPIC_FAQ_ADMIN,
+            variables: {
+              slug: topicFAQ.topic.slug
+            }
+          }).topicFAQAdmin;
+
+          $session.apolloClient.writeQuery({
+            query: TOPIC_FAQ_ADMIN,
+            variables: {
+              slug: topicFAQ.topic.slug
+            },
+            data: {
+              topicFAQAdmin: {
+                ...topicFAQData,
+                topicFAQQuestions: [
+                  mutationResult.data.addTopicFAQQuestion,
+                  ...topicFAQData.topicFAQQuestions
+                ]
+              }
+            }
+          })
         }
       });
       triggerClose();

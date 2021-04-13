@@ -35,6 +35,7 @@
 
 ## Tweaks
 
+- Add placeholders for Admin FAQ section for empty FAQ or Cohort questions
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
 - Add a back button on individual topic page back to list of topics

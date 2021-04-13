@@ -5,6 +5,7 @@ const TOPIC_FAQ_ADMIN = gql`
     topicFAQAdmin(slug: $slug) {
       topic {
         id
+        slug
         title
       }
       topicFAQQuestions {
