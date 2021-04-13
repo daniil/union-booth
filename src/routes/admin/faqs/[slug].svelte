@@ -78,6 +78,7 @@
   <a class="back" href="/admin/faqs">&#10092; back</a>
 </section>
 <QAEditor
+  topicId={cohortTopic.topic.id}
   visible={editorIsVisible}
   on:close={handleClose}
 />

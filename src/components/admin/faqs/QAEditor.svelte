@@ -1,11 +1,18 @@
 <script>
+  import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
   import { createEventDispatcher } from 'svelte';
   import MDEditor from 'components/MDEditor.svelte';
   import Button from 'components/Button.svelte';
+  import { ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
+  export let topicId;
   export let visible;
 
+  const { session } = stores();
   const dispatch = createEventDispatcher();
+
+  const addTopicFAQQuestion = mutation(ADD_TOPIC_FAQ_QUESTION);
 
   let editorValues = {
     question: '',
@@ -18,8 +25,19 @@
     editorValues[event.detail.id] = event.detail.value;
   }
 
-  const saveQA = () => {
-    console.log('Save');
+  const saveQA = async () => {
+    try {
+      await addTopicFAQQuestion({
+        variables: {
+          topicId,
+          question: editorValues.question,
+          answer: editorValues.answer
+        }
+      });
+      triggerClose();
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 
   const triggerClose = () => {
