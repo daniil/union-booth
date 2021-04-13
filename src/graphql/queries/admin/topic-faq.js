@@ -6,6 +6,15 @@ const TOPIC_FAQ_ADMIN = gql`
       topic {
         title
       }
+      topicFAQQuestions {
+        id
+        question
+        answer
+        createdAt
+        cohortQuestion {
+          id
+        }
+      }
       cohortQuestions {
         id
         question
