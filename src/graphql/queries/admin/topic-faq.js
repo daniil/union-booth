@@ -20,6 +20,7 @@ const TOPIC_FAQ_ADMIN = gql`
       cohortQuestions {
         id
         question
+        createdAt
         convertedToFAQ
         cohort {
           title

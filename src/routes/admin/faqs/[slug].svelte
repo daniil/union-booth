@@ -62,7 +62,14 @@
 
 <style>
   section {
+    position: relative;
     margin-bottom: 2rem;
+  }
+  .back {
+    position: absolute;
+    display: block;
+    top: -45px;
+    text-decoration: none;
   }
   .title {
     display: flex;
@@ -73,13 +80,10 @@
     margin-bottom: 1rem;
     color: rgba(85, 67, 72, 0.7);
   }
-  .back {
-    display: block;
-    margin-top: 2rem;
-  }
 </style>
 
 <section>
+  <a class="back" href="/admin/faqs">&#10092; back</a>
   <h2 class="title">
     {topicFAQ.topic.title} FAQs
     <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor} disabled={editorIsVisible}/>
@@ -88,7 +92,6 @@
   <PublishedQAs questions={topicFAQ.topicFAQQuestions}/>
   <h3>Cohort Questions</h3>
   <CohortQuestions questions={topicFAQ.cohortQuestions}/>
-  <a class="back" href="/admin/faqs">&#10092; back</a>
 </section>
 <QAEditor
   {topicFAQ}
