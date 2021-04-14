@@ -4,9 +4,13 @@
   export let questions;
 </script>
 
-{#each questions as question (question.id)}
-  <h4>{question.question}</h4>
-  {#if question.cohortAnswers.length}
-    <CohortAnswers answers={question.cohortAnswers}/>
-  {/if}
-{/each}
+{#if questions.length}
+  {#each questions as question (question.id)}
+    <h4>{question.question}</h4>
+    {#if question.cohortAnswers.length}
+      <CohortAnswers answers={question.cohortAnswers}/>
+    {/if}
+  {/each}
+{:else}
+  <p>No cohort questions for this topic yet. 🙅🏼</p>
+{/if}
