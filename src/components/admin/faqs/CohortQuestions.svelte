@@ -1,7 +1,7 @@
 <script>
   import { parseMD } from 'utils/markdown';
-  import { formatDate, formatTime } from 'utils/time';
   import CohortAnswers from 'components/admin/faqs/CohortAnswers.svelte';
+  import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
 
   export let questions;
 </script>
@@ -19,13 +19,6 @@
     margin-bottom: 2rem;
     font-size: 1.1rem;
   }
-  .meta {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-    color: rgba(1, 22, 56, 0.5);
-    font-size: 0.8rem;
-  }
 </style>
 
 {#if questions.length}
@@ -35,10 +28,10 @@
       {#if question.cohortAnswers.length}
         <CohortAnswers answers={question.cohortAnswers}/>
       {/if}
-      <div class="meta">
-        <span class="time">{formatDate(question.createdAt)}</span>
-        <span class="cohort">{question.cohort.title}</span>
-      </div>
+      <QuestionMeta
+        cohort={question.cohort.title}
+        timestamp={question.createdAt}
+      />
     </div>
   {/each}
 {:else}

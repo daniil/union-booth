@@ -44,6 +44,7 @@
   .md-editor :global(.CodeMirror),
   .md-editor :global(.CodeMirror-scroll) {
     min-height: 130px;
+    max-height: 200px;
   }
 </style>
 
