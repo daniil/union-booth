@@ -25,6 +25,7 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import PublishedQAs from 'components/admin/faqs/PublishedQAs.svelte';
+  import CohortQuestionsFilter from 'components/admin/faqs/CohortQuestionsFilter.svelte';
   import CohortQuestions from 'components/admin/faqs/CohortQuestions.svelte';
   import QAEditor from 'components/admin/faqs/QAEditor.svelte';
   import Button from 'components/Button.svelte';
@@ -91,6 +92,7 @@
   <h3>Published Q and A</h3>
   <PublishedQAs questions={topicFAQ.topicFAQQuestions}/>
   <h3>Cohort Questions</h3>
+  <CohortQuestionsFilter/>
   <CohortQuestions questions={topicFAQ.cohortQuestions}/>
 </section>
 <QAEditor

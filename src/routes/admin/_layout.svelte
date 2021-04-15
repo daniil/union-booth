@@ -18,6 +18,7 @@
   }
   .nav-container {
     margin-right: 3rem;
+    min-width: 15%;
   }
   .admin-section {
     flex-grow: 1;
