@@ -1,5 +1,7 @@
 <script>
   import { parseMD } from 'utils/markdown';
+  import Question from 'components/admin/faqs/Question.svelte';
+  import Answer from 'components/admin/faqs/Answer.svelte';
   import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
 
   export let questions;
@@ -9,16 +11,27 @@
   .published-qas {
     margin-bottom: 4rem;
   }
+  h4 {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+  h5 {
+    margin-bottom: 0.75rem;
+    color: #3E6990;
+  }
 </style>
 
 <div class="published-qas">
   {#if questions.length}
     {#each questions as question (question.id)}
-      <div class="question">
+      <Question>
         <h4>{@html parseMD(question.question)}</h4>
-        <p>{question.answer}</p>
+        <h5>Answer</h5>
+        <Answer>
+          {@html parseMD(question.answer)}
+        </Answer>
         <QuestionMeta timestamp={question.createdAt}/>
-      </div>
+      </Question>
     {/each}
   {:else}
     <p>No published QAs for this topic yet. 🙅🏽‍♂️</p>
