@@ -5,6 +5,7 @@
   import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
 
   export let questions;
+  export let variant;
 </script>
 
 <style>
@@ -16,7 +17,7 @@
 
 {#if questions.length}
   {#each questions as question (question.id)}
-    <Question>
+    <Question {variant}>
       <h4>{@html parseMD(question.question)}</h4>
       {#if question.cohortAnswers.length}
         <CohortAnswers answers={question.cohortAnswers}/>

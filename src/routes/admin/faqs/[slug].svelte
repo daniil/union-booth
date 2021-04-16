@@ -35,6 +35,8 @@
   const { session } = stores();
   let editorIsVisible = false;
   let filterValue;
+  
+  $: cohortQuestionsVariant = filterValue === 'published' ? 'subtle' : '';
 
   let topicFAQ = $session.apolloClient.readQuery({
     query: TOPIC_FAQ_ADMIN,
@@ -91,10 +93,16 @@
     <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor} disabled={editorIsVisible}/>
   </h2>
   <h3>Published Q and A</h3>
-  <PublishedQAs questions={topicFAQ.topicFAQQuestions}/>
+  <PublishedQAs
+    questions={topicFAQ.topicFAQQuestions}
+    variant="completed"
+  />
   <h3>Cohort Questions</h3>
   <CohortQuestionsFilter bind:value={filterValue}/>
-  <CohortQuestions questions={topicFAQ.cohortQuestions}/>
+  <CohortQuestions
+    questions={topicFAQ.cohortQuestions}
+    variant={cohortQuestionsVariant}
+  />
 </section>
 <QAEditor
   {topicFAQ}

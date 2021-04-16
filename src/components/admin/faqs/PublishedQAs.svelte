@@ -5,6 +5,7 @@
   import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
 
   export let questions;
+  export let variant;
 </script>
 
 <style>
@@ -24,7 +25,7 @@
 <div class="published-qas">
   {#if questions.length}
     {#each questions as question (question.id)}
-      <Question>
+      <Question {variant}>
         <h4>{@html parseMD(question.question)}</h4>
         <h5>Answer</h5>
         <Answer>
