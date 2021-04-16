@@ -34,6 +34,7 @@
 
   const { session } = stores();
   let editorIsVisible = false;
+  let filterValue;
 
   let topicFAQ = $session.apolloClient.readQuery({
     query: TOPIC_FAQ_ADMIN,
@@ -92,7 +93,7 @@
   <h3>Published Q and A</h3>
   <PublishedQAs questions={topicFAQ.topicFAQQuestions}/>
   <h3>Cohort Questions</h3>
-  <CohortQuestionsFilter/>
+  <CohortQuestionsFilter bind:value={filterValue}/>
   <CohortQuestions questions={topicFAQ.cohortQuestions}/>
 </section>
 <QAEditor

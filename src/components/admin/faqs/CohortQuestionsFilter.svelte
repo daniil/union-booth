@@ -1,3 +1,7 @@
+<script>
+  export let value = 'nonPublished';
+</script>
+
 <style>
   .questions-filter {
     display: flex;
@@ -29,12 +33,12 @@
 <form action="/filter-questions" method="post" class="questions-filter">
   <span class="title">Filter questions by: </span>
   <div class="form-elements">
-    <div class="form-element active">
-      <input type="radio" name="status" id="nonPublished" selected/>
+    <div class="form-element" class:active={value === 'nonPublished'}>
+      <input type="radio" name="status" bind:group={value} id="nonPublished" value="nonPublished"/>
       <label for="nonPublished">Non-Published</label>
     </div>
-    <div class="form-element">
-      <input type="radio" name="status" id="published"/>
+    <div class="form-element" class:active={value === 'published'}>
+      <input type="radio" name="status" bind:group={value} id="published" value="published"/>
       <label for="published">Published</label>
     </div>
   </div>
