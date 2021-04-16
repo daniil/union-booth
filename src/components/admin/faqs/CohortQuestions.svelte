@@ -5,7 +5,12 @@
   import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
 
   export let questions;
+  export let filter;
   export let variant;
+
+  $: filteredQuestions = questions.filter(question => {
+    return question.convertedToFAQ === (filter === 'published');
+  });
 </script>
 
 <style>
@@ -15,8 +20,8 @@
   }
 </style>
 
-{#if questions.length}
-  {#each questions as question (question.id)}
+{#if filteredQuestions.length}
+  {#each filteredQuestions as question (question.id)}
     <Question {variant}>
       <h4>{@html parseMD(question.question)}</h4>
       {#if question.cohortAnswers.length}
@@ -29,5 +34,5 @@
     </Question>
   {/each}
 {:else}
-  <p>No cohort questions for this topic yet. 🙅🏼</p>
+  <p>No cohort questions for this topic and filter yet. 🙅🏼</p>
 {/if}

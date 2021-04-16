@@ -101,6 +101,7 @@
   <CohortQuestionsFilter bind:value={filterValue}/>
   <CohortQuestions
     questions={topicFAQ.cohortQuestions}
+    filter={filterValue}
     variant={cohortQuestionsVariant}
   />
 </section>

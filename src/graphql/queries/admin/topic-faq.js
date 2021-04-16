@@ -15,6 +15,9 @@ const TOPIC_FAQ_ADMIN = gql`
         createdAt
         cohortQuestion {
           id
+          cohort {
+            title
+          }
         }
       }
       cohortQuestions {

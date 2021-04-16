@@ -31,7 +31,10 @@
         <Answer>
           {@html parseMD(question.answer)}
         </Answer>
-        <QuestionMeta timestamp={question.createdAt}/>
+        <QuestionMeta
+          cohort={question?.cohortQuestion?.cohort.title}
+          timestamp={question.createdAt}
+        />
       </Question>
     {/each}
   {:else}
