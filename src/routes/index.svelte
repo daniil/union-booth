@@ -26,6 +26,7 @@
 	}
 	.banner img {
 		width: 145%;
+		flex-shrink: 0;
 	}
 	.actions {
 		display: flex;
