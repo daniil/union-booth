@@ -3,6 +3,7 @@
   import CohortAnswers from 'components/admin/faqs/CohortAnswers.svelte';
   import Question from 'components/admin/faqs/Question.svelte';
   import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
+  import QuestionActions from 'components/admin/faqs/QuestionActions.svelte';
 
   export let questions;
   export let filter;
@@ -18,6 +19,12 @@
     margin-bottom: 2rem;
     font-size: 1.1rem;
   }
+  .question-actions {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 25%);
+  }
 </style>
 
 {#if filteredQuestions.length}
@@ -31,6 +38,9 @@
         cohort={question.cohort.title}
         timestamp={question.createdAt}
       />
+      <div class="question-actions">
+        <QuestionActions/>
+      </div>
     </Question>
   {/each}
 {:else}

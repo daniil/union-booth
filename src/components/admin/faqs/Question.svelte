@@ -4,6 +4,7 @@
 
 <style>
   .question {
+    position: relative;
     padding: 1rem;
     margin-bottom: 2rem;
     background-color: #FFFDF7;
