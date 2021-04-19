@@ -98,7 +98,10 @@
     variant="completed"
   />
   <h3>Cohort Questions</h3>
-  <CohortQuestionsFilter bind:value={filterValue}/>
+  <CohortQuestionsFilter
+    questions={topicFAQ.cohortQuestions}
+    bind:value={filterValue}
+  />
   <CohortQuestions
     questions={topicFAQ.cohortQuestions}
     filter={filterValue}
