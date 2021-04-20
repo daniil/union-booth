@@ -6,7 +6,7 @@
   .question {
     position: relative;
     padding: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     background-color: #FFFDF7;
     border: 1px solid #E3DDE0;
     border-radius: 4px;

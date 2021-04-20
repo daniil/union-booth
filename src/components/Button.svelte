@@ -40,6 +40,7 @@
     margin-left: 0.5rem;
     color: #05668D;
   }
+
   .button.success {
     background: rgba(188, 217, 121, 0.3);
   }
@@ -49,15 +50,31 @@
   .button.success > .button-text {
     color: #395647;
   }
+
+  .button.link,
+  .button.link:not(:disabled):hover {
+    background: none;
+    font-weight: bold;
+  }
+  .button.link > .button-text {
+    border-bottom: 1px solid currentColor;
+  }
+  .button.link:not(:disabled):hover > .button-text {
+    color: #078CC5;
+    border-bottom: none;
+  }
 </style>
 
 <button
   type={type}
   class="button"
-  class:success="{variant === 'success'}"
+  class:success={variant === 'success'}
+  class:link={variant === 'link'}
   disabled={disabled}
   on:click={handleAction}
 >
-  {icon}
+  {#if icon}
+    {icon}
+  {/if}
   <span class="button-text">{label}</span>
 </button>
