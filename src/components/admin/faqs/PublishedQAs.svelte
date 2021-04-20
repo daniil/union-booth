@@ -3,6 +3,7 @@
   import Question from 'components/admin/faqs/Question.svelte';
   import Answer from 'components/admin/faqs/Answer.svelte';
   import QuestionMeta from 'components/admin/faqs/QuestionMeta.svelte';
+  import QuestionActions from 'components/admin/faqs/QuestionActions.svelte';
 
   export let questions;
   export let variant;
@@ -20,6 +21,12 @@
     margin-bottom: 0.75rem;
     color: #3E6990;
   }
+  .question-actions {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 25%);
+  }
 </style>
 
 <div class="published-qas">
@@ -35,6 +42,9 @@
           cohort={question?.cohortQuestion?.cohort.title}
           timestamp={question.createdAt}
         />
+        <div class="question-actions">
+          <QuestionActions variant="published"/>
+        </div>
       </Question>
     {/each}
   {:else}

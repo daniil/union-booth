@@ -1,13 +1,23 @@
 <script>
   import Button from 'components/Button.svelte';
 
+  export let variant;
+
   const handlePublish = () => {
     console.log('Publish.');
+  }
+
+  const handleEdit = () => {
+    console.log('Edit');
+  }
+
+  const handleDelete = () => {
+    console.log('Delete');
   }
 </script>
 
 <style>
-  .actions-container {
+  .actions-container:not(:empty) {
     background-color: white;
     padding: 0.75rem 1rem;
     border-radius: 4px;
@@ -16,5 +26,10 @@
 </style>
 
 <div class="actions-container">
-  <Button variant="link" label="Edit and Publish" action={handlePublish}/>
+  {#if variant === 'nonPublished'}
+    <Button variant="link" label="Publish" action={handlePublish}/>
+  {:else if variant === 'published'}
+    <Button variant="link" label="Edit" action={handleEdit}/>
+    <Button variant="link" label="Delete" action={handleDelete}/>
+  {/if}
 </div>

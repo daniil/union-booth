@@ -12,6 +12,8 @@
   $: filteredQuestions = questions.filter(question => {
     return question.convertedToFAQ === (filter === 'published');
   });
+
+  $: actionsVariant = filter === 'nonPublished' ? 'nonPublished' : 'publishedCohort';
 </script>
 
 <style>
@@ -38,9 +40,11 @@
         cohort={question.cohort.title}
         timestamp={question.createdAt}
       />
-      <div class="question-actions">
-        <QuestionActions/>
-      </div>
+      {#if actionsVariant !== 'publishedCohort'}
+        <div class="question-actions">
+          <QuestionActions variant={actionsVariant}/>
+        </div>
+      {/if}
     </Question>
   {/each}
 {:else}
