@@ -1,5 +1,6 @@
 <script>
   export let type;
+  export let style;
   export let variant;
   export let icon;
   export let label;
@@ -44,11 +45,21 @@
   .button.success {
     background: rgba(188, 217, 121, 0.3);
   }
-  .button.success:hover {
+  .button.success:not(:disabled):hover {
     background: rgba(188, 217, 121, 0.5);
   }
   .button.success > .button-text {
     color: #395647;
+  }
+
+  .button.danger {
+    background: rgba(239, 108, 139, 0.3);
+  }
+  .button.danger:not(:disabled):hover {
+    background: rgba(239, 108, 139, 0.5);
+  }
+  .button.danger > .button-text {
+    color: #E72350;
   }
 
   .button.link,
@@ -60,8 +71,8 @@
     border-bottom: 1px solid currentColor;
   }
   .button.link:not(:disabled):hover > .button-text {
-    color: #078CC5;
-    border-bottom: none;
+    filter: brightness(1.25);
+    border-bottom-color: transparent;
   }
 </style>
 
@@ -69,7 +80,8 @@
   type={type}
   class="button"
   class:success={variant === 'success'}
-  class:link={variant === 'link'}
+  class:danger={variant === 'danger'}
+  class:link={style === 'link'}
   disabled={disabled}
   on:click={handleAction}
 >

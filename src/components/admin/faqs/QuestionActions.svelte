@@ -27,9 +27,9 @@
 
 <div class="actions-container">
   {#if variant === 'nonPublished'}
-    <Button variant="link" label="Publish" action={handlePublish}/>
+    <Button style="link" label="Publish" action={handlePublish}/>
   {:else if variant === 'published'}
-    <Button variant="link" label="Edit" action={handleEdit}/>
-    <Button variant="link" label="Delete" action={handleDelete}/>
+    <Button style="link" label="Edit" action={handleEdit}/>
+    <Button style="link" variant="danger" label="Delete" action={handleDelete}/>
   {/if}
 </div>
