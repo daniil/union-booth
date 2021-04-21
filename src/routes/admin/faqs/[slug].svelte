@@ -35,6 +35,7 @@
   const { session } = stores();
   let editorIsVisible = false;
   let filterValue;
+  let selectedQuestion;
   
   $: cohortQuestionsVariant = filterValue === 'published' ? 'subtle' : '';
 
@@ -61,6 +62,11 @@
 
   const handleClose = () => {
     editorIsVisible = false;
+  }
+
+  const handlePublish = e => {
+    selectedQuestion = topicFAQ.cohortQuestions.find(question => question.id === e.detail.questionId);
+    if (selectedQuestion) editorIsVisible = true;
   }
 </script>
 
@@ -106,10 +112,12 @@
     questions={topicFAQ.cohortQuestions}
     filter={filterValue}
     variant={cohortQuestionsVariant}
+    on:publish={handlePublish}
   />
 </section>
 <QAEditor
   {topicFAQ}
+  question={selectedQuestion}
   visible={editorIsVisible}
   on:close={handleClose}
 />

@@ -3,9 +3,8 @@
 - Update avatar storage to use what can work on Heroku
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Add UI for changing live questions to FAQ
-- Add UI for adding FAQ questions from scratch
-- Style PublishedQAs component
-- Style CohortQuestions component
+  - Update mutation to account for publishing a new cohort question
+  - Update mutation resolution to update the writeQuery with published question
 - Update individual topic page with FAQ questions
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources

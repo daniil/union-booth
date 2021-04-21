@@ -7,6 +7,7 @@
   import { TOPIC_FAQ_ADMIN, ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
   export let topicFAQ;
+  export let question;
   export let visible;
 
   const { session } = stores();
@@ -20,6 +21,14 @@
   }
 
   $: submitDisabled = editorValues.question === '' || editorValues.answer === '';
+  $: if (question) setEditorValues();
+
+  const setEditorValues = () => {
+    editorValues = {
+      question: question.question,
+      answer: question.cohortAnswers.map(answer => answer.answer).join('\n\n')
+    };
+  }
 
   const handleEditorChange = event => {
     editorValues[event.detail.id] = event.detail.value;
