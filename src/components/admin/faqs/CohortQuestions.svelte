@@ -14,6 +14,10 @@
   });
 
   $: actionsVariant = filter === 'nonPublished' ? 'nonPublished' : 'publishedCohort';
+
+  const handlePublish = e => {
+    console.log('Publish', e.detail.questionId);
+  }
 </script>
 
 <style>
@@ -42,7 +46,11 @@
       />
       {#if actionsVariant !== 'publishedCohort'}
         <div class="question-actions">
-          <QuestionActions variant={actionsVariant}/>
+          <QuestionActions
+            questionId={question.id}
+            variant={actionsVariant}
+            on:publish={handlePublish}
+          />
         </div>
       {/if}
     </Question>

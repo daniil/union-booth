@@ -43,7 +43,10 @@
           timestamp={question.createdAt}
         />
         <div class="question-actions">
-          <QuestionActions variant="published"/>
+          <QuestionActions
+            questionId={question.id}
+            variant="published"
+          />
         </div>
       </Question>
     {/each}

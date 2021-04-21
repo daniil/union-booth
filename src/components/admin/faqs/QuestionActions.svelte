@@ -1,18 +1,28 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import Button from 'components/Button.svelte';
 
+  export let questionId;
   export let variant;
 
+  const dispatch = createEventDispatcher();
+
   const handlePublish = () => {
-    console.log('Publish.');
+    dispatch('publish', {
+      questionId
+    });
   }
 
   const handleEdit = () => {
-    console.log('Edit');
+    dispatch('edit', {
+      questionId
+    });
   }
 
   const handleDelete = () => {
-    console.log('Delete');
+    dispatch('delete', {
+      questionId
+    });
   }
 </script>
 
