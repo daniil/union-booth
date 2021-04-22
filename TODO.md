@@ -1,7 +1,5 @@
 ## Tasks
 
-- Update avatar storage to use what can work on Heroku
-- Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Add UI for changing live questions to FAQ
   - Update mutation to account for publishing a new cohort question
   - Update mutation resolution to update the writeQuery with published question
@@ -25,8 +23,12 @@
 - Add user admin UI
   - Add generate new avatar functionality for user
 - Add a program/cohort admin privileges for other roles
+- Update avatar storage to use what can work on Heroku
+- Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Update site color scheme
 - Add admin remove functionality for programs, cohorts and topics
+- Add timed unlock for topics
+- Add question and answer moderation before posting
 - Do error catching and reporting for program and cohort add
 - Add speech-to-text question posting
 - Add SSO Login options
@@ -34,6 +36,7 @@
 
 ## Tweaks
 
+- Update README with new endpoints
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
 - Add a back button on individual topic page back to list of topics

@@ -4,7 +4,16 @@ This project is a combination of Live Questions, FAQ and Support Resources repos
 
 Planned functionality is having unique cohort spaces, timed unlock for lessons, live questions supported by sockets, admin space to monitor and moderate the questions, persistent FAQ and Additional Lesson Resources.
 
-Current functionality is being able to register for an account, support for account roles, adding programs, cohorts and topics, managing live topics, posting questions, replying to the questions and moderating a question as being currently answered.
+Current functionality:
+
+- register for an account
+- support for account roles
+- adding programs, cohorts and topics
+- managing live topics
+- posting questions
+- replying to the questions
+- moderating a question as being currently answered or answered by an educator
+- converting cohort questions to persistent FAQs.
 
 ## Project structure
 
@@ -17,6 +26,8 @@ Current functionality is being able to register for an account, support for acco
 - `/admin/programs` - Managing programs
 - `/admin/cohorts` - Managing cohorts
 - `/admin/topics` - Managing topics
+- `/admin/faqs` - Managing FAQs
+- `/admin/faqs/:faqId` - Managing a Topic FAQ
 
 ### Environment Variables
 
