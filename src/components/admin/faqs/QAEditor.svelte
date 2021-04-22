@@ -7,6 +7,7 @@
   import { TOPIC_FAQ_ADMIN, ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
   export let topicFAQ;
+  export let questionType;
   export let question;
   export let visible;
 
@@ -35,13 +36,19 @@
   }
 
   const saveQA = async () => {
+    const mutationVariables = {
+      topicId: topicFAQ.topic.id,
+      question: editorValues.question,
+      answer: editorValues.answer
+    };
+
+    if (questionType === 'publish' && question) {
+      mutationVariables.cohortQuestionId = question.id;
+    }
+
     try {
       await addTopicFAQQuestion({
-        variables: {
-          topicId: topicFAQ.topic.id,
-          question: editorValues.question,
-          answer: editorValues.answer
-        },
+        variables: mutationVariables,
         update: (_, mutationResult) => {
           let topicFAQData = $session.apolloClient.readQuery({
             query: TOPIC_FAQ_ADMIN,
@@ -50,19 +57,35 @@
             }
           }).topicFAQAdmin;
 
+          const newTopicFAQQuestion = mutationResult.data.addTopicFAQQuestion;
+          let newTopicFAQAdminData = {
+            ...topicFAQData,
+            topicFAQQuestions: [
+              ...topicFAQData.topicFAQQuestions,
+              newTopicFAQQuestion
+            ]
+          };
+
+          if (questionType === 'publish' && question) {
+            newTopicFAQAdminData = {
+              ...newTopicFAQAdminData,
+              cohortQuestions: newTopicFAQAdminData.cohortQuestions.map(question => {
+                if (question.id === newTopicFAQQuestion.cohortQuestion.id) {
+                  return { ...question, convertedToFAQ: true }
+                } else {
+                  return question;
+                }
+              })
+            }
+          }
+
           $session.apolloClient.writeQuery({
             query: TOPIC_FAQ_ADMIN,
             variables: {
               slug: topicFAQ.topic.slug
             },
             data: {
-              topicFAQAdmin: {
-                ...topicFAQData,
-                topicFAQQuestions: [
-                  mutationResult.data.addTopicFAQQuestion,
-                  ...topicFAQData.topicFAQQuestions
-                ]
-              }
+              topicFAQAdmin: newTopicFAQAdminData
             }
           })
         }

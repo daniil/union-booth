@@ -36,6 +36,7 @@
   let editorIsVisible = false;
   let filterValue;
   let selectedQuestion;
+  let selectedQuestionType;
   
   $: cohortQuestionsVariant = filterValue === 'published' ? 'subtle' : '';
 
@@ -61,10 +62,13 @@
   }
 
   const handleClose = () => {
+    selectedQuestionType = null;
+    selectedQuestion = null;
     editorIsVisible = false;
   }
 
   const handlePublish = e => {
+    selectedQuestionType = 'publish';
     selectedQuestion = topicFAQ.cohortQuestions.find(question => question.id === e.detail.questionId);
     if (selectedQuestion) editorIsVisible = true;
   }
@@ -117,6 +121,7 @@
 </section>
 <QAEditor
   {topicFAQ}
+  questionType={selectedQuestionType}
   question={selectedQuestion}
   visible={editorIsVisible}
   on:close={handleClose}

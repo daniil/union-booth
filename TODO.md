@@ -1,8 +1,8 @@
 ## Tasks
 
 - Add UI for changing live questions to FAQ
-  - Update mutation to account for publishing a new cohort question
-  - Update mutation resolution to update the writeQuery with published question
+  - Add updating the cohort question functionality
+  - Add remove the cohort question functionality
 - Update individual topic page with FAQ questions
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
@@ -33,10 +33,12 @@
 - Add speech-to-text question posting
 - Add SSO Login options
 - Write automated tests
+- Convert to SvelteKit
+- Look into deploying on Qovery
 
 ## Tweaks
 
-- Update README with new endpoints
+- Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
 - Add a back button on individual topic page back to list of topics
