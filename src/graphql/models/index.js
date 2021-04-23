@@ -25,13 +25,6 @@ if (NODE_ENV === 'production') {
   sequelize = new Sequelize(QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI, {
     dialect: 'postgres',
     protocol: 'postgres',
-    ssl: true,
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    },
     pool: poolSettings
 });
 } else {
