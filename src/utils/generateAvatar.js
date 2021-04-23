@@ -13,6 +13,16 @@ if (!fs.existsSync(avatarsFolder)){
   fs.mkdirSync(avatarsFolder, { recursive: true });
 }
 
+console.log('=== MOUNT FOLDER ===');
+try {
+  fs.readdirSync(path.resolve(__dirname, '/mnt/static')).forEach(file => {
+    console.log(file);
+  });
+} catch(e) {
+  console.log(`Can't read: ${process.cwd() }`)
+}
+
+
 export default userId => {
   fs.writeFileSync(
     `${avatarsFolder}/${userId}.svg`,
