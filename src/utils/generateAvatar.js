@@ -6,7 +6,7 @@ import path from 'path';
 const { NODE_ENV } = process.env;
 
 const avatarsFolder = NODE_ENV === 'production'
-  ? path.resolve(__dirname, './static/avatars')
+  ? path.resolve(__dirname, '/mnt/static/avatars')
   : path.resolve(__dirname, '../../../static/avatars');
 
 if (!fs.existsSync(avatarsFolder)){

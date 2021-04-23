@@ -73,7 +73,7 @@ app
 		nonceMiddleware,
 		helmetMiddleware,
 		compression({ threshold: 0 }),
-		sirv('static', { dev }),
+		sirv(prod ? '/mnt/static' : 'static', { dev }),
 		sapper.middleware({
 			ignore: ['/graphql'],
 			session: req => {
