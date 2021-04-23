@@ -3,6 +3,11 @@ application:
   name: "union-booth"
   project: "union-booth"
   organization: "QoveryCommunity"
+  storage:
+  - name: "static"
+    size: "10GB"
+    type: "ssd"
+    mount_point: "/mnt/static"
 databases:
 - type: "POSTGRESQL"
   name: "union-booth"
