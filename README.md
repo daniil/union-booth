@@ -68,36 +68,33 @@ GraphQL Playground is available at [http://localhost:3000/graphql](http://localh
 
 ### Deployment
 
-Currently the app is configured to be deployed on Heroku. Make sure you [install Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) for deployment tasks.
+Currently the app is configured to be deployed on Qovery. Make sure you [install Qovery CLI](https://docs.qovery.com/docs/using-qovery/interface/cli/) for deployment tasks.
 
-After cloning the repo, create a new app with `heroku create` and then you can deploy it by running `heroku push heroku main`.
+First, fork or clone the `union-booth` repo to your own GitHub account.
 
-If for whatever reason, your Heroku remote isn't available you can always add a new one with this command:
+Create [Qovery Account](https://console.qovery.com/login) and then create a new project and a new application.
 
-```
-heroku git:remote -a heroku-appname-12345
-```
+Choose to deploy an existing application with "I have an application".
 
-In the Heroku settings for your deployed app, make following changes:
+Connect to GitHub and select the `union-booth` repo you cloned.
 
-- Under *Resources > Add-ons* add **Heroku Postgres**
-- Under *Settings > Buildpacks* add a Buildpack for **heroku/nodejs**.
-- Under *Settings > Config Vars* add following Config Vars:
-  - `SERVER_URL` - this should be the app host, ie: **heroku-appname-12345.herokuapp.com**
-  - `SESSION_SECRET` - randomly generated hash
-    - Can generate it by running `node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"`
-  - Confirm that `DATABASE_URL` config var is present
+Select **Nodejs** for your type of application and give an app a name.
 
-For any troubleshooting, you can check the logs, or SSH into your Dyno.
+On *Select services...* screen select **postgresql** and **Storage**.
 
-*Logging*
+For PostgreSQL you can select version 11 and give a name to your DB (ie: union-booth).
+
+For Storage enter **static** for a disk name and choose **ssd** for storage type. You can keep the default mount point and size of the disk.
+
+Before deploying set environment variables required for the app (on your local):
 
 ```
-heroku logs --tail
+qovery environment env add SERVER_URL '$QOVERY_ROUTER_MAIN_UNION_BOOTH_HOST'
+qovery environment env add SESSION_SECRET $YOUR_SESSION_SECRET (#Run `node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"` to generate)
 ```
 
-*SSH Tunnelling*
+You can now deploy the app.
 
-```
-heroku ps:exec
-```
+To view the deployment log go into *Projects* page on Qovery Dashboard, click on **main** environment and then select *Deployment Logs*.
+
+Once your application is deployed to view the application logs you can use `qovery log` command.

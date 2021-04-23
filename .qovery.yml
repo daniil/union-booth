@@ -5,8 +5,8 @@ application:
   organization: "QoveryCommunity"
   storage:
   - name: "static"
-    size: "200"
-    type: "fast_ssd"
+    size: "10GB"
+    type: "ssd"
     mount_point: "/mnt/static"
 databases:
 - type: "POSTGRESQL"
