@@ -21,7 +21,7 @@ const poolSettings = {
   idle: 10000
 };
 
-console.log('ENVIRONMENT VARIABLES: ', process.env);
+console.log('OTHER VARIABLES: ', process.env.QOVERY_BRANCH_NAME, process.env.QOVERY_IS_PRODUCTION, process.env.QOVERY_DATABASE_UNION_BOOTH_NAME, process.env.QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI);
 
 if (NODE_ENV === 'production') {
   sequelize = new Sequelize(QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI, {
