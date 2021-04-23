@@ -10,7 +10,7 @@ import topicFAQModel from './topic-faq';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
-const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, DATABASE_URL } = process.env;
+const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI } = process.env;
 
 let sequelize;
 
@@ -22,7 +22,7 @@ const poolSettings = {
 };
 
 if (NODE_ENV === 'production') {
-  sequelize = new Sequelize(DATABASE_URL, {
+  sequelize = new Sequelize(QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI, {
     dialect: 'postgres',
     protocol: 'postgres',
     ssl: true,
