@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import path from 'path';
-import sirv from 'sirv';
 import polka from 'polka';
 import compression from 'compression';
 import cors from 'cors';
@@ -14,6 +13,8 @@ import helmet from 'helmet';
 import graphQLServer from 'graphql/server';
 import { initSSRClient } from 'graphql/ssr-client';
 import { sequelize } from 'graphql/models';
+
+const serveStatic = require('serve-static');
 
 const app = polka();
 
@@ -74,7 +75,7 @@ app
 		nonceMiddleware,
 		helmetMiddleware,
 		compression({ threshold: 0 }),
-		sirv(prod ? path.resolve(__dirname, '/mnt/static') : 'static', { dev }),
+		serveStatic(prod ? path.resolve(__dirname, '/mnt/static') : 'static'),
 		sapper.middleware({
 			ignore: ['/graphql'],
 			session: req => {
