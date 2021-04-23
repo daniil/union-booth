@@ -13,6 +13,11 @@ if (!fs.existsSync(avatarsFolder)){
   fs.mkdirSync(avatarsFolder, { recursive: true });
 }
 
+console.log('=== AVATARS FOLDER ===');
+fs.readdirSync(avatarsFolder).forEach(file => {
+  console.log(file);
+});
+
 console.log('=== MOUNT FOLDER ===');
 try {
   fs.readdirSync(path.resolve(__dirname, '/mnt/static')).forEach(file => {
