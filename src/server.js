@@ -62,6 +62,10 @@ const helmetMiddleware = helmet({
 	}
 });
 
+console.log('=== PATH RESOLVE ===');
+console.log(path.resolve(__dirname, '/mnt/static'));
+console.log(path.resolve('/mnt/static'));
+
 app
 	.use(
 		json(),
