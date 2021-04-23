@@ -21,6 +21,8 @@ const poolSettings = {
   idle: 10000
 };
 
+console.log('ENVIRONMENT VARIABLES: ', process.env);
+
 if (NODE_ENV === 'production') {
   sequelize = new Sequelize(QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI, {
     dialect: 'postgres',
