@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import path from 'path';
 import sirv from 'sirv';
 import polka from 'polka';
 import compression from 'compression';
@@ -73,7 +74,7 @@ app
 		nonceMiddleware,
 		helmetMiddleware,
 		compression({ threshold: 0 }),
-		sirv(prod ? '/mnt/static' : 'static', { dev }),
+		sirv(prod ? path.resolve(__dirname, '/mnt/static') : 'static', { dev }),
 		sapper.middleware({
 			ignore: ['/graphql'],
 			session: req => {
