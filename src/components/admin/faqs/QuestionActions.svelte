@@ -6,21 +6,9 @@
   export let variant;
 
   const dispatch = createEventDispatcher();
-
-  const handlePublish = () => {
-    dispatch('publish', {
-      questionId
-    });
-  }
-
-  const handleEdit = () => {
-    dispatch('edit', {
-      questionId
-    });
-  }
-
-  const handleDelete = () => {
-    dispatch('delete', {
+  
+  const handleAction = actionType => () => {
+    dispatch(actionType, {
       questionId
     });
   }
@@ -37,9 +25,9 @@
 
 <div class="actions-container">
   {#if variant === 'nonPublished'}
-    <Button style="link" label="Publish" action={handlePublish}/>
+    <Button style="link" label="Publish" action={handleAction('publish')}/>
   {:else if variant === 'published'}
-    <Button style="link" label="Edit" action={handleEdit}/>
-    <Button style="link" variant="danger" label="Delete" action={handleDelete}/>
+    <Button style="link" label="Edit" action={handleAction('edit')}/>
+    <Button style="link" variant="danger" label="Delete" action={handleAction('delete')}/>
   {/if}
 </div>

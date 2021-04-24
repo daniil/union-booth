@@ -36,7 +36,7 @@
   let editorIsVisible = false;
   let filterValue;
   let selectedQuestion;
-  let selectedQuestionType;
+  let editorMode;
   
   $: cohortQuestionsVariant = filterValue === 'published' ? 'subtle' : '';
 
@@ -57,19 +57,26 @@
   
   onDestroy(() => topicFAQSub.unsubscribe());
 
-  const toggleQAEditor = () => {
-    editorIsVisible = !editorIsVisible;
+  const handleAddNew = () => {
+    editorMode = 'add';
+    editorIsVisible = true;
   }
 
   const handleClose = () => {
-    selectedQuestionType = null;
+    editorMode = null;
     selectedQuestion = null;
     editorIsVisible = false;
   }
 
   const handlePublish = e => {
-    selectedQuestionType = 'publish';
+    editorMode = 'publish';
     selectedQuestion = topicFAQ.cohortQuestions.find(question => question.id === e.detail.questionId);
+    if (selectedQuestion) editorIsVisible = true;
+  }
+
+  const handleEdit = e => {
+    editorMode = 'edit';
+    selectedQuestion = topicFAQ.topicFAQQuestions.find(question => question.id === e.detail.questionId);
     if (selectedQuestion) editorIsVisible = true;
   }
 </script>
@@ -100,12 +107,13 @@
   <a class="back" href="/admin/faqs">&#10092; back</a>
   <h2 class="title">
     {topicFAQ.topic.title} FAQs
-    <Button variant="success" icon="➕" label="Add New Q/A" action={toggleQAEditor} disabled={editorIsVisible}/>
+    <Button variant="success" icon="➕" label="Add New Q/A" action={handleAddNew} disabled={editorIsVisible}/>
   </h2>
   <h3>Published Q and A</h3>
   <PublishedQAs
     questions={topicFAQ.topicFAQQuestions}
     variant="completed"
+    on:edit={handleEdit}
   />
   <h3>Cohort Questions</h3>
   <CohortQuestionsFilter
@@ -121,7 +129,7 @@
 </section>
 <QAEditor
   {topicFAQ}
-  questionType={selectedQuestionType}
+  mode={editorMode}
   question={selectedQuestion}
   visible={editorIsVisible}
   on:close={handleClose}

@@ -7,7 +7,7 @@
   import { TOPIC_FAQ_ADMIN, ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
   export let topicFAQ;
-  export let questionType;
+  export let mode;
   export let question;
   export let visible;
 
@@ -25,9 +25,13 @@
   $: if (question) setEditorValues();
 
   const setEditorValues = () => {
+    const answerMap = {
+      'edit': () => question.answer,
+      'publish': () => question.cohortAnswers.map(answer => answer.answer).join('\n\n')
+    }
     editorValues = {
       question: question.question,
-      answer: question.cohortAnswers.map(answer => answer.answer).join('\n\n')
+      answer: answerMap[mode]()
     };
   }
 
@@ -42,8 +46,15 @@
       answer: editorValues.answer
     };
 
-    if (questionType === 'publish' && question) {
+    if (mode === 'publish' && question) {
       mutationVariables.cohortQuestionId = question.id;
+    }
+
+    if (mode === 'edit' && question) {
+      mutationVariables.id = question.id;
+      if (question.cohortQuestion) {
+        mutationVariables.cohortQuestionId = question.cohortQuestion.id;
+      }
     }
 
     try {
@@ -59,19 +70,38 @@
 
           const newTopicFAQQuestion = mutationResult.data.addTopicFAQQuestion;
           let newTopicFAQAdminData = {
-            ...topicFAQData,
-            topicFAQQuestions: [
-              ...topicFAQData.topicFAQQuestions,
-              newTopicFAQQuestion
-            ]
+            ...topicFAQData
           };
 
-          if (questionType === 'publish' && question) {
+          if (mode === 'add' || mode === 'publish') {
+            newTopicFAQAdminData = {
+              ...newTopicFAQAdminData,
+              topicFAQQuestions: [
+                ...newTopicFAQAdminData.topicFAQQuestions,
+                newTopicFAQQuestion
+              ]
+            }
+          }
+
+          if (mode === 'publish' && question) {
             newTopicFAQAdminData = {
               ...newTopicFAQAdminData,
               cohortQuestions: newTopicFAQAdminData.cohortQuestions.map(question => {
                 if (question.id === newTopicFAQQuestion.cohortQuestion.id) {
                   return { ...question, convertedToFAQ: true }
+                } else {
+                  return question;
+                }
+              })
+            }
+          }
+
+          if (mode === 'edit' && question) {
+            newTopicFAQAdminData = {
+              ...newTopicFAQAdminData,
+              topicFAQQuestions: newTopicFAQAdminData.topicFAQQuestions.map(question => {
+                if (question.id === newTopicFAQQuestion.id) {
+                  return newTopicFAQQuestion;
                 } else {
                   return question;
                 }

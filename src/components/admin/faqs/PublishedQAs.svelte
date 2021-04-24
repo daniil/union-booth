@@ -46,6 +46,7 @@
           <QuestionActions
             questionId={question.id}
             variant="published"
+            on:edit
           />
         </div>
       </Question>
