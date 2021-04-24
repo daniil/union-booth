@@ -23,7 +23,6 @@
 - Add user admin UI
   - Add generate new avatar functionality for user
 - Add a program/cohort admin privileges for other roles
-- Update avatar storage to use what can work on Heroku
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Update site color scheme
 - Add admin remove functionality for programs, cohorts and topics
@@ -34,18 +33,18 @@
 - Add SSO Login options
 - Write automated tests
 - Convert to SvelteKit
-- Look into deploying on Qovery
 
 ## Tweaks
 
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
+- Add a loading variant of the button for longer queries
 - Add a back button on individual topic page back to list of topics
 - Update Answers to be expandable
-- Update Button component to have different types
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - When user is deleted, invalidate their session
+- Figure out an issue with Qovery and hard refresh
 
 ## Ongoing
 

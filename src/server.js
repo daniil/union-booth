@@ -19,7 +19,6 @@ const serveStatic = require('serve-static');
 const app = polka();
 
 const { SERVER_URL, PORT, NODE_ENV, SESSION_SECRET } = process.env;
-const dev = NODE_ENV === 'development';
 const prod = NODE_ENV === 'production';
 const httpProtocol = prod ? 'https' : 'http';
 
