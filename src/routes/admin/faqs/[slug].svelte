@@ -79,6 +79,10 @@
     selectedQuestion = topicFAQ.topicFAQQuestions.find(question => question.id === e.detail.questionId);
     if (selectedQuestion) editorIsVisible = true;
   }
+
+  const handleDelete = e => {
+    console.log(e);
+  }
 </script>
 
 <style>
@@ -114,6 +118,7 @@
     questions={topicFAQ.topicFAQQuestions}
     variant="completed"
     on:edit={handleEdit}
+    on:delete={handleDelete}
   />
   <h3>Cohort Questions</h3>
   <CohortQuestionsFilter

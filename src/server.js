@@ -75,7 +75,7 @@ app
 		helmetMiddleware,
 		compression({ threshold: 0 }),
 		serveStatic(prod ? path.resolve(__dirname, '/mnt/static') : 'static'),
-		serveStatic(path.resolve(__dirname, '../client')),
+		serveStatic(path.resolve(__dirname, '../../../static')),
 		sapper.middleware({
 			ignore: ['/graphql'],
 			session: req => {
