@@ -81,7 +81,7 @@
   }
 
   const handleDelete = e => {
-    console.log(e);
+    console.log('Delete question: ', e);
   }
 </script>
 

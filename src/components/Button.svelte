@@ -7,15 +7,10 @@
   export let action;
   export let disabled;
   export let preventDefault;
-  export let needsConfirmation;
 
   const handleAction = e => {
     !!preventDefault && e.preventDefault();
-    if (needsConfirmation) {
-      console.log('Confirm action first.');
-    } else {
-      !!action && action(e);
-    }    
+    !!action && action(e);    
   }
 </script>
 

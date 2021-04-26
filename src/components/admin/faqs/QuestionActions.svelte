@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import Button from 'components/Button.svelte';
+  import ConfirmationButton from 'components/ConfirmationButton.svelte';
 
   export let questionId;
   export let variant;
@@ -28,6 +29,6 @@
     <Button style="link" label="Publish" action={handleAction('publish')}/>
   {:else if variant === 'published'}
     <Button style="link" label="Edit" action={handleAction('edit')}/>
-    <Button style="link" variant="danger" label="Delete" needsConfirmation action={handleAction('delete')}/>
+    <ConfirmationButton style="link" variant="danger" label="Delete" action={handleAction('delete')}/>
   {/if}
 </div>
