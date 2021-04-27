@@ -63,7 +63,7 @@
   {#if isBeingAnswered}💭{/if}
   {#if isAnswered}✅{/if}
   {#if tooltipVisible}
-    <div class="user-list" transition:fly="{{duration: 300, y: 5, opacity: 0, easing: quintOut }}">
+    <div class="user-list" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
       {#if isAnswered}
         <p class="title answered">Answered by:</p>
         {#each answeredBy as answerInProgress}
