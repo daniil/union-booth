@@ -29,6 +29,6 @@
     <Button style="link" label="Publish" action={handleAction('publish')}/>
   {:else if variant === 'published'}
     <Button style="link" label="Edit" action={handleAction('edit')}/>
-    <ConfirmationButton style="link" variant="danger" label="Delete" action={handleAction('delete')}/>
+    <ConfirmationButton style="link" variant="danger" label="Unpublish" action={handleAction('unpublish')}/>
   {/if}
 </div>

@@ -80,8 +80,8 @@
     if (selectedQuestion) editorIsVisible = true;
   }
 
-  const handleDelete = e => {
-    console.log('Delete question: ', e);
+  const handleUnpublish = e => {
+    console.log('Unpublish question: ', e);
   }
 </script>
 
@@ -118,7 +118,7 @@
     questions={topicFAQ.topicFAQQuestions}
     variant="completed"
     on:edit={handleEdit}
-    on:delete={handleDelete}
+    on:unpublish={handleUnpublish}
   />
   <h3>Cohort Questions</h3>
   <CohortQuestionsFilter
