@@ -13,6 +13,10 @@ const topicFAQ = (sequelize, DataTypes) => {
     },
     answer: {
       type: DataTypes.TEXT
+    },
+    isInactive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 

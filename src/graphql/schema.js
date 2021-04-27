@@ -89,6 +89,7 @@ const typeDefs = gql`
     updatedAt: Date!
     topic: Topic!
     cohortQuestion: CohortQuestion
+    isInactive: Boolean!
   }
 
   type Query {

@@ -23,7 +23,8 @@ export default {
     topicFAQQuestions: async (parent, _, { models }) => {
       return await models.TopicFAQ.findAll({
         where: {
-          topicId: parent.get('topicId')
+          topicId: parent.get('topicId'),
+          isInactive: false
         },
         order: [
           ['createdAt', 'ASC']
