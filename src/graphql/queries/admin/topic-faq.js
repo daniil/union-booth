@@ -51,7 +51,17 @@ const ADD_TOPIC_FAQ_QUESTION = gql`
   }
 `;
 
+const DEACTIVATE_TOPIC_FAQ_QUESTION = gql`
+  mutation DeactivateTopicFAQQuestion($id: ID) {
+    deactivateTopicFAQQuestion(id: $id) {
+      id
+      isInactive
+    }
+  }
+`;
+
 export {
   TOPIC_FAQ_ADMIN,
-  ADD_TOPIC_FAQ_QUESTION
+  ADD_TOPIC_FAQ_QUESTION,
+  DEACTIVATE_TOPIC_FAQ_QUESTION
 }
