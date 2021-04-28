@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script context="module">
-  import { TOPIC_FAQ_ADMIN } from 'graphql/queries/admin/topic-faq';
+  import { TOPIC_FAQ_ADMIN, DEACTIVATE_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
   export async function preload(page, session) {
     if (!session.user) {
@@ -23,6 +23,7 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
   import { onDestroy } from 'svelte';
   import PublishedQAs from 'components/admin/faqs/PublishedQAs.svelte';
   import CohortQuestionsFilter from 'components/admin/faqs/CohortQuestionsFilter.svelte';
@@ -33,6 +34,9 @@
   export let slug;
 
   const { session } = stores();
+
+  const deactivateTopicFAQQuestion = mutation(DEACTIVATE_TOPIC_FAQ_QUESTION);
+
   let editorIsVisible = false;
   let filterValue;
   let selectedQuestion;
@@ -80,8 +84,28 @@
     if (selectedQuestion) editorIsVisible = true;
   }
 
-  const handleDeactivate = e => {
-    console.log('Deactivate question: ', e);
+  const handleDeactivate = async e => {
+    try {
+      await deactivateTopicFAQQuestion({
+        variables: {
+          id: e.detail.questionId
+        },
+        update: (_, mutationResult) => {
+          $session.apolloClient.writeQuery({
+            query: TOPIC_FAQ_ADMIN,
+            variables: { slug },
+            data: {
+              topicFAQAdmin: {
+                ...topicFAQ,
+                topicFAQQuestions: topicFAQ.topicFAQQuestions.filter(question => question.id !== mutationResult.data.deactivateTopicFAQQuestion.id)
+              }
+            }
+          })
+        }
+      });
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 

@@ -1,15 +1,12 @@
 ## Tasks
 
-- Add UI for changing live questions to FAQ
-  - Add updating the cohort question functionality
-  - Add remove the cohort question functionality
 - Update individual topic page with FAQ questions
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
 - Update individual topic page with Resources
-- Create remove a question functionality
+- Create deactivate a question functionality
 - Create edit a question functionality
-- Create remove an answer functionality
+- Create deactivate an answer functionality
 - Create edit an answer functionality
 - Open Studio Queue functionality
   - Queue for an educator
@@ -25,7 +22,8 @@
 - Add a program/cohort admin privileges for other roles
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Update site color scheme
-- Add admin remove functionality for programs, cohorts and topics
+- Add admin deactivate functionality for programs, cohorts and topics
+- Add deactivated topic FAQ questions list (and reactivate functionality)
 - Add timed unlock for topics
 - Add question and answer moderation before posting
 - Do error catching and reporting for program and cohort add
