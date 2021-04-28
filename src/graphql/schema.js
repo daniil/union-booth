@@ -131,6 +131,7 @@ const typeDefs = gql`
     addCohortAnswer(cohortQuestionId: ID!, answer: String!): CohortAnswer!
     updateCohortAnswerProgress(cohortQuestionId: ID!, status: Boolean!): CohortAnswerInProgress!
     addTopicFAQQuestion(id: ID, topicId: ID!, cohortQuestionId: ID, question: String!, answer: String!): TopicFAQQuestion!
+    deactivateTopicFAQQuestion(id: ID): TopicFAQQuestion!
   }
 
   type Subscription {

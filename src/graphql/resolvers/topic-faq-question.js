@@ -42,6 +42,33 @@ export default {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
+    ),
+
+    deactivateTopicFAQQuestion: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, { id }, { models }) => {
+        try {
+          const topicFAQQuestion = await models.TopicFAQ.findOne({
+            where: {
+              id,
+              isInactive: false
+            }
+          });
+
+          if (!topicFAQQuestion) {
+            throw new UserInputError('FAQ Question can not be found or is already inactive');
+          }
+
+          await topicFAQQuestion.update({
+            isInactive: true
+          });
+
+          return topicFAQQuestion;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
     )
   },
 

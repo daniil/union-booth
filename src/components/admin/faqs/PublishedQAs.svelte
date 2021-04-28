@@ -47,7 +47,7 @@
             questionId={question.id}
             variant="published"
             on:edit
-            on:unpublish
+            on:deactivate
           />
         </div>
       </Question>
