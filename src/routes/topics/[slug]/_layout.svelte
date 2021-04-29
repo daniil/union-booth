@@ -1,7 +1,3 @@
-<svelte:head>
-	<title>Union Booth :: Topic: {cohortTopic.topic ? cohortTopic.topic.title : 'Loading'}</title>
-</svelte:head>
-
 <script context="module">
   import { TOPIC } from 'graphql/queries/cohort-topic';
 
@@ -60,3 +56,5 @@
 <h2>Frequently Asked Questions</h2>
 
 <h2>Resources</h2>
+
+<slot></slot>
