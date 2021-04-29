@@ -19,8 +19,10 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import TopicsNav from 'components/TopicsNav.svelte';
 
   export let slug;
+  export let segment;
 
   const { session } = stores();
 
@@ -53,8 +55,9 @@
   {/if}
 </div>
 
-<h2>Frequently Asked Questions</h2>
-
-<h2>Resources</h2>
+<TopicsNav
+  {slug}
+  {segment}
+/>
 
 <slot></slot>
