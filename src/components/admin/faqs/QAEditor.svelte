@@ -66,27 +66,27 @@
             variables: {
               slug: topicFAQ.topic.slug
             }
-          }).topicFAQAdmin;
+          }).topicFAQ;
 
           const newTopicFAQQuestion = mutationResult.data.addTopicFAQQuestion;
-          let newTopicFAQAdminData = {
+          let newTopicFAQData = {
             ...topicFAQData
           };
 
           if (mode === 'add' || mode === 'publish') {
-            newTopicFAQAdminData = {
-              ...newTopicFAQAdminData,
+            newTopicFAQData = {
+              ...newTopicFAQData,
               topicFAQQuestions: [
-                ...newTopicFAQAdminData.topicFAQQuestions,
+                ...newTopicFAQData.topicFAQQuestions,
                 newTopicFAQQuestion
               ]
             }
           }
 
           if (mode === 'publish' && question) {
-            newTopicFAQAdminData = {
-              ...newTopicFAQAdminData,
-              cohortQuestions: newTopicFAQAdminData.cohortQuestions.map(question => {
+            newTopicFAQData = {
+              ...newTopicFAQData,
+              cohortQuestions: newTopicFAQData.cohortQuestions.map(question => {
                 if (question.id === newTopicFAQQuestion.cohortQuestion.id) {
                   return { ...question, convertedToFAQ: true }
                 } else {
@@ -97,9 +97,9 @@
           }
 
           if (mode === 'edit' && question) {
-            newTopicFAQAdminData = {
-              ...newTopicFAQAdminData,
-              topicFAQQuestions: newTopicFAQAdminData.topicFAQQuestions.map(question => {
+            newTopicFAQData = {
+              ...newTopicFAQData,
+              topicFAQQuestions: newTopicFAQData.topicFAQQuestions.map(question => {
                 if (question.id === newTopicFAQQuestion.id) {
                   return newTopicFAQQuestion;
                 } else {
@@ -115,7 +115,7 @@
               slug: topicFAQ.topic.slug
             },
             data: {
-              topicFAQAdmin: newTopicFAQAdminData
+              topicFAQ: newTopicFAQData
             }
           })
         }

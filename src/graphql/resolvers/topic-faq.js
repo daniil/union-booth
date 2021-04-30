@@ -3,9 +3,8 @@ import { isAuthenticated, checkRole } from './auth';
 
 export default {
   Query: {
-    topicFAQAdmin: combineResolvers(
+    topicFAQ: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
       async (_, { slug }, { models }) => {
         const topic = await models.Topic.findOne({
           attributes: [['id', 'topicId']],

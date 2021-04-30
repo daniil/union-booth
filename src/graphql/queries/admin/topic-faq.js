@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const TOPIC_FAQ_ADMIN = gql`
-  query TopicFAQAdmin($slug: ID!) {
-    topicFAQAdmin(slug: $slug) {
+  query TopicFAQ($slug: ID!) {
+    topicFAQ(slug: $slug) {
       topic {
         id
         slug

@@ -47,7 +47,7 @@
   let topicFAQ = $session.apolloClient.readQuery({
     query: TOPIC_FAQ_ADMIN,
     variables: { slug }
-  }).topicFAQAdmin;
+  }).topicFAQ;
 
   const topicFAQSub = $session.apolloClient
     .watchQuery({
@@ -56,7 +56,7 @@
       fetchPolicy: 'cache-and-network'
     })
     .subscribe(({ data }) => {
-      topicFAQ = data.topicFAQAdmin;
+      topicFAQ = data.topicFAQ;
     });
   
   onDestroy(() => topicFAQSub.unsubscribe());
@@ -95,7 +95,7 @@
             query: TOPIC_FAQ_ADMIN,
             variables: { slug },
             data: {
-              topicFAQAdmin: {
+              topicFAQ: {
                 ...topicFAQ,
                 topicFAQQuestions: topicFAQ.topicFAQQuestions.filter(question => question.id !== mutationResult.data.deactivateTopicFAQQuestion.id)
               }
