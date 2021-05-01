@@ -20,6 +20,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+	import TopicFAQ from 'components/TopicFAQ.svelte';
 
   export let slug;
 
@@ -43,4 +44,4 @@
   onDestroy(() => topicFAQSub.unsubscribe());
 </script>
 
-<h3>Frequently Asked Questions Content</h3>
+<TopicFAQ topic={topicFAQ}/>
