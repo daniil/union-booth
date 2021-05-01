@@ -1,10 +1,15 @@
-export function formatDate(timestamp) {
+export function formatDate(timestamp, withYear = false) {
   const dateObj = new Date(timestamp);
-
-  return dateObj.toLocaleDateString('en-CA', {
+  const dateFormat = {
     month: 'short',
-    day: 'numeric'
-  });
+    day: 'numeric',
+  };
+
+  if (withYear) {
+    dateFormat.year = 'numeric';
+  }
+
+  return dateObj.toLocaleDateString('en-CA', dateFormat);
 }
 
 export function formatTime(timestamp) {
