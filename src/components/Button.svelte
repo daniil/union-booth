@@ -18,16 +18,18 @@
   .button {
     display: inline-flex;
     align-items: center;
+    padding: 0.25rem 0.75rem;
+    margin-right: 0.5rem;
     background: rgba(219, 211, 216, 0.3);
     border: none;
     border-radius: 4px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    padding: 0.25rem 0.75rem;
+    box-shadow: rgba(50, 50, 93, 0.15) 0px 2px 5px -1px, rgba(0, 0, 0, 0.2) 0px 1px 3px -1px;
     cursor: pointer;
     font-size: 1.3rem;
   }
   .button:not(:disabled):hover {
     background: rgba(219, 211, 216, 0.5);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
   .button:hover .button-text {
     text-shadow: 1px 1px 0px rgba(255,255,255,0.75);

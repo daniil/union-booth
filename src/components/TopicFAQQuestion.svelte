@@ -43,6 +43,9 @@
     border-bottom: 3px solid #fff;
     font-weight: bold;
   }
+  .btn-answer:hover > .btn-label {
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+  }
 </style>
 
 <section class="question">
