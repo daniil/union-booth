@@ -1,4 +1,6 @@
 <script>
+  import { slide } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
   import { parseMD } from 'utils/markdown';
   import { formatDate } from 'utils/time';
   
@@ -31,6 +33,8 @@
   <h3>{@html parseMD(question.question)}</h3>
   <button on:click={toggleAnswer}>View Answer</button>
   {#if answerVisible}
-    <div class="answer">{question.answer}</div>
+    <div class="answer" transition:slide="{{ duration: 300, easing: cubicOut }}">
+      {question.answer}
+    </div>
   {/if}
 </section>
