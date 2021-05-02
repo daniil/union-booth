@@ -26,15 +26,36 @@
     font-size: 0.8rem;
     text-align: right;
   }
+  .btn-answer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #05668F;
+  }
+  .btn-answer:hover {
+    filter: brightness(1.25);
+  }
+  .btn-label {
+    padding: 0.75rem 0;
+    border-bottom: 3px solid #fff;
+    font-weight: bold;
+  }
 </style>
 
 <section class="question">
   <div class="time">{formatDate(question.createdAt, true)}</div>
   <h3>{@html parseMD(question.question)}</h3>
-  <button on:click={toggleAnswer}>View Answer</button>
+  <button class="btn-answer" on:click={toggleAnswer}>
+    <div class="btn-label">
+      {#if answerVisible}Hide{:else}View{/if} Answer
+    </div>
+  </button>
   {#if answerVisible}
     <div class="answer" transition:slide="{{ duration: 300, easing: cubicOut }}">
-      {question.answer}
+      {@html parseMD(question.answer)}
     </div>
   {/if}
 </section>
