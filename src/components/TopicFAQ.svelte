@@ -4,6 +4,10 @@
   export let topic;
 </script>
 
-{#each topic.topicFAQQuestions as question (question.id)}
-  <TopicFAQQuestion {question}/>
-{/each}
+{#if topic.topicFAQQuestions.length}
+  {#each topic.topicFAQQuestions as question (question.id)}
+    <TopicFAQQuestion {question}/>
+  {/each}
+{:else}
+  <p>No FAQs currently 🔮</p>
+{/if}
