@@ -34,6 +34,7 @@
 
 ## Tweaks
 
+- Preload font-icons for MDEditor
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query

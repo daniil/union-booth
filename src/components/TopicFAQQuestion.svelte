@@ -3,6 +3,12 @@
   import { formatDate } from 'utils/time';
   
   export let question;
+
+  let answerVisible;
+
+  const toggleAnswer = () => {
+    answerVisible = !answerVisible;
+  }
 </script>
 
 <style>
@@ -23,4 +29,8 @@
 <section class="question">
   <div class="time">{formatDate(question.createdAt, true)}</div>
   <h3>{@html parseMD(question.question)}</h3>
+  <button on:click={toggleAnswer}>View Answer</button>
+  {#if answerVisible}
+    <div class="answer">{question.answer}</div>
+  {/if}
 </section>
