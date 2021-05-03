@@ -1,6 +1,5 @@
 ## Tasks
 
-- Update individual topic page with FAQ questions
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
 - Update individual topic page with Resources
@@ -50,4 +49,3 @@
 - Authenticate WebSocket requests
 - Error handling (Add global error state and UI to replace all console.logs)
 - Auth handling
-- Add preloaders 
