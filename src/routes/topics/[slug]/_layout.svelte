@@ -33,6 +33,25 @@
 </script>
 
 <style>
+  h1 {
+    position: relative;
+  }
+  .back {
+    position: absolute;
+    right: 110%;
+    text-decoration: none;
+    color: #05668D;
+    top: -19%;
+    font-size: 2.5rem;
+    font-weight: 200;
+  }
+  .chevron {
+    transition: transform 0.15s ease-in;
+  }
+  .back:hover .chevron {
+    filter: brightness(1.25);
+    transform: translateX(-3px) scale(1.1);
+  }
   .title-wrapper {
     display: flex;
     justify-content: space-between;
@@ -49,7 +68,10 @@
 </style>
 
 <div class="title-wrapper">
-  <h1>{cohortTopic.topic.title}</h1>
+  <h1>
+    <a class="back" href="/topics"><div class="chevron">&lsaquo;</div></a>
+    {cohortTopic.topic.title}
+  </h1>
   {#if cohortTopic.isLive}
     <div class="live">LIVE</div>
   {/if}

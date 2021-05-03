@@ -37,7 +37,6 @@
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
 - Add a loading variant of the button for longer queries
-- Add a back button on individual topic page back to list of topics
 - Update Answers to be expandable
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - When user is deleted, invalidate their session
