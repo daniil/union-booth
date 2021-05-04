@@ -27,8 +27,8 @@
 - Do error catching and reporting for program and cohort add
 - Add speech-to-text question posting
 - Add SSO Login options
-- Convert to SvelteKit
 - Write automated tests
+- Convert to SvelteKit
 
 ## Tweaks
 

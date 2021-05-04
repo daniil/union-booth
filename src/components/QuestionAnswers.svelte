@@ -17,6 +17,7 @@
 
   let answers = [];
   let loading = true;
+  let answersExpanded = false;
 
   $: liveAnswersSub = $session.apolloClient
     .watchQuery({
@@ -61,17 +62,33 @@
   }
 
   onDestroy(() => newCohortAnswerUnsub());
+
+  const toggleAnswers = () => {
+    answersExpanded = !answersExpanded;
+  }
 </script>
 
 <style>
   section {
     margin: 2rem 0 0;
-    border-bottom: 1px solid #DBD3D8;
   }
   h3 {
     margin-bottom: 1rem;
     color: #3E6990;
     font-size: 1rem;
+  }
+  .expand-answers {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .expand-answers:hover {
+    filter: brightness(1.25);
+  }
+  .answer-container {
+    margin-top: 1rem;
+    border-bottom: 1px solid #DBD3D8;
   }
 </style>
 
@@ -80,12 +97,16 @@
 {:else}
   {#if answers.length}
     <section>
-      <h3>Answers</h3>
-      {#each answers as answer (answer.id)}
-        <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-          <Answer details={answer}/>
+      <button class="expand-answers" on:click={toggleAnswers}>
+        <h3><strong>{answers.length}</strong> Answers</h3>
+      </button>
+      {#if answersExpanded}
+        <div class="answer-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
+          {#each answers as answer (answer.id)}
+            <Answer details={answer}/>
+          {/each}
         </div>
-      {/each}
+      {/if}
     </section>
   {/if}
 {/if}
