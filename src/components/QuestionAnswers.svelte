@@ -73,9 +73,13 @@
     margin: 2rem 0 0;
   }
   h3 {
+    display: flex;
     margin-bottom: 1rem;
     color: #3E6990;
     font-size: 1rem;
+  }
+  h3 > strong {
+    margin-right: 0.25rem;
   }
   .expand-answers {
     padding: 0;
@@ -85,6 +89,21 @@
   }
   .expand-answers:hover {
     filter: brightness(1.25);
+  }
+  .expand-icon {
+    font-size: 1.5rem;
+    transform: translateY(-4px) rotate(90deg);
+    margin-left: 0.75rem;
+    transition: transform 0.25s ease-out;
+  }
+  .expand-icon.is-expanded {
+    transform: translateY(-4px) translateX(-4px) rotate(-90deg);
+  }
+  .expand-answers:hover .expand-icon {
+    transform: translateY(-2px) rotate(90deg);
+  }
+  .expand-answers:hover .expand-icon.is-expanded {
+    transform: translateY(-6px) translateX(-4px) rotate(-90deg);
   }
   .answer-container {
     margin-top: 1rem;
@@ -98,7 +117,10 @@
   {#if answers.length}
     <section>
       <button class="expand-answers" on:click={toggleAnswers}>
-        <h3><strong>{answers.length}</strong> Answers</h3>
+        <h3>
+          <strong>{answers.length}</strong> Answers
+          <div class="expand-icon" class:is-expanded={answersExpanded}>&rsaquo;</div>
+        </h3>
       </button>
       {#if answersExpanded}
         <div class="answer-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
