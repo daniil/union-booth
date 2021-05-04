@@ -3,21 +3,20 @@
 - Add a Resources model/schema tied to the topic
 - Add UI for managing resources
 - Update individual topic page with Resources
-- Create deactivate a question functionality
-- Create edit a question functionality
-- Create deactivate an answer functionality
-- Create edit an answer functionality
+- Add user admin UI
+  - Add generate new avatar functionality for user
+- Create deactivate a question functionality (Live page)
+- Create edit a question functionality (Live page)
+- Create deactivate an answer functionality (Live page)
+- Create edit an answer functionality (Live page)
 - Open Studio Queue functionality
   - Queue for an educator
   - Educator can keep track of students they are currently helping / need help
   - Average answer time (based off startTime and endTime)
 - Select random student to answer question
 - Setup notifications system (new question, new answer, watch answer, etc.)
-- Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
-- Add user admin UI
-  - Add generate new avatar functionality for user
 - Add a program/cohort admin privileges for other roles
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Update site color scheme
@@ -28,8 +27,8 @@
 - Do error catching and reporting for program and cohort add
 - Add speech-to-text question posting
 - Add SSO Login options
-- Write automated tests
 - Convert to SvelteKit
+- Write automated tests
 
 ## Tweaks
 
@@ -47,4 +46,7 @@
 - Add cascading functionality to all managed tables
 - Authenticate WebSocket requests
 - Error handling (Add global error state and UI to replace all console.logs)
-- Auth handling
+ 
+## Bug Tracking
+
+- Investigate the error that comes up after switching topics and getting "can not post to topic GraphQL error"
