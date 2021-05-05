@@ -68,6 +68,7 @@
   .button.link,
   .button.link:not(:disabled):hover {
     background: none;
+    box-shadow: none;
     font-weight: bold;
   }
   .button.link > .button-text {
