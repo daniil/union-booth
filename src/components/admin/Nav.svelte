@@ -37,5 +37,8 @@
     <li>
       <a rel="prefetch" aria-current="{segment === 'faqs' ? 'page' : undefined}" href="/admin/faqs">FAQs</a>
     </li>
+    <li>
+      <a rel="prefetch" aria-current="{segment === 'resources' ? 'page' : undefined}" href="/admin/resources">Resources</a>
+    </li>
   </ul>
 </nav>
