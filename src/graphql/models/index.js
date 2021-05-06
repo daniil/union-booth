@@ -7,6 +7,7 @@ import cohortQuestionModel from './cohort-question';
 import cohortAnswerModel from './cohort-answer';
 import cohortAnswerInProgressModel from './cohort-answer-in-progress';
 import topicFAQModel from './topic-faq';
+import resourceModel from './resource';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
@@ -48,6 +49,7 @@ const models = {
   CohortAnswer: cohortAnswerModel(sequelize, DataTypes),
   CohortAnswerInProgress: cohortAnswerInProgressModel(sequelize, DataTypes),
   TopicFAQ: topicFAQModel(sequelize, DataTypes),
+  Resource: resourceModel(sequelize, DataTypes),
   User: userModel(sequelize, DataTypes)
 };
 
