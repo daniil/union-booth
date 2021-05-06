@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
@@ -13,6 +14,7 @@
   export let answeredBy;
 
   const { session } = stores();
+  const dispatch = createEventDispatcher();
 
   const addCohortAnswer = mutation(ADD_COHORT_ANSWER);
   const updateCohortAnswerProgress = mutation(UPDATE_COHORT_ANSWER_PROGRESS);
@@ -42,6 +44,7 @@
 
       answerText = '';
       toggleFormVisible();
+      dispatch('answer-published');
     } catch(err) {
       console.log('ERROR: ', err);
     }

@@ -66,6 +66,10 @@
   const toggleAnswers = () => {
     answersExpanded = !answersExpanded;
   }
+
+  const handleAnswerPublished = () => {
+    answersExpanded = true;
+  }
 </script>
 
 <style>
@@ -136,4 +140,5 @@
   {questionId}
   {beingAnsweredBy}
   {answeredBy}
+  on:answer-published={handleAnswerPublished}
 />
