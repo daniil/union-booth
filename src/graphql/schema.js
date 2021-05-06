@@ -92,6 +92,16 @@ const typeDefs = gql`
     isInactive: Boolean!
   }
 
+  type Resource {
+    id: ID!
+    url: String!
+    title: String!
+    description: String!
+    createdAt: Date!
+    topic: Topic!
+    isInactive: Boolean!
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program
