@@ -116,6 +116,7 @@ const typeDefs = gql`
     liveAnswers(cohortQuestionId: ID!): [CohortAnswer]!
     answersInProgress(cohortQuestionId: ID!): [CohortAnswerInProgress]!
     topicFAQ(slug: ID!): TopicFAQ!
+    resources(slug: ID!): [Resource]!
   }
 
   type Mutation {
