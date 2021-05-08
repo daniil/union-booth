@@ -33,6 +33,8 @@
 
 ## Tweaks
 
+- Add validation to topics where user doesn't have access to the particular topic (they are not in that cohort), using `validateTopicSlug`
+- Add a 404 page for topic slugs that don't exist
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
