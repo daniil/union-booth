@@ -1,10 +1,12 @@
 import { combineResolvers } from 'graphql-resolvers';
-import { isAuthenticated, checkRole } from './auth';
+import { isAuthenticated } from './auth';
+import { validateTopicSlug } from './validation';
 
 export default {
   Query: {
     topicFAQ: combineResolvers(
       isAuthenticated,
+      validateTopicSlug,
       async (_, { slug }, { models }) => {
         const topic = await models.Topic.findOne({
           attributes: [['id', 'topicId']],
