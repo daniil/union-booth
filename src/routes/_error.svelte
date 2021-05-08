@@ -1,4 +1,6 @@
 <script>
+	import parseError from 'utils/parseError';
+
 	export let status;
 	export let error;
 
@@ -33,7 +35,7 @@
 
 <h1>{status}</h1>
 
-<p>{error.message}</p>
+<p>{parseError(error)}</p>
 
 {#if dev && error.stack}
 	<pre>{error.stack}</pre>
