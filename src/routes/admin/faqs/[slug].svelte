@@ -6,10 +6,6 @@
   import { TOPIC_FAQ_ADMIN, DEACTIVATE_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
   export async function preload(page, session) {
-    if (!session.user) {
-      return this.redirect(302, '');
-    }
-
     await session.apolloClient.query({
       query: TOPIC_FAQ_ADMIN,
       variables: { slug: page.params.slug }

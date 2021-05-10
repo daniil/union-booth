@@ -1,6 +1,7 @@
 ## Tasks
 
 - Add a Resources model/schema tied to the topic
+  - Add an individual topic query or resources Type that return topic data
 - Add UI for managing resources
 - Update individual topic page with Resources
 - Add user admin UI
