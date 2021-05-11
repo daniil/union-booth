@@ -1,13 +1,13 @@
 <svelte:head>
-	<title>Union Booth :: FAQs: {resources.topic ? resources.topic.title : 'Loading'}</title>
+	<title>Union Booth :: FAQs: {topicResources.topic ? topicResources.topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script context="module">
-  import { RESOURCES } from 'graphql/queries/admin/resources';
+  import { TOPIC_RESOURCES } from 'graphql/queries/topic-resources';
 
   export async function preload(page, session) {
     await session.apolloClient.query({
-      query: RESOURCES,
+      query: TOPIC_RESOURCES,
       variables: { slug: page.params.slug }
     });
 
@@ -26,22 +26,22 @@
 
   const { session } = stores();
 
-  let resources = $session.apolloClient.readQuery({
-    query: RESOURCES,
+  let topicResources = $session.apolloClient.readQuery({
+    query: TOPIC_RESOURCES,
     variables: { slug }
-  }).resources;
+  }).topicResources;
 
-  const resourcesSub = $session.apolloClient
+  const topicResourcesSub = $session.apolloClient
     .watchQuery({
-      query: RESOURCES,
+      query: TOPIC_RESOURCES,
       variables: { slug },
       fetchPolicy: 'cache-and-network'
     })
     .subscribe(({ data }) => {
-      resources = data.resources;
+      topicResources = data.topicResources;
     });
   
-  onDestroy(() => resourcesSub.unsubscribe());
+  onDestroy(() => topicResourcesSub.unsubscribe());
 </script>
 
 <style>
@@ -65,7 +65,7 @@
 <section>
   <a class="back" href="/admin/resources">&#10092; back</a>
   <h2 class="title">
-    Resources
+    {topicResources.topic.title} Resources
     <Button variant="success" icon="➕" label="Add New Resource"/>
   </h2>
 </section>
