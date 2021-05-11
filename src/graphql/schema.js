@@ -92,6 +92,11 @@ const typeDefs = gql`
     isInactive: Boolean!
   }
 
+  type TopicResources {
+    topic: Topic!
+    resources: [Resource]!
+  }
+
   type Resource {
     id: ID!
     url: String!
@@ -116,7 +121,7 @@ const typeDefs = gql`
     liveAnswers(cohortQuestionId: ID!): [CohortAnswer]!
     answersInProgress(cohortQuestionId: ID!): [CohortAnswerInProgress]!
     topicFAQ(slug: ID!): TopicFAQ!
-    resources(slug: ID!): [Resource]!
+    topicResources(slug: ID!): TopicResources!
   }
 
   type Mutation {

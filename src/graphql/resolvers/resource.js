@@ -1,31 +1,9 @@
 import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
-import { validateTopicSlug } from './validation';
 import parseSequelizeError from 'utils/parseSequelizeError';
 
 export default {
-  Query: {
-    resources: combineResolvers(
-      isAuthenticated,
-      validateTopicSlug,
-      async (_, { slug }, { models }) => {
-        const topic = await models.Topic.findOne({
-          attributes: ['id'],
-          where: { slug }
-        });
-         
-        const resources = await models.Resource.findAll({
-          where: {
-            topicId: topic.id
-          }
-        });
-
-        return resources;
-      }
-    )
-  },
-
   Mutation: {
     addResource: combineResolvers(
       isAuthenticated,
