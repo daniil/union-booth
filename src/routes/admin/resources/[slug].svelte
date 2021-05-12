@@ -20,11 +20,14 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+  import ResourceEditor from 'components/admin/resources/ResourceEditor.svelte';
   import Button from 'components/Button.svelte';
 
   export let slug;
 
   const { session } = stores();
+
+  let editorIsVisible = false;
 
   let topicResources = $session.apolloClient.readQuery({
     query: TOPIC_RESOURCES,
@@ -42,6 +45,14 @@
     });
   
   onDestroy(() => topicResourcesSub.unsubscribe());
+
+  const handleAddNew = () => {
+    editorIsVisible = true;
+  }
+
+  const handleClose = () => {
+    editorIsVisible = false;
+  }
 </script>
 
 <style>
@@ -66,6 +77,16 @@
   <a class="back" href="/admin/resources">&#10092; back</a>
   <h2 class="title">
     {topicResources.topic.title} Resources
-    <Button variant="success" icon="➕" label="Add New Resource"/>
+    <Button
+      variant="success"
+      icon="➕"
+      label="Add New Resource"
+      action={handleAddNew}
+      disabled={editorIsVisible}
+    />
   </h2>
 </section>
+<ResourceEditor
+  visible={editorIsVisible}
+  on:close={handleClose}
+/>
