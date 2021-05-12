@@ -38,6 +38,8 @@
 <style>
   .resource-editor {
     position: fixed;
+    display: flex;
+    justify-content: center;
     padding: 2rem;
     left: 0;
     right: 0;
@@ -47,6 +49,10 @@
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     transform: translateY(100%);
     transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .editor-container {
+    width: 100%;
+    max-width: 52em;
   }
   h2 {
     display: flex;
@@ -76,22 +82,24 @@
 </style>
 
 <section class="resource-editor" class:visible>
-  <h2>
-    Resource Editor
-    <button class="close" on:click={triggerClose}>X</button>
-  </h2>
-  <div class="form-element">
-    <TextInput id="title" type="text" label="Resource Title" labelStyle="admin" bind:value={editorValues.title} required/>
+  <div class="editor-container">
+    <h2>
+      Resource Editor
+      <button class="close" on:click={triggerClose}>X</button>
+    </h2>
+    <div class="form-element">
+      <TextInput id="title" type="text" label="Resource Title" labelStyle="admin" bind:value={editorValues.title} required/>
+    </div>
+    <div class="form-element">
+      <TextInput id="url" type="text" label="Resource URL" labelStyle="admin" bind:value={editorValues.url} required/>
+    </div>
+    <MDEditor
+      id="description"
+      label="Description"
+      placeholder="Resource Description"
+      value={editorValues.description}
+      on:change={handleEditorChange}
+    />
+    <Button variant="success" icon="👍" label="Save" action={saveResource} disabled={submitDisabled}/>
   </div>
-  <div class="form-element">
-    <TextInput id="url" type="text" label="Resource URL" labelStyle="admin" bind:value={editorValues.url} required/>
-  </div>
-  <MDEditor
-    id="description"
-    label="Description"
-    placeholder="Resource Description"
-    value={editorValues.description}
-    on:change={handleEditorChange}
-  />
-  <Button variant="success" icon="👍" label="Save" action={saveResource} disabled={submitDisabled}/>
 </section>
