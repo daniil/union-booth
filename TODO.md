@@ -1,9 +1,13 @@
 ## Tasks
 
 - Add a Resources model/schema tied to the topic
-  - Add an individual topic query or resources Type that return topic data
   - Add order field for the resources
 - Add UI for managing resources
+  - Adding a new resource
+  - Listing all resources
+  - Editing a resource
+  - Deactivating a resource
+  - Reordering resources
 - Update individual topic page with Resources
 - Add user admin UI
   - Add generate new avatar functionality for user
@@ -37,6 +41,7 @@
 ## Tweaks
 
 - Refactor QAEditor and ResourceEditor to use shared PopupWindow component (to be created)
+  - Take ResourceEditor as a starting point, as it has the correct sizing of the component
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
