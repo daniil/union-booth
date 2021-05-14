@@ -20,6 +20,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+  import Resources from 'components/admin/resources/Resources.svelte';
   import ResourceEditor from 'components/admin/resources/ResourceEditor.svelte';
   import Button from 'components/Button.svelte';
 
@@ -85,6 +86,7 @@
       disabled={editorIsVisible}
     />
   </h2>
+  <Resources resources={topicResources.resources}/>
 </section>
 <ResourceEditor
   visible={editorIsVisible}

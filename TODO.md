@@ -40,8 +40,6 @@
 
 ## Tweaks
 
-- Refactor QAEditor and ResourceEditor to use shared PopupWindow component (to be created)
-  - Take ResourceEditor as a starting point, as it has the correct sizing of the component
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
