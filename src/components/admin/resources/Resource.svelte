@@ -1,4 +1,6 @@
 <script>
+  import { parseMD } from 'utils/markdown';
+
   export let resource;
 </script>
 
@@ -33,5 +35,5 @@
     <h3>{resource.title}</h3>
     <p class="url">{resource.url}</p>
   </a>
-  <p class="description">{resource.description}</p>
+  <p class="description">{@html parseMD(resource.description)}</p>
 </li>
