@@ -5,6 +5,7 @@
 - Add UI for managing resources
   - Adding a new resource
   - Listing all resources
+    - Style the resources component
   - Editing a resource
   - Deactivating a resource
   - Reordering resources

@@ -18,6 +18,21 @@ const TOPIC_RESOURCES = gql`
   }
 `;
 
+const ADD_RESOURCE = gql`
+  mutation AddResource($id: ID, $topicId: ID!, $url: String!, $title: String!, $description: String!) {
+    addResource(id: $id, topicId: $topicId, url: $url, title: $title, description: $description) {
+      id
+      url
+      title
+      description
+      topic {
+        title
+      }
+    }
+  }
+`;
+
 export {
-  TOPIC_RESOURCES
+  TOPIC_RESOURCES,
+  ADD_RESOURCE
 }
