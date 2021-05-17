@@ -4,7 +4,9 @@
   import TextInput from 'components/TextInput.svelte';
   import MDEditor from 'components/MDEditor.svelte';
   import Button from 'components/Button.svelte';
+  import { TOPIC_RESOURCES, ADD_RESOURCE } from 'graphql/queries/topic-resources';
 
+  export let topic;
   export let visible;
 
   const dispatch = createEventDispatcher();
@@ -22,7 +24,15 @@
   }
 
   const saveResource = async () => {
-    console.log(editorValues);
+    const mutationVariables = {
+      topicId: topic.id,
+      title: editorValues.title,
+      url: editorValues.url,
+      description: editorValues.description
+    };
+
+    console.log(mutationVariables);
+    
     triggerClose();
   }
 

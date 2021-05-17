@@ -4,6 +4,7 @@ const TOPIC_RESOURCES = gql`
   query TopicResources($slug: ID!) {
     topicResources(slug: $slug) {
       topic {
+        id
         title
       }
       resources {

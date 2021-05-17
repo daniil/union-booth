@@ -89,6 +89,7 @@
   <Resources resources={topicResources.resources}/>
 </section>
 <ResourceEditor
+  topic={topicResources.topic}
   visible={editorIsVisible}
   on:close={handleClose}
 />
