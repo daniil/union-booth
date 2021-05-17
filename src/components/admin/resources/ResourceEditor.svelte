@@ -1,4 +1,5 @@
 <script>
+  import { stores } from '@sapper/app';
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import SlideOutPanel from 'components/SlideOutPanel.svelte';
@@ -10,6 +11,7 @@
   export let topic;
   export let visible;
   
+  const { session } = stores();
   const dispatch = createEventDispatcher();
 
   const addResource = mutation(ADD_RESOURCE);
@@ -38,7 +40,28 @@
       await addResource({
         variables: mutationVariables,
         update: (_, mutationResult) => {
-          console.log('addResource Result: ', mutationResult.data.addResource);
+          const newResource = mutationResult.data.addResource;
+          const topicResourcesData = $session.apolloClient.readQuery({
+            query: TOPIC_RESOURCES,
+            variables: {
+              slug: topic.slug
+            }
+          }).topicResources;
+
+          const newTopicResourcesData = {
+            ...topicResourcesData,
+            resources: [...topicResourcesData.resources, newResource]
+          }
+
+          $session.apolloClient.writeQuery({
+            query: TOPIC_RESOURCES,
+            variables: {
+              slug: topic.slug
+            },
+            data: {
+              topicResources: newTopicResourcesData
+            }
+          })
         }
       });
 

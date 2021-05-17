@@ -6,6 +6,7 @@ const TOPIC_RESOURCES = gql`
       topic {
         id
         title
+        slug
       }
       resources {
         id
@@ -26,8 +27,12 @@ const ADD_RESOURCE = gql`
       url
       title
       description
+      createdAt
+      isInactive
       topic {
+        id
         title
+        slug
       }
     }
   }
