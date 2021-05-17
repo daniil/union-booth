@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { mutation } from 'svelte-apollo';
   import SlideOutPanel from 'components/SlideOutPanel.svelte';
   import TextInput from 'components/TextInput.svelte';
   import MDEditor from 'components/MDEditor.svelte';
@@ -8,8 +9,10 @@
 
   export let topic;
   export let visible;
-
+  
   const dispatch = createEventDispatcher();
+
+  const addResource = mutation(ADD_RESOURCE);
 
   let editorValues = {
     title: '',
@@ -31,9 +34,19 @@
       description: editorValues.description
     };
 
-    console.log(mutationVariables);
+    try {
+      await addResource({
+        variables: mutationVariables,
+        update: (_, mutationResult) => {
+          console.log('addResource Result: ', mutationResult.data.addResource);
+        }
+      });
+
+      triggerClose();
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
     
-    triggerClose();
   }
 
   const triggerClose = () => {
