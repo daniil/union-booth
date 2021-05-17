@@ -153,7 +153,7 @@
   />
 </section>
 <QAEditor
-  {topicFAQ}
+  topic={topicFAQ.topic}
   mode={editorMode}
   question={selectedQuestion}
   visible={editorIsVisible}

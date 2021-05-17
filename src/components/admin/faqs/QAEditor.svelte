@@ -7,7 +7,7 @@
   import Button from 'components/Button.svelte';
   import { TOPIC_FAQ_ADMIN, ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
-  export let topicFAQ;
+  export let topic;
   export let mode;
   export let question;
   export let visible;
@@ -42,7 +42,7 @@
 
   const saveQA = async () => {
     const mutationVariables = {
-      topicId: topicFAQ.topic.id,
+      topicId: topic.id,
       question: editorValues.question,
       answer: editorValues.answer
     };
@@ -65,7 +65,7 @@
           let topicFAQData = $session.apolloClient.readQuery({
             query: TOPIC_FAQ_ADMIN,
             variables: {
-              slug: topicFAQ.topic.slug
+              slug: topic.slug
             }
           }).topicFAQ;
 
@@ -113,7 +113,7 @@
           $session.apolloClient.writeQuery({
             query: TOPIC_FAQ_ADMIN,
             variables: {
-              slug: topicFAQ.topic.slug
+              slug: topic.slug
             },
             data: {
               topicFAQ: newTopicFAQData
