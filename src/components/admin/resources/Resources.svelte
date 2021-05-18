@@ -10,8 +10,12 @@
   }
 </style>
 
-<ul>
-  {#each resources as resource (resource.id)}
-    <Resource {resource}/>
-  {/each}
-</ul>
+{#if resources.length}
+  <ul>
+    {#each resources as resource (resource.id)}
+      <Resource {resource}/>
+    {/each}
+  </ul>
+{:else}
+  <p>No resources for this topic yet. 🙅🏽‍♂️</p>
+{/if}
