@@ -1,5 +1,6 @@
 <script>
   import { parseMD } from 'utils/markdown';
+  import ResourceActions from 'components/admin/resources/ResourceActions.svelte';
 
   export let resource;
 </script>
@@ -36,4 +37,9 @@
     <p class="url">{resource.url}</p>
   </a>
   <p class="description">{@html parseMD(resource.description)}</p>
+  <ResourceActions
+    resourceId={resource.id}
+    on:edit
+    on:deactivate
+  />
 </li>
