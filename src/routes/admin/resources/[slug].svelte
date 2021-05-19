@@ -55,13 +55,15 @@
   }
 
   const handleClose = () => {
+    editorMode = null;
+    selectedResource = null;
     editorIsVisible = false;
   }
 
   const handleEdit = e => {
     editorMode = 'edit';
     selectedResource = topicResources.resources.find(resource => resource.id === e.detail.resourceId);
-    console.log(selectedResource);
+    if (selectedResource) editorIsVisible = true;
   }
 </script>
 

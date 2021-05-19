@@ -138,7 +138,7 @@
 
 <SlideOutPanel
   title="QA Editor"
-  on:close
+  on:close={triggerClose}
   {visible}
 >
   <MDEditor

@@ -9,6 +9,8 @@
   import { TOPIC_RESOURCES, ADD_RESOURCE } from 'graphql/queries/topic-resources';
 
   export let topic;
+  export let mode;
+  export let resource;
   export let visible;
   
   const { session } = stores();
@@ -23,6 +25,15 @@
   }
 
   $: submitDisabled = editorValues.title === '' || editorValues.url === '';
+  $: if (resource) setEditorValues();
+
+  const setEditorValues = () => {
+    editorValues = {
+      title: resource.title,
+      url: resource.url,
+      description: resource.description
+    }
+  }
 
   const handleEditorChange = event => {
     editorValues[event.detail.id] = event.detail.value;
@@ -90,7 +101,7 @@
 
 <SlideOutPanel
   title="Resource Editor"
-  on:close
+  on:close={triggerClose}
   {visible}
 >
   <div class="form-element">
