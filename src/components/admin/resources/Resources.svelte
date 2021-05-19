@@ -13,7 +13,11 @@
 {#if resources.length}
   <ul>
     {#each resources as resource (resource.id)}
-      <Resource {resource}/>
+      <Resource
+        {resource}
+        on:edit
+        on:deactivate
+      />
     {/each}
   </ul>
 {:else}

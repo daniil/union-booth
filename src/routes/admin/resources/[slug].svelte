@@ -29,6 +29,8 @@
   const { session } = stores();
 
   let editorIsVisible = false;
+  let selectedResource;
+  let editorMode;
 
   let topicResources = $session.apolloClient.readQuery({
     query: TOPIC_RESOURCES,
@@ -48,11 +50,18 @@
   onDestroy(() => topicResourcesSub.unsubscribe());
 
   const handleAddNew = () => {
+    editorMode = 'add';
     editorIsVisible = true;
   }
 
   const handleClose = () => {
     editorIsVisible = false;
+  }
+
+  const handleEdit = e => {
+    editorMode = 'edit';
+    selectedResource = topicResources.resources.find(resource => resource.id === e.detail.resourceId);
+    console.log(selectedResource);
   }
 </script>
 
@@ -86,10 +95,15 @@
       disabled={editorIsVisible}
     />
   </h2>
-  <Resources resources={topicResources.resources}/>
+  <Resources
+    resources={topicResources.resources}
+    on:edit={handleEdit}
+  />
 </section>
 <ResourceEditor
   topic={topicResources.topic}
+  mode={editorMode}
+  resource={selectedResource}
   visible={editorIsVisible}
   on:close={handleClose}
 />

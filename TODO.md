@@ -41,6 +41,7 @@
 
 ## Tweaks
 
+- Add click-off and press Esc to close the panel functionality to SlideOutPanel
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
