@@ -17,6 +17,9 @@
   li {
     margin-bottom: 2rem;
   }
+  li::marker {
+    color: rgba(85, 67, 72, 0.75);
+  }
   h3 {
     margin-bottom: 0.3rem;
     font-weight: 500;
