@@ -47,6 +47,10 @@
       description: editorValues.description
     };
 
+    if (mode === 'edit' && resource) {
+      mutationVariables.id = resource.id;
+    }
+
     try {
       await addResource({
         variables: mutationVariables,
@@ -59,9 +63,28 @@
             }
           }).topicResources;
 
-          const newTopicResourcesData = {
-            ...topicResourcesData,
-            resources: [...topicResourcesData.resources, newResource]
+          let newTopicResourcesData = {
+            ...topicResourcesData
+          }
+
+          if (mode === 'add') {
+            newTopicResourcesData = {
+              ...newTopicResourcesData,
+              resources: [...topicResourcesData.resources, newResource]
+            }
+          }
+
+          if (mode === 'edit' && resource) {
+            newTopicResourcesData = {
+              ...newTopicResourcesData,
+              resources: topicResourcesData.resources.map(resource => {
+                if (resource.id === newResource.id) {
+                  return newResource;
+                } else {
+                  return resource;
+                }
+              })
+            }
           }
 
           $session.apolloClient.writeQuery({
