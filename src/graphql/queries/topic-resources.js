@@ -46,7 +46,21 @@ const ADD_RESOURCE = gql`
   ${topicInformation}
 `;
 
+const DEACTIVATE_RESOURCE = gql`
+  mutation DeactivateResource($id: ID!) {
+    deactivateResource(id: $id) {
+      ...ResourceInformation
+      topic {
+        ...TopicInformation
+      }
+    }
+  }
+  ${resourceInformation}
+  ${topicInformation}
+`;
+
 export {
   TOPIC_RESOURCES,
-  ADD_RESOURCE
+  ADD_RESOURCE,
+  DEACTIVATE_RESOURCE
 }
