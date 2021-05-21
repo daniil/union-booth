@@ -1,40 +1,49 @@
 import gql from 'graphql-tag';
 
+const topicInformation = gql`
+  fragment TopicInformation on Topic {
+    id
+    title
+    slug
+  }
+`;
+
+const resourceInformation = gql`
+  fragment ResourceInformation on Resource {
+    id
+    url
+    title
+    description
+    createdAt
+  }
+`;
+
 const TOPIC_RESOURCES = gql`
   query TopicResources($slug: ID!) {
     topicResources(slug: $slug) {
       topic {
-        id
-        title
-        slug
+        ...TopicInformation
       }
       resources {
-        id
-        url
-        title
-        description
-        createdAt
+        ...ResourceInformation
       }
     }
   }
+  ${topicInformation}
+  ${resourceInformation}
 `;
 
 const ADD_RESOURCE = gql`
   mutation AddResource($id: ID, $topicId: ID!, $url: String!, $title: String!, $description: String!) {
     addResource(id: $id, topicId: $topicId, url: $url, title: $title, description: $description) {
-      id
-      url
-      title
-      description
-      createdAt
-      isInactive
+      ...ResourceInformation
       topic {
-        id
-        title
-        slug
+        ...TopicInformation
       }
     }
   }
+  ${resourceInformation}
+  ${topicInformation}
 `;
 
 export {
