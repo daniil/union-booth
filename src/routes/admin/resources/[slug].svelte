@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script context="module">
-  import { TOPIC_RESOURCES } from 'graphql/queries/topic-resources';
+  import { TOPIC_RESOURCES, DEACTIVATE_RESOURCE } from 'graphql/queries/topic-resources';
 
   export async function preload(page, session) {
     await session.apolloClient.query({
@@ -19,6 +19,7 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
   import { onDestroy } from 'svelte';
   import Resources from 'components/admin/resources/Resources.svelte';
   import ResourceEditor from 'components/admin/resources/ResourceEditor.svelte';
@@ -27,6 +28,8 @@
   export let slug;
 
   const { session } = stores();
+
+  const deactivateResource = mutation(DEACTIVATE_RESOURCE);
 
   let editorIsVisible = false;
   let selectedResource;
@@ -65,6 +68,18 @@
     selectedResource = topicResources.resources.find(resource => resource.id === e.detail.resourceId);
     if (selectedResource) editorIsVisible = true;
   }
+
+  const handleDeactivate = async e => {
+    try {
+      await deactivateResource({
+        variables: {
+          id: e.detail.resourceId
+        }
+      });
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
+  }
 </script>
 
 <style>
@@ -100,6 +115,7 @@
   <Resources
     resources={topicResources.resources}
     on:edit={handleEdit}
+    on:deactivate={handleDeactivate}
   />
 </section>
 <ResourceEditor
