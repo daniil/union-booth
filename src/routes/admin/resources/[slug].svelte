@@ -74,6 +74,18 @@
       await deactivateResource({
         variables: {
           id: e.detail.resourceId
+        },
+        update: (_, mutationResult) => {
+          $session.apolloClient.writeQuery({
+            query: TOPIC_RESOURCES,
+            variables: { slug },
+            data: {
+              topicResources: {
+                ...topicResources,
+                resources: topicResources.resources.filter(resource => resource.id !== mutationResult.data.deactivateResource.id)
+              }
+            }
+          })
         }
       });
     } catch(err) {

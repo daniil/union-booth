@@ -3,7 +3,6 @@
 - Add a Resources model/schema tied to the topic
   - Add order field for the resources
 - Add UI for managing resources
-  - Deactivating a resource
   - Changing the view between brief and expanded
   - Reordering resources
 - Update individual topic page with Resources
