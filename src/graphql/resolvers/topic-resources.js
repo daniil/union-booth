@@ -25,7 +25,8 @@ export default {
     resources: async (parent, _, { models }) => {
       return await models.Resource.findAll({
         where: {
-          topicId: parent.get('topicId')
+          topicId: parent.get('topicId'),
+          isInactive: false
         }
       });
     }

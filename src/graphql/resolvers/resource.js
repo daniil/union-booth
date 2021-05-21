@@ -25,6 +25,33 @@ export default {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
+    ),
+
+    deactivateResource: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, { id }, { models }) => {
+        try {
+          const resource = await models.Resource.findOne({
+            where: {
+              id,
+              isInactive: false
+            }
+          });
+
+          if (!resource) {
+            throw new UserInputError('Resource can not be found or is already inactive');
+          }
+
+          await resource.update({
+            isInactive: true
+          });
+
+          return resource;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
     )
   },
 

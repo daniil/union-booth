@@ -14,7 +14,6 @@ const TOPIC_RESOURCES = gql`
         title
         description
         createdAt
-        isInactive
       }
     }
   }

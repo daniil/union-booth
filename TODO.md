@@ -3,11 +3,8 @@
 - Add a Resources model/schema tied to the topic
   - Add order field for the resources
 - Add UI for managing resources
-  - Adding a new resource
-  - Listing all resources
-    - Style the resources component
-  - Editing a resource
   - Deactivating a resource
+  - Changing the view between brief and expanded
   - Reordering resources
 - Update individual topic page with Resources
 - Add user admin UI
