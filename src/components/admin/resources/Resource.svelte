@@ -15,22 +15,13 @@
   a:hover {
     filter: brightness(1.25);
   }
-  li.linksOnly {
-    margin-bottom: 1.25rem;
-  }
-  li.expanded {
-    margin-bottom: 2rem;
-  }
-  li::marker {
-    color: rgba(85, 67, 72, 0.75);
-  }
   h3 {
     font-weight: 500;
   }
-  li.linksOnly h3 {
+  h3.linksOnly {
     margin-bottom: 0.5rem;
   }
-  li.expanded h3 {
+  h3.expanded {
     margin-bottom: 0.3rem;
   }
   .url {
@@ -43,19 +34,17 @@
   }
 </style>
 
-<li class={displayType}>
-  <a href={resource.url} target="_blank">
-    <h3>{resource.title}</h3>
-    {#if displayType === 'expanded'}
-      <p class="url">{resource.url}</p>
-    {/if}
-  </a>
+<a href={resource.url} target="_blank">
+  <h3 class={displayType}>{resource.title}</h3>
   {#if displayType === 'expanded'}
-    <p class="description">{@html parseMD(resource.description)}</p>
+    <p class="url">{resource.url}</p>
   {/if}
-  <ResourceActions
-    resourceId={resource.id}
-    on:edit
-    on:deactivate
-  />
-</li>
+</a>
+{#if displayType === 'expanded'}
+  <p class="description">{@html parseMD(resource.description)}</p>
+{/if}
+<ResourceActions
+  resourceId={resource.id}
+  on:edit
+  on:deactivate
+/>

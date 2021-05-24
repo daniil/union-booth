@@ -5,6 +5,9 @@
 - Add UI for managing resources
   - Changing the view between brief and expanded
   - Reordering resources
+    - Add a drag zone marker
+    - Update dragzone styling during drag
+    - Save drag order to server after drop
 - Update individual topic page with Resources
 - Add user admin UI
   - Add generate new avatar functionality for user
