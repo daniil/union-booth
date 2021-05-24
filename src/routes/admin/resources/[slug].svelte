@@ -24,6 +24,7 @@
   import Resources from 'components/admin/resources/Resources.svelte';
   import ResourceEditor from 'components/admin/resources/ResourceEditor.svelte';
   import Button from 'components/Button.svelte';
+  import ResourcesDisplayTypeSwitch from 'components/admin/resources/ResourcesDisplayTypeSwitch.svelte';
 
   export let slug;
 
@@ -32,6 +33,7 @@
   const deactivateResource = mutation(DEACTIVATE_RESOURCE);
 
   let editorIsVisible = false;
+  let filterValue;
   let selectedResource;
   let editorMode;
 
@@ -124,6 +126,9 @@
       disabled={editorIsVisible}
     />
   </h2>
+  <ResourcesDisplayTypeSwitch
+    bind:value={filterValue}
+  />
   <Resources
     resources={topicResources.resources}
     on:edit={handleEdit}

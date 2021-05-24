@@ -12,6 +12,7 @@
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
 - Create edit an answer functionality (Live page)
+- Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality
   - Queue for an educator
   - Educator can keep track of students they are currently helping / need help
