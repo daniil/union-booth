@@ -2,6 +2,7 @@
   import Resource from 'components/admin/resources/Resource.svelte';
 
   export let resources;
+  export let displayType;
 </script>
 
 <style>
@@ -15,6 +16,7 @@
     {#each resources as resource (resource.id)}
       <Resource
         {resource}
+        {displayType}
         on:edit
         on:deactivate
       />

@@ -3,6 +3,7 @@
   import ResourceActions from 'components/admin/resources/ResourceActions.svelte';
 
   export let resource;
+  export let displayType;
 </script>
 
 <style>
@@ -14,15 +15,23 @@
   a:hover {
     filter: brightness(1.25);
   }
-  li {
+  li.linksOnly {
+    margin-bottom: 1.25rem;
+  }
+  li.expanded {
     margin-bottom: 2rem;
   }
   li::marker {
     color: rgba(85, 67, 72, 0.75);
   }
   h3 {
-    margin-bottom: 0.3rem;
     font-weight: 500;
+  }
+  li.linksOnly h3 {
+    margin-bottom: 0.5rem;
+  }
+  li.expanded h3 {
+    margin-bottom: 0.3rem;
   }
   .url {
     font-size: 0.9rem;
@@ -34,12 +43,16 @@
   }
 </style>
 
-<li>
+<li class={displayType}>
   <a href={resource.url} target="_blank">
     <h3>{resource.title}</h3>
-    <p class="url">{resource.url}</p>
+    {#if displayType === 'expanded'}
+      <p class="url">{resource.url}</p>
+    {/if}
   </a>
-  <p class="description">{@html parseMD(resource.description)}</p>
+  {#if displayType === 'expanded'}
+    <p class="description">{@html parseMD(resource.description)}</p>
+  {/if}
   <ResourceActions
     resourceId={resource.id}
     on:edit

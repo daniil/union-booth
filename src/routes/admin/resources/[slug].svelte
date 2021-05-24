@@ -33,7 +33,7 @@
   const deactivateResource = mutation(DEACTIVATE_RESOURCE);
 
   let editorIsVisible = false;
-  let filterValue;
+  let displayType;
   let selectedResource;
   let editorMode;
 
@@ -126,11 +126,14 @@
       disabled={editorIsVisible}
     />
   </h2>
-  <ResourcesDisplayTypeSwitch
-    bind:value={filterValue}
-  />
+  {#if topicResources.resources.length}
+    <ResourcesDisplayTypeSwitch
+      bind:value={displayType}
+    />
+  {/if}
   <Resources
     resources={topicResources.resources}
+    {displayType}
     on:edit={handleEdit}
     on:deactivate={handleDeactivate}
   />

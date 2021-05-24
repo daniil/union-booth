@@ -135,7 +135,7 @@
   </div>
   <MDEditor
     id="description"
-    label="Description"
+    label="Resource Description"
     placeholder="Resource Description"
     value={editorValues.description}
     on:change={handleEditorChange}

@@ -16,7 +16,7 @@
 
 <style>
   .actions-container:not(:empty) {
-    margin-left: -1.1rem;
+    margin-left: -1.2rem;
   }
 </style>
 
