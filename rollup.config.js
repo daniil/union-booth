@@ -8,6 +8,7 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import includePaths from 'rollup-plugin-includepaths';
 import config from 'sapper/config/rollup.js';
+import { svelteSVG } from "rollup-plugin-svelte-svg";
 import pkg from './package.json';
 
 const mode = process.env.NODE_ENV;
@@ -65,7 +66,9 @@ export default {
 				module: true
 			}),
 
-			includePaths({ paths: ["./src"] })
+			includePaths({ paths: ["./src"] }),
+
+			svelteSVG({ dev })
 		],
 
 		preserveEntrySignatures: false,
@@ -97,7 +100,8 @@ export default {
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-			includePaths({ paths: ["./src"] })
+			includePaths({ paths: ["./src"] }),
+			svelteSVG({ generate: "ssr", dev })
 		],
 		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 
