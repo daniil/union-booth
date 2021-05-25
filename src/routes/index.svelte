@@ -64,7 +64,7 @@
 	<section class="banner">
 		<h1>Union Booth</h1>
 		<h2>Q/A Platform for the now</h2>
-		<img src="home-banner.svg" alt="Union Booth banner"/>
+		<img src="images/home-banner.svg" alt="Union Booth banner"/>
 		<section class="actions">
 			<a class="action" href="/register">Register</a>
 			<a class="action" href="/login">Login</a>
