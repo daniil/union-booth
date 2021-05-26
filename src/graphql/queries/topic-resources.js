@@ -14,6 +14,7 @@ const resourceInformation = gql`
     url
     title
     description
+    order
     createdAt
   }
 `;

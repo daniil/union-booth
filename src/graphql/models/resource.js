@@ -17,6 +17,10 @@ const resource = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT
     },
+    order: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     isInactive: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

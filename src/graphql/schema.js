@@ -102,6 +102,7 @@ const typeDefs = gql`
     url: String!
     title: String!
     description: String!
+    order: Int!
     createdAt: Date!
     topic: Topic!
     isInactive: Boolean!

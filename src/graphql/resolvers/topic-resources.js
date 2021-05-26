@@ -27,7 +27,10 @@ export default {
         where: {
           topicId: parent.get('topicId'),
           isInactive: false
-        }
+        },
+        order: [
+          ['order', 'ASC']
+        ]
       });
     }
   }

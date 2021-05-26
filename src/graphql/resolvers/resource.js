@@ -10,12 +10,20 @@ export default {
       checkRole('admin'),
       async (_, { id, topicId, url, title, description }, { models }) => {
         try {
+          let order;
+
+          if (!id) {
+            order = await models.Resource.max('order');
+            order ++;
+          }
+
           const resource = await models.Resource.upsert({
             id,
             topicId,
             url,
             title,
-            description
+            description,
+            order
           });
 
           const [resourceModel] = resource;
