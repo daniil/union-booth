@@ -26,7 +26,10 @@
   }
   li {
     position: relative;
-    transition: opacity 0.15s;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  li:hover {
+    transform: scale(1.01);
   }
   li.is-muted {
     opacity: 0.7;
@@ -45,7 +48,15 @@
 </style>
 
 {#if resources.length}
-  <ul use:dndzone={{ items: resources, flipDurationMs }} on:consider={handleDndConsider} on:finalize={handleDndFinalize}>
+  <ul
+    use:dndzone={{
+      items: resources,
+      flipDurationMs,
+      dropTargetStyle: { backgroundColor: 'rgba(85, 67, 72, 0.025)', outline: 'rgba(85, 67, 72, 0.25) solid 2px' }
+    }}
+    on:consider={handleDndConsider}
+    on:finalize={handleDndFinalize}
+  >
     {#each resources as resource (resource.id)}
       <li
         class={displayType}
