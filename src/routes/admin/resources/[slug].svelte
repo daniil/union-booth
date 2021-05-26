@@ -132,6 +132,7 @@
     />
   {/if}
   <Resources
+    topicId={topicResources.topic.id}
     resources={topicResources.resources}
     {displayType}
     on:edit={handleEdit}

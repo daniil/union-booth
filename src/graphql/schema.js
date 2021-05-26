@@ -108,6 +108,11 @@ const typeDefs = gql`
     isInactive: Boolean!
   }
 
+  input ResourceOrderInput {
+    id: ID!
+    order: Int!
+  }
+
   type Query {
     programs: [Program]!
     selectedProgram: Program
@@ -150,6 +155,7 @@ const typeDefs = gql`
     addTopicFAQQuestion(id: ID, topicId: ID!, cohortQuestionId: ID, question: String!, answer: String!): TopicFAQQuestion!
     deactivateTopicFAQQuestion(id: ID!): TopicFAQQuestion!
     addResource(id: ID, topicId: ID!, url: String!, title: String!, description: String!): Resource!
+    updateResourcesOrder(topicId: ID!, orderList: [ResourceOrderInput]!): TopicResources!
     deactivateResource(id: ID!): Resource!
   }
 

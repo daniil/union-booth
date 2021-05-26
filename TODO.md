@@ -1,11 +1,8 @@
 ## Tasks
 
-- Add a Resources model/schema tied to the topic
-  - Add order field for the resources
 - Add UI for managing resources
-  - Changing the view between brief and expanded
   - Reordering resources
-    - Save drag order to server after drop
+    - Update the TOPIC_RESOURCES query after saving the new order
 - Update individual topic page with Resources
 - Update README with resources functionality
 - Add user admin UI

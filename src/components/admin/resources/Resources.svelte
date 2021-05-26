@@ -1,14 +1,19 @@
 <script>
   import { flip } from "svelte/animate";
   import { dndzone } from "svelte-dnd-action";
+  import { mutation } from 'svelte-apollo';
   import Resource from 'components/admin/resources/Resource.svelte';
   import DragIcon from 'components/DragIcon.svelte';
+  import { UPDATE_RESOURCES_ORDER } from 'graphql/queries/topic-resources';
 
+  export let topicId;
   export let resources;
   export let displayType;
 
   const flipDurationMs = 300;
   let isHovered = null;
+
+  const updateResourcesOrder = mutation(UPDATE_RESOURCES_ORDER);
 
   const handleDndConsider = e => {
     resources = e.detail.items;
@@ -16,6 +21,26 @@
 
   const handleDndFinalize = e => {
     resources = e.detail.items;
+    saveOrder();
+  }
+
+  const saveOrder = async () => {
+    const orderList = resources.map((resource, i) => {
+      return {
+        id: resource.id,
+        order: i
+      }
+    });
+
+    await updateResourcesOrder({
+      variables: {
+        topicId,
+        orderList
+      },
+      update: (_, mutationResult) => {
+        console.log('UPDATED RESOURCES ORDER: ', mutationResult.data.updateResourcesOrder);
+      }
+    });
   }
 </script>
 

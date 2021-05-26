@@ -47,6 +47,17 @@ const ADD_RESOURCE = gql`
   ${topicInformation}
 `;
 
+const UPDATE_RESOURCES_ORDER = gql`
+  mutation UpdateResourcesOrder($topicId: ID!, $orderList: [ResourceOrderInput]!) {
+    updateResourcesOrder(topicId: $topicId, orderList: $orderList) {
+      resources {
+        ...ResourceInformation
+      }
+    }
+  }
+  ${resourceInformation}
+`;
+
 const DEACTIVATE_RESOURCE = gql`
   mutation DeactivateResource($id: ID!) {
     deactivateResource(id: $id) {
@@ -63,5 +74,6 @@ const DEACTIVATE_RESOURCE = gql`
 export {
   TOPIC_RESOURCES,
   ADD_RESOURCE,
+  UPDATE_RESOURCES_ORDER,
   DEACTIVATE_RESOURCE
 }

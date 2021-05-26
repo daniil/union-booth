@@ -13,7 +13,7 @@ export default {
           let order;
 
           if (!id) {
-            order = await models.Resource.max('order');
+            order = await models.Resource.max('order', { where: { topicId }});
             order ++;
           }
 

@@ -1,5 +1,5 @@
 import { combineResolvers } from 'graphql-resolvers';
-import { isAuthenticated } from './auth';
+import { isAuthenticated, checkRole} from './auth';
 import { validateTopicSlug } from './validation';
 
 export default {
@@ -14,6 +14,37 @@ export default {
         });
 
         return topic;
+      }
+    )
+  },
+
+  Mutation: {
+    updateResourcesOrder: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, { topicId, orderList }, { models }) => {
+        try {
+          const resourceUpdates = orderList.map(orderItem => {
+            return models.Resource.update({
+              order: orderItem.order
+            }, {
+              where: {
+                id: orderItem.id
+              }
+            })
+          })
+          
+          await Promise.all(resourceUpdates);
+
+          const topic = models.Topic.findOne(({
+            attributes: [['id', 'topicId']],
+            where: { id: topicId }
+          }));
+
+          return topic;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
       }
     )
   },
