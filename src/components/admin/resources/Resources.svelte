@@ -1,20 +1,23 @@
 <script>
+  import { stores } from '@sapper/app';
   import { flip } from "svelte/animate";
   import { dndzone } from "svelte-dnd-action";
   import { mutation } from 'svelte-apollo';
   import Resource from 'components/admin/resources/Resource.svelte';
   import DragIcon from 'components/DragIcon.svelte';
-  import { UPDATE_RESOURCES_ORDER } from 'graphql/queries/topic-resources';
+  import { TOPIC_RESOURCES, UPDATE_RESOURCES_ORDER } from 'graphql/queries/topic-resources';
 
-  export let topicId;
+  export let topicSlug;
   export let resources;
   export let displayType;
 
-  const flipDurationMs = 300;
-  let isHovered = null;
+  const { session } = stores();
 
   const updateResourcesOrder = mutation(UPDATE_RESOURCES_ORDER);
 
+  const flipDurationMs = 300;
+  let isHovered = null;
+  
   const handleDndConsider = e => {
     resources = e.detail.items;
   }
@@ -34,11 +37,27 @@
 
     await updateResourcesOrder({
       variables: {
-        topicId,
+        topicSlug,
         orderList
       },
       update: (_, mutationResult) => {
-        console.log('UPDATED RESOURCES ORDER: ', mutationResult.data.updateResourcesOrder);
+        const updatedResources = mutationResult.data.updateResourcesOrder.resources;
+
+        let topicResources = $session.apolloClient.readQuery({
+          query: TOPIC_RESOURCES,
+          variables: { slug: topicSlug }
+        }).topicResources;
+
+        $session.apolloClient.writeQuery({
+          query: TOPIC_RESOURCES,
+          variables: { slug: topicSlug },
+          data: {
+            topicResources: {
+              ...topicResources,
+              resources: updatedResources
+            }
+          }
+        })
       }
     });
   }

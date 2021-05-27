@@ -22,7 +22,7 @@ export default {
     updateResourcesOrder: combineResolvers(
       isAuthenticated,
       checkRole('admin'),
-      async (_, { topicId, orderList }, { models }) => {
+      async (_, { topicSlug, orderList }, { models }) => {
         try {
           const resourceUpdates = orderList.map(orderItem => {
             return models.Resource.update({
@@ -38,7 +38,7 @@ export default {
 
           const topic = models.Topic.findOne(({
             attributes: [['id', 'topicId']],
-            where: { id: topicId }
+            where: { slug: topicSlug }
           }));
 
           return topic;

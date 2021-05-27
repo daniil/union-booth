@@ -155,7 +155,7 @@ const typeDefs = gql`
     addTopicFAQQuestion(id: ID, topicId: ID!, cohortQuestionId: ID, question: String!, answer: String!): TopicFAQQuestion!
     deactivateTopicFAQQuestion(id: ID!): TopicFAQQuestion!
     addResource(id: ID, topicId: ID!, url: String!, title: String!, description: String!): Resource!
-    updateResourcesOrder(topicId: ID!, orderList: [ResourceOrderInput]!): TopicResources!
+    updateResourcesOrder(topicSlug: ID!, orderList: [ResourceOrderInput]!): TopicResources!
     deactivateResource(id: ID!): Resource!
   }
 

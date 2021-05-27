@@ -1,8 +1,5 @@
 ## Tasks
 
-- Add UI for managing resources
-  - Reordering resources
-    - Update the TOPIC_RESOURCES query after saving the new order
 - Update individual topic page with Resources
 - Update README with resources functionality
 - Add user admin UI
@@ -37,6 +34,7 @@
 
 ## Tweaks
 
+- Include SASS functionality
 - Add click-off and press Esc to close the panel functionality to SlideOutPanel
 - Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better

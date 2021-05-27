@@ -48,8 +48,8 @@ const ADD_RESOURCE = gql`
 `;
 
 const UPDATE_RESOURCES_ORDER = gql`
-  mutation UpdateResourcesOrder($topicId: ID!, $orderList: [ResourceOrderInput]!) {
-    updateResourcesOrder(topicId: $topicId, orderList: $orderList) {
+  mutation UpdateResourcesOrder($topicSlug: ID!, $orderList: [ResourceOrderInput]!) {
+    updateResourcesOrder(topicSlug: $topicSlug, orderList: $orderList) {
       resources {
         ...ResourceInformation
       }
