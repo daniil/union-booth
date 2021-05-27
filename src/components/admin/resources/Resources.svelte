@@ -63,7 +63,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   ul {
     padding: 0 1.2rem;
     list-style-type: none;
@@ -71,18 +71,18 @@
   li {
     position: relative;
     transition: opacity 0.15s, transform 0.15s;
-  }
-  li:hover {
-    transform: scale(1.01);
-  }
-  li.is-muted {
-    opacity: 0.7;
-  }
-  li.linksOnly {
-    margin-bottom: 1.25rem;
-  }
-  li.expanded {
-    margin-bottom: 2rem;
+    &:hover {
+      transform: scale(1.01);
+    }
+    &.is-muted {
+      opacity: 0.7;
+    }
+    &.linksOnly {
+      margin-bottom: 1.25rem;
+    }
+    &.expanded {
+      margin-bottom: 2rem;
+    }
   }
   .drag-icon-container {
     position: absolute;

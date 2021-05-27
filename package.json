@@ -66,8 +66,10 @@
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "sapper": "^0.28.0",
+    "sass": "^1.34.0",
     "svelte": "^3.17.3",
     "svelte-apollo": "^0.4.0",
-    "svelte-dnd-action": "^0.9.8"
+    "svelte-dnd-action": "^0.9.8",
+    "svelte-preprocess": "^4.7.3"
   }
 }
