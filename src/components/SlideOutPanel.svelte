@@ -9,6 +9,12 @@
   const triggerClose = () => {
     dispatch('close');
   }
+
+  const handleKeydown = e => {
+    if (visible && e.keyCode === 27) {
+      triggerClose();
+    } 
+  }
 </script>
 
 <style lang="scss">
@@ -53,6 +59,8 @@
     transform: translateY(0%);
   }
 </style>
+
+<svelte:window on:keydown={handleKeydown}/>
 
 <section class="slide-out-panel" class:visible>
   <div class="slide-out-panel-container">
