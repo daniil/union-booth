@@ -2,7 +2,7 @@
   export let variant;
 </script>
 
-<style>
+<style lang="scss">
   .question {
     position: relative;
     padding: 1rem;
@@ -11,14 +11,14 @@
     border: 1px solid #E3DDE0;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-  }
-  .question.subtle {
-    filter: grayscale(0.75);
-    opacity: 0.75;
-  }
-  .question.completed {
-    background-color: #F8FAEF;
-    border-color: #DCE3DD;
+    &.subtle {
+      filter: grayscale(0.75);
+      opacity: 0.75;
+    }
+    &.completed {
+      background-color: #F8FAEF;
+      border-color: #DCE3DD;
+    }
   }
 </style>
 

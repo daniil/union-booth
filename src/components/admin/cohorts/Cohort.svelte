@@ -32,17 +32,17 @@
   $: isSelected = selectedCohort && details.id === selectedCohort.id;
 </script>
 
-<style>
+<style lang="scss">
   .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.25rem 0.5rem;
-  }
-  .wrapper.is-active {
-    background-color: rgba(212, 224, 155, 0.5);
-    border: 1px solid rgb(212, 224, 155);
-    border-radius: 4px;
+    &.is-active {
+      background-color: rgba(212, 224, 155, 0.5);
+      border: 1px solid rgb(212, 224, 155);
+      border-radius: 4px;
+    }
   }
   .details {
     display: flex;

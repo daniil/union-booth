@@ -11,7 +11,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .slide-out-panel {
     position: fixed;
     display: flex;
@@ -43,11 +43,11 @@
     font-size: 1rem;
     color: #9B6A6C;
     cursor: pointer;
-  }
-  .close:hover {
-    background-color: #F6F3F4;
-    border-color: #B09398;
-    color: #B09398;
+    &:hover {
+      background-color: #F6F3F4;
+      border-color: #B09398;
+      color: #B09398;
+    }
   }
   .visible {
     transform: translateY(0%);

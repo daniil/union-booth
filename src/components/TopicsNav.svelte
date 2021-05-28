@@ -3,7 +3,7 @@
   export let segment;
 </script>
 
-<style>
+<style lang="scss">
   nav {
     margin: 1.5rem 0 3rem;
   }
@@ -15,9 +15,9 @@
   }
   li {
     margin-right: 3rem;
-  }
-  li:last-child {
-    margin-right: 0;
+    &:last-child {
+      margin-right: 0;
+    }
   }
   a {
     display: inline-block;
@@ -25,9 +25,9 @@
     opacity: 0.75;
     text-decoration: none;
     color: #05668D;
-  }
-  a:hover {
-    filter: brightness(1.25);
+    &:hover {
+      filter: brightness(1.25);
+    }
   }
   h2 {
     margin-bottom: 0.7rem;
@@ -36,9 +36,9 @@
   [aria-current] {
     border-bottom-color: currentColor;
     opacity: 1;
-  }
-  [aria-current] > h2 {
-    font-weight: 400;
+    > h2 {
+      font-weight: 400;
+    }
   }
 </style>
 

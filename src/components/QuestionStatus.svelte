@@ -15,7 +15,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .answered-by {
     position: absolute;
     top: -2rem;
@@ -44,9 +44,9 @@
   .user {
     margin: 0 0 0.5rem;
     white-space: nowrap;
-  }
-  .user:last-child {
-    margin: 0;
+    &:last-child {
+      margin: 0;
+    }
   }
   .answering {
     color: #B7990D;

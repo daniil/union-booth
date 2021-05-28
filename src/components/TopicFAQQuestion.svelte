@@ -13,7 +13,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   section {
     margin-bottom: 4rem;
     padding: 1rem;
@@ -34,17 +34,17 @@
     border: none;
     cursor: pointer;
     color: #05668F;
-  }
-  .btn-answer:hover {
-    filter: brightness(1.25);
+    &:hover {
+      filter: brightness(1.25);
+      > .btn-label {
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+      }
+    }
   }
   .btn-label {
     padding: 0.75rem 0;
     border-bottom: 3px solid #fff;
     font-weight: bold;
-  }
-  .btn-answer:hover > .btn-label {
-    border-bottom-color: rgba(255, 255, 255, 0.5);
   }
 </style>
 

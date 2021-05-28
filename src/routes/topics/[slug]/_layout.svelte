@@ -32,7 +32,7 @@
   }).topic;
 </script>
 
-<style>
+<style lang="scss">
   h1 {
     position: relative;
   }
@@ -44,13 +44,15 @@
     top: -19%;
     font-size: 2.5rem;
     font-weight: 200;
+    &:hover {
+      .chevron {
+        filter: brightness(1.25);
+        transform: translateX(-3px) scale(1.1);
+      }
+    }
   }
   .chevron {
     transition: transform 0.15s ease-in;
-  }
-  .back:hover .chevron {
-    filter: brightness(1.25);
-    transform: translateX(-3px) scale(1.1);
   }
   .title-wrapper {
     display: flex;

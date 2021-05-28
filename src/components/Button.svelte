@@ -14,7 +14,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .button {
     display: inline-flex;
     align-items: center;
@@ -26,57 +26,68 @@
     box-shadow: rgba(50, 50, 93, 0.15) 0px 2px 5px -1px, rgba(0, 0, 0, 0.2) 0px 1px 3px -1px;
     cursor: pointer;
     font-size: 1.3rem;
-  }
-  .button:not(:disabled):hover {
-    background: rgba(219, 211, 216, 0.5);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-  .button:hover .button-text {
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.75);
-  }
-  .button:disabled {
-    opacity: 0.6;
-    filter: grayscale(1);
-    cursor: not-allowed;
+    &:not(:disabled) {
+      &:hover {
+        background: rgba(219, 211, 216, 0.5);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      }
+    }
+    &:hover {
+      .button-text {
+        text-shadow: 1px 1px 0px rgba(255,255,255,0.75);
+      }
+    }
+    &:disabled {
+      opacity: 0.6;
+      filter: grayscale(1);
+      cursor: not-allowed;
+    }
+    &.success {
+      background: rgba(188, 217, 121, 0.3);
+      &:not(:disabled) {
+        &:hover {
+          background: rgba(188, 217, 121, 0.5);
+        }
+      }
+      > .button-text {
+        color: #395647;
+      }
+    }
+    &.danger {
+      background: rgba(239, 108, 139, 0.3);
+      &:not(:disabled) {
+        &:hover {
+          background: rgba(239, 108, 139, 0.5);
+        }
+      }
+      > .button-text {
+        color: #E72350;
+      }
+    }
+    &.link {
+      background: none;
+      box-shadow: none;
+      font-weight: bold;
+      &:not(:disabled) {
+        &:hover {
+          background: none;
+          box-shadow: none;
+          font-weight: bold;
+          > .button-text {
+            filter: brightness(1.25);
+            border-bottom-color: transparent;
+          }
+        }
+      }
+      > .button-text {
+        border-bottom: 1px solid currentColor;
+      }
+    }
   }
   .button-text {
     font-size: 0.9rem;
     margin-left: 0.5rem;
     color: #05668D;
-  }
-
-  .button.success {
-    background: rgba(188, 217, 121, 0.3);
-  }
-  .button.success:not(:disabled):hover {
-    background: rgba(188, 217, 121, 0.5);
-  }
-  .button.success > .button-text {
-    color: #395647;
-  }
-
-  .button.danger {
-    background: rgba(239, 108, 139, 0.3);
-  }
-  .button.danger:not(:disabled):hover {
-    background: rgba(239, 108, 139, 0.5);
-  }
-  .button.danger > .button-text {
-    color: #E72350;
-  }
-
-  .button.link,
-  .button.link:not(:disabled):hover {
-    background: none;
-    box-shadow: none;
-    font-weight: bold;
-  }
-  .button.link > .button-text {
-    border-bottom: 1px solid currentColor;
-  }
-  .button.link:not(:disabled):hover > .button-text {
-    filter: brightness(1.25);
-    border-bottom-color: transparent;
   }
 </style>
 

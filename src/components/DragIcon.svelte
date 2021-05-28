@@ -4,17 +4,19 @@
   export let isHovered;
 </script>
 
-<style>
+<style lang="scss">
   .drag-icon {
     color: transparent;
-  }
-  .drag-icon :global(svg) {
-    display: block;
-    fill: rgba(85, 67, 72, 0.5);
-    margin-left: -7px;
-  }
-  .drag-icon.is-hovered :global(svg) {
-    fill: rgba(85, 67, 72, 0.85);
+    :global(svg) {
+      display: block;
+      fill: rgba(85, 67, 72, 0.5);
+      margin-left: -7px;
+    }
+    &.is-hovered {
+      :global(svg) {
+        fill: rgba(85, 67, 72, 0.85);
+      }
+    }
   }
 </style>
 

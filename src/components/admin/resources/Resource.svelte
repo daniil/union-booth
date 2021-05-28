@@ -6,23 +6,23 @@
   export let displayType;
 </script>
 
-<style>
+<style lang="scss">
   a {
     display: block;
     text-decoration: none;
     color: #05668F;
-  }
-  a:hover {
-    filter: brightness(1.25);
+    &:hover {
+      filter: brightness(1.25);
+    }
   }
   h3 {
     font-weight: 500;
-  }
-  h3.linksOnly {
-    margin-bottom: 0.5rem;
-  }
-  h3.expanded {
-    margin-bottom: 0.3rem;
+    &.linksOnly {
+      margin-bottom: 0.5rem;
+    }
+    &.expanded {
+      margin-bottom: 0.3rem;
+    }
   }
   .url {
     font-size: 0.9rem;

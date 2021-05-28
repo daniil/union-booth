@@ -2,7 +2,7 @@
   export let value = 'linksOnly';
 </script>
 
-<style>
+<style lang="scss">
   .resources-view-filter {
     display: flex;
     justify-content: space-between;
@@ -24,9 +24,9 @@
     margin-left: 1rem;
     opacity: 0.6;
     transition: opacity 0.25s;
-  }
-  .form-element.active {
-    opacity: 1;
+    &.active {
+      opacity: 1;
+    }
   }
 </style>
 

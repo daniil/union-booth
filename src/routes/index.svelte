@@ -9,24 +9,24 @@
 	const { session } = stores();
 </script>
 
-<style>
+<style lang="scss">
 	.banner {
 		display: flex;
 		position: relative;
 		justify-content: center;
 		overflow: hidden;
-	}
-	.banner h1 {
-		position: absolute;
-    top: 32%;
-	}
-	.banner h2 {
-		position: absolute;
-		top: 40%;
-	}
-	.banner img {
-		width: 145%;
-		flex-shrink: 0;
+		h1 {
+			position: absolute;
+			top: 32%;
+		}
+		h2 {
+			position: absolute;
+			top: 40%;
+		}
+		img {
+			width: 145%;
+			flex-shrink: 0;
+		}
 	}
 	.actions {
 		display: flex;
@@ -41,10 +41,10 @@
     text-decoration: none;
     border-bottom: 3px solid #D496A7;
     padding-bottom: 0.25rem;
-	}
-	.action:hover {
-		border-bottom-color: #9D695B;
-		opacity: 0.8;
+		&:hover {
+			border-bottom-color: #9D695B;
+			opacity: 0.8;
+		}
 	}
 	.attribution {
 		position: absolute;
@@ -52,9 +52,9 @@
     font-size: 0.7rem;
     color: rgb(161, 187, 182);
 		text-decoration: none;
-	}
-	.attribution:hover {
-		text-decoration: underline;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 </style>
 

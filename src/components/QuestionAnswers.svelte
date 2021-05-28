@@ -72,7 +72,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   section {
     margin: 2rem 0 0;
   }
@@ -81,33 +81,33 @@
     margin-bottom: 1rem;
     color: #3E6990;
     font-size: 1rem;
-  }
-  h3 > strong {
-    margin-right: 0.25rem;
+    > strong {
+      margin-right: 0.25rem;
+    }
   }
   .expand-answers {
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
-  }
-  .expand-answers:hover {
-    filter: brightness(1.25);
+    &:hover {
+      filter: brightness(1.25);
+      .expand-icon {
+        transform: translateY(-2px) rotate(90deg);
+        &.is-expanded {
+          transform: translateY(-6px) translateX(-4px) rotate(-90deg);
+        }
+      }
+    }
   }
   .expand-icon {
     font-size: 1.5rem;
     transform: translateY(-4px) rotate(90deg);
     margin-left: 0.75rem;
     transition: transform 0.25s ease-out;
-  }
-  .expand-icon.is-expanded {
-    transform: translateY(-4px) translateX(-4px) rotate(-90deg);
-  }
-  .expand-answers:hover .expand-icon {
-    transform: translateY(-2px) rotate(90deg);
-  }
-  .expand-answers:hover .expand-icon.is-expanded {
-    transform: translateY(-6px) translateX(-4px) rotate(-90deg);
+    &.is-expanded {
+      transform: translateY(-4px) translateX(-4px) rotate(-90deg);
+    }
   }
   .answer-container {
     margin-top: 1rem;

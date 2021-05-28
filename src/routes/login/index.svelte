@@ -34,7 +34,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .container {
     display: flex;
     justify-content: center;
@@ -46,12 +46,12 @@
   }
   .form-element {
     margin-bottom: 1rem;
-  }
-  .form-element.action {
-    display: flex;
-    justify-content: center;
-    padding-top: 1rem;
-    border-top: 1px solid #DBD3D8;
+    &.action {
+      display: flex;
+      justify-content: center;
+      padding-top: 1rem;
+      border-top: 1px solid #DBD3D8;
+    }
   }
 </style>
 

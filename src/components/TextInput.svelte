@@ -11,18 +11,18 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   label {
     display: block;
     margin-bottom: 0.25rem;
     color: #7D6D61;
     font-size: 0.8rem;
-  }
-  label.admin {
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    color: #3E6990;
-    font-size: 1rem;
+    &.admin {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      color: #3E6990;
+      font-size: 1rem;
+    }
   }
   input {
     width: 100%;

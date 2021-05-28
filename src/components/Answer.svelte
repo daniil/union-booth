@@ -10,7 +10,7 @@
   $: time = formatTime(details.createdAt);
 </script>
 
-<style>
+<style lang="scss">
   .answer {
     display: flex;
     align-items: flex-start;
@@ -21,9 +21,9 @@
   }
   h4 {
     margin-bottom: 1rem;
-  }
-  h4 > :global(p) {
-    margin-top: 0;
+    > :global(p) {
+      margin-top: 0;
+    }
   }
   time {
     display: flex;

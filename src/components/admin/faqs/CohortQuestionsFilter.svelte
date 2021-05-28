@@ -6,7 +6,7 @@
   $: publishedCount = questions.filter(question => question.convertedToFAQ).length;
 </script>
 
-<style>
+<style lang="scss">
   .questions-filter {
     display: flex;
     justify-content: space-between;
@@ -28,9 +28,9 @@
     margin-left: 1rem;
     opacity: 0.6;
     transition: opacity 0.25s;
-  }
-  .form-element.active {
-    opacity: 1;
+    &.active {
+      opacity: 1;
+    }
   }
   .counter {
     display: inline-block;
