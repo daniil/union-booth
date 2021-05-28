@@ -34,11 +34,10 @@
 
 ## Tweaks
 
-- Update all colors to use SASS variables
-- Add click-off and press Esc to close the panel functionality to SlideOutPanel
-- Add toast messages (ie: when QA question is published)
 - Update Admin side forms to look better
 - Set admin forms to disabled while it's sending query
+- Update all colors to use SASS variables
+- Add toast messages (ie: when QA question is published)
 - Add a loading variant of the button for longer queries
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - When user is deleted, invalidate their session

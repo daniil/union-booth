@@ -1,5 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { fade } from 'svelte/transition';
+  import { quintInOut } from 'svelte/easing';
 
   export let title;
   export let visible;
@@ -15,9 +17,23 @@
       triggerClose();
     } 
   }
+
+  const handleClickOutside = e => {
+    if (visible) {
+      triggerClose();
+    }
+  }
 </script>
 
 <style lang="scss">
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.5);
+  }
   .slide-out-panel {
     position: fixed;
     display: flex;
@@ -60,8 +76,17 @@
   }
 </style>
 
-<svelte:window on:keydown={handleKeydown}/>
+<svelte:window
+  on:keydown={handleKeydown}
+/>
 
+{#if visible}
+  <div
+    class="backdrop"
+    on:click={handleClickOutside}
+    transition:fade={{ duration: 500, easing: quintInOut }}
+  ></div>
+{/if}
 <section class="slide-out-panel" class:visible>
   <div class="slide-out-panel-container">
     <h2>
