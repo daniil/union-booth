@@ -21,7 +21,6 @@
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
 - Update site color scheme
 - Add "About" page
-- Add a footer
 - Add admin deactivate functionality for programs, cohorts and topics
 - Add deactivated topic FAQ questions list (and reactivate functionality)
 - Add timed unlock for topics

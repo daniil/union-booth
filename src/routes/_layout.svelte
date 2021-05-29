@@ -4,6 +4,7 @@
 	import { setClient } from 'svelte-apollo';
 	import initApolloClient from 'graphql/client';
 	import Nav from 'components/Nav.svelte';
+	import Footer from 'components/Footer.svelte';
 
 	export let segment;
 
@@ -23,18 +24,24 @@
 </script>
 
 <style>
+	.page-container {
+		position: relative;
+		min-height: 100vh;
+	}
 	main {
 		position: relative;
 		max-width: 56em;
 		background-color: white;
-		padding: 2em;
+		padding: 2em 2em 6em 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
 </style>
 
-<Nav {segment}/>
-
-<main>
-	<slot></slot>
-</main>
+<div class="page-container">
+	<Nav {segment}/>
+	<main>
+		<slot></slot>
+	</main>
+	<Footer/>
+</div>
