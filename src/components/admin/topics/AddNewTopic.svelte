@@ -2,6 +2,8 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_TOPIC, TOPICS } from 'graphql/queries/admin/topics';
+  import TextInput from 'components/TextInput.svelte';
+  import Button from 'components/Button.svelte';
 
   export let selectedProgram;
 
@@ -9,14 +11,14 @@
 
   const addTopic = mutation(ADD_TOPIC);
 
-  let topicEl;
+  let topicTitle;
 
   const handleSubmit = async e => {
     try {
       await addTopic({
         variables: {
           programId: selectedProgram.id,
-          title: e.target.topic.value
+          title: topicTitle
         },
         update: (_, mutationResult) => {
           const topics = $session.apolloClient.readQuery({
@@ -38,17 +40,29 @@
         }
       });
 
-      topicEl.value = '';
+      topicTitle = '';
     } catch(err) {
       console.log('ERROR: ', err);
     }
   }
 </script>
 
+<style>
+  .form-element {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .input-wrapper {
+    width: 75%;
+  }
+</style>
+
 <form action="/add-topic" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
-    <label for="topic">Topic: </label>
-    <input bind:this={topicEl} type="text" name="topic" id="topic" placeholder="Topic" required>
-    <input type="submit" value="Add">
+    <div class="input-wrapper">
+      <TextInput id="topic" type="text" label="Topic Title" bind:value={topicTitle} required/>
+    </div>
+    <Button type="submit" icon="📃" label="Create"/>
   </div>
 </form>
