@@ -2,6 +2,8 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT, COHORTS } from 'graphql/queries/admin/cohorts';
+  import TextInput from 'components/TextInput.svelte';
+  import Button from 'components/Button.svelte';
   
   export let selectedProgram;
 
@@ -9,14 +11,14 @@
   
   const addCohort = mutation(ADD_COHORT);
 
-  let cohortEl;
+  let cohortName;
 
   const handleSubmit = async e => {
     try {
       await addCohort({
         variables: {
           programId: selectedProgram.id,
-          title: e.target.cohort.value
+          title: cohortName
         },
         update: (_, mutationResult) => {
           const cohorts = $session.apolloClient.readQuery({
@@ -38,17 +40,29 @@
         }
       });
       
-      cohortEl.value = '';
+      cohortName = '';
     } catch(err) {
       console.log('ERROR: ', err);
     }
   }
 </script>
 
+<style>
+  .form-element {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .input-wrapper {
+    width: 75%;
+  }
+</style>
+
 <form action="/add-cohort" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
-    <label for="cohort">Cohort Name: </label>
-    <input bind:this={cohortEl} type="text" name="cohort" id="cohort" placeholder="Cohort Name" required>
-    <input type="submit" value="Create">
+    <div class="input-wrapper">
+      <TextInput id="cohort" type="text" label="Cohort Name" bind:value={cohortName} required/>
+    </div>
+    <Button type="submit" icon="👥" label="Create"/>
   </div>
 </form>

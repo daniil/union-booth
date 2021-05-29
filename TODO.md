@@ -34,6 +34,7 @@
 ## Tweaks
 
 - Update Admin side forms to look better
+- Update Admin FAQs and Resources topic lists to look better
 - Set admin forms to disabled while it's sending query
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
