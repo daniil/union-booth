@@ -19,6 +19,7 @@
 - Refactor user cohort queries to be cached
 - Add a program/cohort admin privileges for other roles
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
+  - Use https://github.com/davidyaha/graphql-redis-subscriptions
 - Update site color scheme
 - Add "About" page
 - Add admin deactivate functionality for programs, cohorts and topics
@@ -33,10 +34,9 @@
 
 ## Tweaks
 
-- Set admin forms to disabled while it's sending query
+- Set admin forms to disabled while it's sending query and loading variant of the button
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
-- Add a loading variant of the button for longer queries
 - Add a nice tooltip to "Posted by" avatar in Live Question component
 - When user is deleted, invalidate their session
 

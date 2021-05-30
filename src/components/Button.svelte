@@ -1,4 +1,6 @@
 <script>
+  import Loading from 'components/Loading.svelte';
+
   export let type;
   export let style;
   export let variant;
@@ -8,6 +10,10 @@
   export let disabled;
   export let preventDefault;
 
+  if (variant === 'loading') {
+    disabled = true;
+  }
+
   const handleAction = e => {
     !!preventDefault && e.preventDefault();
     !!action && action(e);    
@@ -16,6 +22,7 @@
 
 <style lang="scss">
   .button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     padding: 0.25rem 0.75rem;
@@ -83,6 +90,22 @@
         border-bottom: 1px solid currentColor;
       }
     }
+    &.loading {
+      text-align: initial;
+      .loading-container {
+        position: absolute;
+        left: 50%;
+        min-width: 100%;
+        transform: translateX(-50%);
+      }
+      :global(.loader) {
+        padding: 0.594rem 0;
+      }
+      .icon,
+      .button-text {
+        visibility: hidden;
+      }
+    }
   }
   .button-text {
     font-size: 0.9rem;
@@ -96,12 +119,18 @@
   class="button"
   class:success={variant === 'success'}
   class:danger={variant === 'danger'}
+  class:loading={variant === 'loading'}
   class:link={style === 'link'}
   disabled={disabled}
   on:click={handleAction}
 >
   {#if icon}
-    {icon}
+    <span class="icon">{icon}</span>
   {/if}
   <span class="button-text">{label}</span>
+  {#if variant === 'loading'}
+    <div class="loading-container">
+      <Loading/>
+    </div>
+  {/if}
 </button>
