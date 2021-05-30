@@ -1,7 +1,10 @@
 <script>
+  import AdminLink from 'components/admin/AdminLink.svelte';
+
   export let topic;
 </script>
 
-<a href="/admin/resources/{topic.slug}">
-  <h4>{topic.title}</h4>
-</a>
+<AdminLink
+  href="/admin/resources/{topic.slug}"
+  title={topic.title}
+/>
