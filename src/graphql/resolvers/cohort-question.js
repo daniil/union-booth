@@ -1,9 +1,8 @@
-import { PubSub, withFilter, UserInputError } from 'apollo-server';
+import { withFilter, UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
-
-const pubsub = new PubSub();
+import pubsub from 'redis-pub-sub';
 
 export default {
   Query: {

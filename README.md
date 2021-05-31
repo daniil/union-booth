@@ -39,6 +39,8 @@ SESSION_SECRET
 DATABASE
 DATABASE_USER
 DATABASE_PASSWORD
+REDIS_DOMAIN_NAME
+REDIS_PORT_NUMBER
 ```
 
 Check `.env.example` for an example of `.env` file.
@@ -63,6 +65,7 @@ GraphQL Playground is available at [http://localhost:3000/graphql](http://localh
 - Sapper
 - Apollo GraphQL (Server, Client, Subscriptions)
 - PostgreSQL
+- Redis
 - Sequelize
 - Markdown
 
