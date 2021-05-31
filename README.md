@@ -47,7 +47,7 @@ Check `.env.example` for an example of `.env` file.
 
 ### Running the project
 
-Once you have cloned the project, create the PostgreSQL DB (defined in .env file), install dependencies and run the project in development mode:
+Once you have cloned the project, install [Redis](https://redis.io/topics/quickstart), create the PostgreSQL DB (defined in .env file), install dependencies and run the project in development mode:
 
 ```bash
 cd union-booth
