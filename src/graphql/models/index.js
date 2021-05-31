@@ -11,7 +11,7 @@ import resourceModel from './resource';
 import userModel from './user';
 import { setupAssociations } from './associations';
 
-const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI } = process.env;
+const { DATABASE, DATABASE_USER, DATABASE_PASSWORD, NODE_ENV, QOVERY_DATABASE_UNION_BOOTH_POSTGRES_CONNECTION_URI } = process.env;
 
 let sequelize;
 
@@ -23,7 +23,7 @@ const poolSettings = {
 };
 
 if (NODE_ENV === 'production') {
-  sequelize = new Sequelize(QOVERY_DATABASE_UNION_BOOTH_CONNECTION_URI, {
+  sequelize = new Sequelize(QOVERY_DATABASE_UNION_BOOTH_POSTGRES_CONNECTION_URI, {
     dialect: 'postgres',
     protocol: 'postgres',
     pool: poolSettings

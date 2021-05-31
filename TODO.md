@@ -19,7 +19,6 @@
 - Refactor user cohort queries to be cached
 - Add a program/cohort admin privileges for other roles
 - Update PubSub to a production library (https://www.apollographql.com/docs/apollo-server/data/subscriptions/#production-pubsub-libraries)
-  - Add Redis to `npm run dev` script
   - Add Redis to Qovery
 - Update site color scheme
 - Add "About" page
