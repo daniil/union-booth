@@ -8,6 +8,7 @@
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
 - Create edit an answer functionality (Live page)
+- Create likes (or +1) functionality for answers and maybe questions
 - Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality
   - Queue for an educator
@@ -32,7 +33,7 @@
 
 ## Tweaks
 
-- Set admin forms to disabled while it's sending query and loading variant of the button
+- Set live questions forms to disabled while it's sending query and loading variant of the button
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component

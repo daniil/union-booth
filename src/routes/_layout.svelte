@@ -35,6 +35,7 @@
 		padding: 2em 2em 6em 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
+		z-index: 1;
 	}
 </style>
 

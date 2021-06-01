@@ -125,6 +125,7 @@
           })
         }
       });
+      
       formDisabled = false;
       triggerClose();
     } catch(err) {

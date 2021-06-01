@@ -23,8 +23,10 @@
     url: '',
     description: ''
   }
+  let formDisabled = false;
 
   $: submitDisabled = editorValues.title === '' || editorValues.url === '';
+  $: buttonVariant = formDisabled ? 'loading' : 'success';
   $: if (resource) setEditorValues();
 
   const setEditorValues = () => {
@@ -40,6 +42,8 @@
   }
 
   const saveResource = async () => {
+    formDisabled = true;
+    
     const mutationVariables = {
       topicId: topic.id,
       title: editorValues.title,
@@ -99,6 +103,7 @@
         }
       });
 
+      formDisabled = false;
       triggerClose();
     } catch(err) {
       console.log('ERROR: ', err);
@@ -128,10 +133,26 @@
   {visible}
 >
   <div class="form-element">
-    <TextInput id="title" type="text" label="Resource Title" labelStyle="admin" bind:value={editorValues.title} required/>
+    <TextInput
+      id="title"
+      type="text"
+      label="Resource Title"
+      labelStyle="admin"
+      bind:value={editorValues.title}
+      required
+      disabled={formDisabled}
+    />
   </div>
   <div class="form-element">
-    <TextInput id="url" type="text" label="Resource URL" labelStyle="admin" bind:value={editorValues.url} required/>
+    <TextInput
+      id="url"
+      type="text"
+      label="Resource URL"
+      labelStyle="admin"
+      bind:value={editorValues.url}
+      required
+      disabled={formDisabled}
+    />
   </div>
   <MDEditor
     id="description"
@@ -139,6 +160,13 @@
     placeholder="Resource Description"
     value={editorValues.description}
     on:change={handleEditorChange}
+    disabled={formDisabled}
   />
-  <Button variant="success" icon="👍" label="Save" action={saveResource} disabled={submitDisabled}/>
+  <Button
+    variant={buttonVariant}
+    icon="👍"
+    label="Save"
+    action={saveResource}
+    disabled={submitDisabled}
+  />
 </SlideOutPanel>

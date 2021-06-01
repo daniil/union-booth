@@ -41,7 +41,7 @@
   });
 </script>
 
-<style>
+<style lang="scss">
   .label {
     display: inline-block;
     margin-bottom: 0.5rem;
@@ -54,8 +54,12 @@
     max-height: 200px;
   }
   .md-editor.disabled {
-    opacity: 0.75;
     pointer-events: none;
+    :global(.editor-toolbar),
+    :global(.CodeMirror) {
+      background-color: rgba(239, 239, 239, 0.3);
+      color: rgb(84, 84, 84);
+    }
   }
 </style>
 
