@@ -12,8 +12,13 @@
   const addCohort = mutation(ADD_COHORT);
 
   let cohortName;
+  let formDisabled = false;
+
+  $: buttonVariant = formDisabled ? 'loading' : '';
 
   const handleSubmit = async e => {
+    formDisabled = true;
+
     try {
       await addCohort({
         variables: {
@@ -41,6 +46,7 @@
       });
       
       cohortName = '';
+      formDisabled = false;
     } catch(err) {
       console.log('ERROR: ', err);
     }
@@ -61,8 +67,20 @@
 <form action="/add-cohort" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
     <div class="input-wrapper">
-      <TextInput id="cohort" type="text" label="Cohort Name" bind:value={cohortName} required/>
+      <TextInput
+        id="cohort"
+        type="text"
+        label="Cohort Name"
+        bind:value={cohortName}
+        required
+        disabled={formDisabled}
+      />
     </div>
-    <Button type="submit" icon="👥" label="Create"/>
+    <Button
+      type="submit"
+      variant={buttonVariant}
+      icon="👥"
+      label="Create"
+    />
   </div>
 </form>
