@@ -5,6 +5,7 @@
   export let label;
   export let placeholder;
   export let value;
+  export let disabled;
 
   const dispatch = createEventDispatcher();
 
@@ -14,6 +15,12 @@
   $: {
     if (SimpleMDE !== undefined && value !== undefined && value !== SimpleMDE.value()) {
       SimpleMDE.value(value);
+    }
+  }
+
+  $: {
+    if (SimpleMDE !== undefined) {
+      SimpleMDE.codemirror.options.readOnly = disabled;
     }
   }
 
@@ -46,11 +53,15 @@
     min-height: 130px;
     max-height: 200px;
   }
+  .md-editor.disabled {
+    opacity: 0.75;
+    pointer-events: none;
+  }
 </style>
 
 <label class="label" for={id}>{label}</label>
 <br />
-<div class="md-editor">
+<div class="md-editor" class:disabled>
   <textarea
     bind:this={textareaEl}
     class="input"

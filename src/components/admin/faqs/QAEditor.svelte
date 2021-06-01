@@ -21,8 +21,10 @@
     question: '',
     answer: ''
   }
+  let formDisabled = false;
 
   $: submitDisabled = editorValues.question === '' || editorValues.answer === '';
+  $: buttonVariant = formDisabled ? 'loading' : 'success';
   $: if (question) setEditorValues();
 
   const setEditorValues = () => {
@@ -41,6 +43,8 @@
   }
 
   const saveQA = async () => {
+    formDisabled = true;
+
     const mutationVariables = {
       topicId: topic.id,
       question: editorValues.question,
@@ -121,6 +125,7 @@
           })
         }
       });
+      formDisabled = false;
       triggerClose();
     } catch(err) {
       console.log('ERROR: ', err);
@@ -147,6 +152,7 @@
     placeholder="Question details"
     value={editorValues.question}
     on:change={handleEditorChange}
+    disabled={formDisabled}
   />
   <MDEditor
     id="answer"
@@ -154,6 +160,13 @@
     placeholder="Answer details"
     value={editorValues.answer}
     on:change={handleEditorChange}
+    disabled={formDisabled}
   />
-  <Button variant="success" icon="👍" label="Save" action={saveQA} disabled={submitDisabled}/>
+  <Button
+    variant={buttonVariant}
+    icon="👍"
+    label="Save"
+    action={saveQA}
+    disabled={submitDisabled}
+  />
 </SlideOutPanel>
