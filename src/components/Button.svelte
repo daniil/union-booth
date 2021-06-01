@@ -10,10 +10,15 @@
   export let disabled;
   export let preventDefault;
 
-  if (variant === 'loading') {
-    disabled = true;
-  }
+  $: disabledOverride = overrideDisabled(variant);
 
+  const overrideDisabled = (variant) => {
+    if (variant === 'loading') {
+      return true;
+    }
+    return false;
+  }
+  
   const handleAction = e => {
     !!preventDefault && e.preventDefault();
     !!action && action(e);    
@@ -121,7 +126,7 @@
   class:danger={variant === 'danger'}
   class:loading={variant === 'loading'}
   class:link={style === 'link'}
-  disabled={disabled}
+  disabled={disabled || disabledOverride}
   on:click={handleAction}
 >
   {#if icon}

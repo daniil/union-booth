@@ -12,8 +12,13 @@
   const addTopic = mutation(ADD_TOPIC);
 
   let topicTitle;
+  let formDisabled = false;
+  
+  $: buttonVariant = formDisabled ? 'loading' : '';
 
   const handleSubmit = async e => {
+    formDisabled = true;
+
     try {
       await addTopic({
         variables: {
@@ -41,6 +46,7 @@
       });
 
       topicTitle = '';
+      formDisabled = false;
     } catch(err) {
       console.log('ERROR: ', err);
     }
@@ -61,8 +67,20 @@
 <form action="/add-topic" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
     <div class="input-wrapper">
-      <TextInput id="topic" type="text" label="Topic Title" bind:value={topicTitle} required/>
+      <TextInput
+        id="topic"
+        type="text"
+        label="Topic Title"
+        bind:value={topicTitle}
+        required
+        disabled={formDisabled}
+      />
     </div>
-    <Button type="submit" icon="📃" label="Create"/>
+    <Button
+      type="submit"
+      variant={buttonVariant}
+      icon="📃"
+      label="Create"
+    />
   </div>
 </form>
