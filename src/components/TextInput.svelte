@@ -4,6 +4,7 @@
   export let label;
   export let labelStyle;
   export let required;
+  export let disabled;
   export let value;
 
   const handleInput = e => {
@@ -39,4 +40,13 @@
 >
   {label}
 </label>
-<input type={type} name={id} id={id} placeholder={label} value={value || ''} {required} on:input={handleInput}/>
+<input
+  type={type}
+  name={id}
+  id={id}
+  placeholder={label}
+  value={value || ''}
+  {required}
+  {disabled}
+  on:input={handleInput}
+/>

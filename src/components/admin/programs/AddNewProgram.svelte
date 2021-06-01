@@ -10,8 +10,13 @@
   const addProgram = mutation(ADD_PROGRAM);
 
   let programName;
+  let formDisabled = false;
+  
+  $: buttonVariant = formDisabled ? 'loading' : '';
 
   const handleSubmit = async e => {
+    formDisabled = true;
+
     try {
       await addProgram({
         variables: {
@@ -30,6 +35,7 @@
       });
 
       programName = '';
+      formDisabled = false;
     } catch(err) {
       console.log('ERROR: ', err);
     }
@@ -50,8 +56,20 @@
 <form action="/add-program" method="post" on:submit|preventDefault={handleSubmit}>
   <div class="form-element">
     <div class="input-wrapper">
-      <TextInput id="program" type="text" label="Program Name" bind:value={programName} required/>
+      <TextInput
+        id="program"
+        type="text"
+        label="Program Name"
+        bind:value={programName}
+        required
+        disabled={formDisabled}
+      />
     </div>
-    <Button type="submit" icon="📖" label="Create"/>
+    <Button
+      type="submit"
+      variant={buttonVariant}
+      icon="📖"
+      label="Create"
+    />
   </div>
 </form>
