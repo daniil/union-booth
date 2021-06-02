@@ -34,7 +34,6 @@
 
 ## Tweaks
 
-- Set live questions forms to disabled while it's sending query and loading variant of the button
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component

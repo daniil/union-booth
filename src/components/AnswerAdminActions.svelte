@@ -8,6 +8,7 @@
   export let questionId;
   export let beingAnsweredBy;
   export let answeredBy;
+  export let disabled;
 
   const { session } = stores();
 
@@ -56,7 +57,7 @@
     {:else if isAnswered}
       <span class="answered">✅ Answered</span>
     {:else}
-      <Button icon="💬" label="Answering" action={handleAnswerProgress} preventDefault/>
+      <Button icon="💬" label="Answering" action={handleAnswerProgress} preventDefault {disabled}/>
     {/if}
   </div>
 </AuthContent>

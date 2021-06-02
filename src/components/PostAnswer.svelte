@@ -21,11 +21,15 @@
 
   let formVisible = false;
   let answerText;
+  let formDisabled = false;
 
+  $: buttonVariant = formDisabled ? 'loading' : '';
   $: postBtnDisabled = answerText === undefined || answerText === '';
 
   const handleSubmit = async e => {
     try {
+      formDisabled = true;
+
       await addCohortAnswer({
         variables: {
           cohortQuestionId: questionId,
@@ -42,10 +46,12 @@
         });
       }
 
+      formDisabled = false;
       answerText = '';
       toggleFormVisible();
       dispatch('answer-published');
     } catch(err) {
+      formDisabled = false;
       console.log('ERROR: ', err);
     }
   }
@@ -82,17 +88,19 @@
         placeholder="Add your answer"
         value={answerText}
         on:change={handleEditorChange}
+        disabled={formDisabled}
       />
     </div>
     <div class="action-bar">
       <div class="form-element">
-        <Button type="submit" icon="📮" label="Post Answer" disabled={postBtnDisabled}/>
-        <Button icon="💨" label="Cancel" action={toggleFormVisible} preventDefault/>
+        <Button type="submit" variant={buttonVariant} icon="📮" label="Post Answer" disabled={postBtnDisabled}/>
+        <Button icon="💨" label="Cancel" action={toggleFormVisible} preventDefault disabled={formDisabled}/>
       </div>
       <AnswerAdminActions
         {questionId}
         {beingAnsweredBy}
         {answeredBy}
+        disabled={formDisabled}
       />
     </div>
   </form>
