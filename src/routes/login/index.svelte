@@ -15,10 +15,14 @@
   const loginUser = mutation(LOGIN);
 
   let errors;
+  let formDisabled = false;
+
+  $: buttonVariant = formDisabled ? 'loading' : 'success';
 
   const handleLogin = async function(e) {
     try {
       errors = null;
+      formDisabled = true;
 
       const user = await loginUser({
         variables: {
@@ -26,9 +30,11 @@
           password: e.target.password.value
         }
       });
+      
       $session.user = user.data.login;
       goto('/');
     } catch(err) {
+      formDisabled = false;
       errors = parseError(err);
     }
   }
@@ -60,13 +66,13 @@
     <h1>Login</h1>
     <form action="/login" method="post" on:submit|preventDefault={handleLogin}>
       <div class="form-element">
-        <TextInput id="email" type="text" label="Email or Username" required/>
+        <TextInput id="email" type="text" label="Email or Username" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <TextInput id="password" type="password" label="Password" required/>
+        <TextInput id="password" type="password" label="Password" required disabled={formDisabled}/>
       </div>
       <div class="form-element action">
-        <Button type="submit" variant="success" icon="🔑" label="Login"/>
+        <Button type="submit" variant={buttonVariant} icon="🔑" label="Login"/>
       </div>
     </form>
   </div>

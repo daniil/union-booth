@@ -30,7 +30,6 @@
 
     try {
       errors = null;
-
       formDisabled = true;
 
       const user = await registerUser({
