@@ -1,6 +1,7 @@
 <script>
   export let id;
   export let label;
+  export let disabled;
 </script>
 
 <style>
@@ -16,6 +17,6 @@
 </style>
 
 <div class="checkbox-container">
-  <input type="checkbox" name={id} id={id} on:change/>
+  <input type="checkbox" name={id} id={id} on:change {disabled}/>
   <label for={id} class="inline">{label}</label>
 </div>

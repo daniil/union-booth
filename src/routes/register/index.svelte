@@ -18,6 +18,9 @@
   let errors;
   let cohortIdRequired = true;
   let cohortIdValue;
+  let formDisabled = false;
+
+  $: buttonVariant = formDisabled ? 'loading' : 'success';
 
   const handleRegister = async function(e) {
     if (e.target.password.value !== e.target.passwordConfirm.value) {
@@ -27,6 +30,8 @@
 
     try {
       errors = null;
+
+      formDisabled = true;
 
       const user = await registerUser({
         variables: {
@@ -39,9 +44,11 @@
           cohortId: e.target.cohortId.value
         }
       });
+      
       $session.user = user.data.register;
       goto('/');
     } catch(err) {
+      formDisabled = false;
       errors = parseError(err);
     }
   }
@@ -81,31 +88,31 @@
     <h1>Register</h1>
     <form action="/register" method="post" on:submit|preventDefault={handleRegister}>
       <div class="form-element">
-        <TextInput id="firstName" type="text" label="First Name" required/>
+        <TextInput id="firstName" type="text" label="First Name" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <TextInput id="lastName" type="text" label="Last Name" required/>
+        <TextInput id="lastName" type="text" label="Last Name" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <TextInput id="username" type="text" label="Username" required/>
+        <TextInput id="username" type="text" label="Username" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <TextInput id="email" type="email" label="Email" required/>
+        <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <TextInput id="password" type="password" label="Password" required/>
+        <TextInput id="password" type="password" label="Password" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <TextInput id="passwordConfirm" type="password" label="Confirm Password" required/>
+        <TextInput id="passwordConfirm" type="password" label="Confirm Password" required disabled={formDisabled}/>
       </div>
       <div class="form-element">
-        <Checkbox id="isProgramOwner" label="Register as Program Owner" on:change={toggleCohortIdField}/>
+        <Checkbox id="isProgramOwner" label="Register as Program Owner" on:change={toggleCohortIdField} disabled={formDisabled}/>
       </div>
       <div class="form-element" class:hidden={!cohortIdRequired}>
-        <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={cohortIdRequired}/>
+        <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={cohortIdRequired} disabled={formDisabled}/>
       </div>
       <div class="form-element action">
-        <Button type="submit" variant="success" icon="🎫" label="Register"/>
+        <Button type="submit" variant={buttonVariant} icon="🎫" label="Register"/>
       </div>
     </form>
   </div>

@@ -9,6 +9,7 @@
 - Create deactivate an answer functionality (Live page)
 - Create edit an answer functionality (Live page)
 - Create likes (or +1) functionality for answers and maybe questions
+- Add realtime check (on blur) for username and email uniqueness
 - Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality
   - Queue for an educator
@@ -25,8 +26,8 @@
 - Add deactivated topic FAQ questions list (and reactivate functionality)
 - Add timed unlock for topics
 - Add question and answer moderation before posting
-- Do error catching and reporting for program and cohort add
 - Add speech-to-text question posting
+- Log user out after their session expires (ie: period of inactivity)
 - Add SSO Login options
 - Write automated tests
 - Convert to SvelteKit
