@@ -10,11 +10,15 @@
   const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
   let questionText;
-  
+  let formDisabled = false;
+
+  $: buttonVariant = formDisabled ? 'loading' : '';
   $: postBtnDisabled = questionText === undefined || questionText === '';
 
   const handleSubmit = async e => {
     try {
+      formDisabled = true;
+
       await addCohortQuestion({
         variables: {
           topicId: liveTopic.topic.id,
@@ -22,8 +26,11 @@
           isAnonymous: e.target.isAnonymous.checked
         }
       });
+
+      formDisabled = false;
       questionText = '';
     } catch(err) {
+      formDisabled = false;
       console.log('ERROR: ', err);
     }
   }
@@ -49,10 +56,11 @@
       placeholder="Ask your question"
       value={questionText}
       on:change={handleEditorChange}
+      disabled={formDisabled}
     />
   </div>
   <div class="form-controls">
-    <Button type="submit" icon="🖐🏽" label="Post Question" disabled={postBtnDisabled}/>
-    <Checkbox id="isAnonymous" label="Ask anonymously"/>
+    <Button type="submit" variant={buttonVariant} icon="🖐🏽" label="Post Question" disabled={postBtnDisabled}/>
+    <Checkbox id="isAnonymous" label="Ask anonymously" disabled={formDisabled}/>
   </div>
 </form>

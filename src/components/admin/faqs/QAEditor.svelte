@@ -129,6 +129,7 @@
       formDisabled = false;
       triggerClose();
     } catch(err) {
+      formDisabled = false;
       console.log('ERROR: ', err);
     }
   }

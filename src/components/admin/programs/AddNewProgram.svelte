@@ -37,6 +37,7 @@
       programName = '';
       formDisabled = false;
     } catch(err) {
+      formDisabled = false;
       console.log('ERROR: ', err);
     }
   }
