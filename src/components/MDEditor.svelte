@@ -48,19 +48,24 @@
     color: #3E6990;
     font-size: 1rem;
   }
-  .md-editor :global(.CodeMirror),
-  .md-editor :global(.CodeMirror-scroll) {
-    min-height: 130px;
-    max-height: 200px;
-  }
-  .md-editor.disabled {
-    pointer-events: none;
-    :global(.editor-toolbar),
-    :global(.CodeMirror) {
-      background-color: rgba(239, 239, 239, 0.3);
-      color: rgb(84, 84, 84);
+  .md-editor {
+    :global(.CodeMirror),
+    :global(.CodeMirror-scroll) {
+      min-height: 130px;
+      max-height: 200px;
     }
-  }
+    :global(.editor-toolbar) {
+      background-color: #fff;
+    }
+    &.disabled {
+      pointer-events: none;
+      :global(.editor-toolbar),
+      :global(.CodeMirror) {
+        background-color: rgba(239, 239, 239, 0.3);
+        color: rgb(84, 84, 84);
+      }
+    }
+  } 
 </style>
 
 <label class="label" for={id}>{label}</label>
