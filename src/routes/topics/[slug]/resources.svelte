@@ -20,6 +20,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+	import TopicResources from 'components/TopicResources.svelte';
 
   export let slug;
 
@@ -43,4 +44,4 @@
   onDestroy(() => topicResourcesSub.unsubscribe());
 </script>
 
-<h3>Resources Content</h3>
+<TopicResources topic={topicResources}/>

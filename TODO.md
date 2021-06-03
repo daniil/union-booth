@@ -1,6 +1,5 @@
 ## Tasks
 
-- Update individual topic page with Resources
 - Update README with resources functionality
 - Add user admin UI
   - Add generate new avatar functionality for user
