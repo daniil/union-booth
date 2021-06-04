@@ -19,15 +19,19 @@ Current functionality:
 
 - `/register` - Register a new student or educator
 - `/login` - Logs in a student or educator
-- `/` - Register/Login links for anonymous user, Live questions for current lecture for signed in user (ask a question, add an answer, mark question as being answered by the moderator)
-- `/topics` - All Topics in a list
-- `/topics/:topicId` - All Questions for a topic
+- `/` - Landing page with Register/Login links for anonymous user, live questions for active lecture for signed in user (ask a question, add an answer, mark question as being answered by the moderator)
+- `/topics` - All unlocked topics for a program
+- `/topics/:topicSlug/faqs` - FAQs for a topic
+- `/topics/:topicSlug/resources` - Resources for a topic
 - `/admin` - Admin Section
 - `/admin/programs` - Managing programs
 - `/admin/cohorts` - Managing cohorts
 - `/admin/topics` - Managing topics
-- `/admin/faqs` - Managing FAQs
-- `/admin/faqs/:faqId` - Managing a Topic FAQ
+- `/admin/active-cohort` - Managing active cohort's unlocked and active topics
+- `/admin/faqs` - List of active program topics for topic FAQs
+- `/admin/faqs/:topicSlug` - Managing topic FAQs (publishing live questions, adding new QA, edit/deactivate existing QAs)
+- `/admin/resources` - List of active program topics for topic resources
+- `/admin/resources/:topicSlug` - Managing topic resources (adding/editing/deactivating resources)
 
 ### Environment Variables
 
