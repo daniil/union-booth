@@ -1,20 +1,11 @@
 <script>
 	import { goto, stores } from '@sapper/app';
-	import { mutation } from 'svelte-apollo';
-  import { LOGOUT } from 'graphql/queries/login';
 	import AuthContent from 'components/AuthContent.svelte';
+	import ProfileNav from 'components/ProfileNav.svelte';
 
 	export let segment;
 
 	const { session } = stores();
-	const logoutUser = mutation(LOGOUT);
-
-	const handleLogout = async () => {
-		await logoutUser();
-
-		$session.user = null;
-		goto('/');
-	}
 </script>
 
 <style lang="scss">
@@ -73,7 +64,7 @@
 				</a>
 			</li>
 			<li class="right-aligned">
-				<a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
+				<ProfileNav/>
 			</li>
 			<AuthContent role="admin">
 				<li class="right-aligned">
