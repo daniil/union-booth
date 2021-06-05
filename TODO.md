@@ -1,6 +1,5 @@
 ## Tasks
 
-- Update README with resources functionality
 - Add user admin UI
   - Add generate new avatar functionality for user
   - Add update user info functionality
