@@ -7,12 +7,18 @@
   const { session } = stores();
 	const logoutUser = mutation(LOGOUT);
 
+  let navVisible = false;
+
 	const handleLogout = async () => {
 		await logoutUser();
 
 		$session.user = null;
 		goto('/');
 	}
+
+  const toggleNav = () => {
+    navVisible = !navVisible;
+  }
 </script>
 
 <style lang="scss">
@@ -40,9 +46,25 @@
     }
   }
   a {
+    position: relative;
 		text-decoration: none;
-		padding: 1em 0.5em;
+		padding: 0.75rem 1.5rem;
 		display: block;
+    &:hover {
+			background-color: #F6F4F5;
+		}
+    &:not(:last-child) {
+      &::after {
+        position: absolute;
+        content: '';
+        width: 75%;
+        height: 1px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #EDE9EB;
+      }
+    }
 	}
   .triangle-down {
     width: 0;
@@ -51,11 +73,24 @@
     border-right: 5px solid transparent;
     border-top: 5px solid #7D6D61;
   }
+  .profile-nav {
+    position: absolute;
+    top: 165%;
+    padding: 0.25rem 0;
+    background-color: #fff;
+    right: 0;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    border-radius: 4px;
+  }
 </style>
 
-<div class="avatar-container">
+<div class="avatar-container" on:click={toggleNav}>
   <Avatar user={$session.user}/>
   <div class="triangle-down"></div>
 </div>
-
-<!-- <a href="/logout" on:click|preventDefault={handleLogout}>Logout</a> -->
+{#if navVisible}
+  <nav class="profile-nav">
+    <a href="/profile">Profile</a>
+    <a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
+  </nav>
+{/if}
