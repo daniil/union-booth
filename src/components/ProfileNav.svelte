@@ -19,6 +19,19 @@
   const toggleNav = () => {
     navVisible = !navVisible;
   }
+
+  const handleClickOff = e => {
+    if (navVisible) {
+      let parent = e.target;
+      while (parent.parentNode) {
+        if (parent.classList.contains('profile-nav')) {
+          return;
+        }
+        parent = parent.parentNode;
+      }
+      navVisible = false;
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -84,7 +97,11 @@
   }
 </style>
 
-<div class="avatar-container" on:click={toggleNav}>
+<svelte:window
+  on:click={handleClickOff}
+/>
+
+<div class="avatar-container" on:click|stopPropagation={toggleNav}>
   <Avatar user={$session.user}/>
   <div class="triangle-down"></div>
 </div>
