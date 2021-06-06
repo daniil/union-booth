@@ -1,6 +1,8 @@
 <script>
   import { goto, stores } from '@sapper/app';
 	import { mutation } from 'svelte-apollo';
+  import { fly } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
   import { LOGOUT } from 'graphql/queries/login';
   import Avatar from 'components/Avatar.svelte';
 
@@ -106,7 +108,7 @@
   <div class="triangle-down"></div>
 </div>
 {#if navVisible}
-  <nav class="profile-nav">
+  <nav class="profile-nav" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <a href="/profile">Profile</a>
     <a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
   </nav>
