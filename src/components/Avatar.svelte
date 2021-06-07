@@ -1,5 +1,6 @@
 <script>
   export let user;
+  export let alt;
 </script>
 
 <style>
@@ -24,7 +25,7 @@
   <img
     class="avatar"
     src={`avatars/${user.id}.svg`}
-    alt={`Posted by: ${user.firstName} ${user.lastName}`}
-    title={`Posted by: ${user.firstName} ${user.lastName}`}
+    alt={alt}
+    title={alt}
   />
 {/if}

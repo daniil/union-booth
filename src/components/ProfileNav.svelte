@@ -104,7 +104,10 @@
 />
 
 <div class="avatar-container" on:click|stopPropagation={toggleNav}>
-  <Avatar user={$session.user}/>
+  <Avatar
+    user={$session.user}
+    alt={`${$session.user.firstName} ${$session.user.lastName} Profile`}
+  />
   <div class="triangle-down"></div>
 </div>
 {#if navVisible}

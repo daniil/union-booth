@@ -26,7 +26,10 @@
   {#if details.isAnonymous}
     <Avatar/>
   {:else}
-    <Avatar user={details.user}/>
+    <Avatar
+      user={details.user}
+      alt={`Posted by: ${details.user.firstName} ${details.user.lastName}`}
+    />
   {/if}
   <time>
     <span>{time}</span>

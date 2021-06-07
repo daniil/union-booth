@@ -34,7 +34,10 @@
 </style>
 
 <div class="answer">
-  <Avatar user={details.user}/>
+  <Avatar
+    user={details.user}
+    alt={`Posted by: ${details.user.firstName} ${details.user.lastName}`}
+  />
   <div class="answer-text">
     <h4>{@html content}</h4>
     <time>
