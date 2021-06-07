@@ -24,13 +24,6 @@
 
   const handleClickOff = e => {
     if (navVisible) {
-      let parent = e.target;
-      while (parent.parentNode) {
-        if (parent.classList.contains('profile-nav')) {
-          return;
-        }
-        parent = parent.parentNode;
-      }
       navVisible = false;
     }
   }
@@ -103,13 +96,15 @@
   on:click={handleClickOff}
 />
 
-<div class="avatar-container" on:click|stopPropagation={toggleNav}>
-  <Avatar
-    user={$session.user}
-    alt={`${$session.user.firstName} ${$session.user.lastName} Profile`}
-  />
-  <div class="triangle-down"></div>
-</div>
+{#if $session.user}
+  <div class="avatar-container" on:click|stopPropagation={toggleNav}>
+    <Avatar
+      user={$session.user}
+      alt={`${$session.user.firstName} ${$session.user.lastName} Profile`}
+    />
+    <div class="triangle-down"></div>
+  </div>
+{/if}
 {#if navVisible}
   <nav class="profile-nav" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <a href="/profile">Profile</a>
