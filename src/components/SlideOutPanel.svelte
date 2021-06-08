@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte';
   import { fade } from 'svelte/transition';
   import { quintInOut } from 'svelte/easing';
+  import Portal from "svelte-portal";
 
   export let title;
   export let visible;
@@ -33,6 +34,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(255,255,255,0.5);
+    z-index: 4;
   }
   .slide-out-panel {
     position: fixed;
@@ -47,6 +49,7 @@
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     transform: translateY(100%);
     transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 4;
   }
   .slide-out-panel-container {
     width: 100%;
@@ -80,19 +83,21 @@
   on:keydown={handleKeydown}
 />
 
-{#if visible}
-  <div
-    class="backdrop"
-    on:click={handleClickOutside}
-    transition:fade={{ duration: 500, easing: quintInOut }}
-  ></div>
-{/if}
-<section class="slide-out-panel" class:visible>
-  <div class="slide-out-panel-container">
-    <h2>
-      {title}
-      <button class="close" on:click={triggerClose}>X</button>
-    </h2>
-    <slot></slot>
-  </div>
-</section>
+<Portal target=".page-container">
+  {#if visible}
+    <div
+      class="backdrop"
+      on:click={handleClickOutside}
+      transition:fade={{ duration: 500, easing: quintInOut }}
+    ></div>
+  {/if}
+  <section class="slide-out-panel" class:visible>
+    <div class="slide-out-panel-container">
+      <h2>
+        {title}
+        <button class="close" on:click={triggerClose}>X</button>
+      </h2>
+      <slot></slot>
+    </div>
+  </section>
+</Portal>

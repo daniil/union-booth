@@ -1,5 +1,5 @@
 <script>
-	import { goto, stores } from '@sapper/app';
+	import { stores } from '@sapper/app';
 	import AuthContent from 'components/AuthContent.svelte';
 	import ProfileNav from 'components/ProfileNav.svelte';
 
@@ -32,6 +32,9 @@
 	}
 	.right-aligned {
 		float: right;
+		&.admin {
+			margin-right: 1rem;
+		}
 	}
 	[aria-current] {
 		position: relative;
@@ -70,7 +73,7 @@
 				<ProfileNav/>
 			</li>
 			<AuthContent role="admin">
-				<li class="right-aligned">
+				<li class="right-aligned admin">
 					<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
 				</li>
 			</AuthContent>

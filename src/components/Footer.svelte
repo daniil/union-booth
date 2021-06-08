@@ -10,6 +10,7 @@
     border-top: 1px solid rgba(255, 62, 0, 0.1);
     text-align: center;
     color: rgba(85, 67, 72, 0.7);
+    z-index: 2;
   }
 </style>
 

@@ -38,6 +38,7 @@
     transform: translateY(-50%);
     cursor: pointer;
     transition: filter 0.25s;
+    z-index: 3;
     &:hover {
       filter: drop-shadow(0px 4px 12px rgb(0 0 0 / 10%));
       .triangle-down {
