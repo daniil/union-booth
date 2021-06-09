@@ -1,4 +1,6 @@
 import { AuthenticationError, UserInputError } from 'apollo-server';
+import { combineResolvers } from 'graphql-resolvers';
+import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
 
 const userSessionValues = user => {
@@ -13,6 +15,24 @@ const userSessionValues = user => {
 }
 
 export default {
+  Query: {
+    user: combineResolvers(
+      isAuthenticated,
+      async (_, { id }, { models }) => {
+        const user = await models.User.findOne({
+          where: { id },
+          attributes: ['id', 'firstName', 'lastName', 'username', 'email', 'role', 'createdAt', 'cohortId']
+        });
+
+        if (!user) {
+          throw new UserInputError('No user found');
+        }
+
+        return user;
+      }
+    )
+  },
+
   Mutation: {
     register: async (
       _,

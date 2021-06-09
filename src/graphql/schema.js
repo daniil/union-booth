@@ -26,7 +26,6 @@ const typeDefs = gql`
     lastName: String!
     username: String!
     email: String!
-    password: String!
     role: String!
     cohortId: ID
     createdAt: Date!
@@ -114,6 +113,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    user(id: ID!): User!
     programs: [Program]!
     selectedProgram: Program
     cohorts(programId: ID!): [Cohort]!
