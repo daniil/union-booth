@@ -1,7 +1,8 @@
-import { AuthenticationError, UserInputError } from 'apollo-server';
+import { AuthenticationError, UserInputError, ApolloError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
-import { isAuthenticated, checkRole } from './auth';
+import { isAuthenticated } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
+import generateAvatar from 'utils/generateAvatar';
 
 const userSessionValues = user => {
   return {
@@ -91,6 +92,23 @@ export default {
     logout: async (_, __, { session }) => {
       session.user = null;
       return true;
-    }
+    },
+
+    updateUserAvatar: combineResolvers(
+      isAuthenticated,
+      async (_, { userId }, { session }) => {
+        console.log(session.user.id, userId)
+        if (session.user.id !== userId) {
+          throw new UserInputError('You can not generate a new avatar for a user other than yourself.');
+        }
+
+        try {
+          generateAvatar(userId);
+          return true;
+        } catch(err) {
+          throw new ApolloError('Could not generate a new avatar.');
+        }
+      }
+    )
   }
 }

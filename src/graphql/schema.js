@@ -142,6 +142,7 @@ const typeDefs = gql`
       isProgramOwner: Boolean!,
       cohortId: ID
     ): User
+    updateUserAvatar(userId: ID!): Boolean!
     addProgram(title: String!): Program!
     toggleProgramSelect(id: ID!, isSelected: Boolean!): Program
     addCohort(programId: ID!, title: String!): Cohort!
