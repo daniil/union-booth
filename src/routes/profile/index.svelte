@@ -7,7 +7,16 @@
     if (!session.user) {
       return this.redirect(302, '');
     }
+
+    return { session }
   }
+</script>
+
+<script>
+  import { stores } from '@sapper/app';
+  import UpdateAvatar from 'components/UpdateAvatar.svelte';
+
+  const { session } = stores();
 </script>
 
 <style lang="scss">
@@ -16,6 +25,7 @@
     justify-content: center;
   }
   h1 {
+    margin-bottom: 2rem;
     text-align: center;
     font-size: 1.5rem;
     color: rgba(0,0,0,0.7);
@@ -25,6 +35,7 @@
 <div class="container">
   <div class="wrapper">
     <h1>Profile</h1>
+    <UpdateAvatar user={$session.user}/>
   </div>
 </div>
 
