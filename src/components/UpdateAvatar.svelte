@@ -1,10 +1,35 @@
 <script>
+  import { mutation } from 'svelte-apollo';
+  import { UPDATE_USER_AVATAR } from 'graphql/queries/user';
   import Button from 'components/Button.svelte';
 
   export let user;
 
+  const updateUserAvatar = mutation(UPDATE_USER_AVATAR);
+
+  let isChanging = false;
+  let refreshToken;
+
   const handleGenerateAvatar = () => {
-    console.log('Generate new avatar');
+    try {
+      isChanging = true;
+
+      setTimeout(async () => {
+        const updateResult = await updateUserAvatar({
+          variables: {
+            userId: user.id
+          }
+        });
+        if (updateResult.data.updateUserAvatar) {
+          refreshToken = Date.now();
+          isChanging = false;
+        } else {
+          console.log('ERROR');
+        }
+      }, 250);
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 
@@ -19,13 +44,19 @@
   }
   .avatar {
     width: 125px;
+    transition: filter 0.25s, opacity 0.25s;
+    &.is-changing {
+      filter: blur(10px) grayscale(1);
+      opacity: 0.25;
+    }
   }
 </style>
 
 <div class="wrapper">
   <img
     class="avatar"
-    src={`avatars/${user.id}.svg`}
+    class:is-changing={isChanging}
+    src={`avatars/${user.id}.svg?refresh=${refreshToken}`}
     alt={`${user.username} avatar`}
     title={`${user.username} avatar`}
   />
