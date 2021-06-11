@@ -1,6 +1,10 @@
 <script>
+  import { stores } from '@sapper/app';
+
   export let user;
   export let alt;
+
+  const { session } = stores();
 </script>
 
 <style>
@@ -24,7 +28,7 @@
 {:else}
   <img
     class="avatar"
-    src={`avatars/${user.id}.svg`}
+    src={`avatars/${user.id}.svg?refresh=${$session.userAvatarRefreshToken}`}
     alt={alt}
     title={alt}
   />

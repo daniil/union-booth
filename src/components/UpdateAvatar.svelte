@@ -1,14 +1,15 @@
 <script>
+  import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { UPDATE_USER_AVATAR } from 'graphql/queries/user';
   import Button from 'components/Button.svelte';
 
   export let user;
 
+  const { session } = stores();
   const updateUserAvatar = mutation(UPDATE_USER_AVATAR);
 
   let isChanging = false;
-  let refreshToken;
 
   const handleGenerateAvatar = () => {
     try {
@@ -21,7 +22,7 @@
           }
         });
         if (updateResult.data.updateUserAvatar) {
-          refreshToken = Date.now();
+          $session.userAvatarRefreshToken = Date.now();
           isChanging = false;
         } else {
           console.log('ERROR');
@@ -56,7 +57,7 @@
   <img
     class="avatar"
     class:is-changing={isChanging}
-    src={`avatars/${user.id}.svg?refresh=${refreshToken}`}
+    src={`avatars/${user.id}.svg?refresh=${$session.userAvatarRefreshToken}`}
     alt={`${user.username} avatar`}
     title={`${user.username} avatar`}
   />
