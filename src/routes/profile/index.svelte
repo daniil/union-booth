@@ -16,6 +16,7 @@
   import { stores } from '@sapper/app';
   import UpdateAvatar from 'components/UpdateAvatar.svelte';
   import UpdateProfile from 'components/UpdateProfile.svelte';
+  import UpdatePassword from 'components/UpdatePassword.svelte';
 
   const { session } = stores();
 </script>
@@ -37,6 +38,7 @@
   .profile-container {
     display: flex;
     gap: 4rem;
+    margin-bottom: 4rem;
     justify-content: center;
   }
 </style>
@@ -48,6 +50,7 @@
       <UpdateAvatar user={$session.user}/>
       <UpdateProfile user={$session.user}/>
     </div>
+    <UpdatePassword user={$session.user}/>
   </div>
 </div>
 
