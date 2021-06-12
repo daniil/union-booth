@@ -53,13 +53,15 @@
   }
 </style>
 
-<div class="wrapper">
-  <img
-    class="avatar"
-    class:is-changing={isChanging}
-    src={`avatars/${user.id}.svg?refresh=${$session.userAvatarRefreshToken}`}
-    alt={`${user.username} avatar`}
-    title={`${user.username} avatar`}
-  />
-  <Button icon="🌀" label="Generate New" action={handleGenerateAvatar}/>
-</div>
+{#if user}
+  <div class="wrapper">
+    <img
+      class="avatar"
+      class:is-changing={isChanging}
+      src={`avatars/${user.id}.svg?refresh=${$session.userAvatarRefreshToken}`}
+      alt={`${user.username} avatar`}
+      title={`${user.username} avatar`}
+    />
+    <Button icon="🌀" label="Generate New" action={handleGenerateAvatar}/>
+  </div>
+{/if}

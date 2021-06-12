@@ -1,7 +1,6 @@
 ## Tasks
 
 - Add user admin UI
-  - Add generate new avatar functionality for user
   - Add update user info functionality
 - Create deactivate a question functionality (Live page)
 - Create edit a question functionality (Live page)
