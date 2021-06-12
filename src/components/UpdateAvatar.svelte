@@ -39,16 +39,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 20%;
     :global(.button) {
       margin: 1rem 0 0 0;
     }
   }
   .avatar {
-    width: 125px;
-    transition: filter 0.25s, opacity 0.25s;
+    width: 150px;
+    transition: filter 0.25s, opacity 0.25s, transform 0.25s;
     &.is-changing {
       filter: blur(10px) grayscale(1);
       opacity: 0.25;
+      transform: scale(0.9);
     }
   }
 </style>

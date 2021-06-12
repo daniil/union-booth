@@ -15,6 +15,7 @@
 <script>
   import { stores } from '@sapper/app';
   import UpdateAvatar from 'components/UpdateAvatar.svelte';
+  import UpdateProfile from 'components/UpdateProfile.svelte';
 
   const { session } = stores();
 </script>
@@ -24,18 +25,29 @@
     display: flex;
     justify-content: center;
   }
+  .wrapper {
+    flex-grow: 1;
+  }
   h1 {
     margin-bottom: 2rem;
     text-align: center;
     font-size: 1.5rem;
     color: rgba(0,0,0,0.7);
   }
+  .profile-container {
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+  }
 </style>
 
 <div class="container">
   <div class="wrapper">
     <h1>Profile</h1>
-    <UpdateAvatar user={$session.user}/>
+    <div class="profile-container">
+      <UpdateAvatar user={$session.user}/>
+      <UpdateProfile user={$session.user}/>
+    </div>
   </div>
 </div>
 
