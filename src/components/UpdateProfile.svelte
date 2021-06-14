@@ -3,6 +3,7 @@
   import { onDestroy } from 'svelte';
   import TextInput from 'components/TextInput.svelte';
   import Button from 'components/Button.svelte';
+  import Loading from 'components/Loading.svelte';
   import { USER } from 'graphql/queries/user';
 
   export let user;
@@ -11,6 +12,7 @@
 
   let userInfo;
   let formDisabled = false;
+  let fetchingData = true;
 
   $: buttonVariant = formDisabled ? 'loading' : 'success';
 
@@ -25,6 +27,7 @@
     .subscribe(({ data }) => {
       if (data) {
         userInfo = data.user;
+        fetchingData = false;
       }
     });
 
@@ -37,6 +40,7 @@
 
 <style lang="scss">
   form {
+    position: relative;
     width: 30%;
   }
   .form-element {
@@ -47,6 +51,23 @@
       padding-top: 1rem;
       border-top: 1px solid #DBD3D8;
     }
+  }
+  .loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.75);
+  }
+  .loading-wrapper {
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 6px;
+    padding: 0.5rem 4rem;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
   }
 </style>
 
@@ -66,4 +87,11 @@
   <div class="form-element action">
     <Button type="submit" variant={buttonVariant} icon="🪄" label="Update"/>
   </div>
+  {#if fetchingData}
+    <div class="loading-container">
+      <div class="loading-wrapper">
+        <Loading/>
+      </div>
+    </div>
+  {/if}
 </form>
