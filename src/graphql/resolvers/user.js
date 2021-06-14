@@ -22,7 +22,7 @@ export default {
       async (_, { id }, { models }) => {
         const user = await models.User.findOne({
           where: { id },
-          attributes: ['id', 'firstName', 'lastName', 'username', 'email', 'role', 'createdAt', 'cohortId']
+          attributes: ['id', 'firstName', 'lastName', 'username', 'email']
         });
 
         if (!user) {

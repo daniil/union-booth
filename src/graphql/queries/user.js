@@ -8,9 +8,6 @@ const USER = gql`
       lastName
       username
       email
-      role
-      cohortId
-      createdAt
     }
   }
 `;

@@ -25,7 +25,6 @@
     .subscribe(({ data }) => {
       if (data) {
         userInfo = data.user;
-        console.log(userInfo)
       }
     });
 
@@ -53,16 +52,16 @@
 
 <form action="/update" method="post" on:submit|preventDefault={handleUpdate}>
   <div class="form-element">
-    <TextInput id="firstName" type="text" label="First Name" required disabled={formDisabled}/>
+    <TextInput id="firstName" type="text" label="First Name" value={userInfo?.firstName} required disabled={formDisabled}/>
   </div>
   <div class="form-element">
-    <TextInput id="lastName" type="text" label="Last Name" required disabled={formDisabled}/>
+    <TextInput id="lastName" type="text" label="Last Name" value={userInfo?.lastName} required disabled={formDisabled}/>
   </div>
   <div class="form-element">
-    <TextInput id="username" type="text" label="Username" required disabled={formDisabled}/>
+    <TextInput id="username" type="text" label="Username" value={userInfo?.username} required disabled={formDisabled}/>
   </div>
   <div class="form-element">
-    <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
+    <TextInput id="email" type="email" label="Email" value={userInfo?.email} required disabled={formDisabled}/>
   </div>
   <div class="form-element action">
     <Button type="submit" variant={buttonVariant} icon="🪄" label="Update"/>
