@@ -1,13 +1,36 @@
 <script>
+  import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
   import TextInput from 'components/TextInput.svelte';
   import Button from 'components/Button.svelte';
+  import { USER } from 'graphql/queries/user';
 
   export let user;
 
+  const { session } = stores();
+
+  let userInfo;
   let formDisabled = false;
 
   $: buttonVariant = formDisabled ? 'loading' : 'success';
 
+  const userInfoSub = $session.apolloClient
+    .watchQuery({
+      query: USER,
+      variables: {
+        id: user.id
+      },
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      if (data) {
+        userInfo = data.user;
+        console.log(userInfo)
+      }
+    });
+
+  onDestroy(() => userInfoSub.unsubscribe());
+  
   const handleUpdate = e => {
     console.log('Update');
   }
