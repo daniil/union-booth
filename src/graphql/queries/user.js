@@ -18,7 +18,20 @@ const UPDATE_USER_AVATAR = gql`
   }
 `;
 
+const UPDATE_USER_INFO = gql`
+  mutation UpdateUserInfo($userId: ID!, $firstName: String, $lastName: String, $username: String, $email: String) {
+    updateUserInfo(userId: $userId, firstName: $firstName, lastName: $lastName, username: $username, email: $email) {
+      id
+      firstName
+      lastName
+      username
+      email
+    }
+  }
+`;
+
 export {
   USER,
-  UPDATE_USER_AVATAR
+  UPDATE_USER_AVATAR,
+  UPDATE_USER_INFO
 }
