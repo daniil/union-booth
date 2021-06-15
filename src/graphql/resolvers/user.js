@@ -97,7 +97,6 @@ export default {
     updateUserAvatar: combineResolvers(
       isAuthenticated,
       async (_, { userId }, { session }) => {
-        console.log(session.user.id, userId)
         if (session.user.id !== userId) {
           throw new UserInputError('You can not generate a new avatar for a user other than yourself.');
         }
@@ -107,6 +106,38 @@ export default {
           return true;
         } catch(err) {
           throw new ApolloError('Could not generate a new avatar.');
+        }
+      }
+    ),
+
+    updateUserInfo: combineResolvers(
+      isAuthenticated,
+      async (_, { userId, firstName, lastName, username, email }, { models, session }) => {
+        if (session.user.id !== userId) {
+          throw new UserInputError('You can not update information for a user other than yourself.');
+        }
+        
+        try {
+          const user = await models.User.findOne({
+            where: {
+              id: userId
+            }
+          });
+
+          if (!user) {
+            throw new UserInputError('User can not be found');
+          }
+
+          await user.update({
+            firstName,
+            lastName,
+            username,
+            email
+          });
+
+          return user;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
         }
       }
     )

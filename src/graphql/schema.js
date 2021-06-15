@@ -143,6 +143,7 @@ const typeDefs = gql`
       cohortId: ID
     ): User
     updateUserAvatar(userId: ID!): Boolean!
+    updateUserInfo(userId: ID!, firstName: String, lastName: String, username: String, email: String): User!
     addProgram(title: String!): Program!
     toggleProgramSelect(id: ID!, isSelected: Boolean!): Program
     addCohort(programId: ID!, title: String!): Cohort!

@@ -2,12 +2,14 @@
 
 - Add user admin UI
   - Add update user info functionality
+  - Add update password functionality
 - Create deactivate a question functionality (Live page)
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
 - Create edit an answer functionality (Live page)
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
+  - Register and update profile pages
 - Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality
   - Queue for an educator
