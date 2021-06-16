@@ -49,7 +49,17 @@
           email: e.target.email.value
         },
         update: (_, mutationResult) => {
-          console.log(mutationResult.data.updateUserInfo);
+          const updatedUserInfo = mutationResult.data.updateUserInfo;
+
+          $session.apolloClient.writeQuery({
+            query: USER,
+            variables: {
+              id: user.id
+            },
+            data: {
+              user: updatedUserInfo
+            }
+          });
 
           formDisabled = false;
         }
