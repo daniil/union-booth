@@ -2,10 +2,12 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import { mutation } from 'svelte-apollo';
+  import parseError from 'utils/parseError';
+  import { USER, UPDATE_USER_INFO } from 'graphql/queries/user';
   import TextInput from 'components/TextInput.svelte';
   import Button from 'components/Button.svelte';
   import Loading from 'components/Loading.svelte';
-  import { USER, UPDATE_USER_INFO } from 'graphql/queries/user';
+  import FormErrors from 'components/FormErrors.svelte';
 
   export let user;
 
@@ -14,6 +16,7 @@
   const updateUserInfo = mutation(UPDATE_USER_INFO);
 
   let userInfo;
+  let errors;
   let formDisabled = false;
   let fetchingData = true;
 
@@ -38,6 +41,7 @@
   
   const handleUpdate = async e => {
     formDisabled = true;
+    errors = null;
 
     try {
       await updateUserInfo({
@@ -62,13 +66,12 @@
           });
 
           $session.user = updatedUserInfo;
-
           formDisabled = false;
         }
       })
     } catch(err) {
       formDisabled = false;
-      console.log('ERROR: ', err);
+      errors = parseError(err);
     }
   }
 </script>
@@ -122,6 +125,7 @@
   <div class="form-element action">
     <Button type="submit" variant={buttonVariant} icon="🪄" label="Update"/>
   </div>
+  <FormErrors {errors}/>
   {#if fetchingData}
     <div class="loading-container">
       <div class="loading-wrapper">

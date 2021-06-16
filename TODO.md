@@ -1,7 +1,6 @@
 ## Tasks
 
 - Add user admin UI
-  - Catch errors when updating
   - Add update password functionality
 - Create deactivate a question functionality (Live page)
 - Create edit a question functionality (Live page)
