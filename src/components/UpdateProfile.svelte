@@ -1,14 +1,17 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
+  import { mutation } from 'svelte-apollo';
   import TextInput from 'components/TextInput.svelte';
   import Button from 'components/Button.svelte';
   import Loading from 'components/Loading.svelte';
-  import { USER } from 'graphql/queries/user';
+  import { USER, UPDATE_USER_INFO } from 'graphql/queries/user';
 
   export let user;
 
   const { session } = stores();
+
+  const updateUserInfo = mutation(UPDATE_USER_INFO);
 
   let userInfo;
   let formDisabled = false;
@@ -33,8 +36,28 @@
 
   onDestroy(() => userInfoSub.unsubscribe());
   
-  const handleUpdate = e => {
-    console.log('Update');
+  const handleUpdate = async e => {
+    formDisabled = true;
+
+    try {
+      await updateUserInfo({
+        variables: {
+          userId: user.id,
+          firstName: e.target.firstName.value,
+          lastName: e.target.lastName.value,
+          username: e.target.username.value,
+          email: e.target.email.value
+        },
+        update: (_, mutationResult) => {
+          console.log(mutationResult.data.updateUserInfo);
+
+          formDisabled = false;
+        }
+      })
+    } catch(err) {
+      formDisabled = false;
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 
