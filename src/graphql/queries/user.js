@@ -26,6 +26,7 @@ const UPDATE_USER_INFO = gql`
       lastName
       username
       email
+      role
     }
   }
 `;

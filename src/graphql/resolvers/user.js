@@ -135,6 +135,7 @@ export default {
             email
           });
 
+          session.user = userSessionValues(user);
           return user;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));

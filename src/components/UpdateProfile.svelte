@@ -61,6 +61,8 @@
             }
           });
 
+          $session.user = updatedUserInfo;
+
           formDisabled = false;
         }
       })

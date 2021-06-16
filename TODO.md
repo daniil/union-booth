@@ -1,9 +1,7 @@
 ## Tasks
 
 - Add user admin UI
-  - Add update user info functionality
   - Catch errors when updating
-  - Update the current session on backend and frontend
   - Add update password functionality
 - Create deactivate a question functionality (Live page)
 - Create edit a question functionality (Live page)
