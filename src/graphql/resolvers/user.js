@@ -141,6 +141,35 @@ export default {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
+    ),
+
+    updateUserPassword: combineResolvers(
+      isAuthenticated,
+      async (_, { userId, password }, { models, session }) => {
+        if (session.user.id !== userId) {
+          throw new UserInputError('You can not update password for a user other than yourself.');
+        }
+
+        try {
+          const user = await models.User.findOne({
+            where: {
+              id: userId
+            }
+          });
+
+          if (!user) {
+            throw new UserInputError('User can not be found');
+          }
+
+          await user.update({
+            password
+          });
+
+          return true;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
     )
   }
 }
