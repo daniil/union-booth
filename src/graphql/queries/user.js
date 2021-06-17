@@ -31,8 +31,15 @@ const UPDATE_USER_INFO = gql`
   }
 `;
 
+const UPDATE_USER_PASSWORD = gql`
+  mutation UpdateUserPassword($userId: ID!, $password: String!) {
+    updateUserPassword(userId: $userId, password: $password)
+  }
+`;
+
 export {
   USER,
   UPDATE_USER_AVATAR,
-  UPDATE_USER_INFO
+  UPDATE_USER_INFO,
+  UPDATE_USER_PASSWORD
 }
