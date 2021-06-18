@@ -1,3 +1,7 @@
+<script>
+  import MeatballIcon from 'components/MeatballIcon.svelte';
+</script>
+
 <style>
   .question-actions:not(:empty) {
     background-color: white;
@@ -7,4 +11,6 @@
   }
 </style>
 
-<div class="question-actions">Actions</div>
+<div class="question-actions">
+  <MeatballIcon color="#05668D" label="Actions"/>
+</div>
