@@ -28,6 +28,12 @@
   onDestroy(() => liveTopicSub.unsubscribe());
 </script>
 
+<style>
+  h1 {
+    margin-bottom: 2rem;
+  }
+</style>
+
 {#if loading}
   <Loading/>
 {:else}

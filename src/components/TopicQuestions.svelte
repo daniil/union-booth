@@ -64,11 +64,17 @@
   onDestroy(() => newCohortQuestionUnsub());
 </script>
 
+<style>
+  .question-container {
+    margin-bottom: 4rem;
+  }
+</style>
+
 {#if loading}
   <Loading/>
 {:else}
   {#each questions as question (question.id)}
-    <div transition:slide|local="{{ duration: 300, easing: cubicOut }}">
+    <div class="question-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
       <Question details={question}/>
     </div>
   {:else}

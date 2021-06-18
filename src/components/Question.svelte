@@ -7,6 +7,7 @@
   import QuestionFooter from 'components/QuestionFooter.svelte';
   import QuestionAnswers from 'components/QuestionAnswers.svelte';
   import QuestionStatus from 'components/QuestionStatus.svelte'
+  import QuestionActions from 'components/QuestionActions.svelte';
 
   const { session } = stores();
 
@@ -106,6 +107,12 @@
   h3 > :global(p) {
     margin-top: 0;
   }
+  .actions-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 40%);
+  }
 </style>
 
 <article
@@ -125,4 +132,7 @@
       {answeredBy}
     />
   {/if}
+  <div class="actions-container">
+    <QuestionActions/>
+  </div>
 </article>

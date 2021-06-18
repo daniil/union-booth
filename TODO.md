@@ -1,7 +1,5 @@
 ## Tasks
 
-- Add user admin UI
-  - Add update password functionality
 - Create deactivate a question functionality (Live page)
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
