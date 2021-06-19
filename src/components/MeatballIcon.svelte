@@ -4,7 +4,7 @@
 </script>
 
 <style lang="scss">
-  $ball-size: 7px;
+  $ball-size: 5px;
   $offset: 3px;
   $ball-color: currentColor;
   @mixin ball() {
