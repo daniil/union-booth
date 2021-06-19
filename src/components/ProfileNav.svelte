@@ -85,9 +85,9 @@
   .profile-nav {
     position: absolute;
     top: 165%;
+    right: 0;
     padding: 0.25rem 0;
     background-color: #fff;
-    right: 0;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     border-radius: 4px;
   }

@@ -1,8 +1,13 @@
 <script>
+  import { fly } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
   import MeatballIcon from 'components/MeatballIcon.svelte';
+  import QuestionActionsNav from 'components/QuestionActionsNav.svelte';
+  
+  let navVisible = false;
 
   const handleActionDropdown = () => {
-    console.log('Trigger action dropdown');
+    navVisible = !navVisible;
   }
 </script>
 
@@ -26,6 +31,12 @@
       filter: brightness(1.25);
     }
   }
+  .question-actions-nav-wrapper {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 </style>
 
 <div class="question-actions">
@@ -33,3 +44,8 @@
     <MeatballIcon color="#05668D" label="Actions"/>
   </button>
 </div>
+{#if navVisible}
+  <div class="question-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
+    <QuestionActionsNav/>
+  </div>
+{/if}

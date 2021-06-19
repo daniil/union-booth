@@ -112,6 +112,7 @@
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 40%);
+    z-index: 1;
   }
 </style>
 
