@@ -14,6 +14,7 @@
   - Average answer time (based off startTime and endTime)
 - Select random student to answer question
 - Setup notifications system (new question, new answer, watch answer, etc.)
+- Add user management admin functionality
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
 - Add a program/cohort admin privileges for other roles

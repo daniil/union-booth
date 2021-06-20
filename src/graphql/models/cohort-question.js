@@ -18,6 +18,10 @@ const cohortQuestion = (sequelize, DataTypes) => {
     convertedToFAQ: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    isInactive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 
