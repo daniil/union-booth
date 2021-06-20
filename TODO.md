@@ -1,12 +1,18 @@
 ## Tasks
 
 - Create deactivate a question functionality (Live page)
+  - Add backend mutation and resolver
+  - Add frontend mutation query
+  - Add subscription for deactivate the question
+  - Add frontend conditional UI
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
+  - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
   - Register and update profile pages
+- Add Live Question topic Cheatsheet field (also available on individual topic page)
 - Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality
   - Queue for an educator

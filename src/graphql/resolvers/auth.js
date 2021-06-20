@@ -1,11 +1,6 @@
 import { ForbiddenError } from 'apollo-server';
 import { skip } from 'graphql-resolvers';
-
-export const roleMap = {
-  user: ['user'],
-  moderator: ['user', 'moderator'],
-  admin: ['user', 'moderator', 'admin']
-};
+import roleMap from 'utils/role-map';
 
 export const isAuthenticated = (_, __, { session }) => {
   return session.user ? skip : new ForbiddenError('Not authenticated as user.');
