@@ -6,6 +6,7 @@ const cohortQuestionInformation = gql`
     question
     isAnonymous
     createdAt
+    isInactive
     user {
       id
       username
@@ -38,12 +39,22 @@ const NEW_COHORT_QUESTION = gql`
     newCohortQuestion(cohortId: $cohortId, topicId: $topicId) {
       ...CohortQuestionInformation
     }
-  },
+  }
+  ${cohortQuestionInformation}
+`;
+
+const DEACTIVATE_COHORT_QUESTION = gql`
+  mutation DeactivateCohortQuestion($questionId: ID!) {
+    deactivateCohortQuestion(questionId: $questionId) {
+      ...CohortQuestionInformation
+    }
+  }
   ${cohortQuestionInformation}
 `;
 
 export {
   LIVE_QUESTIONS,
   ADD_COHORT_QUESTION,
-  NEW_COHORT_QUESTION
+  NEW_COHORT_QUESTION,
+  DEACTIVATE_COHORT_QUESTION
 }
