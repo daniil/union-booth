@@ -3,11 +3,17 @@
   import { quintOut } from 'svelte/easing';
   import MeatballIcon from 'components/MeatballIcon.svelte';
   import QuestionActionsNav from 'components/QuestionActionsNav.svelte';
+
+  export let questionId;
   
   let navVisible = false;
 
   const handleActionDropdown = () => {
     navVisible = !navVisible;
+  }
+
+  const handleActionComplete = () => {
+    navVisible = false;
   }
 </script>
 
@@ -46,6 +52,9 @@
 </div>
 {#if navVisible}
   <div class="question-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
-    <QuestionActionsNav/>
+    <QuestionActionsNav
+      {questionId}
+      on:action-complete={handleActionComplete}
+    />
   </div>
 {/if}
