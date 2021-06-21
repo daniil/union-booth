@@ -4,6 +4,7 @@
   import { subscribe } from 'svelte-apollo';
   import { parseMD } from 'utils/markdown';
   import { ANSWERS_IN_PROGRESS, COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
+  import roleMap from 'utils/role-map';
   import QuestionFooter from 'components/QuestionFooter.svelte';
   import QuestionAnswers from 'components/QuestionAnswers.svelte';
   import QuestionStatus from 'components/QuestionStatus.svelte'
@@ -20,6 +21,7 @@
   $: content = parseMD(details.question);
   $: isBeingAnswered = !!beingAnsweredBy.length;
   $: isAnswered = !!answeredBy.length;
+  $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || $session.user.id === details.user.id;
 
   $: answersInProgressSub = $session.apolloClient
     .watchQuery({
@@ -133,7 +135,9 @@
       {answeredBy}
     />
   {/if}
-  <div class="actions-container">
-    <QuestionActions/>
-  </div>
+  {#if questionActionsEnabled}
+    <div class="actions-container">
+      <QuestionActions questionId={details.id}/>
+    </div>
+  {/if}
 </article>

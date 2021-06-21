@@ -1,10 +1,8 @@
 ## Tasks
 
 - Create deactivate a question functionality (Live page)
-  - Add backend mutation and resolver
   - Add frontend mutation query
   - Add subscription for deactivate the question
-  - Add frontend conditional UI
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
