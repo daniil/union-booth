@@ -18,7 +18,7 @@
     try {
       await deactivateCohortQuestion({
         variables: {
-          questionId
+          cohortQuestionId: questionId
         }
       });
       dispatch('action-complete');

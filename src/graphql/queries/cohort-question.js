@@ -44,8 +44,8 @@ const NEW_COHORT_QUESTION = gql`
 `;
 
 const DEACTIVATE_COHORT_QUESTION = gql`
-  mutation DeactivateCohortQuestion($questionId: ID!) {
-    deactivateCohortQuestion(questionId: $questionId) {
+  mutation DeactivateCohortQuestion($cohortQuestionId: ID!) {
+    deactivateCohortQuestion(cohortQuestionId: $cohortQuestionId) {
       ...CohortQuestionInformation
     }
   }

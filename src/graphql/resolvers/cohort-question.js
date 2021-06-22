@@ -68,11 +68,11 @@ export default {
 
     deactivateCohortQuestion: combineResolvers(
       isAuthenticated,
-      async (_, { questionId }, { models, session }) => {
+      async (_, { cohortQuestionId }, { models, session }) => {
         const isModerator = roleMap[session.user.role].includes('moderator');
         const question = await models.CohortQuestion.findOne({
           where: {
-            id: questionId,
+            id: cohortQuestionId,
             isInactive: false
           }
         });
