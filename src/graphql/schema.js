@@ -168,6 +168,7 @@ const typeDefs = gql`
     newCohortQuestion(cohortId: ID!, topicId: ID!): CohortQuestion!
     newCohortAnswer(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerProgress(cohortQuestionId: ID!): CohortAnswerInProgress!
+    cohortQuestionDeactivated(cohortId: ID!, topicId: ID!): CohortQuestion!
   }
 `;
 
