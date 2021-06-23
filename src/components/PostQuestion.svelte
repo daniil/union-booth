@@ -6,14 +6,22 @@
   import Checkbox from 'components/Checkbox.svelte';
 
   export let liveTopic;
+  export let selectedQuestion;
 
   const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
+  let editorContainer;
   let questionText;
   let formDisabled = false;
 
-  $: buttonVariant = formDisabled ? 'loading' : '';
+  $: if (selectedQuestion) setEditorValue();
   $: postBtnDisabled = questionText === undefined || questionText === '';
+  $: buttonVariant = formDisabled ? 'loading' : '';
+
+  const setEditorValue = () => {
+    questionText = selectedQuestion.question;
+    editorContainer.scrollIntoView({ behavior: 'smooth' });
+  }
 
   const handleSubmit = async e => {
     try {
@@ -49,7 +57,7 @@
 </style>
 
 <form action="/topics/ask" method="post" on:submit|preventDefault={handleSubmit}>
-  <div class="form-element">
+  <div class="form-element" bind:this={editorContainer}>
     <MDEditor
       id="question"
       label="Question"

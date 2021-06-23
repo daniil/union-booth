@@ -1,6 +1,8 @@
 ## Tasks
 
 - Create edit a question functionality (Live page)
+  - Change the button to say "Update Question"
+  - Add conditional update of the answer instead of create
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)

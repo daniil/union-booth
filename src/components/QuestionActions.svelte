@@ -54,6 +54,7 @@
   <div class="question-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <QuestionActionsNav
       {questionId}
+      on:edit
       on:action-complete={handleActionComplete}
     />
   </div>

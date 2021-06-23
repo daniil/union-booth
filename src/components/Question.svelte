@@ -137,7 +137,10 @@
   {/if}
   {#if questionActionsEnabled}
     <div class="actions-container">
-      <QuestionActions questionId={details.id}/>
+      <QuestionActions
+        questionId={details.id}
+        on:edit
+      />
     </div>
   {/if}
 </article>

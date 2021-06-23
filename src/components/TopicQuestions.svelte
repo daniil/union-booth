@@ -15,6 +15,7 @@
 
   let questions = [];
   let loading = true;
+  let selectedQuestion;
 
   $: liveQuestionsSub = $session.apolloClient
     .watchQuery({
@@ -90,6 +91,10 @@
   }
 
   onDestroy(() => cohortQuestionDeactivatedUnsub());
+
+  const handleEdit = e => {
+    selectedQuestion = questions.find(question => question.id === e.detail.questionId);
+  }
 </script>
 
 <style>
@@ -103,10 +108,16 @@
 {:else}
   {#each questions as question (question.id)}
     <div class="question-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
-      <Question details={question}/>
+      <Question
+        details={question}
+        on:edit={handleEdit}
+      />
     </div>
   {:else}
     <p>No questions yet, add a first one!</p>
   {/each}
 {/if}
-<PostQuestion {liveTopic}/>
+<PostQuestion
+  {liveTopic}
+  {selectedQuestion}
+/>

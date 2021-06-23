@@ -11,7 +11,8 @@
   const deactivateCohortQuestion = mutation(DEACTIVATE_COHORT_QUESTION);
   
   const handleEdit = () => {
-    console.log('Edit');
+    dispatch('edit', { questionId });
+    dispatch('action-complete');
   }
 
   const handleDeactivate = async () => {
