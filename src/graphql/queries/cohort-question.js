@@ -35,7 +35,7 @@ const ADD_COHORT_QUESTION = gql`
 `;
 
 const NEW_COHORT_QUESTION = gql`
-  subscription NewCohortQuestion($cohortId: ID!, $topicId: ID!){
+  subscription NewCohortQuestion($cohortId: ID!, $topicId: ID!) {
     newCohortQuestion(cohortId: $cohortId, topicId: $topicId) {
       ...CohortQuestionInformation
     }
@@ -52,9 +52,19 @@ const DEACTIVATE_COHORT_QUESTION = gql`
   ${cohortQuestionInformation}
 `;
 
+const COHORT_QUESTION_DEACTIVATED = gql`
+  subscription CohortQuestionDeactivated($cohortId: ID!, $topicId: ID!) {
+    cohortQuestionDeactivated(cohortId: $cohortId, topicId: $topicId) {
+      ...CohortQuestionInformation
+    }
+  }
+  ${cohortQuestionInformation}
+`;
+
 export {
   LIVE_QUESTIONS,
   ADD_COHORT_QUESTION,
   NEW_COHORT_QUESTION,
-  DEACTIVATE_COHORT_QUESTION
+  DEACTIVATE_COHORT_QUESTION,
+  COHORT_QUESTION_DEACTIVATED
 }
