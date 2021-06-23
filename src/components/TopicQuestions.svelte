@@ -4,7 +4,7 @@
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
   import { subscribe } from 'svelte-apollo';
-  import { LIVE_QUESTIONS, NEW_COHORT_QUESTION } from 'graphql/queries/cohort-question';
+  import { LIVE_QUESTIONS, NEW_COHORT_QUESTION, COHORT_QUESTION_DEACTIVATED } from 'graphql/queries/cohort-question';
   import Loading from 'components/Loading.svelte';
   import Question from 'components/Question.svelte';
   import PostQuestion from 'components/PostQuestion.svelte';
@@ -40,9 +40,9 @@
     }
   });
 
-  $: newCohortQuestionUnsub = subscribeToChanges(liveTopic.cohortId, liveTopic.topic.id);
+  $: newCohortQuestionUnsub = subscribeToNewCohortQuestion(liveTopic.cohortId, liveTopic.topic.id);
 
-  const subscribeToChanges = (cohortId, topicId) => {
+  const subscribeToNewCohortQuestion = (cohortId, topicId) => {
     return newCohortQuestion.subscribe(value => {
       const needsUpdating = value.data && !questions.find(question => question.id === value.data.newCohortQuestion.id);
 
@@ -62,6 +62,34 @@
   }
 
   onDestroy(() => newCohortQuestionUnsub());
+
+  $: cohortQuestionDeactivated = subscribe(COHORT_QUESTION_DEACTIVATED, {
+    variables: {
+      cohortId: liveTopic.cohortId,
+      topicId: liveTopic.topic.id
+    }
+  });
+
+  $: cohortQuestionDeactivatedUnsub = subscribeToCohortQuestionDeactivated(liveTopic.cohortId, liveTopic.topic.id);
+
+  const subscribeToCohortQuestionDeactivated = (cohortId, topicId) => {
+    return cohortQuestionDeactivated.subscribe(value => {
+      if (value.data && value.data.cohortQuestionDeactivated.isInactive) {
+        $session.apolloClient.writeQuery({
+          query: LIVE_QUESTIONS,
+          variables: {
+            cohortId,
+            topicId
+          },
+          data: {
+            liveQuestions: questions.filter(question => question.id !== value.data.cohortQuestionDeactivated.id)
+          }
+        });
+      }
+    });
+  }
+
+  onDestroy(() => cohortQuestionDeactivatedUnsub());
 </script>
 
 <style>

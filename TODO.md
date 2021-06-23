@@ -1,7 +1,5 @@
 ## Tasks
 
-- Create deactivate a question functionality (Live page)
-  - Add subscription for deactivate the question
 - Create edit a question functionality (Live page)
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
