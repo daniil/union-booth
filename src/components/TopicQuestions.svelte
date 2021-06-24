@@ -95,6 +95,10 @@
   const handleEdit = e => {
     selectedQuestion = questions.find(question => question.id === e.detail.questionId);
   }
+
+  const handleCancelQuestion = () => {
+    selectedQuestion = null;
+  }
 </script>
 
 <style>
@@ -120,4 +124,5 @@
 <PostQuestion
   {liveTopic}
   {selectedQuestion}
+  on:cancel-question={handleCancelQuestion}
 />

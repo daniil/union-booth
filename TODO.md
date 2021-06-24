@@ -18,6 +18,7 @@
 - Select random student to answer question
 - Setup notifications system (new question, new answer, watch answer, etc.)
 - Add user management admin functionality
+  - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
 - Add a program/cohort admin privileges for other roles

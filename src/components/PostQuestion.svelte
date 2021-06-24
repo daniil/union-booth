@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
   import Button from 'components/Button.svelte';
@@ -8,6 +9,7 @@
   export let liveTopic;
   export let selectedQuestion;
 
+  const dispatch = createEventDispatcher();
   const addCohortQuestion = mutation(ADD_COHORT_QUESTION);
 
   let editorContainer;
@@ -46,6 +48,11 @@
   const handleEditorChange = event => {
     questionText = event.detail.value;
   }
+
+  const handleQuestionCancel = () => {
+    questionText = '';
+    dispatch('cancel-question');
+  }
 </script>
 
 <style>
@@ -68,7 +75,18 @@
     />
   </div>
   <div class="form-controls">
-    <Button type="submit" variant={buttonVariant} icon="🖐🏽" label="Post Question" disabled={postBtnDisabled}/>
-    <Checkbox id="isAnonymous" label="Ask anonymously" disabled={formDisabled}/>
+    <div>
+      {#if selectedQuestion}
+        <Button type="submit" variant={buttonVariant} icon="✏️" label="Update Question" disabled={postBtnDisabled}/>
+      {:else}
+        <Button type="submit" variant={buttonVariant} icon="🖐🏽" label="Post Question" disabled={postBtnDisabled}/>
+      {/if}
+      {#if !postBtnDisabled}
+        <Button icon="💨" label="Cancel" action={handleQuestionCancel} disabled={formDisabled} preventDefault/>
+      {/if}
+    </div>
+    {#if !selectedQuestion}
+      <Checkbox id="isAnonymous" label="Ask anonymously" disabled={formDisabled}/>
+    {/if}
   </div>
 </form>

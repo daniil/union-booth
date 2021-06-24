@@ -80,7 +80,7 @@
     <Button
       type="submit"
       variant={buttonVariant}
-      icon="👥"
+      icon="🪆"
       label="Create"
     />
   </div>
