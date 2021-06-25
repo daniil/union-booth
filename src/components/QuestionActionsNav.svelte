@@ -5,6 +5,7 @@
   import Button from 'components/Button.svelte';
 
   export let questionId;
+  export let isOwner;
 
   const dispatch = createEventDispatcher();
 
@@ -40,6 +41,8 @@
 </style>
 
 <nav class="question-actions-nav">
-  <Button style="link" label="Edit" action={handleEdit}/>
+  {#if isOwner}
+    <Button style="link" label="Edit" action={handleEdit}/>
+  {/if}
   <Button style="link" variant="danger" label="Delete" action={handleDeactivate}/>
 </nav>

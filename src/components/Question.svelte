@@ -9,11 +9,11 @@
   import QuestionAnswers from 'components/QuestionAnswers.svelte';
   import QuestionStatus from 'components/QuestionStatus.svelte'
   import QuestionActions from 'components/QuestionActions.svelte';
-
-  const { session } = stores();
-
+  
   export let details;
 
+  const { session } = stores();
+  
   let answersInProgress = [];
   let beingAnsweredBy = [];
   let answeredBy = [];
@@ -21,7 +21,8 @@
   $: content = parseMD(details.question);
   $: isBeingAnswered = !!beingAnsweredBy.length;
   $: isAnswered = !!answeredBy.length;
-  $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || $session.user.id === details.user.id;
+  $: isOwner = $session.user.id === details.user.id;
+  $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || isOwner;
 
   $: answersInProgressSub = $session.apolloClient
     .watchQuery({
@@ -139,6 +140,7 @@
     <div class="actions-container">
       <QuestionActions
         questionId={details.id}
+        {isOwner}
         on:edit
       />
     </div>

@@ -5,6 +5,7 @@
   import QuestionActionsNav from 'components/QuestionActionsNav.svelte';
 
   export let questionId;
+  export let isOwner;
   
   let navVisible = false;
 
@@ -54,6 +55,7 @@
   <div class="question-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <QuestionActionsNav
       {questionId}
+      {isOwner}
       on:edit
       on:action-complete={handleActionComplete}
     />
