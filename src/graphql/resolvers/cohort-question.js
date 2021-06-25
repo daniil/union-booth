@@ -29,7 +29,7 @@ export default {
   Mutation: {
     addCohortQuestion: combineResolvers(
       isAuthenticated,
-      async (_, { topicId, question, isAnonymous }, { models, session }) => {
+      async (_, { questionId, topicId, question, isAnonymous }, { models, session }) => {
         const user = await models.User.findOne({
           attributes: ['cohortId'],
           where: {

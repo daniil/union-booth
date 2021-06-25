@@ -26,8 +26,8 @@ const LIVE_QUESTIONS = gql`
 `;
 
 const ADD_COHORT_QUESTION = gql`
-  mutation AddCohortQuestion($topicId: ID!, $question: String!, $isAnonymous: Boolean!) {
-    addCohortQuestion(topicId: $topicId, question: $question, isAnonymous: $isAnonymous) {
+  mutation AddCohortQuestion($questionId: ID, $topicId: ID!, $question: String!, $isAnonymous: Boolean!) {
+    addCohortQuestion(questionId: $questionId, topicId: $topicId, question: $question, isAnonymous: $isAnonymous) {
       ...CohortQuestionInformation
     }
   }

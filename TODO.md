@@ -6,6 +6,8 @@
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)
+- Add user management admin functionality
+  - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
   - Register and update profile pages
@@ -17,8 +19,6 @@
   - Average answer time (based off startTime and endTime)
 - Select random student to answer question
 - Setup notifications system (new question, new answer, watch answer, etc.)
-- Add user management admin functionality
-  - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
 - Add a program/cohort admin privileges for other roles
@@ -31,6 +31,7 @@
 - Add speech-to-text question posting
 - Log user out after their session expires (ie: period of inactivity)
 - Add SSO Login options
+- Add user invitation functionality (invite for program, invite for cohort)
 - Write automated tests
 - Convert to SvelteKit
 

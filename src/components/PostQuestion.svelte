@@ -31,9 +31,10 @@
 
       await addCohortQuestion({
         variables: {
+          questionId: selectedQuestion?.id,
           topicId: liveTopic.topic.id,
           question: questionText,
-          isAnonymous: e.target.isAnonymous.checked
+          isAnonymous: e.target.isAnonymous?.checked ?? selectedQuestion.isAnonymous
         }
       });
 
