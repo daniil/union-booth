@@ -49,7 +49,8 @@ export default {
         }
 
         try {
-          const newQuestion = await models.CohortQuestion.create({
+          const newQuestion = await models.CohortQuestion.upsert({
+            id: questionId,
             userId: session.user.id,
             cohortId: user.cohortId,
             topicId,
@@ -57,9 +58,15 @@ export default {
             isAnonymous
           });
 
-          pubsub.publish('NEW_COHORT_QUESTION', { newCohortQuestion: newQuestion });
+          const [newQuestionModel] = newQuestion;
 
-          return newQuestion;
+          if (questionId) {
+            // Publish subscription for updating a cohort question
+          } else {
+            pubsub.publish('NEW_COHORT_QUESTION', { newCohortQuestion: newQuestionModel });
+          }
+
+          return newQuestionModel;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }

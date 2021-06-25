@@ -1,8 +1,7 @@
 ## Tasks
 
 - Create edit a question functionality (Live page)
-  - Change the button to say "Update Question"
-  - Add conditional update of the answer instead of create
+  - Add subscription for updating the question
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)
@@ -37,6 +36,7 @@
 
 ## Tweaks
 
+- Add a click off functionality for QuestionActionsNav
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component
