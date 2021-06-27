@@ -61,7 +61,7 @@ export default {
           const [newQuestionModel] = newQuestion;
 
           if (questionId) {
-            // Publish subscription for updating a cohort question
+            pubsub.publish('COHORT_QUESTION_UPDATED', { cohortQuestionUpdated: newQuestionModel });
           } else {
             pubsub.publish('NEW_COHORT_QUESTION', { newCohortQuestion: newQuestionModel });
           }
@@ -110,6 +110,15 @@ export default {
         (payload, variables) => {
           return payload.newCohortQuestion.cohortId === variables.cohortId &&
                  payload.newCohortQuestion.topicId === variables.topicId;
+        }
+      )
+    },
+    cohortQuestionUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['COHORT_QUESTION_UPDATED']),
+        (payload, variables) => {
+          return payload.cohortQuestionUpdated.cohortId === variables.cohortId &&
+                 payload.cohortQuestionUpdated.topicId === variables.topicId;
         }
       )
     },

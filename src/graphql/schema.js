@@ -166,9 +166,10 @@ const typeDefs = gql`
 
   type Subscription {
     newCohortQuestion(cohortId: ID!, topicId: ID!): CohortQuestion!
+    cohortQuestionUpdated(cohortId: ID!, topicId: ID!): CohortQuestion!
+    cohortQuestionDeactivated(cohortId: ID!, topicId: ID!): CohortQuestion!
     newCohortAnswer(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerProgress(cohortQuestionId: ID!): CohortAnswerInProgress!
-    cohortQuestionDeactivated(cohortId: ID!, topicId: ID!): CohortQuestion!
   }
 `;
 
