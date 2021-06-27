@@ -4,7 +4,12 @@
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
   import { subscribe } from 'svelte-apollo';
-  import { LIVE_QUESTIONS, NEW_COHORT_QUESTION, COHORT_QUESTION_DEACTIVATED } from 'graphql/queries/cohort-question';
+  import {
+    LIVE_QUESTIONS,
+    NEW_COHORT_QUESTION,
+    COHORT_QUESTION_UPDATED,
+    COHORT_QUESTION_DEACTIVATED
+  } from 'graphql/queries/cohort-question';
   import Loading from 'components/Loading.svelte';
   import Question from 'components/Question.svelte';
   import PostQuestion from 'components/PostQuestion.svelte';
@@ -63,6 +68,40 @@
   }
 
   onDestroy(() => newCohortQuestionUnsub());
+
+  $: cohortQuestionUpdated = subscribe(COHORT_QUESTION_UPDATED, {
+    variables: {
+      cohortId: liveTopic.cohortId,
+      topicId: liveTopic.topic.id
+    }
+  });
+
+  $: cohortQuestionUpdatedUnsub = subscribeToCohortQuestionUpdated(liveTopic.cohortId, liveTopic.topic.id);
+
+  const subscribeToCohortQuestionUpdated = (cohortId, topicId) => {
+    return cohortQuestionUpdated.subscribe(value => {
+      if (value.data) {
+        $session.apolloClient.writeQuery({
+          query: LIVE_QUESTIONS,
+          variables: {
+            cohortId,
+            topicId
+          },
+          data: {
+            liveQuestions: questions.map(question => {
+              if (question.topicId === value.data.cohortQuestionUpdated.id) {
+                return value.data.cohortQuestionUpdated;
+              } else {
+                return question;
+              }
+            })
+          }
+        });
+      }
+    });
+  }
+
+  onDestroy(() => cohortQuestionUpdatedUnsub());
 
   $: cohortQuestionDeactivated = subscribe(COHORT_QUESTION_DEACTIVATED, {
     variables: {

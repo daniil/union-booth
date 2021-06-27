@@ -1,7 +1,7 @@
 ## Tasks
 
 - Create edit a question functionality (Live page)
-  - Add subscription for updating the question
+  - Add "last updated" for the updated questions
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)
