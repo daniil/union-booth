@@ -6,6 +6,7 @@ const cohortQuestionInformation = gql`
     question
     isAnonymous
     createdAt
+    updatedAt
     isInactive
     user {
       id
