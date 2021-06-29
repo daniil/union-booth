@@ -16,6 +16,19 @@
   const handleActionComplete = () => {
     navVisible = false;
   }
+
+  const handleClickOff = e => {
+    if (navVisible) {
+      let currTarget = e.target;
+      while (currTarget.parentNode) {
+        if (currTarget.classList.contains('actions-container')) {
+          return;
+        }
+        currTarget = currTarget.parentNode;
+      }
+      navVisible = false;
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -45,6 +58,8 @@
     transform: translateX(-50%);
   }
 </style>
+
+<svelte:window on:click={handleClickOff}/>
 
 <div class="question-actions">
   <button class="trigger-action" on:click={handleActionDropdown}>
