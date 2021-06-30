@@ -1,4 +1,6 @@
 <script>
+  import { fly } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
   import { stores } from '@sapper/app';
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
@@ -8,9 +10,9 @@
 
   export let details;
 
-  console.log(details)
-
   const { session } = stores();
+
+  let navVisible = false;
 
   $: content = parseMD(details.answer);
   $: date = formatDate(details.createdAt);
@@ -19,7 +21,7 @@
   $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || isOwner;
 
   const handleActionDropdown = () => {
-
+    navVisible = !navVisible;
   }
 </script>
 
@@ -33,6 +35,7 @@
     flex-grow: 1;
   }
   .content-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -57,6 +60,11 @@
     color: rgba(1, 22, 56, 0.75);
     font-size: 0.8rem;
   }
+  .answer-actions-nav-wrapper {
+    position: absolute;
+    top: 90%;
+    right: 0;
+  }
 </style>
 
 <div class="answer">
@@ -71,6 +79,11 @@
         <button class="trigger-action" on:click={handleActionDropdown}>
           <MeatballIcon color="#05668D" label="Actions"/>
         </button>
+      {/if}
+      {#if navVisible}
+        <div class="answer-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
+          Answer Nav
+        </div>
       {/if}
     </div>
     <time>
