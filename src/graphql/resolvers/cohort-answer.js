@@ -14,7 +14,8 @@ export default {
       async (_, { cohortQuestionId }, { models }) => {
         const answers = models.CohortAnswer.findAll({
           where: {
-            cohortQuestionId
+            cohortQuestionId,
+            isInactive: false
           },
           order: [
             ['createdAt', 'ASC']
