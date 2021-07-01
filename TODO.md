@@ -3,7 +3,7 @@
 - Create deactivate an answer functionality (Live page)
   - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)
-  - Add "last updated" functioanlity
+  - Add "last updated" functionality
 - Add user management admin functionality
   - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
 - Create likes (or +1) functionality for answers and maybe questions
@@ -35,7 +35,6 @@
 
 ## Tweaks
 
-- Organize `/components` folder a little better
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component
