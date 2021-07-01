@@ -1,6 +1,7 @@
 import { withFilter, UserInputError } from 'apollo-server';
-import { pipeResolvers } from 'graphql-resolvers';
+import { combineResolvers, pipeResolvers } from 'graphql-resolvers';
 import { isAuthenticated } from './auth';
+import roleMap from 'utils/role-map';
 import { validateAndReturnTopicIdOfCohortQuestion, validateTopicLive } from './validation';
 import parseSequelizeError from 'utils/parseSequelizeError';
 import pubsub from 'redis-pub-sub';
@@ -46,6 +47,33 @@ export default {
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }
+      }
+    ),
+
+    deactivateCohortAnswer: combineResolvers(
+      isAuthenticated,
+      async (_, { cohortAnswerId }, { models, session }) => {
+        const isModerator = roleMap[session.user.role].includes('moderator');
+        const answer = await models.CohortAnswer.findOne({
+          where: {
+            id: cohortAnswerId,
+            isInactive: false
+          }
+        });
+
+        if (!answer) {
+          throw new UserInputError('Can not find this topic answer');
+        }
+
+        if (!isModerator && answer.userId !== session.user.id) {
+          throw new UserInputError('You do not have permissions to delete this answer');
+        }
+
+        await answer.update({
+          isInactive: true
+        });
+
+        return answer;
       }
     )
   },

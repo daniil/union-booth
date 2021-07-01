@@ -30,6 +30,7 @@
 - Log user out after their session expires (ie: period of inactivity)
 - Add SSO Login options
 - Add user invitation functionality (invite for program, invite for cohort)
+- Ensure that moderator functionality only works for cohort moderators are part of
 - Write automated tests
 - Convert to SvelteKit
 
