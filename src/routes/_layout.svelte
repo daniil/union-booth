@@ -3,8 +3,8 @@
 	import { onDestroy } from 'svelte';
 	import { setClient } from 'svelte-apollo';
 	import initApolloClient from 'graphql/client';
-	import Nav from 'components/Nav.svelte';
-	import Footer from 'components/Footer.svelte';
+	import Nav from 'components/layout/Nav.svelte';
+	import Footer from 'components/layout/Footer.svelte';
 
 	export let segment;
 

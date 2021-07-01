@@ -7,9 +7,9 @@
   import { mutation } from 'svelte-apollo';
   import { LOGIN } from 'graphql/queries/login';
   import parseError from 'utils/parseError';
-  import FormErrors from 'components/FormErrors.svelte';
-  import TextInput from 'components/TextInput.svelte';
-  import Button from 'components/Button.svelte';
+  import FormErrors from 'components/forms/FormErrors.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   const { session } = stores();
   const loginUser = mutation(LOGIN);

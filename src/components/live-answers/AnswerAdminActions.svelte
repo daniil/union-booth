@@ -2,8 +2,8 @@
   import { mutation } from 'svelte-apollo';
   import { stores } from '@sapper/app';
   import { UPDATE_COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
-  import AuthContent from 'components/AuthContent.svelte';
-  import Button from 'components/Button.svelte';
+  import AuthContent from 'components/auth/AuthContent.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   export let questionId;
   export let beingAnsweredBy;

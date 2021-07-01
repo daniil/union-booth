@@ -1,5 +1,5 @@
 <script>
-  import TopicFAQQuestion from 'components/TopicFAQQuestion.svelte';
+  import TopicFAQQuestion from 'components/topics/TopicFAQQuestion.svelte';
 
   export let topic;
 </script>

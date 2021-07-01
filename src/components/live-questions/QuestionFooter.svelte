@@ -1,7 +1,7 @@
 <script>
   import { format } from 'timeago.js';
   import { formatDate, formatTime } from 'utils/time';
-  import Avatar from 'components/Avatar.svelte';
+  import Avatar from 'components/shared/Avatar.svelte';
 
   export let details;
 

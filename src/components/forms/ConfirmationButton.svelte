@@ -10,7 +10,7 @@
 
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
-  import Button from 'components/Button.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   let confirmationActive = false;
 

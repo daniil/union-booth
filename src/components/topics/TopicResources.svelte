@@ -1,5 +1,5 @@
 <script>
-  import TopicResource from 'components/TopicResource.svelte';
+  import TopicResource from 'components/topics/TopicResource.svelte';
 
   export let topic;
 </script>

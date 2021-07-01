@@ -1,5 +1,5 @@
 <script>
-  import IconSVG from '../../static/icons/icon-drag.svg';
+  import IconSVG from '../../../static/icons/icon-drag.svg';
 
   export let isHovered;
 </script>

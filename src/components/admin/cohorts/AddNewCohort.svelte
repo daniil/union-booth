@@ -2,8 +2,8 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT, COHORTS } from 'graphql/queries/admin/cohorts';
-  import TextInput from 'components/TextInput.svelte';
-  import Button from 'components/Button.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import Button from 'components/forms/Button.svelte';
   
   export let selectedProgram;
 

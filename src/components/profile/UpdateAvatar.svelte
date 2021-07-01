@@ -2,7 +2,7 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { UPDATE_USER_AVATAR } from 'graphql/queries/user';
-  import Button from 'components/Button.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   export let user;
 

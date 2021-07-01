@@ -3,8 +3,8 @@
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
   import { formatDate, formatTime } from 'utils/time';
-  import Avatar from 'components/Avatar.svelte';
-  import AnswerActions from 'components/AnswerActions.svelte';
+  import Avatar from 'components/shared/Avatar.svelte';
+  import AnswerActions from 'components/live-answers/AnswerActions.svelte';
 
   export let details;
 

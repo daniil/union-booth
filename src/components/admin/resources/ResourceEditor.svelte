@@ -2,10 +2,10 @@
   import { stores } from '@sapper/app';
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
-  import SlideOutPanel from 'components/SlideOutPanel.svelte';
-  import TextInput from 'components/TextInput.svelte';
-  import MDEditor from 'components/MDEditor.svelte';
-  import Button from 'components/Button.svelte';
+  import SlideOutPanel from 'components/shared/SlideOutPanel.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import MDEditor from 'components/shared/MDEditor.svelte';
+  import Button from 'components/forms/Button.svelte';
   import { TOPIC_RESOURCES, ADD_RESOURCE } from 'graphql/queries/topic-resources';
 
   export let topic;

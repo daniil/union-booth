@@ -4,9 +4,9 @@
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
   import { UPDATE_COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
-  import MDEditor from 'components/MDEditor.svelte';
-  import Button from 'components/Button.svelte';
-  import AnswerAdminActions from 'components/AnswerAdminActions.svelte'
+  import MDEditor from 'components/shared/MDEditor.svelte';
+  import Button from 'components/forms/Button.svelte';
+  import AnswerAdminActions from 'components/live-answers/AnswerAdminActions.svelte'
   import roleMap from 'utils/role-map';
 
   export let questionId;

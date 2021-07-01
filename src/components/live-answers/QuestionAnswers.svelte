@@ -5,9 +5,9 @@
 	import { cubicOut } from 'svelte/easing';
   import { subscribe } from 'svelte-apollo';
   import { LIVE_ANSWERS, NEW_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
-  import Loading from 'components/Loading.svelte';
-  import Answer from 'components/Answer.svelte';
-  import PostAnswer from 'components/PostAnswer.svelte';
+  import Loading from 'components/shared/Loading.svelte';
+  import Answer from 'components/live-answers/Answer.svelte';
+  import PostAnswer from 'components/live-answers/PostAnswer.svelte';
 
   const { session } = stores();
 

@@ -1,9 +1,9 @@
 <script>
   import { mutation } from 'svelte-apollo';
   import { UPDATE_USER_PASSWORD } from 'graphql/queries/user';
-  import FormErrors from 'components/FormErrors.svelte';
-  import TextInput from 'components/TextInput.svelte';
-  import Button from 'components/Button.svelte';
+  import FormErrors from 'components/forms/FormErrors.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   export let user;
 

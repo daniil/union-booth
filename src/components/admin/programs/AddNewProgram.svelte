@@ -2,8 +2,8 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { PROGRAMS, ADD_PROGRAM } from 'graphql/queries/admin/programs';
-  import TextInput from 'components/TextInput.svelte';
-  import Button from 'components/Button.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   const { session } = stores();
   

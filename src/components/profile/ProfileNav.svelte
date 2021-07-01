@@ -4,7 +4,7 @@
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
   import { LOGOUT } from 'graphql/queries/login';
-  import Avatar from 'components/Avatar.svelte';
+  import Avatar from 'components/shared/Avatar.svelte';
 
   const { session } = stores();
 	const logoutUser = mutation(LOGOUT);

@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import Button from 'components/Button.svelte';
-  import ConfirmationButton from 'components/ConfirmationButton.svelte';
+  import Button from 'components/forms/Button.svelte';
+  import ConfirmationButton from 'components/forms/ConfirmationButton.svelte';
 
   export let resourceId;
 

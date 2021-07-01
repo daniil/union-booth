@@ -2,9 +2,9 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { createEventDispatcher } from 'svelte';
-  import SlideOutPanel from 'components/SlideOutPanel.svelte';
-  import MDEditor from 'components/MDEditor.svelte';
-  import Button from 'components/Button.svelte';
+  import SlideOutPanel from 'components/shared/SlideOutPanel.svelte';
+  import MDEditor from 'components/shared/MDEditor.svelte';
+  import Button from 'components/forms/Button.svelte';
   import { TOPIC_FAQ_ADMIN, ADD_TOPIC_FAQ_QUESTION } from 'graphql/queries/admin/topic-faq';
 
   export let topic;

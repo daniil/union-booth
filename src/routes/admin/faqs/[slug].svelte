@@ -25,7 +25,7 @@
   import CohortQuestionsFilter from 'components/admin/faqs/CohortQuestionsFilter.svelte';
   import CohortQuestions from 'components/admin/faqs/CohortQuestions.svelte';
   import QAEditor from 'components/admin/faqs/QAEditor.svelte';
-  import Button from 'components/Button.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   export let slug;
 

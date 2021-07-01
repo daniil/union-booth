@@ -4,10 +4,10 @@
   import { mutation } from 'svelte-apollo';
   import parseError from 'utils/parseError';
   import { USER, UPDATE_USER_INFO } from 'graphql/queries/user';
-  import TextInput from 'components/TextInput.svelte';
-  import Button from 'components/Button.svelte';
-  import Loading from 'components/Loading.svelte';
-  import FormErrors from 'components/FormErrors.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import Button from 'components/forms/Button.svelte';
+  import Loading from 'components/shared/Loading.svelte';
+  import FormErrors from 'components/forms/FormErrors.svelte';
 
   export let user;
 

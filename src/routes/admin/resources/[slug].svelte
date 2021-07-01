@@ -23,7 +23,7 @@
   import { onDestroy } from 'svelte';
   import Resources from 'components/admin/resources/Resources.svelte';
   import ResourceEditor from 'components/admin/resources/ResourceEditor.svelte';
-  import Button from 'components/Button.svelte';
+  import Button from 'components/forms/Button.svelte';
   import ResourcesDisplayTypeSwitch from 'components/admin/resources/ResourcesDisplayTypeSwitch.svelte';
 
   export let slug;

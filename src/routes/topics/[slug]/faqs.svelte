@@ -20,7 +20,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-	import TopicFAQ from 'components/TopicFAQ.svelte';
+	import TopicFAQ from 'components/topics/TopicFAQ.svelte';
 
   export let slug;
 

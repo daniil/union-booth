@@ -2,9 +2,9 @@
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_QUESTION } from 'graphql/queries/cohort-question';
-  import Button from 'components/Button.svelte';
-  import MDEditor from 'components/MDEditor.svelte';
-  import Checkbox from 'components/Checkbox.svelte';
+  import Button from 'components/forms/Button.svelte';
+  import MDEditor from 'components/shared/MDEditor.svelte';
+  import Checkbox from 'components/forms/Checkbox.svelte';
 
   export let liveTopic;
   export let selectedQuestion;

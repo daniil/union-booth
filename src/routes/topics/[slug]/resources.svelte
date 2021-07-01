@@ -20,7 +20,7 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-	import TopicResources from 'components/TopicResources.svelte';
+	import TopicResources from 'components/topics/TopicResources.svelte';
 
   export let slug;
 

@@ -1,8 +1,8 @@
 <script>
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
-  import MeatballIcon from 'components/MeatballIcon.svelte';
-  import AnswerActionsNav from 'components/AnswerActionsNav.svelte';
+  import MeatballIcon from 'components/icons/MeatballIcon.svelte';
+  import AnswerActionsNav from 'components/live-answers/AnswerActionsNav.svelte';
 
   export let answerId;
   export let isOwner;

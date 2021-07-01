@@ -1,5 +1,5 @@
 <script>
-  import Loading from 'components/Loading.svelte';
+  import Loading from 'components/shared/Loading.svelte';
 
   export let type;
   export let style;

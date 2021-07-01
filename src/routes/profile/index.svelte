@@ -14,9 +14,9 @@
 
 <script>
   import { stores } from '@sapper/app';
-  import UpdateAvatar from 'components/UpdateAvatar.svelte';
-  import UpdateProfile from 'components/UpdateProfile.svelte';
-  import UpdatePassword from 'components/UpdatePassword.svelte';
+  import UpdateAvatar from 'components/profile/UpdateAvatar.svelte';
+  import UpdateProfile from 'components/profile/UpdateProfile.svelte';
+  import UpdatePassword from 'components/profile/UpdatePassword.svelte';
 
   const { session } = stores();
 </script>

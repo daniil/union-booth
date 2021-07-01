@@ -1,7 +1,7 @@
 <script>
 	import { stores } from '@sapper/app';
-	import AuthContent from 'components/AuthContent.svelte';
-	import ProfileNav from 'components/ProfileNav.svelte';
+	import AuthContent from 'components/auth/AuthContent.svelte';
+	import ProfileNav from 'components/profile/ProfileNav.svelte';
 
 	export let segment;
 

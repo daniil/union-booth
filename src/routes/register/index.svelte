@@ -7,10 +7,10 @@
   import { mutation } from 'svelte-apollo';
   import { REGISTER } from 'graphql/queries/register';
   import parseError from 'utils/parseError';
-  import FormErrors from 'components/FormErrors.svelte';
-  import TextInput from 'components/TextInput.svelte';
-  import Checkbox from 'components/Checkbox.svelte';
-  import Button from 'components/Button.svelte';
+  import FormErrors from 'components/forms/FormErrors.svelte';
+  import TextInput from 'components/forms/TextInput.svelte';
+  import Checkbox from 'components/forms/Checkbox.svelte';
+  import Button from 'components/forms/Button.svelte';
 
   const { session } = stores();
   const registerUser = mutation(REGISTER);

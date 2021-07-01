@@ -10,9 +10,9 @@
     COHORT_QUESTION_UPDATED,
     COHORT_QUESTION_DEACTIVATED
   } from 'graphql/queries/cohort-question';
-  import Loading from 'components/Loading.svelte';
-  import Question from 'components/Question.svelte';
-  import PostQuestion from 'components/PostQuestion.svelte';
+  import Loading from 'components/shared/Loading.svelte';
+  import Question from 'components/live-questions/Question.svelte';
+  import PostQuestion from 'components/live-questions/PostQuestion.svelte';
 
   const { session } = stores();
 

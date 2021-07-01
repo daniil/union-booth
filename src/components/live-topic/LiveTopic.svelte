@@ -6,8 +6,8 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import { LIVE_TOPIC } from 'graphql/queries/cohort-topic';
-  import Loading from 'components/Loading.svelte';
-  import TopicQuestions from 'components/TopicQuestions.svelte';
+  import Loading from 'components/shared/Loading.svelte';
+  import TopicQuestions from 'components/live-questions/TopicQuestions.svelte';
 
   const { session } = stores();
 

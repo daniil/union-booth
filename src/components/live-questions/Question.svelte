@@ -5,10 +5,10 @@
   import { parseMD } from 'utils/markdown';
   import { ANSWERS_IN_PROGRESS, COHORT_ANSWER_PROGRESS } from 'graphql/queries/cohort-answer-in-progress';
   import roleMap from 'utils/role-map';
-  import QuestionFooter from 'components/QuestionFooter.svelte';
-  import QuestionAnswers from 'components/QuestionAnswers.svelte';
-  import QuestionStatus from 'components/QuestionStatus.svelte'
-  import QuestionActions from 'components/QuestionActions.svelte';
+  import QuestionFooter from 'components/live-questions/QuestionFooter.svelte';
+  import QuestionAnswers from 'components/live-answers/QuestionAnswers.svelte';
+  import QuestionStatus from 'components/live-questions/QuestionStatus.svelte'
+  import QuestionActions from 'components/live-questions/QuestionActions.svelte';
   
   export let details;
 

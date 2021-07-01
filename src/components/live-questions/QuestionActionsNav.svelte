@@ -1,18 +1,32 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import Button from 'components/Button.svelte';
+  import { mutation } from 'svelte-apollo';
+  import { DEACTIVATE_COHORT_QUESTION } from 'graphql/queries/cohort-question';
+  import Button from 'components/forms/Button.svelte';
 
-  export let answerId;
+  export let questionId;
   export let isOwner;
 
   const dispatch = createEventDispatcher();
+
+  const deactivateCohortQuestion = mutation(DEACTIVATE_COHORT_QUESTION);
   
   const handleEdit = () => {
+    dispatch('edit', { questionId });
     dispatch('action-complete');
   }
 
-  const handleDeactivate = () => {
-    dispatch('action-complete');
+  const handleDeactivate = async () => {
+    try {
+      await deactivateCohortQuestion({
+        variables: {
+          cohortQuestionId: questionId
+        }
+      });
+      dispatch('action-complete');
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 

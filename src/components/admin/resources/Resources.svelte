@@ -4,7 +4,7 @@
   import { dndzone } from "svelte-dnd-action";
   import { mutation } from 'svelte-apollo';
   import Resource from 'components/admin/resources/Resource.svelte';
-  import DragIcon from 'components/DragIcon.svelte';
+  import DragIcon from 'components/icons/DragIcon.svelte';
   import { TOPIC_RESOURCES, UPDATE_RESOURCES_ORDER } from 'graphql/queries/topic-resources';
 
   export let topicSlug;

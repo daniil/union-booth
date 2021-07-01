@@ -19,7 +19,7 @@
 
 <script>
   import { stores } from '@sapper/app';
-  import TopicsNav from 'components/TopicsNav.svelte';
+  import TopicsNav from 'components/topics/TopicsNav.svelte';
 
   export let slug;
   export let segment;
