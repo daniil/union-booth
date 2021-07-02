@@ -61,7 +61,7 @@
     align-items: center;
   }
   .close {
-    padding: 0.5rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     border: 1px solid #D4C4C7;
     border-radius: 50%;
     background: none;
