@@ -54,13 +54,22 @@
 		padding: 1em 0.5em;
 		display: block;
 	}
+	.logo-link {
+		font-size: 18px;
+	}
+	.logo {
+		margin-left: 0.2rem;
+		font-family: 'Lora';
+		font-weight: 500;
+		font-size: 18px;
+	}
 </style>
 
 <nav>
 	<ul>
 		<li>
-			<a aria-current="{segment === undefined ? 'page' : undefined}" href=".">
-				🙋🏻‍♀️ Union Booth
+			<a class="logo-link" aria-current="{segment === undefined ? 'page' : undefined}" href=".">
+				🙋🏻‍♀️ <span class="logo">Union Booth</span>
 			</a>
 		</li>
 		{#if $session.user}

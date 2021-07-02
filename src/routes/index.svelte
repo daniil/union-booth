@@ -16,6 +16,8 @@
 		justify-content: center;
 		overflow: hidden;
 		h1 {
+			font-family: 'Lora';
+			font-weight: 500;
 			position: absolute;
 			top: 32%;
 		}
