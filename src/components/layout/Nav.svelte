@@ -30,6 +30,9 @@
 		position: relative;
 		float: left;
 	}
+	.nav-item {
+		margin-left: 2rem;
+	}
 	.right-aligned {
 		float: right;
 		&.admin {
@@ -56,6 +59,7 @@
 	}
 	.logo-link {
 		font-size: 18px;
+		line-height: 20px;
 	}
 	.logo {
 		margin-left: 0.2rem;
@@ -73,7 +77,7 @@
 			</a>
 		</li>
 		{#if $session.user}
-			<li>
+			<li class="nav-item">
 				<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics">
 					All Topics
 				</a>
