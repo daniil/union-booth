@@ -5,6 +5,7 @@ const cohortAnswerInformation = gql`
     id
     answer
     createdAt
+    isInactive
     user {
       id
       username
@@ -41,8 +42,18 @@ const NEW_COHORT_ANSWER = gql`
   ${cohortAnswerInformation}
 `;
 
+const DEACTIVATE_COHORT_ANSWER = gql`
+  mutation DeactivateCohortAnswer($cohortAnswerId: ID!) {
+    deactivateCohortAnswer(cohortAnswerId: $cohortAnswerId) {
+      ...CohortAnswerInformation
+    }
+  }
+  ${cohortAnswerInformation}
+`;
+
 export {
   LIVE_ANSWERS,
   ADD_COHORT_ANSWER,
-  NEW_COHORT_ANSWER
+  NEW_COHORT_ANSWER,
+  DEACTIVATE_COHORT_ANSWER
 }
