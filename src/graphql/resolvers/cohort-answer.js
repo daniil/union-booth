@@ -73,6 +73,8 @@ export default {
           isInactive: true
         });
 
+        pubsub.publish('COHORT_ANSWER_DEACTIVATED', { cohortAnswerDeactivated: answer });
+
         return answer;
       }
     )
@@ -82,6 +84,14 @@ export default {
     newCohortAnswer: {
       subscribe: withFilter(
         () => pubsub.asyncIterator(['NEW_COHORT_ANSWER']),
+        (payload, variables) => {
+          return payload.newCohortAnswer.cohortQuestionId === variables.cohortQuestionId;
+        }
+      )
+    },
+    cohortAnswerDeactivated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['COHORT_ANSWER_DEACTIVATED']),
         (payload, variables) => {
           return payload.newCohortAnswer.cohortQuestionId === variables.cohortQuestionId;
         }
