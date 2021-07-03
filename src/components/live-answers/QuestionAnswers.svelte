@@ -4,7 +4,11 @@
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
   import { subscribe } from 'svelte-apollo';
-  import { LIVE_ANSWERS, NEW_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
+  import {
+    LIVE_ANSWERS,
+    NEW_COHORT_ANSWER,
+    COHORT_ANSWER_DEACTIVATED
+  } from 'graphql/queries/cohort-answer';
   import Loading from 'components/shared/Loading.svelte';
   import Answer from 'components/live-answers/Answer.svelte';
   import PostAnswer from 'components/live-answers/PostAnswer.svelte';
@@ -62,6 +66,32 @@
   }
 
   onDestroy(() => newCohortAnswerUnsub());
+
+  $: cohortAnswerDeactivated = subscribe(COHORT_ANSWER_DEACTIVATED, {
+    variables: {
+      cohortQuestionId: questionId
+    }
+  });
+
+  $: cohortAnswerDeactivatedUnsub = subscribeToCohortAnswerDeactivated(questionId);
+
+  const subscribeToCohortAnswerDeactivated = (questionId) => {
+    return cohortAnswerDeactivated.subscribe(value => {
+      if (value.data && value.data.cohortAnswerDeactivated.isInactive) {
+        $session.apolloClient.writeQuery({
+          query: LIVE_ANSWERS,
+          variables: {
+            cohortQuestionId: questionId
+          },
+          data: {
+            liveAnswers: answers.filter(answer => answer.id !== value.data.cohortAnswerDeactivated.id)
+          }
+        });
+      }
+    });
+  }
+
+  onDestroy(() => cohortAnswerDeactivatedUnsub());
 
   const toggleAnswers = () => {
     answersExpanded = !answersExpanded;

@@ -93,7 +93,7 @@ export default {
       subscribe: withFilter(
         () => pubsub.asyncIterator(['COHORT_ANSWER_DEACTIVATED']),
         (payload, variables) => {
-          return payload.newCohortAnswer.cohortQuestionId === variables.cohortQuestionId;
+          return payload.cohortAnswerDeactivated.cohortQuestionId === variables.cohortQuestionId;
         }
       )
     }

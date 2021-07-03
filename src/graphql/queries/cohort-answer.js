@@ -51,9 +51,19 @@ const DEACTIVATE_COHORT_ANSWER = gql`
   ${cohortAnswerInformation}
 `;
 
+const COHORT_ANSWER_DEACTIVATED = gql`
+  subscription CohortAnswerDeactivated($cohortQuestionId: ID!) {
+    cohortAnswerDeactivated(cohortQuestionId: $cohortQuestionId) {
+      ...CohortAnswerInformation
+    }
+  }
+  ${cohortAnswerInformation}
+`;
+
 export {
   LIVE_ANSWERS,
   ADD_COHORT_ANSWER,
   NEW_COHORT_ANSWER,
-  DEACTIVATE_COHORT_ANSWER
+  DEACTIVATE_COHORT_ANSWER,
+  COHORT_ANSWER_DEACTIVATED
 }
