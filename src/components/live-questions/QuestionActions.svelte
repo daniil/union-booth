@@ -3,6 +3,7 @@
   import { quintOut } from 'svelte/easing';
   import MeatballIcon from 'components/icons/MeatballIcon.svelte';
   import QuestionActionsNav from 'components/live-questions/QuestionActionsNav.svelte';
+  import elementClickOff from 'utils/elementClickOff';
 
   export let questionId;
   export let isOwner;
@@ -19,14 +20,9 @@
 
   const handleClickOff = e => {
     if (navVisible) {
-      let currTarget = e.target;
-      while (currTarget.parentNode) {
-        if (currTarget.classList.contains('actions-container')) {
-          return;
-        }
-        currTarget = currTarget.parentNode;
-      }
-      navVisible = false;
+      elementClickOff(e, 'actions-container', () => {
+        navVisible = false;
+      });
     }
   }
 </script>
