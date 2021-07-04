@@ -3,6 +3,7 @@
   import { quintOut } from 'svelte/easing';
   import MeatballIcon from 'components/icons/MeatballIcon.svelte';
   import AnswerActionsNav from 'components/live-answers/AnswerActionsNav.svelte';
+  import elementClickOff from 'utils/elementClickOff';
 
   export let answerId;
   export let isOwner;
@@ -16,9 +17,20 @@
   const handleActionComplete = () => {
     navVisible = false;
   }
+
+  const handleClickOff = e => {
+    if (navVisible) {
+      elementClickOff(e, 'actions-container', () => {
+        navVisible = false;
+      });
+    }
+  }
 </script>
 
 <style lang="scss">
+  .actions-container {
+    position: relative;
+  }
   .trigger-action {
     background: transparent;
     border: none;
@@ -31,20 +43,24 @@
   }
   .answer-actions-nav-wrapper {
     position: absolute;
-    top: 50%;
+    top: 75%;
     right: 0;
   }
 </style>
 
-<button class="trigger-action" on:click={handleActionDropdown}>
-  <MeatballIcon color="#05668D" label="Actions"/>
-</button>
-{#if navVisible}
-  <div class="answer-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
-    <AnswerActionsNav
-      {answerId}
-      {isOwner}
-      on:action-complete={handleActionComplete}
-    />
-  </div>
-{/if}
+<svelte:window on:click={handleClickOff}/>
+
+<div class="actions-container">
+  <button class="trigger-action" on:click={handleActionDropdown}>
+    <MeatballIcon color="#05668D" label="Actions"/>
+  </button>
+  {#if navVisible}
+    <div class="answer-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
+      <AnswerActionsNav
+        {answerId}
+        {isOwner}
+        on:action-complete={handleActionComplete}
+      />
+    </div>
+  {/if}
+</div>

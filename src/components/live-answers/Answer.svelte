@@ -27,7 +27,6 @@
     flex-grow: 1;
   }
   .content-container {
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
