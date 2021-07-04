@@ -1,7 +1,5 @@
 ## Tasks
 
-- Create deactivate an answer functionality (Live page)
-  - Add deactivate answers functionality when deactivating a question
 - Create edit an answer functionality (Live page)
   - Add "last updated" functionality
 - Add "click off" functionality for AnswerAdminActions

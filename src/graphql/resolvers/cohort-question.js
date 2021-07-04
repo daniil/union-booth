@@ -96,6 +96,14 @@ export default {
           isInactive: true
         });
 
+        await models.CohortAnswer.update({
+          isInactive: true
+        }, {
+          where: {
+            cohortQuestionId
+          }
+        });
+
         pubsub.publish('COHORT_QUESTION_DEACTIVATED', { cohortQuestionDeactivated: question });
 
         return question;
