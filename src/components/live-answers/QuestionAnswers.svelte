@@ -22,6 +22,7 @@
   let answers = [];
   let loading = true;
   let answersExpanded = false;
+  let selectedAnswer;
 
   $: liveAnswersSub = $session.apolloClient
     .watchQuery({
@@ -102,7 +103,7 @@
   }
 
   const handleEdit = e => {
-    console.log('Answer Id: ', e.detail.answerId);
+    selectedAnswer = answers.find(answer => answer.id === e.detail.answerId);
   }
 </script>
 
@@ -177,5 +178,6 @@
   {questionId}
   {beingAnsweredBy}
   {answeredBy}
+  {selectedAnswer}
   on:answer-published={handleAnswerPublished}
 />

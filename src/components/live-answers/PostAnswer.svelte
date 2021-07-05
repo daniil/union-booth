@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, tick } from 'svelte';
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { ADD_COHORT_ANSWER } from 'graphql/queries/cohort-answer';
@@ -12,6 +12,7 @@
   export let questionId;
   export let beingAnsweredBy;
   export let answeredBy;
+  export let selectedAnswer;
 
   const { session } = stores();
   const dispatch = createEventDispatcher();
@@ -19,12 +20,21 @@
   const addCohortAnswer = mutation(ADD_COHORT_ANSWER);
   const updateCohortAnswerProgress = mutation(UPDATE_COHORT_ANSWER_PROGRESS);
 
+  let editorContainer;
   let formVisible = false;
   let answerText;
   let formDisabled = false;
 
+  $: if (selectedAnswer) setEditorValue();
   $: buttonVariant = formDisabled ? 'loading' : '';
   $: postBtnDisabled = answerText === undefined || answerText === '';
+
+  const setEditorValue = async () => {
+    answerText = selectedAnswer.answer;
+    formVisible = true;
+    await tick();
+    editorContainer.scrollIntoView({ behavior: 'smooth' });
+  }
 
   const handleSubmit = async e => {
     try {
@@ -81,7 +91,7 @@
 
 {#if formVisible}
   <form action="/topics/answers" method="post" on:submit|preventDefault={handleSubmit}>
-    <div class="form-element">
+    <div class="form-element" bind:this={editorContainer}>
       <MDEditor
         id="answer"
         label="Answer"
