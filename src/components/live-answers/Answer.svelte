@@ -57,6 +57,7 @@
         <AnswerActions
           answerId={details.id}
           {isOwner}
+          on:edit
         />
       {/if}
     </div>

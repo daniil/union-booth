@@ -12,6 +12,7 @@
   const deactivateCohortAnswer = mutation(DEACTIVATE_COHORT_ANSWER);
   
   const handleEdit = () => {
+    dispatch('edit', { answerId });
     dispatch('action-complete');
   }
 

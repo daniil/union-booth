@@ -59,6 +59,7 @@
       <AnswerActionsNav
         {answerId}
         {isOwner}
+        on:edit
         on:action-complete={handleActionComplete}
       />
     </div>

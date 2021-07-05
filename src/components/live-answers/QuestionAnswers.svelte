@@ -100,6 +100,10 @@
   const handleAnswerPublished = () => {
     answersExpanded = true;
   }
+
+  const handleEdit = e => {
+    console.log('Answer Id: ', e.detail.answerId);
+  }
 </script>
 
 <style lang="scss">
@@ -159,7 +163,10 @@
       {#if answersExpanded}
         <div class="answer-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
           {#each answers as answer (answer.id)}
-            <Answer details={answer}/>
+            <Answer
+              details={answer}
+              on:edit={handleEdit}
+            />
           {/each}
         </div>
       {/if}
