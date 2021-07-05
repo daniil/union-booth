@@ -93,7 +93,7 @@
 <style>
   .question {
     position: relative;
-    padding: 1rem;
+    padding: 1.5rem 1.25rem 1.25rem 1.25rem;
     border: 1px solid #DBD3D8;
     border-bottom-width: 2px;
     border-radius: 4px;
