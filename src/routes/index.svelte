@@ -20,6 +20,7 @@
 			font-weight: 500;
 			position: absolute;
 			top: 32%;
+			color: #5B3345;
 		}
 		h2 {
 			position: absolute;

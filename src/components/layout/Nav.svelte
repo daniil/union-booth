@@ -66,6 +66,7 @@
 		font-family: 'Lora';
 		font-weight: 500;
 		font-size: 18px;
+		color: #5B3345;
 	}
 </style>
 
