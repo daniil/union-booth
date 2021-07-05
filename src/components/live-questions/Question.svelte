@@ -137,7 +137,7 @@
     />
   {/if}
   {#if questionActionsEnabled}
-    <div class="actions-container">
+    <div class="actions-container" data-id={details.id}>
       <QuestionActions
         questionId={details.id}
         {isOwner}

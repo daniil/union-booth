@@ -1,7 +1,7 @@
-export default (event, elementClass, stateCb) => {
+export default (event, elementClass, elementId, stateCb) => {
   let currTarget = event.target;
   while (currTarget.parentNode) {
-    if (currTarget.classList.contains(elementClass)) {
+    if (currTarget.classList.contains(elementClass) && currTarget.dataset.id === elementId) {
       return;
     }
     currTarget = currTarget.parentNode;

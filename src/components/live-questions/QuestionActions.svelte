@@ -20,7 +20,7 @@
 
   const handleClickOff = e => {
     if (navVisible) {
-      elementClickOff(e, 'actions-container', () => {
+      elementClickOff(e, 'actions-container', questionId, () => {
         navVisible = false;
       });
     }

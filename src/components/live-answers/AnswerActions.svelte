@@ -20,7 +20,7 @@
 
   const handleClickOff = e => {
     if (navVisible) {
-      elementClickOff(e, 'actions-container', () => {
+      elementClickOff(e, 'actions-container', answerId, () => {
         navVisible = false;
       });
     }
@@ -50,7 +50,7 @@
 
 <svelte:window on:click={handleClickOff}/>
 
-<div class="actions-container">
+<div class="actions-container" data-id={answerId}>
   <button class="trigger-action" on:click={handleActionDropdown}>
     <MeatballIcon color="#05668D" label="Actions"/>
   </button>
