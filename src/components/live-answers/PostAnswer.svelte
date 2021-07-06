@@ -69,6 +69,7 @@
   const toggleFormVisible = () => {
     answerText = '';
     formVisible = !formVisible;
+    dispatch('cancel-answer');
   }
 
   const handleEditorChange = event => {
@@ -103,7 +104,11 @@
     </div>
     <div class="action-bar">
       <div class="form-element">
-        <Button type="submit" variant={buttonVariant} icon="📮" label="Post Answer" disabled={postBtnDisabled}/>
+        {#if selectedAnswer}
+          <Button type="submit" variant={buttonVariant} icon="✏️" label="Update Answer" disabled={postBtnDisabled}/>
+        {:else}
+          <Button type="submit" variant={buttonVariant} icon="📮" label="Post Answer" disabled={postBtnDisabled}/>
+        {/if}
         <Button icon="💨" label="Cancel" action={toggleFormVisible} preventDefault disabled={formDisabled}/>
       </div>
       <AnswerAdminActions

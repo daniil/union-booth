@@ -105,6 +105,10 @@
   const handleEdit = e => {
     selectedAnswer = answers.find(answer => answer.id === e.detail.answerId);
   }
+
+  const handleCancelAnswer = () => {
+    selectedAnswer = null;
+  }
 </script>
 
 <style lang="scss">
@@ -180,4 +184,5 @@
   {answeredBy}
   {selectedAnswer}
   on:answer-published={handleAnswerPublished}
+  on:cancel-answer={handleCancelAnswer}
 />
