@@ -157,7 +157,7 @@ const typeDefs = gql`
     toggleCohortTopicLive(cohortId: ID!, topicId: ID!, status: Boolean!): CohortTopic!
     addCohortQuestion(questionId: ID, topicId: ID!, question: String!, isAnonymous: Boolean!): CohortQuestion!
     deactivateCohortQuestion(cohortQuestionId: ID!): CohortQuestion!
-    addCohortAnswer(cohortQuestionId: ID!, answer: String!): CohortAnswer!
+    addCohortAnswer(answerId: ID, cohortQuestionId: ID!, answer: String!): CohortAnswer!
     deactivateCohortAnswer(cohortAnswerId: ID!): CohortAnswer!
     updateCohortAnswerProgress(cohortQuestionId: ID!, status: Boolean!): CohortAnswerInProgress!
     addTopicFAQQuestion(id: ID, topicId: ID!, cohortQuestionId: ID, question: String!, answer: String!): TopicFAQQuestion!

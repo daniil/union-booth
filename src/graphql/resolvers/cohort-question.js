@@ -30,25 +30,26 @@ export default {
     addCohortQuestion: combineResolvers(
       isAuthenticated,
       async (_, { questionId, topicId, question, isAnonymous }, { models, session }) => {
-        const user = await models.User.findOne({
-          attributes: ['cohortId'],
-          where: {
-            id: session.user.id
-          }
-        });
-
-        const topic = await models.CohortTopic.findOne({
-          where: {
-            topicId,
-            isLive: true
-          }
-        });
-
-        if (!topic) {
-          throw new UserInputError('This topic is not live. Can only add questions to live topics');
-        }
-
         try {
+          const user = await models.User.findOne({
+            attributes: ['cohortId'],
+            where: {
+              id: session.user.id
+            }
+          });
+  
+          const topic = await models.CohortTopic.findOne({
+            where: {
+              topicId,
+              cohortId: user.cohortId,
+              isLive: true
+            }
+          });
+  
+          if (!topic) {
+            throw new UserInputError('This topic is not live. Can only add questions to live topics');
+          }
+          
           const newQuestion = await models.CohortQuestion.upsert({
             id: questionId,
             userId: session.user.id,
@@ -154,7 +155,8 @@ export default {
     cohortAnswers: async (parent, _, { models }) => {
       return await models.CohortAnswer.findAll({
         where: {
-          cohortQuestionId: parent.id
+          cohortQuestionId: parent.id,
+          isInactive: false
         },
         order: [
           ['createdAt', 'ASC']

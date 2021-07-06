@@ -33,17 +33,55 @@ export default {
       isAuthenticated,
       validateAndReturnTopicIdOfCohortQuestion,
       validateTopicLive,
-      async (_, { cohortQuestionId, answer }, { models, session }) => {
+      async (_, { answerId, cohortQuestionId, answer }, { models, session }) => {
         try {
-          const newAnswer = await models.CohortAnswer.create({
+          const question = await models.CohortQuestion.findOne({
+            attributes: ['topicId'],
+            where: {
+              id: cohortQuestionId,
+              isInactive: false
+            }
+          });
+
+          if (!question) {
+            throw new UserInputError('This question is inactive. Can only add answers to active questions');
+          }
+
+          const user = await models.User.findOne({
+            attributes: ['cohortId'],
+            where: {
+              id: session.user.id
+            }
+          });
+  
+          const topic = await models.CohortTopic.findOne({
+            where: {
+              topicId: question.topicId,
+              cohortId: user.cohortId,
+              isLive: true
+            }
+          });
+  
+          if (!topic) {
+            throw new UserInputError('This topic is not live. Can only add questions to live topics');
+          }
+
+          const newAnswer = await models.CohortAnswer.upsert({
+            id: answerId,
             userId: session.user.id,
             cohortQuestionId,
             answer
           });
 
-          pubsub.publish('NEW_COHORT_ANSWER', { newCohortAnswer: newAnswer });
+          const [newAnswerModel] = newAnswer;
 
-          return newAnswer;
+          if (answerId) {
+            // Add updated answer subscription dispatch
+          } else {
+            pubsub.publish('NEW_COHORT_ANSWER', { newCohortAnswer: newAnswerModel });
+          }
+
+          return newAnswerModel;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }

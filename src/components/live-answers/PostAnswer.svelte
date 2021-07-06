@@ -42,6 +42,7 @@
 
       await addCohortAnswer({
         variables: {
+          answerId: selectedAnswer?.id,
           cohortQuestionId: questionId,
           answer: answerText
         }
@@ -60,6 +61,7 @@
       answerText = '';
       toggleFormVisible();
       dispatch('answer-published');
+      dispatch('cancel-answer');
     } catch(err) {
       formDisabled = false;
       console.log('ERROR: ', err);

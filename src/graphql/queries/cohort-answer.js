@@ -25,8 +25,8 @@ const LIVE_ANSWERS = gql`
 `;
 
 const ADD_COHORT_ANSWER = gql`
-  mutation AddCohortAnswer($cohortQuestionId:ID!, $answer:String!) {
-  addCohortAnswer(cohortQuestionId: $cohortQuestionId, answer: $answer) {
+  mutation AddCohortAnswer($answerId: ID, $cohortQuestionId: ID!, $answer: String!) {
+  addCohortAnswer(answerId: $answerId, cohortQuestionId: $cohortQuestionId, answer: $answer) {
     ...CohortAnswerInformation
     }
   }

@@ -40,6 +40,7 @@
 
       formDisabled = false;
       questionText = '';
+      dispatch('cancel-question');
     } catch(err) {
       formDisabled = false;
       console.log('ERROR: ', err);

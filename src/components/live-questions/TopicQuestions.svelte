@@ -97,7 +97,6 @@
             })
           }
         });
-        selectedQuestion = null;
       }
     });
   }

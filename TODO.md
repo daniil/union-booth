@@ -1,6 +1,8 @@
 ## Tasks
 
 - Create edit an answer functionality (Live page)
+  - Add updated subscription dispatch
+  - Scroll to updated answer after update
   - Add "last updated" functionality
 - Add user management admin functionality
   - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
