@@ -42,6 +42,15 @@ const NEW_COHORT_ANSWER = gql`
   ${cohortAnswerInformation}
 `;
 
+const COHORT_ANSWER_UPDATED = gql`
+  subscription CohortAnswerUpdated($cohortQuestionId: ID!) {
+    cohortAnswerUpdated(cohortQuestionId: $cohortQuestionId) {
+      ...CohortAnswerInformation
+    }
+  }
+  ${cohortAnswerInformation}
+`;
+
 const DEACTIVATE_COHORT_ANSWER = gql`
   mutation DeactivateCohortAnswer($cohortAnswerId: ID!) {
     deactivateCohortAnswer(cohortAnswerId: $cohortAnswerId) {
@@ -64,6 +73,7 @@ export {
   LIVE_ANSWERS,
   ADD_COHORT_ANSWER,
   NEW_COHORT_ANSWER,
+  COHORT_ANSWER_UPDATED,
   DEACTIVATE_COHORT_ANSWER,
   COHORT_ANSWER_DEACTIVATED
 }
