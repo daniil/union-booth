@@ -76,7 +76,7 @@ export default {
           const [newAnswerModel] = newAnswer;
 
           if (answerId) {
-            // Add updated answer subscription dispatch
+            pubsub.publish('COHORT_ANSWER_UPDATED', { cohortAnswerUpdated: newAnswerModel })
           } else {
             pubsub.publish('NEW_COHORT_ANSWER', { newCohortAnswer: newAnswerModel });
           }
@@ -124,6 +124,14 @@ export default {
         () => pubsub.asyncIterator(['NEW_COHORT_ANSWER']),
         (payload, variables) => {
           return payload.newCohortAnswer.cohortQuestionId === variables.cohortQuestionId;
+        }
+      )
+    },
+    cohortAnswerUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['COHORT_ANSWER_UPDATED']),
+        (payload, variables) => {
+          return payload.cohortAnswerUpdated.cohortQuestionId === variables.cohortQuestionId
         }
       )
     },

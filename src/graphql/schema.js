@@ -172,6 +172,7 @@ const typeDefs = gql`
     cohortQuestionUpdated(cohortId: ID!, topicId: ID!): CohortQuestion!
     cohortQuestionDeactivated(cohortId: ID!, topicId: ID!): CohortQuestion!
     newCohortAnswer(cohortQuestionId: ID!): CohortAnswer!
+    cohortAnswerUpdated(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerDeactivated(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerProgress(cohortQuestionId: ID!): CohortAnswerInProgress!
   }
