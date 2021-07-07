@@ -89,7 +89,7 @@
           },
           data: {
             liveQuestions: questions.map(question => {
-              if (question.topicId === value.data.cohortQuestionUpdated.id) {
+              if (question.id === value.data.cohortQuestionUpdated.id) {
                 return value.data.cohortQuestionUpdated;
               } else {
                 return question;

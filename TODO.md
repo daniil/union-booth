@@ -1,7 +1,8 @@
 ## Tasks
 
+- Add subscription for avatar update
+- Add scroll to updated question functionality
 - Create edit an answer functionality (Live page)
-  - Add updated subscription dispatch
   - Scroll to updated answer after update
   - Add "last updated" functionality
 - Add user management admin functionality

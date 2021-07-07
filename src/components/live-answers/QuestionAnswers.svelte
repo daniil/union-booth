@@ -7,6 +7,7 @@
   import {
     LIVE_ANSWERS,
     NEW_COHORT_ANSWER,
+    COHORT_ANSWER_UPDATED,
     COHORT_ANSWER_DEACTIVATED
   } from 'graphql/queries/cohort-answer';
   import Loading from 'components/shared/Loading.svelte';
@@ -68,6 +69,38 @@
 
   onDestroy(() => newCohortAnswerUnsub());
 
+  $: cohortAnswerUpdated = subscribe(COHORT_ANSWER_UPDATED, {
+    variables: {
+      cohortQuestionId: questionId
+    }
+  });
+
+  $: cohortAnswerUpdatedUnsub = subscribeToCohortAnswerUpdated(questionId);
+
+  const subscribeToCohortAnswerUpdated = questionId => {
+    return cohortAnswerUpdated.subscribe(value => {
+      if (value.data) {
+        $session.apolloClient.writeQuery({
+          query: LIVE_ANSWERS,
+          variables: {
+            cohortQuestionId: questionId
+          },
+          data: {
+            liveAnswers: answers.map(answer => {
+              if (answer.id === value.data.cohortAnswerUpdated.id) {
+                return value.data.cohortAnswerUpdated;
+              } else {
+                return answer;
+              }
+            })
+          }
+        });
+      }
+    });
+  }
+
+  onDestroy(() => cohortAnswerUpdatedUnsub());
+
   $: cohortAnswerDeactivated = subscribe(COHORT_ANSWER_DEACTIVATED, {
     variables: {
       cohortQuestionId: questionId
@@ -76,7 +109,7 @@
 
   $: cohortAnswerDeactivatedUnsub = subscribeToCohortAnswerDeactivated(questionId);
 
-  const subscribeToCohortAnswerDeactivated = (questionId) => {
+  const subscribeToCohortAnswerDeactivated = questionId => {
     return cohortAnswerDeactivated.subscribe(value => {
       if (value.data && value.data.cohortAnswerDeactivated.isInactive) {
         $session.apolloClient.writeQuery({
