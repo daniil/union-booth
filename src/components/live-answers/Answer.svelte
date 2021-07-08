@@ -1,4 +1,5 @@
 <script>
+  import { format } from 'timeago.js';
   import { stores } from '@sapper/app';
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
@@ -15,6 +16,7 @@
   $: time = formatTime(details.createdAt);
   $: isOwner = $session.user.id === details.user.id;
   $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || isOwner;
+  $: lastUpdated = format(details.updatedAt, 'en_US');
 </script>
 
 <style lang="scss">
@@ -43,6 +45,12 @@
     color: rgba(1, 22, 56, 0.75);
     font-size: 0.8rem;
   }
+  .last-updated {
+    margin-left: 1rem;
+    opacity: 0.75;
+    font-size: 0.65rem;
+    font-style: italic;
+  }
 </style>
 
 <div class="answer">
@@ -62,7 +70,12 @@
       {/if}
     </div>
     <time>
-      <span>{time}</span>
+      <span>
+        {time}
+        {#if details.createdAt !== details.updatedAt}
+          <span class="last-updated">Last updated {lastUpdated}</span>
+        {/if}
+      </span>
       <span>{date}</span>
     </time>
   </div>
