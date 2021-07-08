@@ -22,20 +22,24 @@
   let loading = true;
   let selectedQuestion;
 
-  $: liveQuestionsSub = $session.apolloClient
-    .watchQuery({
-      query: LIVE_QUESTIONS,
-      variables: {
-        cohortId: liveTopic.cohortId,
-        topicId: liveTopic.topic.id
-      },
-      fetchPolicy: 'cache-and-network'
-    })
-    .subscribe(({ data }) => {
-      if (!data) return;
-      questions = data.liveQuestions;
-      loading = false;
-    });
+  $: liveQuestionsSub = watchLiveQuestionsQuery(liveTopic);
+
+  const watchLiveQuestionsQuery = liveTopic => {
+    $session.apolloClient
+      .watchQuery({
+        query: LIVE_QUESTIONS,
+        variables: {
+          cohortId: liveTopic.cohortId,
+          topicId: liveTopic.topic.id
+        },
+        fetchPolicy: 'cache-and-network'
+      })
+      .subscribe(({ data }) => {
+        if (!data) return;
+        questions = data.liveQuestions;
+        loading = false;
+      });
+  }
 
   onDestroy(() => liveQuestionsSub.unsubscribe());
 

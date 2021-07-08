@@ -25,19 +25,23 @@
   let answersExpanded = false;
   let selectedAnswer;
 
-  $: liveAnswersSub = $session.apolloClient
-    .watchQuery({
-      query: LIVE_ANSWERS,
-      variables: {
-        cohortQuestionId: questionId
-      },
-      fetchPolicy: 'cache-and-network'
-    })
-    .subscribe(({ data }) => {
-      if (!data) return;
-      answers = data.liveAnswers;
-      loading = false;
-    });
+  $: liveAnswersSub = watchLiveAnswersQuery(questionId);
+
+  const watchLiveAnswersQuery = questionId => {
+    $session.apolloClient
+      .watchQuery({
+        query: LIVE_ANSWERS,
+        variables: {
+          cohortQuestionId: questionId
+        },
+        fetchPolicy: 'cache-and-network'
+      })
+      .subscribe(({ data }) => {
+        if (!data) return;
+        answers = data.liveAnswers;
+        loading = false;
+      });
+  }
   
   onDestroy(() => liveAnswersSub.unsubscribe());
 

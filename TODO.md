@@ -1,9 +1,6 @@
 ## Tasks
 
-- Add subscription for avatar update
-- Add scroll to updated question functionality
 - Create edit an answer functionality (Live page)
-  - Scroll to updated answer after update
   - Add "last updated" functionality
 - Add user management admin functionality
   - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
@@ -37,6 +34,9 @@
 
 ## Tweaks
 
+- Add subscription for avatar update
+- Add scroll to updated question functionality
+- Scroll to updated answer after update
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component
