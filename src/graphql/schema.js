@@ -67,6 +67,7 @@ const typeDefs = gql`
     user: User!
     answer: String!
     createdAt: Date!
+    updatedAt: Date!
     isInactive: Boolean!
   }
 

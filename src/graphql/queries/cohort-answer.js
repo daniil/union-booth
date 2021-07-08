@@ -5,6 +5,7 @@ const cohortAnswerInformation = gql`
     id
     answer
     createdAt
+    updatedAt
     isInactive
     user {
       id
