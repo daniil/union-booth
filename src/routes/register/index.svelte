@@ -72,6 +72,10 @@
     font-size: 1.5rem;
     color: rgba(0,0,0,0.7);
   }
+  .form-block {
+    display: flex;
+    gap: 1.5rem;
+  }
   .form-element {
     margin-bottom: 1rem;
     &.action {
@@ -90,23 +94,29 @@
   <div class="wrapper">
     <h1>Register</h1>
     <form action="/register" method="post" on:submit|preventDefault={handleRegister}>
-      <div class="form-element">
-        <TextInput id="firstName" type="text" label="First Name" required disabled={formDisabled}/>
+      <div class="form-block">
+        <div class="form-element">
+          <TextInput id="firstName" type="text" label="First Name" required disabled={formDisabled}/>
+        </div>
+        <div class="form-element">
+          <TextInput id="lastName" type="text" label="Last Name" required disabled={formDisabled}/>
+        </div>
       </div>
-      <div class="form-element">
-        <TextInput id="lastName" type="text" label="Last Name" required disabled={formDisabled}/>
+      <div class="form-block">
+        <div class="form-element">
+          <TextInput id="username" type="text" label="Username" required disabled={formDisabled}/>
+        </div>
+        <div class="form-element">
+          <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
+        </div>
       </div>
-      <div class="form-element">
-        <TextInput id="username" type="text" label="Username" required disabled={formDisabled}/>
-      </div>
-      <div class="form-element">
-        <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
-      </div>
-      <div class="form-element">
-        <TextInput id="password" type="password" label="Password" required disabled={formDisabled}/>
-      </div>
-      <div class="form-element">
-        <TextInput id="passwordConfirm" type="password" label="Confirm Password" required disabled={formDisabled}/>
+      <div class="form-block">
+        <div class="form-element">
+          <TextInput id="password" type="password" label="Password" required disabled={formDisabled}/>
+        </div>
+        <div class="form-element">
+          <TextInput id="passwordConfirm" type="password" label="Confirm Password" required disabled={formDisabled}/>
+        </div>
       </div>
       <div class="form-element">
         <Checkbox id="isProgramOwner" label="Register as Program Owner" on:change={toggleCohortIdField} disabled={formDisabled}/>
