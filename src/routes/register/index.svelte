@@ -63,7 +63,11 @@
     display: flex;
     justify-content: center;
   }
+  .wrapper {
+    width: 30%;
+  }
   h1 {
+    margin-bottom: 2rem;
     text-align: center;
     font-size: 1.5rem;
     color: rgba(0,0,0,0.7);
@@ -73,7 +77,7 @@
     &.action {
       display: flex;
       justify-content: center;
-      padding-top: 1rem;
+      padding-top: 1.5rem;
       border-top: 1px solid #DBD3D8;
     }
   }
