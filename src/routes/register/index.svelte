@@ -9,15 +9,16 @@
   import parseError from 'utils/parseError';
   import FormErrors from 'components/forms/FormErrors.svelte';
   import TextInput from 'components/forms/TextInput.svelte';
-  import Checkbox from 'components/forms/Checkbox.svelte';
+  import Radio from 'components/forms/Radio.svelte';
   import Button from 'components/forms/Button.svelte';
 
   const { session } = stores();
   const registerUser = mutation(REGISTER);
 
   let errors;
-  let cohortIdRequired = true;
+  let accountType = 'joinCohort';
   let cohortIdValue;
+  let programIdValue;
   let formDisabled = false;
 
   $: buttonVariant = formDisabled ? 'loading' : 'success';
@@ -52,9 +53,10 @@
     }
   }
 
-  const toggleCohortIdField = () => {
-    cohortIdRequired = !cohortIdRequired;
+  const toggleAccountType = e => {
+    accountType = e.target.id;
     cohortIdValue = '';
+    programIdValue = '';
   }
 </script>
 
@@ -64,13 +66,17 @@
     justify-content: center;
   }
   .wrapper {
-    width: 30%;
+    width: 40%;
   }
   h1 {
     margin-bottom: 2rem;
     text-align: center;
     font-size: 1.5rem;
     color: rgba(0,0,0,0.7);
+  }
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
   }
   .form-block {
     display: flex;
@@ -84,6 +90,12 @@
       padding-top: 1.5rem;
       border-top: 1px solid #DBD3D8;
     }
+    &.group {
+      margin-bottom: 0.75rem;
+    }
+  }
+  .account-section {
+    margin-top: 1rem;
   }
   .hidden {
     display: none;
@@ -118,11 +130,23 @@
           <TextInput id="passwordConfirm" type="password" label="Confirm Password" required disabled={formDisabled}/>
         </div>
       </div>
-      <div class="form-element">
-        <Checkbox id="isProgramOwner" label="Register as Program Owner" on:change={toggleCohortIdField} disabled={formDisabled}/>
-      </div>
-      <div class="form-element" class:hidden={!cohortIdRequired}>
-        <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={cohortIdRequired} disabled={formDisabled}/>
+      <div class="account-section">
+        <h3>Account Type</h3>
+        <div class="form-element group">
+          <Radio id="joinCohort" name="accountType" label="I'm joining a cohort" on:change={toggleAccountType} selected disabled={formDisabled}/>
+        </div>
+        <div class="form-element group">
+          <Radio id="joinProgram" name="accountType" label="I'm joining a program" on:change={toggleAccountType} disabled={formDisabled}/>
+        </div>
+        <div class="form-element">
+          <Radio id="startProgram" name="accountType" label="Register as Program Owner" on:change={toggleAccountType} disabled={formDisabled}/>
+        </div>
+        <div class="form-element" class:hidden={accountType !== 'joinCohort'}>
+          <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={accountType === 'joinCohort'} disabled={formDisabled}/>
+        </div>
+        <div class="form-element" class:hidden={accountType !== 'joinProgram'}>
+          <TextInput id="programId" type="text" label="Program ID" bind:value={programIdValue} required={accountType === 'joinProgram'} disabled={formDisabled}/>
+        </div>
       </div>
       <div class="form-element action">
         <Button type="submit" variant={buttonVariant} icon="🎫" label="Register"/>

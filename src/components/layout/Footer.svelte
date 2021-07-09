@@ -11,6 +11,7 @@
     text-align: center;
     color: rgba(85, 67, 72, 0.7);
     z-index: 2;
+    font-size: 0.9rem;
   }
 </style>
 

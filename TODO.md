@@ -1,6 +1,8 @@
 ## Tasks
 
 - Add user management admin functionality
+  - Update register page with the programId and cohortId values
+  - Update queries and resolvers for adding programId and cohortId
   - Add a user permission to be part of the program but not admin (sharing same topics, but different cohorts, etc, essentially the "educator" role)
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
