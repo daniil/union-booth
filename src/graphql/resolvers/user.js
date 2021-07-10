@@ -37,7 +37,7 @@ export default {
   Mutation: {
     register: async (
       _,
-      { firstName, lastName, username, email, password, isProgramOwner, cohortId },
+      { firstName, lastName, username, email, password, isProgramOwner, cohortId, programId },
       { models, session }
     ) => {
       try {

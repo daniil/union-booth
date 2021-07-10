@@ -8,7 +8,8 @@ const REGISTER = gql`
     $email: String!,
     $password: String!,
     $isProgramOwner: Boolean!,
-    $cohortId: ID
+    $cohortId: ID,
+    $programId: ID
   ) {
     register(
       firstName: $firstName,
@@ -17,7 +18,8 @@ const REGISTER = gql`
       email: $email,
       password: $password,
       isProgramOwner: $isProgramOwner,
-      cohortId: $cohortId
+      cohortId: $cohortId,
+      programId: $programId
     ) {
       id
       firstName
