@@ -1,5 +1,6 @@
 export default {
   user: ['user'],
   moderator: ['user', 'moderator'],
-  admin: ['user', 'moderator', 'admin']
+  manager: ['user', 'moderator', 'manager'],
+  admin: ['user', 'moderator', 'manager', 'admin']
 };

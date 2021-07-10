@@ -40,7 +40,7 @@
           username: e.target.username.value,
           email: e.target.email.value,
           password: e.target.password.value,
-          isProgramOwner: e.target.isProgramOwner.checked,
+          isProgramOwner: accountType === 'startProgram',
           cohortId: e.target.cohortId.value,
           programId: e.target.programId.value
         }

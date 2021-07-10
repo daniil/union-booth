@@ -66,6 +66,20 @@ export default {
           newUser.cohortId = cohortId;
         }
 
+        if (programId) {
+          const program = await models.Program.findOne({
+            attributes: ['id'],
+            where: { id: programId }
+          });
+
+          if (!program) {
+            throw new UserInputError('Invalid Program ID');
+          }
+
+          newUser.role = 'manager';
+          newUser.selectedProgram = programId;
+        }
+
         const user = await models.User.create(newUser);
         session.user = userSessionValues(user);
         return user;
