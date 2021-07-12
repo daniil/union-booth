@@ -44,7 +44,7 @@ export default {
   Mutation: {
     addCohort: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { programId, title }, { models, session }) => {
         try {
           const cohort = await models.Cohort.create({
@@ -74,7 +74,7 @@ export default {
 
     toggleCohortSelect: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { id, isSelected }, { models, session }) => {
         const cohort = await models.Cohort.findOne({
           where: {

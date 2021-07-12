@@ -5,6 +5,9 @@ const cohortInformation = gql`
     id
     title
     slug
+    user {
+      id
+    }
   }
 `;
 

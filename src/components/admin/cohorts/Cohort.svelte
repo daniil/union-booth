@@ -8,6 +8,9 @@
 
   const { session } = stores();
 
+  $: isSelected = selectedCohort && details.id === selectedCohort.id;
+  $: isCohortOwner = $session.user.id === details.user.id;
+
   const toggleCohortSelect = mutation(TOGGLE_COHORT_SELECT);
 
   const handleActiveChange = async e => {
@@ -28,8 +31,6 @@
       }
     });
   }
-
-  $: isSelected = selectedCohort && details.id === selectedCohort.id;
 </script>
 
 <style lang="scss">
@@ -42,6 +43,16 @@
       background-color: rgba(212, 224, 155, 0.5);
       border: 1px solid rgb(212, 224, 155);
       border-radius: 4px;
+    }
+    &.is-owner {
+      h4 {
+        font-weight: 500;
+      }
+    }
+    &:not(.is-owner) {
+      .details {
+        opacity: 0.75;
+      }
     }
   }
   .details {
@@ -60,7 +71,11 @@
 </style>
 
 <form action="update-cohort" method="post">
-  <div class="wrapper" class:is-active={isSelected}>
+  <div
+    class="wrapper"
+    class:is-active={isSelected}
+    class:is-owner={isCohortOwner}
+  >
     <div class="details">
       <h4>{details.title}</h4>
       <span class="cohort-id">{details.id}</span>
