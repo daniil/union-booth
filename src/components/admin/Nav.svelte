@@ -1,4 +1,6 @@
 <script>
+  import AuthContent from 'components/auth/AuthContent.svelte';
+
   export let segment;
 </script>
 
@@ -22,9 +24,11 @@
 
 <nav>
   <ul class="nav-list">
-    <li>
-      <a rel="prefetch" aria-current="{segment === 'programs' ? 'page' : undefined}" href="/admin/programs">Programs</a>
-    </li>
+    <AuthContent role="admin">
+      <li>
+        <a rel="prefetch" aria-current="{segment === 'programs' ? 'page' : undefined}" href="/admin/programs">Programs</a>
+      </li>
+    </AuthContent>
     <li>
       <a rel="prefetch" aria-current="{segment === 'cohorts' ? 'page' : undefined}" href="/admin/cohorts">Cohorts</a>
     </li>
