@@ -86,7 +86,7 @@
 			<li class="right-aligned">
 				<ProfileNav/>
 			</li>
-			<AuthContent role="admin">
+			<AuthContent role="manager">
 				<li class="right-aligned admin">
 					<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
 				</li>

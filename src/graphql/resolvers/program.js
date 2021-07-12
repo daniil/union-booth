@@ -6,6 +6,7 @@ export default {
   Query: {
     programs: combineResolvers(
       isAuthenticated,
+      checkRole('admin'),
       async (_, __, { models, session }) => {
         const programs = await models.Program.findAll({
           where: {
@@ -21,7 +22,7 @@ export default {
 
     selectedProgram: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, __, { models, session }) => {
         const user = await models.User.findOne({
           attributes: ['selectedProgram'],

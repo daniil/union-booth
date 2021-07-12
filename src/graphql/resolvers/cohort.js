@@ -20,7 +20,7 @@ export default {
 
     selectedCohort: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, __, { models, session }) => {
         const user = await models.User.findOne({
           attributes: ['cohortId'],
