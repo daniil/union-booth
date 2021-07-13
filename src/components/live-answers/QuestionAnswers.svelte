@@ -28,7 +28,7 @@
   $: liveAnswersSub = watchLiveAnswersQuery(questionId);
 
   const watchLiveAnswersQuery = questionId => {
-    $session.apolloClient
+    return $session.apolloClient
       .watchQuery({
         query: LIVE_ANSWERS,
         variables: {

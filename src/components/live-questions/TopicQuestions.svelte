@@ -25,7 +25,7 @@
   $: liveQuestionsSub = watchLiveQuestionsQuery(liveTopic);
 
   const watchLiveQuestionsQuery = liveTopic => {
-    $session.apolloClient
+    return $session.apolloClient
       .watchQuery({
         query: LIVE_QUESTIONS,
         variables: {
