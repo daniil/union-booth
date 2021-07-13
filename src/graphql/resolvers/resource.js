@@ -14,7 +14,11 @@ export default {
 
           if (!id) {
             order = await models.Resource.max('order', { where: { topicId }});
-            order ++;
+            if (isNaN(order)) {
+              order = 0;
+            } else {
+              order ++;
+            }
           }
 
           const resource = await models.Resource.upsert({
