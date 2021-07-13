@@ -7,7 +7,7 @@ export default {
   Query: {
     topics: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { programId }, { models }) => {
         const topics = await models.Topic.findAll({
           where: { programId },
@@ -23,7 +23,7 @@ export default {
   Mutation: {
     addTopic: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { programId, title }, { models, session }) => {
         try {
           const topic = await models.Topic.create({
