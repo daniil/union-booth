@@ -107,7 +107,7 @@ export default {
   Mutation: {
     toggleCohortTopicUnlocked: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { cohortId, topicId, status }, { models }) => {
         const cohortTopic = await models.CohortTopic.findOne({
           where: {
@@ -131,7 +131,7 @@ export default {
 
     toggleCohortTopicLive: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { cohortId, topicId, status }, { models }) => {
         const cohortTopic = await models.CohortTopic.findOne({
           where: {
