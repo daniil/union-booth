@@ -21,7 +21,7 @@ export default {
   Mutation: {
     updateResourcesOrder: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { topicSlug, orderList }, { models }) => {
         try {
           const resourceUpdates = orderList.map(orderItem => {

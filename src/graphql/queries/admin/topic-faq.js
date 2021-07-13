@@ -52,7 +52,7 @@ const ADD_TOPIC_FAQ_QUESTION = gql`
 `;
 
 const DEACTIVATE_TOPIC_FAQ_QUESTION = gql`
-  mutation DeactivateTopicFAQQuestion($id: ID) {
+  mutation DeactivateTopicFAQQuestion($id: ID!) {
     deactivateTopicFAQQuestion(id: $id) {
       id
       isInactive

@@ -7,7 +7,7 @@ export default {
   Mutation: {
     addTopicFAQQuestion: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { id, topicId, cohortQuestionId, question, answer }, { models }) => {
         try {
           if (cohortQuestionId) {
@@ -46,7 +46,7 @@ export default {
 
     deactivateTopicFAQQuestion: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { id }, { models }) => {
         try {
           const topicFAQQuestion = await models.TopicFAQ.findOne({

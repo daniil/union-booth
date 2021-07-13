@@ -55,18 +55,11 @@ export const validateTopicSlug = async (_, { slug }, { models, session }) => {
     throw new UserInputError('This topic does not exist');
   }
 
-  const cohort = await models.Cohort.findOne({
-    attributes: ['id'],
-    where: {
-      programId: topic.programId
-    }
-  });
-
   const user = await models.User.findOne({
     attributes: ['id'],
     where: {
       id: session.user.id,
-      cohortId: cohort.id
+      selectedProgram: topic.programId
     }
   });
 

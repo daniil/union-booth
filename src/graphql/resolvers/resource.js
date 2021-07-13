@@ -7,7 +7,7 @@ export default {
   Mutation: {
     addResource: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { id, topicId, url, title, description }, { models }) => {
         try {
           let order;
@@ -37,7 +37,7 @@ export default {
 
     deactivateResource: combineResolvers(
       isAuthenticated,
-      checkRole('admin'),
+      checkRole('manager'),
       async (_, { id }, { models }) => {
         try {
           const resource = await models.Resource.findOne({
