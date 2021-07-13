@@ -46,10 +46,6 @@ const user = (sequelize, DataTypes) => {
     user.password = await user.generatePasswordHash();
   });
 
-  User.beforeUpdate(async user => {
-    user.password = await user.generatePasswordHash();
-  });
-
   User.afterCreate(user => {
     generateAvatar(user.id);
   });

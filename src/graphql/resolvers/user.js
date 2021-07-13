@@ -175,8 +175,12 @@ export default {
             throw new UserInputError('User can not be found');
           }
 
+          user.password = password;
+
+          const newPassword = await user.generatePasswordHash();
+
           await user.update({
-            password
+            password: newPassword
           });
 
           return true;
