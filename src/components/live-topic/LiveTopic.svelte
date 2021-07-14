@@ -41,7 +41,8 @@
     <h1>{liveTopic.topic.title}</h1>
     <TopicQuestions {liveTopic}/>
   {:else}
-    <p>No Live Topic currently 🤷🏽‍♀️</p>
+    <p>No Live Topic currently 🤷🏽‍♀️.</p>
+    <p>You can review <a rel="prefetch" href="/topics">previous topics</a> meanwhile.</p>
   {/if}
 {/if}
 

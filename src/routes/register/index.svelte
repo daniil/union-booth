@@ -140,7 +140,7 @@
           <Radio id="joinProgram" name="accountType" label="I'm joining a program" on:change={toggleAccountType} disabled={formDisabled}/>
         </div>
         <div class="form-element">
-          <Radio id="startProgram" name="accountType" label="Register as Program Owner" on:change={toggleAccountType} disabled={formDisabled}/>
+          <Radio id="startProgram" name="accountType" label="I'm creating my own program" on:change={toggleAccountType} disabled={formDisabled}/>
         </div>
         <div class="form-element" class:hidden={accountType !== 'joinCohort'}>
           <TextInput id="cohortId" type="text" label="Cohort ID" bind:value={cohortIdValue} required={accountType === 'joinCohort'} disabled={formDisabled}/>
