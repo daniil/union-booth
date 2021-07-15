@@ -4,7 +4,7 @@
       return this.redirect(301, '/admin/cohorts');
     }
     if (session.user?.role === 'admin') {
-      return this.redirect(301, '/admin/users');
+      return this.redirect(301, '/admin/programs');
     }
     return this.redirect(301, '/');
   }

@@ -90,6 +90,7 @@
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     border-radius: 4px;
+    z-index: 1;
   }
 </style>
 

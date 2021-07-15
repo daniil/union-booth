@@ -26,11 +26,6 @@
   <ul class="nav-list">
     <AuthContent role="admin">
       <li>
-        <a rel="prefetch" aria-current="{segment === 'users' ? 'page' : undefined}" href="/admin/users">User Management</a>
-      </li>
-    </AuthContent>
-    <AuthContent role="admin">
-      <li>
         <a rel="prefetch" aria-current="{segment === 'programs' ? 'page' : undefined}" href="/admin/programs">Programs</a>
       </li>
     </AuthContent>
@@ -49,5 +44,10 @@
     <li>
       <a rel="prefetch" aria-current="{segment === 'resources' ? 'page' : undefined}" href="/admin/resources">Resources</a>
     </li>
+    <AuthContent role="manager">
+      <li>
+        <a rel="prefetch" aria-current="{segment === 'users' ? 'page' : undefined}" href="/admin/users">User Management</a>
+      </li>
+    </AuthContent>
   </ul>
 </nav>
