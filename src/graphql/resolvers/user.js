@@ -189,5 +189,11 @@ export default {
         }
       }
     )
+  },
+
+  User: {
+    cohort: async (parent, _, { loaders }) => {
+      return await loaders.cohort.load(parent.cohortId);
+    }
   }
 }

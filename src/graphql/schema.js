@@ -28,6 +28,7 @@ const typeDefs = gql`
     email: String!
     role: String!
     cohortId: ID
+    cohort: Cohort!
     createdAt: Date!
   }
 
