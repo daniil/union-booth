@@ -81,6 +81,7 @@
       </h3>
     </section>
   {:else}
+    <h3>Cohort Users</h3>
     <p>No active cohort selected currently 🙍🏼‍♂️. Please <a rel="prefetch" href="/admin/cohorts">select one</a></p>
   {/if}
 {:else}
