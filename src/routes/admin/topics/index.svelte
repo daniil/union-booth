@@ -76,6 +76,9 @@
   section {
     margin-bottom: 2rem;
   }
+  h2 {
+    margin-bottom: 1.5rem;
+  }
   h3 {
     margin-bottom: 1rem;
     color: rgba(85, 67, 72, 0.7);
