@@ -115,9 +115,11 @@ Before deploying set environment variables required for the app:
 
 You can now deploy the app (from application page).
 
-After deploying, check the URL generated for your app and add another environment variable:
+After deploying, check the URL generated for your app (On application page, you can go to *Actions*, then *Open*) and add another environment variable:
 
-- Add `SERVER_URL` with a value of `'$QOVERY_ROUTER_MAIN_UNION_BOOTH_HOST'`. 
+- Add `SERVER_URL` with a URL value, ie: `https://z565df859-gtw.qovery.io`, make sure to not include the trailing slash. 
+
+Restart your app from *Actions* dropdown of the application page.
 
 To view the deployment log go on an environment page, and select **Show Logs**.
 
