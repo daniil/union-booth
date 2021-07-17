@@ -79,29 +79,46 @@ Currently the app is configured to be deployed on Qovery. Make sure you [install
 
 First, fork or clone the `union-booth` repo to your own GitHub account.
 
-Create [Qovery Account](https://console.qovery.com/login) and then create a new project and a new application.
+- Create [Qovery Account](https://start.qovery.com/)
+- Create a new project (ie: union-booth)
+- Create a new environment (ie: production)
+- Create a new application (ie: union-booth for *App name*, then select the union-booth repo from your GitHub, enter the branch name (ie: main), keep *Root application* path as `/`).
 
-Choose to deploy an existing application with "I have an application".
+On application page, click on *Settings*. Make sure to click **Save** for every tab change.
 
-Connect to GitHub and select the `union-booth` repo you cloned.
+- In **General** tab, change *Build mode* to "Dockerfile", keep *Dockerfile path* as `Dockefile`
+- In **Resources** tab, change *vCPU* to `1` and *RAM* to `512`.
+- In **Storage** tab, click **+ Add**, change *Mount point* to `/mnt/static` and size to `10` GB
 
-Select **Nodejs** for your type of application and give an app a name.
+Go back to environment page (ie: production), click **+ Add** and then *Database* (twice):
 
-On *Select services...* screen select **postgresql** and **Storage**.
+- Enter `union-booth-postgres` as a name, `POSTGRESQL` as a *Type*, `12` as a *Version*
+- Enter `union-booth-redis` as a name, `REDIS` as a *Type*, `6` as a *Version*
 
-For PostgreSQL you can select version 11 and give a name to your DB (ie: union-booth).
+Go back to application page, click **+ Add**, then *Database* and then select both `Union-Booth-Redis` and `Union-Booth-Postgres` databases you have added. It might take a while for DB to appear in the list or try refreshing the environment and application pages.
 
-For Storage enter **static** for a disk name and choose **ssd** for storage type. You can keep the default mount point and size of the disk.
+On an application page go into *Environment Variables* tab and under *Secret variables*, in a kebab menu, *Create alias* for following keys:
 
-Before deploying set environment variables required for the app (on your local):
+- `QOVERY_REDIS_*********_HOST` to `QOVERY_REDIS_HOST`
+- `QOVERY_REDIS_*********_PORT` to `QOVERY_REDIS_PORT`
+- `QOVERY_REDIS_*********_DEFAULT_DATABASE_NAME` to `QOVERY_REDIS_DATABASE`
+- `QOVERY_REDIS_*********_PASSWORD` to `QOVERY_REDIS_PASSWORD`
+- `QOVERY_POSTGRESQL_*********_DEFAULT_DATABASE_NAME` to `QOVERY_POSTGRES_DATABASE`
+- `QOVERY_POSTGRESQL_*********_LOGIN` to `QOVERY_POSTGRES_USER`
+- `QOVERY_POSTGRESQL_*********_PASSWORD` to `QOVERY_POSTGRES_PASSWORD`
+- `QOVERY_POSTGRESQL_*********_HOST` to `QOVERY_POSTGRES_HOST`
+- `QOVERY_POSTGRESQL_*********_PORT` to `QOVERY_POSTGRES_PORT`
 
-```
-qovery environment env add SERVER_URL '$QOVERY_ROUTER_MAIN_UNION_BOOTH_HOST'
-qovery environment env add SESSION_SECRET $YOUR_SESSION_SECRET (#Run `node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"` to generate)
-```
+Before deploying set environment variables required for the app:
 
-You can now deploy the app.
+- Add `SESSION_SECRET`. You can use result of running `node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"` in your Terminal as a value.
 
-To view the deployment log go into *Projects* page on Qovery Dashboard, click on **main** environment and then select *Deployment Logs*.
+You can now deploy the app (from application page).
 
-Once your application is deployed to view the application logs you can use `qovery log` command.
+After deploying, check the URL generated for your app and add another environment variable:
+
+- Add `SERVER_URL` with a value of `'$QOVERY_ROUTER_MAIN_UNION_BOOTH_HOST'`. 
+
+To view the deployment log go on an environment page, and select **Show Logs**.
+
+Once your application is deployed to view the application logs you can use `qovery log` command in the Terminal.
