@@ -14,10 +14,10 @@
   import Question from 'components/live-questions/Question.svelte';
   import PostQuestion from 'components/live-questions/PostQuestion.svelte';
 
-  const { session } = stores();
-
   export let liveTopic;
-
+  
+  const { session } = stores();
+  
   let questions = [];
   let loading = true;
   let selectedQuestion;
