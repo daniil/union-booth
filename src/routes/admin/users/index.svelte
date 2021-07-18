@@ -18,6 +18,7 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import AuthContent from 'components/auth/AuthContent.svelte';
+  import CohortUsers from 'components/admin/users/CohortUsers.svelte';
 
   const { session } = stores();
 
@@ -79,6 +80,7 @@
       <h3>
         <span class="selected">{selectedCohort.title}</span> Users
       </h3>
+      <CohortUsers cohortId={selectedCohort.id}/>
     </section>
   {:else}
     <h3>Cohort Users</h3>
