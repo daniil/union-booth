@@ -60,7 +60,11 @@ export default {
           where: {
             cohortId,
             role: 'user'
-          }
+          },
+          order: [
+            ['firstName', 'ASC'],
+            ['lastName', 'ASC']
+          ]
         });
 
         return users;
