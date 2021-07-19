@@ -3,6 +3,7 @@
   import { onDestroy } from 'svelte';
   import { COHORT_USERS } from 'graphql/queries/admin/users';
   import Loading from 'components/shared/Loading.svelte';
+  import CohortUsersHeader from 'components/admin/users/CohortUsersHeader.svelte';
   import CohortUser from 'components/admin/users/CohortUser.svelte';
 
   export let cohortId;
@@ -36,6 +37,9 @@
 {#if loading}
   <Loading/>
 {:else}
+  {#if users.length}
+    <CohortUsersHeader/>
+  {/if}
   {#each users as user (user.id)}
     <CohortUser {user}/>
   {:else}
