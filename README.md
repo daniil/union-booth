@@ -117,7 +117,7 @@ You can now deploy the app (from application page).
 
 After deploying, check the URL generated for your app (On application page, you can go to *Actions*, then *Open*) and add another environment variable:
 
-- Add `SERVER_URL` with a URL value, ie: `https://z565df859-gtw.qovery.io`, make sure to not include the trailing slash. 
+- Add `SERVER_URL` with a URL value, ie: `z565df859-gtw.qovery.io`, make sure to not include the "https://" and trailing slash. 
 
 Restart your app from *Actions* dropdown of the application page.
 

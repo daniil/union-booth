@@ -6,12 +6,15 @@
   $: createdDate = formatDate(user.createdAt, true);
 </script>
 
-<style>
+<style lang="scss">
   .user {
     display: flex;
     justify-content: space-between;
-    padding: 0 0.5rem;
-    margin: 1rem 0;
+    padding: 0.5rem 0.5rem;
+    margin: 0.5rem 0;
+    &:nth-of-type(even) {
+      background-color: rgba(219, 211, 216, 0.125);
+    }
   }
   .cell {
     width: 20%;
