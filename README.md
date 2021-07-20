@@ -10,15 +10,17 @@ Current functionality:
 - support for account roles
 - adding programs, cohorts and topics
 - managing live topics
+- managing users and team member roles
 - posting questions
 - replying to the questions
-- moderating a question as being currently answered or answered by an educator
+- question and replies management (edit/delete) by posters and moderators
+- moderating a question as being currently answered or answered by a moderator
 - converting cohort questions to persistent FAQs.
 
 ## Project structure
 
-- `/register` - Register a new student or educator
-- `/login` - Logs in a student or educator
+- `/register` - Register a new user (with support for moderator or admin roles)
+- `/login` - Logs in a user
 - `/` - Landing page with Register/Login links for anonymous user, live questions for active lecture for signed in user (ask a question, add an answer, mark question as being answered by the moderator)
 - `/topics` - All unlocked topics for a program
 - `/topics/:topicSlug/faqs` - FAQs for a topic
@@ -32,8 +34,9 @@ Current functionality:
 - `/admin/faqs/:topicSlug` - Managing topic FAQs (publishing live questions, adding new QA, edit/deactivate existing QAs)
 - `/admin/resources` - List of active program topics for topic resources
 - `/admin/resources/:topicSlug` - Managing topic resources (adding/editing/deactivating resources)
+- `/admin/users` - Managing users and team members
 
-### Environment Variables
+## Environment Variables
 
 ```
 .env
@@ -49,7 +52,7 @@ REDIS_PORT_NUMBER
 
 Check `.env.example` for an example of `.env` file.
 
-### Running the project
+## Running the project
 
 Once you have cloned the project, install [Redis](https://redis.io/topics/quickstart), create the PostgreSQL DB (defined in .env file), install dependencies and run the project in development mode:
 
@@ -63,7 +66,7 @@ This will start the development server on [localhost:3000](http://localhost:3000
 
 GraphQL Playground is available at [http://localhost:3000/graphql](http://localhost:3000/graphql).
 
-### Project tech stack
+## Project tech stack
 
 - Svelte
 - Sapper
@@ -73,7 +76,7 @@ GraphQL Playground is available at [http://localhost:3000/graphql](http://localh
 - Sequelize
 - Markdown
 
-### Deployment
+## Deployment
 
 Currently the app is configured to be deployed on Qovery. Make sure you [install Qovery CLI](https://docs.qovery.com/docs/using-qovery/interface/cli/) for deployment tasks.
 
