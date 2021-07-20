@@ -89,15 +89,18 @@ On application page, click on *Settings*. Make sure to click **Save** for every 
 - In **General** tab, change *Build mode* to "Dockerfile", keep *Dockerfile path* as `Dockefile`
 - In **Resources** tab, change *vCPU* to `1` and *RAM* to `512`.
 - In **Storage** tab, click **+ Add**, change *Mount point* to `/mnt/static` and size to `10` GB
+- In **Port** tab, add `8080` as a port and in *Advanced settings* under meatball menu ensure the *Publicly* setting is checked
 
 Go back to environment page (ie: production), click **+ Add** and then *Database* (twice):
 
 - Enter `union-booth-postgres` as a name, `POSTGRESQL` as a *Type*, `12` as a *Version*
 - Enter `union-booth-redis` as a name, `REDIS` as a *Type*, `6` as a *Version*
 
+On an environment page, click on each database and under **Actions** select *Deploy*. You might need to deploy it one at a time. You might also get some deploy errors (Redis in particular), but try the full deploy process described below anyway.
+
 Go back to application page, click **+ Add**, then *Database* and then select both `Union-Booth-Redis` and `Union-Booth-Postgres` databases you have added. It might take a while for DB to appear in the list or try refreshing the environment and application pages.
 
-On an application page go into *Environment Variables* tab and under *Secret variables*, in a kebab menu, *Create alias* for following keys:
+On an application page go into *Environment Variables* tab and under *Secret variables*, in a meatball menu, *Create alias* for following keys:
 
 - `QOVERY_REDIS_*********_HOST` to `QOVERY_REDIS_HOST`
 - `QOVERY_REDIS_*********_PORT` to `QOVERY_REDIS_PORT`
@@ -115,9 +118,10 @@ Before deploying set environment variables required for the app:
 
 You can now deploy the app (from application page).
 
-After deploying, check the URL generated for your app (On application page, you can go to *Actions*, then *Open*) and add another environment variable:
+After deploying, check the URL generated for your app (On application page, you can go to *Actions*, then *Open*) and add these environment variables:
 
-- Add `SERVER_URL` with a URL value, ie: `z565df859-gtw.qovery.io`, make sure to not include the "https://" and trailing slash. 
+- Add `SERVER_URL` with a URL value, ie: `z565df859-gtw.qovery.io`, make sure to not include the "https://" and trailing slash.
+- Add `PORT` with a value of `8080` to allow for public access to the app.
 
 Restart your app from *Actions* dropdown of the application page.
 
