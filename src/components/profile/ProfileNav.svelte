@@ -11,6 +11,8 @@
 
   let navVisible = false;
 
+  $: fullName = `${$session.user.firstName} ${$session.user.lastName}`;
+
 	const handleLogout = async () => {
 		await logoutUser();
 
@@ -86,11 +88,18 @@
     position: absolute;
     top: 165%;
     right: 0;
-    padding: 0.25rem 0;
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     border-radius: 4px;
     z-index: 1;
+  }
+  .signed-in-as {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+    background-color: rgba(219, 211, 216, 0.15);
+    font-size: 0.85rem;
+    font-weight: 500;
   }
 </style>
 
@@ -102,13 +111,14 @@
   <div class="avatar-container" on:click|stopPropagation={toggleNav}>
     <Avatar
       user={$session.user}
-      alt={`${$session.user.firstName} ${$session.user.lastName} Profile`}
+      alt={`${fullName} Profile`}
     />
     <div class="triangle-down"></div>
   </div>
 {/if}
 {#if navVisible}
   <nav class="profile-nav" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
+    <h4 class="signed-in-as">{fullName}</h4>
     <a href="/profile">Profile</a>
     <a href="/logout" on:click|preventDefault={handleLogout}>Logout</a>
   </nav>
