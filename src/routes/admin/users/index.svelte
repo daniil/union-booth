@@ -76,12 +76,19 @@
     </section>
   </AuthContent>
   {#if selectedCohort}
-    <section>
-      <h3>
-        <span class="selected">{selectedCohort.title}</span> Users
-      </h3>
-      <CohortUsers cohortId={selectedCohort.id}/>
-    </section>
+    <AuthContent role="manager">
+      <section>
+        <h3>
+          <span class="selected">{selectedCohort.title}</span> Team
+        </h3>
+      </section>
+      <section>
+        <h3>
+          <span class="selected">{selectedCohort.title}</span> Users
+        </h3>
+        <CohortUsers cohortId={selectedCohort.id}/>
+      </section>
+    </AuthContent>
   {:else}
     <h3>Cohort Users</h3>
     <p>No active cohort selected currently 🙍🏼‍♂️. Please <a rel="prefetch" href="/admin/cohorts">select one</a></p>
