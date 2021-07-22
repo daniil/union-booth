@@ -20,6 +20,16 @@ const COHORT_USERS = gql`
   ${userInformation}
 `;
 
+const COHORT_TEAM_USERS = gql`
+  query CohortTeamUsers($cohortId: ID!) {
+    cohortTeamUsers(cohortId: $cohortId) {
+      ...UserInformation
+    }
+  }
+  ${userInformation}
+`;
+
 export {
-  COHORT_USERS
+  COHORT_USERS,
+  COHORT_TEAM_USERS
 }
