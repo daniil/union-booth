@@ -65,3 +65,22 @@ export const validateTopicSlug = async (_, { slug }, { models, session }) => {
 
   return user ? skip : new ForbiddenError('You do not have access to this topic');
 };
+
+export const validateManagerCohort = async (_, { cohortId }, { models, session }) => {
+  const manager = await models.User.findOne({
+    attributes: ['selectedProgram'],
+    where: {
+      id: session.user.id
+    }
+  });
+
+  const cohort = await models.Cohort.findOne({
+    attributes: ['id'],
+    where: {
+      id: cohortId,
+      programId: manager.selectedProgram
+    }
+  });
+
+  return cohort ? skip : new UserInputError('You can not get users from cohort that is not part of your program.');
+}

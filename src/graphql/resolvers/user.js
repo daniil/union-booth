@@ -3,6 +3,7 @@ import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
 import generateAvatar from 'utils/generateAvatar';
+import { validateManagerCohort } from './validation';
 
 const userSessionValues = user => {
   return {
@@ -36,30 +37,32 @@ export default {
     cohortUsers: combineResolvers(
       isAuthenticated,
       checkRole('manager'),
-      async (_, { cohortId }, { models, session }) => {
-        const manager = await models.User.findOne({
-          attributes: ['selectedProgram'],
-          where: {
-            id: session.user.id
-          }
-        });
-
-        const cohort = await models.Cohort.findOne({
-          attributes: ['id'],
-          where: {
-            id: cohortId,
-            programId: manager.selectedProgram
-          }
-        });
-
-        if (!cohort) {
-          throw new UserInputError('You can not get users from cohort that is not part of your program.');
-        }
-
+      validateManagerCohort,
+      async (_, { cohortId }, { models }) => {
         const users = await models.User.findAll({
           where: {
             cohortId,
             role: 'user'
+          },
+          order: [
+            ['firstName', 'ASC'],
+            ['lastName', 'ASC']
+          ]
+        });
+
+        return users;
+      }
+    ),
+
+    cohortTeamUsers: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      validateManagerCohort,
+      async (_, { cohortId }, { models }) => {
+        const users = await models.User.findAll({
+          where: {
+            cohortId,
+            role: 'moderator'
           },
           order: [
             ['firstName', 'ASC'],
