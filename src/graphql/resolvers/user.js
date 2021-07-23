@@ -1,5 +1,6 @@
 import { AuthenticationError, UserInputError, ApolloError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
+import { Op } from 'sequelize';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
 import generateAvatar from 'utils/generateAvatar';
@@ -71,6 +72,37 @@ export default {
         });
 
         return users;
+      }
+    ),
+
+    programUsers: combineResolvers(
+      isAuthenticated,
+      checkRole('admin'),
+      async (_, __, { models, session }) => {
+        const user = await models.User.findOne({
+          where: {
+            id: session.user.id
+          }
+        });
+        if (user) {
+          const users = await models.User.findAll({
+            where: {
+              selectedProgram: user.selectedProgram,
+              role: {
+                [Op.in]: ['admin', 'manager']
+              },
+              id: {
+                [Op.ne]: user.id
+              }
+            },
+            order: [
+              ['firstName', 'ASC'],
+              ['lastName', 'ASC']
+            ]
+          });
+
+          return users;
+        }
       }
     )
   },

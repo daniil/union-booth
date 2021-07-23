@@ -135,6 +135,7 @@ const typeDefs = gql`
     topicResources(slug: ID!): TopicResources!
     cohortUsers(cohortId: ID!): [User]!
     cohortTeamUsers(cohortId: ID!): [User]!
+    programUsers: [User]!
   }
 
   type Mutation {
