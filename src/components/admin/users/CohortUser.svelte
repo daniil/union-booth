@@ -11,16 +11,21 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0.5rem;
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
     &:nth-of-type(even) {
       background-color: rgba(219, 211, 216, 0.125);
     }
   }
   .cell {
-    width: 20%;
+    width: 21%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding-right: 0.5rem;
+    &.date-joined {
+      width: 16%;
+    }
   }
 </style>
 

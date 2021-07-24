@@ -18,6 +18,7 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import AuthContent from 'components/auth/AuthContent.svelte';
+  import ProgramUsers from 'components/admin/users/ProgramUsers.svelte';
   import CohortTeamUsers from 'components/admin/users/CohortTeamUsers.svelte';
   import CohortUsers from 'components/admin/users/CohortUsers.svelte';
 
@@ -74,6 +75,7 @@
       <h3>
         <span class="selected">{selectedProgram.title}</span> Team
       </h3>
+      <ProgramUsers/>
     </section>
   </AuthContent>
   {#if selectedCohort}

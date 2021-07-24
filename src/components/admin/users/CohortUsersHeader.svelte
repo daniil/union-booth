@@ -1,4 +1,4 @@
-<style>
+<style lang="scss">
   h4 {
     display: flex;
     justify-content: space-between;
@@ -8,9 +8,12 @@
     border-top-right-radius: 4px;
   }
   .header-cell {
-    width: 20%;
+    width: 21%;
     font-size: 0.9rem;
     font-weight: 500;
+    &.date-joined {
+      width: 16%;
+    }
   }
 </style>
 
