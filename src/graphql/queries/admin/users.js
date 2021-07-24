@@ -7,6 +7,7 @@ const userInformation = gql`
     lastName
     username
     email
+    role
     createdAt
   }
 `;
@@ -29,7 +30,17 @@ const COHORT_TEAM_USERS = gql`
   ${userInformation}
 `;
 
+const PROGRAM_USERS = gql`
+  query ProgramUsers {
+    programUsers {
+      ...UserInformation
+    }
+  } 
+  ${userInformation}
+`;
+
 export {
   COHORT_USERS,
-  COHORT_TEAM_USERS
+  COHORT_TEAM_USERS,
+  PROGRAM_USERS
 }
