@@ -1,4 +1,4 @@
-import { UserInputError } from 'apollo-server';
+import { UserInputError, ForbiddenError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 
@@ -27,9 +27,14 @@ export default {
         const user = await models.User.findOne({
           attributes: ['cohortId'],
           where: {
-            id: session.user.id
+            id: session.user.id,
+            isInactive: false
           }
         });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
 
         const unlockedTopics = await models.CohortTopic.findAll({
           where: {
@@ -55,9 +60,14 @@ export default {
         const user = await models.User.findOne({
           attributes: ['cohortId'],
           where: {
-            id: session.user.id
+            id: session.user.id,
+            isInactive: false
           }
         });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
 
         const topic = await models.CohortTopic.findOne({
           where: {
@@ -88,9 +98,14 @@ export default {
         const user = await models.User.findOne({
           attributes: ['cohortId'],
           where: {
-            id: session.user.id
+            id: session.user.id,
+            isInactive: false
           }
         });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
 
         const topic = await models.CohortTopic.findOne({
           where: {

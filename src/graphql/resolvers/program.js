@@ -1,4 +1,4 @@
-import { AuthenticationError } from 'apollo-server';
+import { AuthenticationError, ForbiddenError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 
@@ -27,9 +27,14 @@ export default {
         const user = await models.User.findOne({
           attributes: ['selectedProgram'],
           where: {
-            id: session.user.id
+            id: session.user.id,
+            isInactive: false
           }
         });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
 
         if (!user.selectedProgram) return null;
 

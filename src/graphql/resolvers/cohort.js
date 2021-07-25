@@ -1,4 +1,4 @@
-import { UserInputError } from 'apollo-server';
+import { UserInputError, ForbiddenError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
@@ -25,9 +25,14 @@ export default {
         const user = await models.User.findOne({
           attributes: ['cohortId'],
           where: {
-            id: session.user.id
+            id: session.user.id,
+            isInactive: false
           }
         });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
 
         if (!user.cohortId) return null;
 

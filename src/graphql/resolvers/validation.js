@@ -59,7 +59,8 @@ export const validateTopicSlug = async (_, { slug }, { models, session }) => {
     attributes: ['id'],
     where: {
       id: session.user.id,
-      selectedProgram: topic.programId
+      selectedProgram: topic.programId,
+      isInactive: false
     }
   });
 
@@ -70,7 +71,8 @@ export const validateManagerCohort = async (_, { cohortId }, { models, session }
   const manager = await models.User.findOne({
     attributes: ['selectedProgram'],
     where: {
-      id: session.user.id
+      id: session.user.id,
+      isInactive: false
     }
   });
 

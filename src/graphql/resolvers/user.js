@@ -1,4 +1,4 @@
-import { AuthenticationError, UserInputError, ApolloError } from 'apollo-server';
+import { AuthenticationError, UserInputError, ApolloError, ForbiddenError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { Op } from 'sequelize';
 import { isAuthenticated, checkRole } from './auth';
@@ -23,12 +23,15 @@ export default {
       isAuthenticated,
       async (_, { id }, { models }) => {
         const user = await models.User.findOne({
-          where: { id },
+          where: {
+            id,
+            isInactive: false
+          },
           attributes: ['id', 'firstName', 'lastName', 'username', 'email']
         });
 
         if (!user) {
-          throw new UserInputError('No user found');
+          throw new UserInputError('No user found or user is inactive');
         }
 
         return user;
@@ -81,9 +84,15 @@ export default {
       async (_, __, { models, session }) => {
         const user = await models.User.findOne({
           where: {
-            id: session.user.id
+            id: session.user.id,
+            isInactive: false
           }
         });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
+
         if (user) {
           const users = await models.User.findAll({
             where: {
@@ -164,7 +173,7 @@ export default {
     login: async (_, { login, password }, { models, session }) => {
       const user = await models.User.findByLogin(login);
       if (!user) {
-        throw new UserInputError('No user found with this login credentials.');
+        throw new UserInputError('No active user found with this login credentials.');
       }
 
       const passwordIsValid = await user.validatePassword(password);
@@ -207,12 +216,13 @@ export default {
         try {
           const user = await models.User.findOne({
             where: {
-              id: userId
+              id: userId,
+              isInactive: false
             }
           });
 
           if (!user) {
-            throw new UserInputError('User can not be found');
+            throw new UserInputError('User can not be found or is inactive');
           }
 
           await user.update({
@@ -240,12 +250,13 @@ export default {
         try {
           const user = await models.User.findOne({
             where: {
-              id: userId
+              id: userId,
+              isInactive: false
             }
           });
 
           if (!user) {
-            throw new UserInputError('User can not be found');
+            throw new UserInputError('User can not be found or is inactive');
           }
 
           user.password = password;

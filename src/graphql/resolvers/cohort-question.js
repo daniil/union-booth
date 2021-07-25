@@ -34,9 +34,14 @@ export default {
           const user = await models.User.findOne({
             attributes: ['cohortId'],
             where: {
-              id: session.user.id
+              id: session.user.id,
+              isInactive: false
             }
           });
+
+          if (!user) {
+            throw new UserInputError('This user is inactive. Only active users can add questions');
+          }
   
           const topic = await models.CohortTopic.findOne({
             where: {
