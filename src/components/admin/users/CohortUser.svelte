@@ -52,7 +52,7 @@
   <span class="cell username" title={user.username}>{user.username}</span>
   <span class="cell email" title={user.email}>{user.email}</span>
   <span class="cell date-joined" title={createdDate}>{createdDate}</span>
-  <button class="trigger-action" click={handleActionDropdown}>
+  <button class="trigger-action" on:click={handleActionDropdown}>
     <KebabIcon color="#05668D"/>
   </button>
 </p>
