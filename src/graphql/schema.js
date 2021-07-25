@@ -30,6 +30,7 @@ const typeDefs = gql`
     cohortId: ID
     cohort: Cohort!
     createdAt: Date!
+    isInactive: Boolean!
   }
 
   type Topic {
