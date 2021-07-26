@@ -272,6 +272,56 @@ export default {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
+    ),
+
+    deactivateUser: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      async (_, { id }, { models, session }) => {
+        try {
+          const manager = await models.User.findOne({
+            attributes: ['id', 'role', 'selectedProgram'],
+            where: {
+              id: session.user.id
+            }
+          });
+
+          const user = await models.User.findOne({
+            where: {
+              id
+            },
+            include: [{
+              model: models.Cohort,
+              attributes: ['programId'],
+              as: 'cohort'
+            }]
+          });
+
+          if (user.isInactive) {
+            throw new UserInputError('This user is already inactive');
+          }
+
+          if (manager.id === user.id) {
+            throw new UserInputError('You can not deactivate your own account');
+          }
+
+          if (manager.role === 'manager' && ['admin', 'manager'].includes(user.role)) {
+            throw new UserInputError('You do not have permissions to deactivate manager or admin account');
+          }
+
+          if (!user.cohort) {
+            throw new UserInputError('This user does not seem to be a part of existing cohort');
+          }
+
+          if (manager.selectedProgram !== user.cohort.programId) {
+            throw new UserInputError('You do not have permissions to deactivate user from this program');
+          }
+
+          return user;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
     )
   },
 
