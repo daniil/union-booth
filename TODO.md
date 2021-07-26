@@ -7,6 +7,7 @@
   - Add admin functionality for managers (active state change and promoting to admin)
   - Add default inactive state for manager role registration
   - Add default inactive state for user role registration
+  - Add user deactivate account functionality (on profile page)
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
   - Register and update profile pages

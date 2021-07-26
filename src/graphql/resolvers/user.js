@@ -317,6 +317,10 @@ export default {
             throw new UserInputError('You do not have permissions to deactivate user from this program');
           }
 
+          await user.update({
+            isInactive: true
+          });
+
           return user;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
