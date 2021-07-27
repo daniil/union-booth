@@ -9,6 +9,7 @@ const userInformation = gql`
     email
     role
     createdAt
+    isInactive
   }
 `;
 
@@ -39,8 +40,18 @@ const PROGRAM_USERS = gql`
   ${userInformation}
 `;
 
+const DEACTIVATE_USER = gql`
+  mutation DeactivateUser($id: ID!) {
+    deactivateUser(id: $id) {
+      ...UserInformation
+    }
+  }
+  ${userInformation}
+`;
+
 export {
   COHORT_USERS,
   COHORT_TEAM_USERS,
-  PROGRAM_USERS
+  PROGRAM_USERS,
+  DEACTIVATE_USER
 }
