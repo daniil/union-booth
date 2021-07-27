@@ -1,6 +1,6 @@
 <script>
   import { formatDate } from 'utils/time';
-  import KebabIcon from 'components/icons/KebabIcon.svelte';
+  import CohortUserActions from 'components/admin/users/CohortUserActions.svelte';
 
   export let user;
 
@@ -34,15 +34,10 @@
       width: 16%;
     }
   }
-  .trigger-action {
+  .actions-container {
     position: absolute;
     right: -4px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(1.25);
-    }
+    display: flex;
   }
 </style>
 
@@ -52,7 +47,7 @@
   <span class="cell username" title={user.username}>{user.username}</span>
   <span class="cell email" title={user.email}>{user.email}</span>
   <span class="cell date-joined" title={createdDate}>{createdDate}</span>
-  <button class="trigger-action" on:click={handleActionDropdown}>
-    <KebabIcon color="#05668D"/>
-  </button>
+  <span class="actions-container" data-id={user.id}>
+    <CohortUserActions userId={user.id}/>
+  </span>
 </p>
