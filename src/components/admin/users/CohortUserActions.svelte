@@ -37,9 +37,9 @@
   }
   .user-actions-nav-wrapper {
     position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 100%;
+    right: 0;
+    transform: translateY(0.5rem);
   }
 </style>
 
