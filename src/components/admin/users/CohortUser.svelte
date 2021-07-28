@@ -5,10 +5,6 @@
   export let user;
 
   $: createdDate = formatDate(user.createdAt, true);
-
-  const handleActionDropdown = () => {
-    console.log('Handle dropdown');
-  }
 </script>
 
 <style lang="scss">

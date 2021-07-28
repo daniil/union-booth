@@ -51,6 +51,7 @@
 {#if navVisible}
   <div class="user-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <CohortUserActionsNav
+      {userId}
       on:action-complete={handleActionComplete}
     />
   </div>

@@ -1,12 +1,26 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { mutation } from 'svelte-apollo';
+  import { DEACTIVATE_USER } from 'graphql/queries/admin/users';
   import Button from 'components/forms/Button.svelte';
+
+  export let userId;
 
   const dispatch = createEventDispatcher();
 
+  const deactivateUser = mutation(DEACTIVATE_USER);
+
   const handleDeactivate = async () => {
-    console.log('Deactivate User');
-    dispatch('action-complete');
+    try {
+      await deactivateUser({
+        variables: {
+          id: userId
+        }
+      });
+      dispatch('action-complete');
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 
