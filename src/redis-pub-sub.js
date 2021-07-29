@@ -6,10 +6,10 @@ const {
   NODE_ENV,
   REDIS_DOMAIN_NAME,
   REDIS_PORT_NUMBER,
-  QOVERY_REDIS_HOST,
-  QOVERY_REDIS_PORT,
-  QOVERY_REDIS_PASSWORD,
-  QOVERY_REDIS_DATABASE
+  PROD_REDIS_HOST,
+  PROD_REDIS_PORT,
+  PROD_REDIS_PASSWORD,
+  PROD_REDIS_DATABASE
 } = process.env;
 
 const isProd = NODE_ENV === 'production';
@@ -18,10 +18,10 @@ let options;
 
 if (isProd) {
   options = {
-    host: QOVERY_REDIS_HOST,
-    port: QOVERY_REDIS_PORT,
-    password: QOVERY_REDIS_PASSWORD,
-    db: QOVERY_REDIS_DATABASE
+    host: PROD_REDIS_HOST,
+    port: PROD_REDIS_PORT,
+    password: PROD_REDIS_PASSWORD,
+    db: PROD_REDIS_DATABASE
   }
 } else {
   options = {

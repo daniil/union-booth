@@ -16,11 +16,11 @@ const {
   DATABASE_USER,
   DATABASE_PASSWORD,
   NODE_ENV,
-  QOVERY_POSTGRES_DATABASE,
-  QOVERY_POSTGRES_USER,
-  QOVERY_POSTGRES_PASSWORD,
-  QOVERY_POSTGRES_HOST,
-  QOVERY_POSTGRES_PORT
+  PROD_POSTGRES_DATABASE,
+  PROD_POSTGRES_USER,
+  PROD_POSTGRES_PASSWORD,
+  PROD_POSTGRES_HOST,
+  PROD_POSTGRES_PORT
 } = process.env;
 
 let sequelize;
@@ -34,12 +34,12 @@ const poolSettings = {
 
 if (NODE_ENV === 'production') {
   sequelize = new Sequelize(
-    QOVERY_POSTGRES_DATABASE,
-    QOVERY_POSTGRES_USER,
-    QOVERY_POSTGRES_PASSWORD,
+    PROD_POSTGRES_DATABASE,
+    PROD_POSTGRES_USER,
+    PROD_POSTGRES_PASSWORD,
     {
-      host: QOVERY_POSTGRES_HOST,
-      port: QOVERY_POSTGRES_PORT,
+      host: PROD_POSTGRES_HOST,
+      port: PROD_POSTGRES_PORT,
       dialect: 'postgres',
       protocol: 'postgres',
       pool: poolSettings

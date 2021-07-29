@@ -1,5 +1,6 @@
 ## Tasks
 
+- Fix the deployment issue with environment variables
 - Add user management admin functionality
   - Add user deactivate functionality
   - Add cohort team section (for manager+)
