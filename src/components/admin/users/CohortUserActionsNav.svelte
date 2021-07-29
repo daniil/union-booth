@@ -10,14 +10,25 @@
 
   const deactivateUser = mutation(DEACTIVATE_USER);
 
+  let actionsDisabled = false;
+
+  $: buttonVariant = actionsDisabled ? 'loading' : 'danger';
+
   const handleDeactivate = async () => {
     try {
+      actionsDisabled = true;
+
       await deactivateUser({
         variables: {
           id: userId
+        },
+        update: (_, mutationResult) => {
+          const updatedUser = mutationResult.data.deactivateUser;
+          console.log(updatedUser);
         }
       });
       dispatch('action-complete');
+      actionsDisabled = false;
     } catch(err) {
       console.log('ERROR: ', err);
     }
@@ -35,5 +46,5 @@
 </style>
 
 <nav class="user-actions-nav">
-  <Button style="link" variant="danger" label="Deactivate" action={handleDeactivate}/>
+  <Button style="link" variant={buttonVariant} label="Deactivate" action={handleDeactivate}/>
 </nav>

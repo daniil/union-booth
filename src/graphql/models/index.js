@@ -32,8 +32,6 @@ const poolSettings = {
   idle: 10000
 };
 
-console.log(PROD_POSTGRES_DATABASE, PROD_POSTGRES_USER, PROD_POSTGRES_PASSWORD, PROD_POSTGRES_HOST, PROD_POSTGRES_PORT)
-
 if (NODE_ENV === 'production') {
   sequelize = new Sequelize(
     PROD_POSTGRES_DATABASE,

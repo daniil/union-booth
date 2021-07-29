@@ -16,8 +16,6 @@ const isProd = NODE_ENV === 'production';
 
 let options;
 
-console.log(PROD_REDIS_HOST, PROD_REDIS_PORT, PROD_REDIS_PASSWORD, PROD_REDIS_DATABASE)
-
 if (isProd) {
   options = {
     host: PROD_REDIS_HOST,
