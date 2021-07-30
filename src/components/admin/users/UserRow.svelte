@@ -1,6 +1,6 @@
 <script>
   import { formatDate } from 'utils/time';
-  import CohortUserActions from 'components/admin/users/CohortUserActions.svelte';
+  import UserActions from 'components/admin/users/UserActions.svelte';
 
   export let user;
 
@@ -44,6 +44,6 @@
   <span class="cell email" title={user.email}>{user.email}</span>
   <span class="cell date-joined" title={createdDate}>{createdDate}</span>
   <span class="actions-container" data-id={user.id}>
-    <CohortUserActions userId={user.id}/>
+    <UserActions userId={user.id}/>
   </span>
 </p>

@@ -3,8 +3,8 @@
   import { onDestroy } from 'svelte';
   import { COHORT_TEAM_USERS } from 'graphql/queries/admin/users';
   import Loading from 'components/shared/Loading.svelte';
-  import CohortUsersHeader from 'components/admin/users/CohortUsersHeader.svelte';
-  import CohortUser from 'components/admin/users/CohortUser.svelte';
+  import UsersHeader from 'components/admin/users/UsersHeader.svelte';
+  import UserRow from 'components/admin/users/UserRow.svelte';
 
   export let cohortId;
 
@@ -38,10 +38,10 @@
   <Loading/>
 {:else}
   {#if users.length}
-    <CohortUsersHeader/>
+    <UsersHeader/>
   {/if}
   {#each users as user (user.id)}
-    <CohortUser {user}/>
+    <UserRow {user}/>
   {:else}
     <p>No users yet.</p>
   {/each}

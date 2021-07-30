@@ -21,7 +21,7 @@
   import ProgramUsers from 'components/admin/users/ProgramUsers.svelte';
   import CohortTeamUsers from 'components/admin/users/CohortTeamUsers.svelte';
   import CohortUsers from 'components/admin/users/CohortUsers.svelte';
-  import CohortUsersFilter from 'components/admin/users/CohortUsersFilter.svelte';
+  import UsersFilter from 'components/admin/users/UsersFilter.svelte';
 
   const { session } = stores();
 
@@ -72,7 +72,7 @@
 
 <h2>User Management</h2>
 
-<CohortUsersFilter bind:value={filterValue}/>
+<UsersFilter bind:value={filterValue}/>
 
 {#if selectedProgram}
   <AuthContent role="admin">

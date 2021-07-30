@@ -2,7 +2,7 @@
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
   import KebabIcon from 'components/icons/KebabIcon.svelte';
-  import CohortUserActionsNav from 'components/admin/users/CohortUserActionsNav.svelte';
+  import UserActionsNav from 'components/admin/users/UserActionsNav.svelte';
   import elementClickOff from 'utils/elementClickOff';
 
   export let userId;
@@ -50,7 +50,7 @@
 </button>
 {#if navVisible}
   <div class="user-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
-    <CohortUserActionsNav
+    <UserActionsNav
       {userId}
       on:action-complete={handleActionComplete}
     />
