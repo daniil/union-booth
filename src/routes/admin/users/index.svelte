@@ -21,8 +21,11 @@
   import ProgramUsers from 'components/admin/users/ProgramUsers.svelte';
   import CohortTeamUsers from 'components/admin/users/CohortTeamUsers.svelte';
   import CohortUsers from 'components/admin/users/CohortUsers.svelte';
+  import CohortUsersFilter from 'components/admin/users/CohortUsersFilter.svelte';
 
   const { session } = stores();
+
+  let filterValue;
 
   let selectedProgram = $session.apolloClient.readQuery({ query: SELECTED_PROGRAM }).selectedProgram;
 
@@ -68,6 +71,8 @@
 </style>
 
 <h2>User Management</h2>
+
+<CohortUsersFilter bind:value={filterValue}/>
 
 {#if selectedProgram}
   <AuthContent role="admin">
