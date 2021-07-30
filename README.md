@@ -103,17 +103,17 @@ On an environment page, click on each database and under **Actions** select *Dep
 
 Go back to application page, click **+ Add**, then *Database* and then select both `Union-Booth-Redis` and `Union-Booth-Postgres` databases you have added. It might take a while for DB to appear in the list or try refreshing the environment and application pages.
 
-On an application page go into *Environment Variables* tab and under *Secret variables*, in a meatball menu, *Create alias* for following keys:
+On an application page go into *Environment Variables* tab and under *Secret variables* and *Environment Variables*, in a meatball menu, *Create alias* for following keys:
 
-- `QOVERY_REDIS_*********_HOST` to `QOVERY_REDIS_HOST`
-- `QOVERY_REDIS_*********_PORT` to `QOVERY_REDIS_PORT`
-- `QOVERY_REDIS_*********_DEFAULT_DATABASE_NAME` to `QOVERY_REDIS_DATABASE`
-- `QOVERY_REDIS_*********_PASSWORD` to `QOVERY_REDIS_PASSWORD`
-- `QOVERY_POSTGRESQL_*********_DEFAULT_DATABASE_NAME` to `QOVERY_POSTGRES_DATABASE`
-- `QOVERY_POSTGRESQL_*********_LOGIN` to `QOVERY_POSTGRES_USER`
-- `QOVERY_POSTGRESQL_*********_PASSWORD` to `QOVERY_POSTGRES_PASSWORD`
-- `QOVERY_POSTGRESQL_*********_HOST` to `QOVERY_POSTGRES_HOST`
-- `QOVERY_POSTGRESQL_*********_PORT` to `QOVERY_POSTGRES_PORT`
+- `QOVERY_REDIS_*********_HOST` to `PROD_REDIS_HOST`
+- `QOVERY_REDIS_*********_PORT` to `PROD_REDIS_PORT`
+- `QOVERY_REDIS_*********_DEFAULT_DATABASE_NAME` to `PROD_REDIS_DATABASE`
+- `QOVERY_REDIS_*********_PASSWORD` to `PROD_REDIS_PASSWORD`
+- `QOVERY_POSTGRESQL_*********_DEFAULT_DATABASE_NAME` to `PROD_POSTGRES_DATABASE`
+- `QOVERY_POSTGRESQL_*********_LOGIN` to `PROD_POSTGRES_USER`
+- `QOVERY_POSTGRESQL_*********_PASSWORD` to `PROD_POSTGRES_PASSWORD`
+- `QOVERY_POSTGRESQL_*********_HOST` to `PROD_POSTGRES_HOST`
+- `QOVERY_POSTGRESQL_*********_PORT` to `PROD_POSTGRES_PORT`
 
 Before deploying set environment variables required for the app:
 
