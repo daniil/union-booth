@@ -19,6 +19,9 @@
     &:nth-of-type(even) {
       background-color: rgba(219, 211, 216, 0.125);
     }
+    &.inactive > .cell {
+      opacity: 0.6;
+    }
   }
   .cell {
     width: 21%;
@@ -26,6 +29,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-right: 0.5rem;
+    transition: opacity 0.25s;
     &.date-joined {
       width: 16%;
     }
@@ -37,7 +41,7 @@
   }
 </style>
 
-<p class="user">
+<p class="user" class:inactive={user.isInactive}>
   <span class="cell first-name" title={user.firstName}>{user.firstName}</span>
   <span class="cell last-name" title={user.lastName}>{user.lastName}</span>
   <span class="cell username" title={user.username}>{user.username}</span>

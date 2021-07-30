@@ -8,6 +8,7 @@ const userInformation = gql`
     username
     email
     role
+    cohortId
     createdAt
     isInactive
   }

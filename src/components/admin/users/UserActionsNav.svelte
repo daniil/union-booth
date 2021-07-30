@@ -1,16 +1,24 @@
 <script>
+  import { stores } from '@sapper/app';
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
-  import { DEACTIVATE_USER } from 'graphql/queries/admin/users';
+  import { COHORT_USERS, COHORT_TEAM_USERS, PROGRAM_USERS, DEACTIVATE_USER } from 'graphql/queries/admin/users';
   import Button from 'components/forms/Button.svelte';
 
   export let userId;
 
+  const { session } = stores();
   const dispatch = createEventDispatcher();
 
   const deactivateUser = mutation(DEACTIVATE_USER);
 
   let actionsDisabled = false;
+  const queries = {
+    user: { query: COHORT_USERS, key: 'cohortUsers' },
+    moderator: { query: COHORT_TEAM_USERS, key: 'cohortTeamUsers' },
+    manager: { query: PROGRAM_USERS, key: 'programUsers' },
+    admin: { query: PROGRAM_USERS, key: 'programUsers' }
+  };
 
   $: buttonVariant = actionsDisabled ? 'loading' : 'danger';
 
@@ -24,7 +32,30 @@
         },
         update: (_, mutationResult) => {
           const updatedUser = mutationResult.data.deactivateUser;
-          console.log(updatedUser);
+          const userQuery = queries[updatedUser.role];
+
+          const currentUsers = $session.apolloClient.readQuery({
+            query: userQuery.query,
+            variables: {
+              cohortId: updatedUser.cohortId
+            }
+          })[userQuery.key];
+
+          $session.apolloClient.writeQuery({
+            query: userQuery.query,
+            variables: {
+              cohortId: updatedUser.cohortId
+            },
+            data: {
+              [userQuery.key]: currentUsers.map(user => {
+                if (updatedUser.id === user.id) {
+                  return updatedUser;
+                } else {
+                  return user;
+                }
+              })
+            }
+          });
         }
       });
       dispatch('action-complete');
