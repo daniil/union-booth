@@ -12,12 +12,14 @@
 	nav {
 		position: relative;
 		z-index: 2;
-		border-bottom: 1px solid rgba(255, 62, 0, 0.1);
+		border-bottom: 1px solid rgba(222, 207, 222, 0.5);
+		background-color: rgba(247, 243, 247, 0.25);
 		font-weight: 300;
 		padding: 0 1em;
 	}
 	ul {
-		margin: 0;
+		max-width: 1215px;
+    margin: 0 auto;
 		padding: 0;
 		&::after {
 			content: '';
@@ -47,7 +49,7 @@
 			content: '';
 			width: calc(100% - 1em);
 			height: 2px;
-			background-color: #E8B4BC;
+			background-color: #DECFDE;
 			display: block;
 			bottom: -1px;
 		}

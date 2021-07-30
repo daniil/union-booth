@@ -40,6 +40,7 @@
 
 ## Tweaks
 
+- Update All Topics page link styling
 - Add subscription for avatar update
 - Add scroll to updated question functionality
 - Scroll to updated answer after update
