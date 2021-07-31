@@ -41,9 +41,9 @@ const PROGRAM_USERS = gql`
   ${userInformation}
 `;
 
-const DEACTIVATE_USER = gql`
-  mutation DeactivateUser($id: ID!) {
-    deactivateUser(id: $id) {
+const UPDATE_USER_ACTIVE_STATUS = gql`
+  mutation UpdateUserActiveStatus($id: ID!, $isInactive: Boolean!) {
+    updateUserActiveStatus(id: $id, isInactive: $isInactive) {
       ...UserInformation
     }
   }
@@ -54,5 +54,5 @@ export {
   COHORT_USERS,
   COHORT_TEAM_USERS,
   PROGRAM_USERS,
-  DEACTIVATE_USER
+  UPDATE_USER_ACTIVE_STATUS
 }

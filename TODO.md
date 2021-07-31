@@ -1,10 +1,6 @@
 ## Tasks
 
-- Fix the deployment issue with environment variables
 - Add user management admin functionality
-  - Add user deactivate functionality
-  - Add user re-activate functionality
-  - Add cohort team section (for manager+)
   - Add change role functionality for users and team
   - Add admin functionality for managers (active state change and promoting to admin)
   - Add default inactive state for manager role registration
@@ -40,7 +36,6 @@
 
 ## Tweaks
 
-- Update All Topics page link styling
 - Add subscription for avatar update
 - Add scroll to updated question functionality
 - Scroll to updated answer after update

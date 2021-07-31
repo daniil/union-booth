@@ -2,15 +2,15 @@
   import { stores } from '@sapper/app';
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
-  import { COHORT_USERS, COHORT_TEAM_USERS, PROGRAM_USERS, DEACTIVATE_USER } from 'graphql/queries/admin/users';
+  import { COHORT_USERS, COHORT_TEAM_USERS, PROGRAM_USERS, UPDATE_USER_ACTIVE_STATUS } from 'graphql/queries/admin/users';
   import Button from 'components/forms/Button.svelte';
 
-  export let userId;
+  export let user;
 
   const { session } = stores();
   const dispatch = createEventDispatcher();
 
-  const deactivateUser = mutation(DEACTIVATE_USER);
+  const updateUserActiveStatus = mutation(UPDATE_USER_ACTIVE_STATUS);
 
   let actionsDisabled = false;
   const queries = {
@@ -20,18 +20,20 @@
     admin: { query: PROGRAM_USERS, key: 'programUsers' }
   };
 
-  $: buttonVariant = actionsDisabled ? 'loading' : 'danger';
+  $: buttonVariant = actionsDisabled ? 'loading' : user.isInactive ? '' : 'danger';
+  $: activeStatusLabel = user.isInactive ? 'Activate' : 'Deactivate';
 
-  const handleDeactivate = async () => {
+  const handleUpdateStatus = async () => {
     try {
       actionsDisabled = true;
 
-      await deactivateUser({
+      await updateUserActiveStatus({
         variables: {
-          id: userId
+          id: user.id,
+          isInactive: !user.isInactive
         },
         update: (_, mutationResult) => {
-          const updatedUser = mutationResult.data.deactivateUser;
+          const updatedUser = mutationResult.data.updateUserActiveStatus;
           const userQuery = queries[updatedUser.role];
 
           const currentUsers = $session.apolloClient.readQuery({
@@ -77,5 +79,5 @@
 </style>
 
 <nav class="user-actions-nav">
-  <Button style="link" variant={buttonVariant} label="Deactivate" action={handleDeactivate}/>
+  <Button style="link" variant={buttonVariant} label={activeStatusLabel} action={handleUpdateStatus}/>
 </nav>

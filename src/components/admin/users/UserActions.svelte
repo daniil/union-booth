@@ -5,7 +5,7 @@
   import UserActionsNav from 'components/admin/users/UserActionsNav.svelte';
   import elementClickOff from 'utils/elementClickOff';
 
-  export let userId;
+  export let user;
   
   let navVisible = false;
 
@@ -19,7 +19,7 @@
 
   const handleClickOff = e => {
     if (navVisible) {
-      elementClickOff(e, 'actions-container', userId, () => {
+      elementClickOff(e, 'actions-container', user.id, () => {
         navVisible = false;
       });
     }
@@ -51,7 +51,7 @@
 {#if navVisible}
   <div class="user-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <UserActionsNav
-      {userId}
+      {user}
       on:action-complete={handleActionComplete}
     />
   </div>

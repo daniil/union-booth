@@ -274,10 +274,10 @@ export default {
       }
     ),
 
-    deactivateUser: combineResolvers(
+    updateUserActiveStatus: combineResolvers(
       isAuthenticated,
       checkRole('manager'),
-      async (_, { id }, { models, session }) => {
+      async (_, { id, isInactive }, { models, session }) => {
         try {
           const manager = await models.User.findOne({
             attributes: ['id', 'role', 'selectedProgram'],
@@ -297,8 +297,10 @@ export default {
             }]
           });
 
-          if (user.isInactive) {
+          if (isInactive && user.isInactive) {
             throw new UserInputError('This user is already inactive');
+          } else if (!isInactive && !user.isInactive) {
+            throw new UserInputError('This user is already active');
           }
 
           if (manager.id === user.id) {
@@ -318,7 +320,7 @@ export default {
           }
 
           await user.update({
-            isInactive: true
+            isInactive
           });
 
           return user;

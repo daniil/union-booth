@@ -48,6 +48,6 @@
   <span class="cell email" title={user.email}>{user.email}</span>
   <span class="cell date-joined" title={createdDate}>{createdDate}</span>
   <span class="actions-container" data-id={user.id}>
-    <UserActions userId={user.id}/>
+    <UserActions {user}/>
   </span>
 </p>
