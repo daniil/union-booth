@@ -148,6 +148,11 @@
   .question-container {
     margin-bottom: 4rem;
   }
+  p {
+    padding: 1rem 0 2rem;
+    text-align: center;
+    color: #7D6D61;
+  }
 </style>
 
 {#if loading}
@@ -161,7 +166,7 @@
       />
     </div>
   {:else}
-    <p>No questions yet, add a first one!</p>
+    <p>No questions yet, be first to ask one!</p>
   {/each}
 {/if}
 <PostQuestion

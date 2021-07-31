@@ -37,6 +37,14 @@
   onDestroy(() => unlockedTopicsSub.unsubscribe());
 </script>
 
+<style>
+  p {
+    padding: 1rem 0 2rem;
+    text-align: center;
+    color: #7D6D61;
+  }
+</style>
+
 <h1>All Topics</h1>
 
 {#if unlockedTopics.length > 0}

@@ -4,6 +4,14 @@
   export let topic;
 </script>
 
+<style>
+  p {
+    padding: 1rem 0 2rem;
+    text-align: center;
+    color: #7D6D61;
+  }
+</style>
+
 {#if topic.resources.length}
   {#each topic.resources as resource (resource.id)}
     <TopicResource {resource}/>

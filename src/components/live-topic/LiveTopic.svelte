@@ -32,6 +32,17 @@
   h1 {
     margin-bottom: 2rem;
   }
+  .no-topic {
+    padding: 1rem 0 2rem;
+    text-align: center;
+    color: #7D6D61;
+    font-size: 1.1rem;
+  }
+  .review {
+    text-align: center;
+    color: #7D6D61;
+    font-size: 0.85rem;
+  }
 </style>
 
 {#if loading}
@@ -41,8 +52,8 @@
     <h1>{liveTopic.topic.title}</h1>
     <TopicQuestions {liveTopic}/>
   {:else}
-    <p>No Live Topic currently 🤷🏽‍♀️.</p>
-    <p>You can review <a rel="prefetch" href="/topics">previous topics</a> meanwhile.</p>
+    <p class="no-topic">No Live Topic currently 🤷🏽‍♀️.</p>
+    <p class="review">You can review <a rel="prefetch" href="/topics">previous topics</a> meanwhile.</p>
   {/if}
 {/if}
 
