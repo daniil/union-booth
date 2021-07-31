@@ -6,10 +6,20 @@
   $: date = formatDate(details.topic.createdAt);
 </script>
 
-<style>
+<style lang="scss">
   .wrapper {
     display: flex;
     justify-content: space-between;
+  }
+  h2 {
+    margin-bottom: 1.25rem;
+  }
+  a {
+    text-decoration: none;
+    color: #05668D;
+    &:hover {
+      filter: brightness(1.25);
+    }
   }
   .live {
     background-color: rgb(212, 224, 155);
@@ -19,6 +29,9 @@
     color: white;
     text-shadow: 0px 1px 0 rgb(0 0 0 / 30%);
     font-size: 1rem;
+  }
+  time {
+    color: #7D6D61;
   }
 </style>
 

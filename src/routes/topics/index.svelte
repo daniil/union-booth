@@ -38,6 +38,9 @@
 </script>
 
 <style>
+  h1 {
+    margin-bottom: 2rem;
+  }
   p {
     padding: 1rem 0 2rem;
     text-align: center;
