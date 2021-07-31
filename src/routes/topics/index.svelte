@@ -39,7 +39,7 @@
 
 <style>
   h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
   p {
     padding: 1rem 0 2rem;

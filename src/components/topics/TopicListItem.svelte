@@ -12,7 +12,7 @@
     justify-content: space-between;
   }
   h2 {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
   a {
     text-decoration: none;
