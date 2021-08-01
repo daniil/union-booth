@@ -14,7 +14,7 @@ const colors = {
   warn: 'yellow',
   info: 'green',
   http: 'magenta',
-  debug: 'white',
+  debug: 'blue',
 };
 
 const dailyTransportConfig = {

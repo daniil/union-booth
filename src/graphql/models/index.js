@@ -10,6 +10,7 @@ import topicFAQModel from './topic-faq';
 import resourceModel from './resource';
 import userModel from './user';
 import { setupAssociations } from './associations';
+import Logger from 'lib/logger';
 
 const {
   DATABASE,
@@ -42,7 +43,8 @@ if (NODE_ENV === 'production') {
       port: PROD_POSTGRES_PORT,
       dialect: 'postgres',
       protocol: 'postgres',
-      pool: poolSettings
+      pool: poolSettings,
+      logging: msg => Logger.info(msg)
     }
   );
 } else {
@@ -52,7 +54,8 @@ if (NODE_ENV === 'production') {
     DATABASE_PASSWORD,
     {
       dialect: 'postgres',
-      pool: poolSettings
+      pool: poolSettings,
+      logging: msg => Logger.info(msg)
     }
   );
 }

@@ -13,7 +13,7 @@ import graphQLServer from 'graphql/server';
 import { initSSRClient } from 'graphql/ssr-client';
 import { sequelize } from 'graphql/models';
 import Logger from 'lib/logger';
-import morganMiddleware from './lib/morgan';
+import morganMiddleware from 'lib/morgan';
 
 const serveStatic = require('serve-static');
 

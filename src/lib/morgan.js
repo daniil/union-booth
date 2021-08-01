@@ -1,5 +1,5 @@
 import morgan from 'morgan';
-import Logger from './logger';
+import Logger from 'lib/logger';
 
 const stream = {
   write: message => Logger.http(message.substring(0, message.lastIndexOf('\n')))
