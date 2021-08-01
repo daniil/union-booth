@@ -20,7 +20,7 @@ const colors = {
 const dailyTransportConfig = {
   datePattern: 'YYYY-MM-DD',
   dirname: './logs',
-  maxFiles: '14d',
+  maxFiles: '7d',
   colorize: false
 };
 
@@ -39,6 +39,7 @@ const httpFilter = winston.format((info) => {
 
 const transports = [
   new winston.transports.Console({
+    level: 'debug',
     format: winston.format.combine(
       winston.format.colorize({ all: true })
     )

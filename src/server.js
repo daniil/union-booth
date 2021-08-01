@@ -3,7 +3,6 @@ import path from 'path';
 import polka from 'polka';
 import compression from 'compression';
 import cors from 'cors';
-import morgan from 'morgan';
 import * as sapper from '@sapper/server';
 import { json } from 'body-parser';
 import session from 'express-session';
@@ -14,6 +13,7 @@ import graphQLServer from 'graphql/server';
 import { initSSRClient } from 'graphql/ssr-client';
 import { sequelize } from 'graphql/models';
 import Logger from 'lib/logger';
+import morganMiddleware from './lib/morgan';
 
 const serveStatic = require('serve-static');
 
@@ -71,7 +71,7 @@ app
 			origin: [`${httpProtocol}://${SERVER_URL}:${PORT}`],
 			credentials: true
 		}),
-		morgan('dev'),
+		morganMiddleware,
 		sessionMiddleware,
 		nonceMiddleware,
 		helmetMiddleware,
