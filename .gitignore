@@ -7,3 +7,4 @@ yarn-error.log
 .sessions
 /static/avatars
 dump.rdb
+/logs/

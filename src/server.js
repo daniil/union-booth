@@ -13,6 +13,7 @@ import helmet from 'helmet';
 import graphQLServer from 'graphql/server';
 import { initSSRClient } from 'graphql/ssr-client';
 import { sequelize } from 'graphql/models';
+import Logger from 'lib/logger';
 
 const serveStatic = require('serve-static');
 
@@ -93,11 +94,11 @@ app
 const httpServer = graphQLServer.init(app);
 
 httpServer.listen(PORT, () => {
-	console.log(`🚀 Apollo Server running on ${httpProtocol}://${SERVER_URL}:${PORT}/graphql`);
+	Logger.info(`🚀 Apollo Server running on ${httpProtocol}://${SERVER_URL}:${PORT}/graphql`);
 });
 
 sequelize.authenticate().then(() => {
-	console.log('🚀 Sequelize connection has been established successfully.');
+	Logger.info('🚀 Sequelize connection has been established successfully.');
 }).catch(() => {
-	console.log('🚫 Sequelize could not connect to PostgreSQL. Check your connection settings');
+	Logger.error('🚫 Sequelize could not connect to PostgreSQL. Check your connection settings');
 });
