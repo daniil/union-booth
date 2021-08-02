@@ -156,6 +156,7 @@ const typeDefs = gql`
     updateUserInfo(userId: ID!, firstName: String, lastName: String, username: String, email: String): User!
     updateUserPassword(userId: ID!, password: String!): Boolean!
     updateUserActiveStatus(id: ID!, isInactive: Boolean!): User!
+    deactivateUserAccount: User!
     addProgram(title: String!): Program!
     toggleProgramSelect(id: ID!, isSelected: Boolean!): Program
     addCohort(programId: ID!, title: String!): Cohort!

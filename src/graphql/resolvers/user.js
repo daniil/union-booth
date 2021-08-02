@@ -173,7 +173,7 @@ export default {
     login: async (_, { login, password }, { models, session }) => {
       const user = await models.User.findByLogin(login);
       if (!user) {
-        throw new UserInputError('No active user found with this login credentials.');
+        throw new UserInputError('No active user found with these login credentials.');
       }
 
       const passwordIsValid = await user.validatePassword(password);
@@ -322,6 +322,33 @@ export default {
           await user.update({
             isInactive
           });
+
+          return user;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
+    ),
+
+    deactivateUserAccount: combineResolvers(
+      isAuthenticated,
+      async (_, __, { models, session }) => {
+        try {
+          const user = await models.User.findOne({
+            where: {
+              id: session.user.id
+            }
+          });
+
+          if (user.isInactive) {
+            throw new UserInputError('This user is already deactivated');
+          }
+
+          await user.update({
+            isInactive: true
+          });
+
+          session.user = null;
 
           return user;
         } catch(err) {
