@@ -1,5 +1,6 @@
 import { UserInputError, ForbiddenError } from 'apollo-server';
 import { skip } from 'graphql-resolvers';
+import { Op } from 'sequelize';
 
 export const validateAndReturnTopicIdOfCohortQuestion = async (_, { cohortQuestionId }, { models, session }) => {
   const user = await models.User.findOne({
@@ -55,12 +56,26 @@ export const validateTopicSlug = async (_, { slug }, { models, session }) => {
     throw new UserInputError('This topic does not exist');
   }
 
+  const cohorts = await models.Cohort.findAll({
+    attributes: ['id'],
+    where: {
+      programId: topic.programId
+    }
+  });
+
   const user = await models.User.findOne({
     attributes: ['id'],
     where: {
       id: session.user.id,
-      selectedProgram: topic.programId,
-      isInactive: false
+      isInactive: false,
+      [Op.or]: [
+        { selectedProgram: topic.programId },
+        {
+          cohortId: {
+            [Op.in]: cohorts.map(cohort => cohort.id)
+          }
+        }
+      ]
     }
   });
 
