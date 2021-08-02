@@ -35,7 +35,7 @@ const sessionMiddleware = session({
 	store: new FileStore({
 		path: '.sessions',
 		retries: 0,
-		logFn: Logger.info
+		logFn: message => Logger.info(message)
 	})
 });
 
