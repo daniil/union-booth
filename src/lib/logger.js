@@ -67,6 +67,8 @@ const transports = [
 ];
 
 const exceptionHandlers = [
+  new winston.transports.Console(),
+  
   new winston.transports.DailyRotateFile({
     ...dailyTransportConfig,
     filename: 'exceptions-%DATE%.log'
