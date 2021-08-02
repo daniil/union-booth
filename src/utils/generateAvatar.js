@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import multiavatar from '@multiavatar/multiavatar';
 import fs from 'fs';
 import path from 'path';
+import Logger from 'lib/logger';
 
 const { NODE_ENV } = process.env;
 
@@ -13,7 +14,7 @@ if (!fs.existsSync(avatarsFolder)) {
   try {
     fs.mkdirSync(avatarsFolder, { recursive: true });
   } catch(e) {
-    console.log('Incorrect avatars folder is provided.');
+    Logger.error('Incorrect avatars folder is provided.');
   }
 }
 
