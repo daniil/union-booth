@@ -1,8 +1,17 @@
 <script>
+  import { goto, stores } from '@sapper/app';
   import ConfirmationButton from 'components/forms/ConfirmationButton.svelte';
+  import { mutation } from 'svelte-apollo';
+  import { DEACTIVATE_USER_ACCOUNT } from 'graphql/queries/user';
 
-  const handleDeactivate = () => {
-    console.log('Deactivate');
+  const { session } = stores();
+
+  const deactivateUserAccount = mutation(DEACTIVATE_USER_ACCOUNT);
+
+  const handleDeactivate = async () => {
+    await deactivateUserAccount();
+    $session.user = null;
+		goto('/');
   }
 </script>
 

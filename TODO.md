@@ -1,7 +1,6 @@
 ## Tasks
 
 - Add user management admin functionality
-  - Add user deactivate account functionality (on profile page)
   - Add change role functionality for users and team
   - Add admin functionality for managers (active state change and promoting to admin)
   - Add default inactive state for manager role registration
@@ -36,6 +35,7 @@
 
 ## Tweaks
 
+- Update production logic to account for Qovery specific key
 - Add subscription for avatar update
 - Add scroll to updated question functionality
 - Scroll to updated answer after update
