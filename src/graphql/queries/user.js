@@ -37,9 +37,18 @@ const UPDATE_USER_PASSWORD = gql`
   }
 `;
 
+const DEACTIVATE_USER_ACCOUNT = gql`
+  mutation DeactivateUserAccount {
+    deactivateUserAccount {
+      id
+    }
+  }
+`;
+
 export {
   USER,
   UPDATE_USER_AVATAR,
   UPDATE_USER_INFO,
-  UPDATE_USER_PASSWORD
+  UPDATE_USER_PASSWORD,
+  DEACTIVATE_USER_ACCOUNT
 }
