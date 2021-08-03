@@ -60,6 +60,7 @@
   .error-wrapper {
     display: flex;
     justify-content: center;
+    margin-bottom: 6rem;
   }
 </style>
 

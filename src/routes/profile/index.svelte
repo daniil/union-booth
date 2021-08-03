@@ -17,6 +17,7 @@
   import UpdateAvatar from 'components/profile/UpdateAvatar.svelte';
   import UpdateProfile from 'components/profile/UpdateProfile.svelte';
   import UpdatePassword from 'components/profile/UpdatePassword.svelte';
+  import DeactivateAccount from 'components/profile/DeactivateAccount.svelte';
 
   const { session } = stores();
 </script>
@@ -51,6 +52,7 @@
       <UpdateProfile user={$session.user}/>
     </div>
     <UpdatePassword user={$session.user}/>
+    <DeactivateAccount/>
   </div>
 </div>
 
