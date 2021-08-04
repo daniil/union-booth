@@ -330,6 +330,48 @@ export default {
       }
     ),
 
+    updateUserRole: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      async (_, { id, newRole }, { models, session }) => {
+        const manager = await models.User.findOne({
+          attributes: ['id', 'role', 'selectedProgram'],
+          where: {
+            id: session.user.id
+          }
+        });
+
+        const user = await models.User.findOne({
+          where: {
+            id
+          },
+          include: [{
+            model: models.Cohort,
+            attributes: ['programId'],
+            as: 'cohort'
+          }]
+        });
+
+        if (manager.id === id) {
+          throw new UserInputError('You can not update your own role');
+        }
+
+        if (manager.role === 'manager' && ['admin', 'manager'].includes(user.role)) {
+          throw new UserInputError('You do not have permissions to change this account role');
+        }
+
+        if (manager.selectedProgram !== user.cohort.programId) {
+          throw new UserInputError('You do not have permissions to deactivate user from this program');
+        }
+
+        await user.update({
+          role: newRole
+        });
+
+        return user;
+      }
+    ),
+
     deactivateUserAccount: combineResolvers(
       isAuthenticated,
       async (_, __, { models, session }) => {
