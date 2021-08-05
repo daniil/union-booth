@@ -166,7 +166,7 @@
       />
     </div>
   {:else}
-    <p>No questions yet, be first to ask one!</p>
+    <p>No questions yet, be the first to ask one!</p>
   {/each}
 {/if}
 <PostQuestion

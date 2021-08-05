@@ -3,6 +3,7 @@
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import { COHORT_USERS, COHORT_TEAM_USERS, PROGRAM_USERS, UPDATE_USER_ACTIVE_STATUS } from 'graphql/queries/admin/users';
+  import Dropdown from 'components/forms/Dropdown.svelte';
   import Button from 'components/forms/Button.svelte';
 
   export let user;
@@ -11,6 +12,13 @@
   const dispatch = createEventDispatcher();
 
   const updateUserActiveStatus = mutation(UPDATE_USER_ACTIVE_STATUS);
+
+  const userRoles = [
+    { id: 1, value: "user", text: 'User' },
+    { id: 2, value: "moderator", text: 'Moderator' },
+    { id: 3, value: "manager", text: 'Manager' },
+    { id: 4, value: "admin", text: 'Admin' }
+  ];
 
   let actionsDisabled = false;
   const queries = {
@@ -79,5 +87,10 @@
 </style>
 
 <nav class="user-actions-nav">
+  <Dropdown
+    label="Role"
+    value={user.role}
+    options={userRoles}
+  />
   <Button style="link" variant={buttonVariant} label={activeStatusLabel} action={handleUpdateStatus}/>
 </nav>
