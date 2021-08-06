@@ -20,7 +20,9 @@
     { id: 4, value: "admin", text: 'Admin' }
   ];
 
-  let actionsDisabled = false;
+  let deactivateBtnLoading = false;
+  let roleDropdownLoading = false;
+
   const queries = {
     user: { query: COHORT_USERS, key: 'cohortUsers' },
     moderator: { query: COHORT_TEAM_USERS, key: 'cohortTeamUsers' },
@@ -28,12 +30,12 @@
     admin: { query: PROGRAM_USERS, key: 'programUsers' }
   };
 
-  $: buttonVariant = actionsDisabled ? 'loading' : user.isInactive ? '' : 'danger';
+  $: buttonVariant = deactivateBtnLoading ? 'loading' : user.isInactive ? '' : 'danger';
   $: activeStatusLabel = user.isInactive ? 'Activate' : 'Deactivate';
 
   const handleUpdateStatus = async () => {
     try {
-      actionsDisabled = true;
+      deactivateBtnLoading = true;
 
       await updateUserActiveStatus({
         variables: {
@@ -69,13 +71,14 @@
         }
       });
       dispatch('action-complete');
-      actionsDisabled = false;
+      deactivateBtnLoading = false;
     } catch(err) {
       console.log('ERROR: ', err);
     }
   }
 
   const handleRoleSelect = option => {
+    roleDropdownLoading = true;
     console.log('Role change: ', option);
   }
 </script>
@@ -95,6 +98,7 @@
     label="Role"
     value={user.role}
     options={userRoles}
+    loading={roleDropdownLoading}
     on:select={handleRoleSelect}
   />
   <Button style="link" variant={buttonVariant} label={activeStatusLabel} action={handleUpdateStatus}/>

@@ -2,11 +2,12 @@
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
   import { createEventDispatcher } from 'svelte';
+  import Loading from 'components/shared/Loading.svelte';
 
   export let id;
   export let label;
   export let value;
-  export let disabled;
+  export let loading;
   export let options;
 
   const dispatch = createEventDispatcher();
@@ -21,6 +22,7 @@
   }
 
   const handleOptionSelect = option => {
+    isOpen = false;
     dispatch('select', {
       option
     });
@@ -41,6 +43,7 @@
     position: relative;
   }
   .selected-option {
+    position: relative;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -58,6 +61,22 @@
         filter: brightness(1.25);
       }
     }
+    &.loading {
+      cursor: not-allowed;
+      pointer-events: none;
+      .option-value {
+        visibility: hidden;
+      }
+      .expand-icon {
+        filter: grayscale(1);
+        opacity: 0.25;
+      }
+    }
+  }
+  .loading-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
   }
   .option-value {
     font-size: 0.9rem;
@@ -98,12 +117,18 @@
     <div
       class="selected-option"
       class:active={isOpen}
+      class:loading
       on:click={openDropdown}
       aria-haspopup="listbox"
       aria-labelledby={`${id}-label`}
     >
       <div class="option-value">{selectedOption.text}</div>
       <div class="expand-icon">&rsaquo;</div>
+      {#if loading}
+        <div class="loading-container">
+          <Loading/>
+        </div>
+      {/if}
     </div>
     {#if isOpen}
       <ul
