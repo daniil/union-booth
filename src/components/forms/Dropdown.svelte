@@ -14,11 +14,12 @@
 
 <style lang="scss">
   .dropdown-container {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 0 0.75rem;
   }
-  label {
+  .label {
     margin: 0.1rem 0.5rem 0 0;
     opacity: 0.7;
   }
@@ -41,25 +42,26 @@
     opacity: 0.75;
     font-size: 1.5rem;
   }
+  .options {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 </style>
 
 <div class="dropdown-container">
-  <label for={id}>{label}</label>
-  <select
-    id={id}
-    name={id}
-    {disabled}
-    bind:value={value}>
-    {#each options as option (option.id)}
-      <option value={option.value}>
-        {option.text}
-      </option>
-    {/each}
-  </select>
+  <div class="label" id={`${id}-label`}>{label}</div>
   <div class="options-container">
-    <div class="selected-option" on:click={openDropdown}>
+    <div class="selected-option" on:click={openDropdown} aria-haspopup="listbox" aria-labelledby={`${id}-label`}>
       <div class="option-value">{selectedOption.text}</div>
       <div class="expand-icon">&rsaquo;</div>
     </div>
+    <ul class="options" role="listbox" tabindex="-1">
+      {#each options as option (option.id)}
+        <li role="option">
+          {option.text}
+        </li>
+      {/each}
+    </ul>
   </div>
 </div>
