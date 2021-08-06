@@ -40,6 +40,7 @@
     top: 100%;
     right: 0;
     transform: translateY(0.5rem);
+    z-index: 1;
   }
 </style>
 
