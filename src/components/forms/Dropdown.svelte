@@ -1,12 +1,15 @@
 <script>
   import { fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
+  import { createEventDispatcher } from 'svelte';
 
   export let id;
   export let label;
   export let value;
   export let disabled;
   export let options;
+
+  const dispatch = createEventDispatcher();
 
   $: selectedOption = options.find(option => option.value === value);
   $: filteredOptions = options.filter(option => option.value !== value);
@@ -15,6 +18,12 @@
 
   const openDropdown = () => {
     isOpen = !isOpen;
+  }
+
+  const handleOptionSelect = option => {
+    dispatch('select', {
+      option
+    });
   }
 </script>
 
@@ -104,7 +113,7 @@
         transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}"
       >
         {#each filteredOptions as option (option.id)}
-          <li class="option" role="option">
+          <li class="option" role="option" on:click={() => handleOptionSelect(option)}>
             {option.text}
           </li>
         {/each}

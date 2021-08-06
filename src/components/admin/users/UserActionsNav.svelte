@@ -74,6 +74,10 @@
       console.log('ERROR: ', err);
     }
   }
+
+  const handleRoleSelect = option => {
+    console.log('Role change: ', option);
+  }
 </script>
 
 <style lang="scss">
@@ -91,6 +95,7 @@
     label="Role"
     value={user.role}
     options={userRoles}
+    on:select={handleRoleSelect}
   />
   <Button style="link" variant={buttonVariant} label={activeStatusLabel} action={handleUpdateStatus}/>
 </nav>
