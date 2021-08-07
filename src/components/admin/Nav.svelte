@@ -4,7 +4,7 @@
   export let segment;
 </script>
 
-<style>
+<style lang="scss">
   .nav-list {
     margin: 0;
     padding-left: 0;
@@ -13,6 +13,12 @@
   a {
     display: block;
     padding: 0.5rem;
+    text-decoration: none;
+    color: #05668D;
+    font-weight: 500;
+    &:not([aria-current]):hover {
+      filter: brightness(1.25);
+    }
   }
   [aria-current] {
     border-left: 2px solid #F19C79;
