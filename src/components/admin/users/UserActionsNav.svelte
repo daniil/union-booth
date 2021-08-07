@@ -14,11 +14,13 @@
   const updateUserActiveStatus = mutation(UPDATE_USER_ACTIVE_STATUS);
 
   const userRoles = [
-    { id: 1, value: "user", text: 'User' },
-    { id: 2, value: "moderator", text: 'Moderator' },
-    { id: 3, value: "manager", text: 'Manager' },
-    { id: 4, value: "admin", text: 'Admin' }
-  ];
+    { id: 1, value: "user", text: 'User', permissions: ['manager', 'admin'] },
+    { id: 2, value: "moderator", text: 'Moderator', permissions: ['manager', 'admin'] },
+    { id: 3, value: "manager", text: 'Manager', permissions: ['admin'] },
+    { id: 4, value: "admin", text: 'Admin', permissions: ['admin'] }
+  ].filter(userRole => {
+    return userRole.permissions.includes($session.user.role);
+  });
 
   let deactivateBtnLoading = false;
   let roleDropdownLoading = false;
