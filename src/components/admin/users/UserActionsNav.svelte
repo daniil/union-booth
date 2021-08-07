@@ -2,7 +2,13 @@
   import { stores } from '@sapper/app';
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
-  import { COHORT_USERS, COHORT_TEAM_USERS, PROGRAM_USERS, UPDATE_USER_ACTIVE_STATUS } from 'graphql/queries/admin/users';
+  import {
+    COHORT_USERS,
+    COHORT_TEAM_USERS,
+    PROGRAM_USERS,
+    UPDATE_USER_ACTIVE_STATUS,
+    UPDATE_USER_ROLE
+  } from 'graphql/queries/admin/users';
   import Dropdown from 'components/forms/Dropdown.svelte';
   import Button from 'components/forms/Button.svelte';
 
@@ -12,6 +18,7 @@
   const dispatch = createEventDispatcher();
 
   const updateUserActiveStatus = mutation(UPDATE_USER_ACTIVE_STATUS);
+  const updateUserRole = mutation(UPDATE_USER_ROLE);
 
   const userRoles = [
     { id: 1, value: "user", text: 'User', permissions: ['manager', 'admin'] },
@@ -72,6 +79,7 @@
           });
         }
       });
+
       dispatch('action-complete');
       deactivateBtnLoading = false;
     } catch(err) {
@@ -79,9 +87,21 @@
     }
   }
 
-  const handleRoleSelect = option => {
-    roleDropdownLoading = true;
-    console.log('Role change: ', option);
+  const handleRoleSelect = async e => {
+    try {
+      roleDropdownLoading = true;
+
+      await updateUserRole({
+        variables: {
+          id: user.id,
+          newRole: e.detail.option.value
+        }
+      });
+
+      dispatch('action-complete');
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 

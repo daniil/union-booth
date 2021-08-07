@@ -52,7 +52,7 @@
     </li>
     <AuthContent role="manager">
       <li>
-        <a rel="prefetch" aria-current="{segment === 'users' ? 'page' : undefined}" href="/admin/users">User Management</a>
+        <a rel="prefetch" aria-current="{segment === 'users' ? 'page' : undefined}" href="/admin/users">Users</a>
       </li>
     </AuthContent>
   </ul>

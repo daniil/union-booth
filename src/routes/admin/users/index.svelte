@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Union Booth :: Admin - User Management</title>
+	<title>Union Booth :: Admin - Users</title>
 </svelte:head>
 
 <script context="module">
@@ -70,7 +70,7 @@
   }
 </style>
 
-<h2>User Management</h2>
+<h2>Users</h2>
 
 <UsersFilter bind:value={filterValue}/>
 
