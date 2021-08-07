@@ -50,9 +50,19 @@ const UPDATE_USER_ACTIVE_STATUS = gql`
   ${userInformation}
 `;
 
+const UPDATE_USER_ROLE = gql`
+  mutation UpdateUserRole($id: ID!, $newRole: String!) {
+    updateUserRole(id: $id, newRole: $newRole) {
+      ...UserInformation
+    }
+  }
+  ${userInformation}
+`;
+
 export {
   COHORT_USERS,
   COHORT_TEAM_USERS,
   PROGRAM_USERS,
-  UPDATE_USER_ACTIVE_STATUS
+  UPDATE_USER_ACTIVE_STATUS,
+  UPDATE_USER_ROLE
 }
