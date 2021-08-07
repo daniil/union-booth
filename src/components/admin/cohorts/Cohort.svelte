@@ -9,7 +9,7 @@
   const { session } = stores();
 
   $: isSelected = selectedCohort && details.id === selectedCohort.id;
-  $: isCohortOwner = $session.user.id === details.user.id;
+  $: isCohortOwner = $session.user && $session.user.id === details.user.id;
 
   const toggleCohortSelect = mutation(TOGGLE_COHORT_SELECT);
 
