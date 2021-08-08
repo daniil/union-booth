@@ -34,6 +34,10 @@
       width: 16%;
     }
   }
+  .admin-icon {
+    position: absolute;
+    right: 100%;
+  }
   .actions-container {
     position: absolute;
     right: -4px;
@@ -42,6 +46,9 @@
 </style>
 
 <p class="user" class:inactive={user.isInactive}>
+  {#if user.role === 'admin'}
+    <span class="admin-icon" title="Admin">⭐</span>
+  {/if}
   <span class="cell first-name" title={user.firstName}>{user.firstName}</span>
   <span class="cell last-name" title={user.lastName}>{user.lastName}</span>
   <span class="cell username" title={user.username}>{user.username}</span>
