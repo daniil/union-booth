@@ -95,6 +95,45 @@
         variables: {
           id: user.id,
           newRole: e.detail.option.value
+        },
+        update: (_, mutationResult) => {
+          const updatedUser = mutationResult.data.updateUserRole;
+          const prevRoleUserQuery = queries[user.role];
+          const updatedUserQuery = queries[updatedUser.role];
+
+          const prevRoleUsers = $session.apolloClient.readQuery({
+            query: prevRoleUserQuery.query,
+            variables: {
+              cohortId: updatedUser.cohortId
+            }
+          })[prevRoleUserQuery.key];
+
+          $session.apolloClient.writeQuery({
+            query: prevRoleUserQuery.query,
+            variables: {
+              cohortId: updatedUser.cohortId
+            },
+            data: {
+              [prevRoleUserQuery.key]: prevRoleUsers.filter(user => updatedUser.id !== user.id)
+            }
+          });
+
+          const updatedRoleUsers = $session.apolloClient.readQuery({
+            query: updatedUserQuery.query,
+            variables: {
+              cohortId: updatedUser.cohortId
+            }
+          })[updatedUserQuery.key];
+
+          $session.apolloClient.writeQuery({
+            query: updatedUserQuery.query,
+            variables: {
+              cohortId: updatedUser.cohortId
+            },
+            data: {
+              [updatedUserQuery.key]: updatedRoleUsers.concat([updatedUser]).sort(sortUsersAlphabetic)
+            }
+          })
         }
       });
 
@@ -102,6 +141,22 @@
     } catch(err) {
       console.log('ERROR: ', err);
     }
+  }
+
+  const sortUsersAlphabetic = (a,b) => {
+    if (a.firstName < b.firstName) {
+      return -1;
+    }
+    if (a.firstName > b.firstName) {
+      return 1;
+    }
+    if (a.lastName < b.lastName) {
+      return -1;
+    }
+    if (a.lastName > b.lastName) {
+      return 1;
+    }
+    return 0;
   }
 </script>
 

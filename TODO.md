@@ -1,7 +1,6 @@
 ## Tasks
 
 - Add user management admin functionality
-  - Add change role functionality for users and team
   - Add admin functionality for managers (active state change and promoting to admin)
   - Add default inactive state for manager role registration
   - Add default inactive state for user role registration
