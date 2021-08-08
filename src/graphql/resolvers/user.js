@@ -364,8 +364,19 @@ export default {
           throw new UserInputError('You do not have permissions to deactivate user from this program');
         }
 
+        let userProgram = user.selectedProgram;
+
+        if (['admin', 'manager'].includes(newRole)) {
+          userProgram = manager.selectedProgram;
+        }
+
+        if (['moderator', 'user'].includes(newRole)) {
+          userProgram = null;
+        }
+
         await user.update({
-          role: newRole
+          role: newRole,
+          selectedProgram: userProgram
         });
 
         return user;
