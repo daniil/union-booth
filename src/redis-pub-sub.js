@@ -4,6 +4,7 @@ import { RedisPubSub } from 'graphql-redis-subscriptions';
 
 const {
   NODE_ENV,
+  ENV_TYPE,
   REDIS_DOMAIN_NAME,
   REDIS_PORT_NUMBER,
   PROD_REDIS_HOST,
@@ -17,11 +18,15 @@ const isProd = NODE_ENV === 'production';
 let options;
 
 if (isProd) {
-  options = {
-    host: PROD_REDIS_HOST,
-    port: PROD_REDIS_PORT,
-    password: PROD_REDIS_PASSWORD,
-    db: PROD_REDIS_DATABASE
+  if (ENV_TYPE === 'qovery') {
+    options = {
+      host: PROD_REDIS_HOST,
+      port: PROD_REDIS_PORT,
+      password: PROD_REDIS_PASSWORD,
+      db: PROD_REDIS_DATABASE
+    }
+  } else {
+    // Custom production config
   }
 } else {
   options = {

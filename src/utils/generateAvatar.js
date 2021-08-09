@@ -4,10 +4,17 @@ import fs from 'fs';
 import path from 'path';
 import Logger from 'lib/logger';
 
-const { NODE_ENV } = process.env;
+const { NODE_ENV, ENV_TYPE } = process.env;
+let serveStaticPath;
+
+if (ENV_TYPE === 'qovery') {
+  serveStaticPath = '/mnt/static';
+} else {
+  // Custom production config
+}
 
 const avatarsFolder = NODE_ENV === 'production'
-  ? path.resolve(__dirname, '/mnt/static/avatars')
+  ? path.resolve(__dirname, `${serveStaticPath}/avatars`)
   : path.resolve(__dirname, '../../../static/avatars');
 
 if (!fs.existsSync(avatarsFolder)) {

@@ -5,6 +5,7 @@ import compression from 'compression';
 import cors from 'cors';
 import * as sapper from '@sapper/server';
 import { json } from 'body-parser';
+import serveStatic from 'serve-static';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 import { v4 as uuid } from 'uuid';
@@ -15,13 +16,18 @@ import { sequelize } from 'graphql/models';
 import Logger from 'lib/logger';
 import morganMiddleware from 'lib/morgan';
 
-const serveStatic = require('serve-static');
-
 const app = polka();
 
-const { SERVER_URL, PORT, NODE_ENV, SESSION_SECRET } = process.env;
+const { ENV_TYPE, SERVER_URL, PORT, NODE_ENV, SESSION_SECRET } = process.env;
 const prod = NODE_ENV === 'production';
 const httpProtocol = prod ? 'https' : 'http';
+let serveStaticPath;
+
+if (ENV_TYPE === 'qovery') {
+	serveStaticPath = '/mnt/static';
+} else {
+	// Custom production config;
+}
 
 const FileStore = new sessionFileStore(session);
 
@@ -76,7 +82,7 @@ app
 		nonceMiddleware,
 		helmetMiddleware,
 		compression({ threshold: 0 }),
-		serveStatic(prod ? path.resolve(__dirname, '/mnt/static') : 'static'),
+		serveStatic(prod ? path.resolve(__dirname, serveStaticPath) : 'static'),
 		serveStatic(path.resolve(__dirname, '../../../static')),
 		sapper.middleware({
 			ignore: ['/graphql'],

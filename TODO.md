@@ -34,7 +34,6 @@
 
 ## Tweaks
 
-- Update production logic to account for Qovery specific key
 - Add git tagging version output in the app
 - Add subscription for avatar update
 - Add scroll to updated question functionality

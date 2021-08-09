@@ -13,10 +13,11 @@ import { setupAssociations } from './associations';
 import Logger from 'lib/logger';
 
 const {
+  NODE_ENV,
+  ENV_TYPE,
   DATABASE,
   DATABASE_USER,
   DATABASE_PASSWORD,
-  NODE_ENV,
   PROD_POSTGRES_DATABASE,
   PROD_POSTGRES_USER,
   PROD_POSTGRES_PASSWORD,
@@ -34,19 +35,23 @@ const poolSettings = {
 };
 
 if (NODE_ENV === 'production') {
-  sequelize = new Sequelize(
-    PROD_POSTGRES_DATABASE,
-    PROD_POSTGRES_USER,
-    PROD_POSTGRES_PASSWORD,
-    {
-      host: PROD_POSTGRES_HOST,
-      port: PROD_POSTGRES_PORT,
-      dialect: 'postgres',
-      protocol: 'postgres',
-      pool: poolSettings,
-      logging: msg => Logger.info(msg)
-    }
-  );
+  if (ENV_TYPE === 'qovery') {
+    sequelize = new Sequelize(
+      PROD_POSTGRES_DATABASE,
+      PROD_POSTGRES_USER,
+      PROD_POSTGRES_PASSWORD,
+      {
+        host: PROD_POSTGRES_HOST,
+        port: PROD_POSTGRES_PORT,
+        dialect: 'postgres',
+        protocol: 'postgres',
+        pool: poolSettings,
+        logging: msg => Logger.info(msg)
+      }
+    );
+  } else {
+    // Custom production config
+  }
 } else {
   sequelize = new Sequelize(
     DATABASE,
