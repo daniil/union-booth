@@ -118,6 +118,7 @@ On an application page go into *Environment Variables* tab and under *Secret var
 Before deploying set environment variables required for the app:
 
 - Add `SESSION_SECRET`. You can use result of running `node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"` in your Terminal as a value.
+- Add `ENV_TYPE` with a value of `qovery`.
 
 You can now deploy the app (from application page).
 
@@ -131,3 +132,7 @@ Restart your app from *Actions* dropdown of the application page.
 To view the deployment log go on an environment page, and select **Show Logs**.
 
 Once your application is deployed to view the application logs you can use `qovery log` command in the Terminal.
+
+### Deploying to custom production environment
+
+For deploying to a non Qovery environment, do a global search for `// Custom production config` in the project and update the values accordingly to your server and environment configuration.

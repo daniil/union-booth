@@ -26,7 +26,7 @@ let serveStaticPath;
 if (ENV_TYPE === 'qovery') {
 	serveStaticPath = '/mnt/static';
 } else {
-	// Custom production config;
+	// Custom production config
 }
 
 const FileStore = new sessionFileStore(session);
