@@ -14,6 +14,7 @@
   let loading = true;
 
   $: usersSub = watchUsersQuery();
+  $: filteredUsers = filterUsers(users, filter);
 
   const watchUsersQuery = () => {
     return $session.apolloClient
@@ -29,17 +30,25 @@
   }
 
   onDestroy(() => usersSub.unsubscribe());
+
+  const filterUsers = (users, filter) => {
+    return users.filter(user => {
+      if (filter === 'active') return !user.isInactive;
+      if (filter === 'inactive') return user.isInactive;
+      return user;
+    });
+  }
 </script>
 
 {#if loading}
   <Loading/>
 {:else}
-  {#if users.length}
+  {#if filteredUsers.length}
     <UsersHeader/>
   {/if}
-  {#each users as user (user.id)}
+  {#each filteredUsers as user (user.id)}
     <UserRow {user}/>
   {:else}
-    <p>No users yet.</p>
+    <p>No users with this filter.</p>
   {/each}
 {/if}
