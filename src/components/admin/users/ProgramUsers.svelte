@@ -6,6 +6,8 @@
   import UsersHeader from 'components/admin/users/UsersHeader.svelte';
   import UserRow from 'components/admin/users/UserRow.svelte';
 
+  export let filter;
+
   const { session } = stores();
 
   let users = [];

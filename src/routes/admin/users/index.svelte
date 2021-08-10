@@ -80,7 +80,7 @@
       <h3>
         <span class="selected">{selectedProgram.title}</span> Team
       </h3>
-      <ProgramUsers/>
+      <ProgramUsers filter={filterValue}/>
     </section>
   </AuthContent>
   {#if selectedCohort}
@@ -89,13 +89,13 @@
         <h3>
           <span class="selected">{selectedCohort.title}</span> Team
         </h3>
-        <CohortTeamUsers cohortId={selectedCohort.id}/>
+        <CohortTeamUsers cohortId={selectedCohort.id} filter={filterValue}/>
       </section>
       <section>
         <h3>
           <span class="selected">{selectedCohort.title}</span> Users
         </h3>
-        <CohortUsers cohortId={selectedCohort.id}/>
+        <CohortUsers cohortId={selectedCohort.id} filter={filterValue}/>
       </section>
     </AuthContent>
   {:else}

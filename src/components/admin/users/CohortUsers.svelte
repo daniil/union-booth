@@ -7,6 +7,7 @@
   import UserRow from 'components/admin/users/UserRow.svelte';
 
   export let cohortId;
+  export let filter;
 
   const { session } = stores();
 
