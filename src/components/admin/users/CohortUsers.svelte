@@ -5,6 +5,7 @@
   import Loading from 'components/shared/Loading.svelte';
   import UsersHeader from 'components/admin/users/UsersHeader.svelte';
   import UserRow from 'components/admin/users/UserRow.svelte';
+  import filterUsers from './filterUsers';
 
   export let cohortId;
   export let filter;
@@ -15,6 +16,7 @@
   let loading = true;
 
   $: usersSub = watchUsersQuery(cohortId);
+  $: filteredUsers = filterUsers(users, filter);
 
   const watchUsersQuery = cohortId => {
     return $session.apolloClient
@@ -38,12 +40,12 @@
 {#if loading}
   <Loading/>
 {:else}
-  {#if users.length}
+  {#if filteredUsers.length}
     <UsersHeader/>
   {/if}
-  {#each users as user (user.id)}
+  {#each filteredUsers as user (user.id)}
     <UserRow {user}/>
   {:else}
-    <p>No users yet.</p>
+    <p>No users with this filter.</p>
   {/each}
 {/if}

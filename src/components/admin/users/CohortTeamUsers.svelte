@@ -5,6 +5,7 @@
   import Loading from 'components/shared/Loading.svelte';
   import UsersHeader from 'components/admin/users/UsersHeader.svelte';
   import UserRow from 'components/admin/users/UserRow.svelte';
+  import filterUsers from './filterUsers';
 
   export let cohortId;
   export let filter;
@@ -34,14 +35,6 @@
   }
 
   onDestroy(() => usersSub.unsubscribe());
-
-  const filterUsers = (users, filter) => {
-    return users.filter(user => {
-      if (filter === 'active') return !user.isInactive;
-      if (filter === 'inactive') return user.isInactive;
-      return user;
-    });
-  }
 </script>
 
 {#if loading}
