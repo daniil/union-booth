@@ -1,6 +1,7 @@
-import { AuthenticationError, UserInputError, ApolloError, ForbiddenError } from 'apollo-server';
+import { AuthenticationError, UserInputError, ApolloError, ForbiddenError, withFilter } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { Op } from 'sequelize';
+import pubsub from 'redis-pub-sub';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
 import generateAvatar from 'utils/generateAvatar';
@@ -199,6 +200,7 @@ export default {
 
         try {
           generateAvatar(userId);
+          pubsub.publish('USER_AVATAR_UPDATED', { userAvatarUpdated: userId });
           return true;
         } catch(err) {
           throw new ApolloError('Could not generate a new avatar.');
@@ -409,6 +411,17 @@ export default {
         }
       }
     )
+  },
+
+  Subscription: {
+    userAvatarUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['USER_AVATAR_UPDATED']),
+        (payload, variables) => {
+          return payload.userAvatarUpdated === variables.userId;
+        }
+      )
+    }
   },
 
   User: {

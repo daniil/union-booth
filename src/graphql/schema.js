@@ -178,6 +178,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
+    userAvatarUpdated(userId: ID!): ID!
     newCohortQuestion(cohortId: ID!, topicId: ID!): CohortQuestion!
     cohortQuestionUpdated(cohortId: ID!, topicId: ID!): CohortQuestion!
     cohortQuestionDeactivated(cohortId: ID!, topicId: ID!): CohortQuestion!
