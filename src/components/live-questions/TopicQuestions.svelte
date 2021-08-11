@@ -19,6 +19,7 @@
   const { session } = stores();
   
   let questions = [];
+  let questionContainers = {};
   let loading = true;
   let selectedQuestion;
 
@@ -142,6 +143,10 @@
   const handleCancelQuestion = () => {
     selectedQuestion = null;
   }
+
+  const handleScrollToQuestion = e => {
+    questionContainers[e.detail.questionId].scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
 
 <style>
@@ -159,7 +164,11 @@
   <Loading/>
 {:else}
   {#each questions as question (question.id)}
-    <div class="question-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
+    <div
+      class="question-container"
+      transition:slide|local="{{ duration: 300, easing: cubicOut }}"
+      bind:this={questionContainers[question.id]}
+    >
       <Question
         details={question}
         on:edit={handleEdit}
@@ -173,4 +182,5 @@
   {liveTopic}
   {selectedQuestion}
   on:cancel-question={handleCancelQuestion}
+  on:scroll-to-question={handleScrollToQuestion}
 />

@@ -40,6 +40,13 @@
 
       formDisabled = false;
       questionText = '';
+
+      if (selectedQuestion) {
+        dispatch('scroll-to-question', {
+          questionId: selectedQuestion.id
+        });
+      }
+
       dispatch('cancel-question');
     } catch(err) {
       formDisabled = false;
