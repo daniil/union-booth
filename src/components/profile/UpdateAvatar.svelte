@@ -60,7 +60,7 @@
     <img
       class="avatar"
       class:is-changing={isChanging}
-      src={`avatars/${user.id}.svg?refresh=${$session.userAvatarRefreshToken}`}
+      src={`avatars/${user.id}.svg?refresh=${$session.userAvatarRefreshToken || Date.now()}`}
       alt={`${user.username} avatar`}
       title={`${user.username} avatar`}
     />
