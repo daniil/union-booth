@@ -33,8 +33,8 @@
 
 ## Tweaks
 
+- Add Avatar component subscription for avatar update
 - Add git tagging version output in the app
-- Add subscription for avatar update
 - Scroll to updated answer after update
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
