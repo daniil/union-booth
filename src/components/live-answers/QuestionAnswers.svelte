@@ -21,6 +21,7 @@
   export let answeredBy;
 
   let answers = [];
+  let answerContainers = {};
   let loading = true;
   let answersExpanded = false;
   let selectedAnswer;
@@ -135,6 +136,10 @@
     answersExpanded = !answersExpanded;
   }
 
+  const handleScrollToAnswer = e => {
+    answerContainers[e.detail.answerId].scrollIntoView({ behavior: 'smooth' });
+  }
+
   const handleAnswerPublished = () => {
     answersExpanded = true;
   }
@@ -205,10 +210,12 @@
       {#if answersExpanded}
         <div class="answer-container" transition:slide|local="{{ duration: 300, easing: cubicOut }}">
           {#each answers as answer (answer.id)}
-            <Answer
-              details={answer}
-              on:edit={handleEdit}
-            />
+            <div bind:this={answerContainers[answer.id]}>
+              <Answer
+                details={answer}
+                on:edit={handleEdit}
+              />
+            </div>
           {/each}
         </div>
       {/if}
@@ -220,6 +227,7 @@
   {beingAnsweredBy}
   {answeredBy}
   {selectedAnswer}
+  on:scroll-to-answer={handleScrollToAnswer}
   on:answer-published={handleAnswerPublished}
   on:cancel-answer={handleCancelAnswer}
 />

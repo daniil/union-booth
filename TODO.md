@@ -34,7 +34,6 @@
 ## Tweaks
 
 - Add git tagging version output in the app
-- Scroll to updated answer after update
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component

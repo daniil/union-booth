@@ -59,7 +59,15 @@
 
       formDisabled = false;
       answerText = '';
+
       toggleFormVisible();
+
+      if (selectedAnswer) {
+        dispatch('scroll-to-answer', {
+          answerId: selectedAnswer.id
+        });
+      }
+
       dispatch('answer-published');
       dispatch('cancel-answer');
     } catch(err) {
