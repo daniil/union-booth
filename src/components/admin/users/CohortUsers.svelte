@@ -37,6 +37,13 @@
   onDestroy(() => usersSub.unsubscribe());
 </script>
 
+<style>
+  .no-users {
+    text-align: center;
+    color: rgba(85, 67, 72, 0.7);
+  }
+</style>
+
 {#if loading}
   <Loading/>
 {:else}
@@ -46,6 +53,6 @@
   {#each filteredUsers as user (user.id)}
     <UserRow {user}/>
   {:else}
-    <p>No users with this filter.</p>
+    <p class="no-users">No users with this filter.</p>
   {/each}
 {/if}

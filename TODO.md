@@ -33,7 +33,6 @@
 
 ## Tweaks
 
-- Add Avatar component subscription for avatar update
 - Add git tagging version output in the app
 - Scroll to updated answer after update
 - Update all colors to use SASS variables
