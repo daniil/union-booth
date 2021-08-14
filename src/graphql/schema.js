@@ -137,6 +137,7 @@ const typeDefs = gql`
     cohortUsers(cohortId: ID!): [User]!
     cohortTeamUsers(cohortId: ID!): [User]!
     programUsers: [User]!
+    appVersion: String!
   }
 
   type Mutation {

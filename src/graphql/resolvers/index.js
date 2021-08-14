@@ -12,6 +12,7 @@ import topicFAQQuestionResolvers from './topic-faq-question';
 import topicResourcesResolvers from './topic-resources';
 import resourceResolvers from './resource';
 import userResolvers from './user';
+import appMeta from './app-meta';
 
 const customScalarResolver = {
   Date: GraphQLDateTime,
@@ -30,5 +31,6 @@ export default [
   topicFAQQuestionResolvers,
   topicResourcesResolvers,
   resourceResolvers,
-  userResolvers
+  userResolvers,
+  appMeta
 ];
