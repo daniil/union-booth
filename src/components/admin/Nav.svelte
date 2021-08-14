@@ -1,12 +1,13 @@
 <script>
   import AuthContent from 'components/auth/AuthContent.svelte';
+  import AppVersion from 'components/shared/AppVersion.svelte';
 
   export let segment;
 </script>
 
 <style lang="scss">
   .nav-list {
-    margin: 0;
+    margin: 0 0 2rem;
     padding-left: 0;
     list-style-type: none;
   }
@@ -25,6 +26,9 @@
     background-color: rgba(241, 156, 121, 0.25);
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+  }
+  .app-version-wrapper {
+    margin-left: 0.5rem;
   }
 </style>
 
@@ -56,4 +60,7 @@
       </li>
     </AuthContent>
   </ul>
+  <div class="app-version-wrapper">
+    <AppVersion/>
+  </div>
 </nav>
