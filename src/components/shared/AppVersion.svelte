@@ -22,9 +22,11 @@
 
 <style>
   h5 {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: rgba(85, 67, 72, 0.7);
   }
 </style>
 
-<h5>{appVersion}</h5>
+{#if appVersion}
+  <h5>v{appVersion}</h5>
+{/if}

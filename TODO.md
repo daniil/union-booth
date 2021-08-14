@@ -16,10 +16,9 @@
 - Setup notifications system (new question, new answer, watch answer, etc.)
 - Factor out common validations out of the resolvers
 - Refactor user cohort queries to be cached
-- Add a program/cohort admin privileges for other roles
 - Update site color scheme
 - Add "About" page
-- Add admin deactivate functionality for programs, cohorts and topics
+- Add admin deactivate (ie: remove) functionality for programs, cohorts and topics
 - Add deactivated topic FAQ questions list (and reactivate functionality)
 - Add timed unlock for topics
 - Add question and answer moderation before posting
@@ -33,17 +32,13 @@
 
 ## Tweaks
 
-- Add git tagging version output in the app
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component
-- When user is deleted, invalidate their session
 
 ## Ongoing
 
 - Look for queries that can be updated to use DataLoader
-- Add cascading functionality to all managed tables
-- Authenticate WebSocket requests
 - Error handling (Add global error state and UI to replace all console.logs)
  
 ## Bug Tracking
