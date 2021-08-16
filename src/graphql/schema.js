@@ -30,6 +30,7 @@ const typeDefs = gql`
     cohortId: ID
     cohort: Cohort!
     createdAt: Date!
+    isVerified: Boolean!
     isInactive: Boolean!
   }
 

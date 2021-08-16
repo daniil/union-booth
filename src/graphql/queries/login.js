@@ -9,6 +9,7 @@ const LOGIN = gql`
       username
       email
       role
+      isVerified
     }
   }
 `;

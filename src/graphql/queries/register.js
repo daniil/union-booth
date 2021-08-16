@@ -27,6 +27,7 @@ const REGISTER = gql`
       username
       email
       role
+      isVerified
     }
   }
 `;

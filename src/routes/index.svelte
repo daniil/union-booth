@@ -5,6 +5,7 @@
 <script>
 	import { stores } from '@sapper/app';
 	import LiveTopic from 'components/live-topic/LiveTopic.svelte';
+	import WaitingVerification from 'components/shared/WaitingVerification.svelte';
 
 	const { session } = stores();
 </script>
@@ -62,7 +63,11 @@
 </style>
 
 {#if $session.user}
-	<LiveTopic/>
+	{#if !$session.user.isVerified}
+		<WaitingVerification/>
+	{:else}
+		<LiveTopic/>
+	{/if}
 {:else}
 	<section class="banner">
 		<h1>Union Booth</h1>
