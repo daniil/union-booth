@@ -40,6 +40,10 @@ const user = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'user'
     },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     isInactive: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
