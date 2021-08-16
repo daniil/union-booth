@@ -14,7 +14,8 @@ const userSessionValues = user => {
     username: user.username,
     firstName: user.firstName,
     lastName: user.lastName,
-    role: user.role
+    role: user.role,
+    isVerified: user.isVerified
   };
 }
 
@@ -134,6 +135,7 @@ export default {
 
         if (isProgramOwner) {
           newUser.role = 'admin';
+          newUser.isVerified = true;
         }
 
         if (cohortId) {
