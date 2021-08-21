@@ -80,19 +80,23 @@
 			</a>
 		</li>
 		{#if $session.user}
-			<li class="nav-item">
-				<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics">
-					All Topics
-				</a>
-			</li>
+			{#if $session.user.isVerified}
+				<li class="nav-item">
+					<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics">
+						All Topics
+					</a>
+				</li>
+			{/if}
 			<li class="right-aligned">
 				<ProfileNav/>
 			</li>
-			<AuthContent role="manager">
-				<li class="right-aligned admin">
-					<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
-				</li>
-			</AuthContent>
+			{#if $session.user.isVerified}
+				<AuthContent role="manager">
+					<li class="right-aligned admin">
+						<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
+					</li>
+				</AuthContent>
+			{/if}
 		{/if}
 	</ul>
 </nav>

@@ -6,7 +6,7 @@
   import { UNLOCKED_TOPICS } from 'graphql/queries/cohort-topic';
 
   export async function preload(_, session) {
-    if (!session.user) {
+    if (!session.user || !session.user.isVerified) {
       return this.redirect(302, '');
     }
 

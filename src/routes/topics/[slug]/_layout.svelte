@@ -2,7 +2,7 @@
   import { TOPIC } from 'graphql/queries/cohort-topic';
 
   export async function preload(page, session) {
-    if (!session.user) {
+    if (!session.user || !session.user.isVerified) {
       return this.redirect(302, '');
     }
 

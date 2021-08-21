@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload(_, session) {
-    if (!session.user) {
+    if (!session.user || !session.user.isVerified) {
       return this.redirect(302, '');
     }
   }
