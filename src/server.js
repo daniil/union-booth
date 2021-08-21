@@ -67,7 +67,12 @@ const helmetMiddleware = helmet({
 				"'sha256-PT+YOJyhu3IamY7Pf1cnvQbDxlHIK2FjqtA7GQoyN5U='",
 				(_req, res) => `'nonce-${res.locals.nonce}'`
 			],
-			connectSrc: ["'self'", 'http://localhost:10000', 'https://cdn.jsdelivr.net/']
+			connectSrc: [
+				"'self'",
+				'http://localhost:10000',
+				'https://cdn.jsdelivr.net/',
+				'https://maxcdn.bootstrapcdn.com/'
+			]
 		}
 	}
 });
