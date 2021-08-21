@@ -136,3 +136,13 @@ Once your application is deployed to view the application logs you can use `qove
 ### Deploying to custom production environment
 
 For deploying to a non Qovery environment, do a global search for `// Custom production config` in the project and update the values accordingly to your server and environment configuration.
+
+## Troubleshooting
+
+### JavaScript heap out of memory
+
+If you are getting `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory` during build process, you can [increase the swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04) as well as set memory limit in Node to a higher value:
+
+```
+export NODE_OPTIONS=--max-old-space-size=1024 #this will set it to 1G instead of default 512mb
+```
