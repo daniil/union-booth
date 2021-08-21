@@ -17,7 +17,7 @@ Current functionality:
 - moderating a question as being currently answered or answered by a moderator
 - converting cohort questions to persistent FAQs.
 
-## Project structure
+## Project Structure
 
 - `/register` - Register a new user (with support for moderator or admin roles)
 - `/login` - Logs in a user
@@ -52,7 +52,7 @@ REDIS_PORT_NUMBER
 
 Check `.env.example` for an example of `.env` file.
 
-## Running the project
+## Running the Project
 
 Once you have cloned the project, install [Redis](https://redis.io/topics/quickstart), create the PostgreSQL DB (defined in .env file), install dependencies and run the project in development mode:
 
@@ -66,7 +66,7 @@ This will start the development server on [localhost:3000](http://localhost:3000
 
 GraphQL Playground is available at [http://localhost:3000/graphql](http://localhost:3000/graphql).
 
-## Project tech stack
+## Project Tech Stack
 
 - Svelte
 - Sapper
@@ -133,13 +133,22 @@ To view the deployment log go on an environment page, and select **Show Logs**.
 
 Once your application is deployed to view the application logs you can use `qovery log` command in the Terminal.
 
-### Deploying to custom production environment
+### Deploying to Custom Production Environment
 
 For deploying to a non Qovery environment, do a global search for `// Custom production config` in the project and update the values accordingly to your server and environment configuration.
 
+### Updating Version Tag
+
+The application is configured to show the version of the app from Git tags (visible on the Admin section, at the bottom of the nav). To update the current version:
+
+```
+git tag -a vX.X.X -m "vX.X.X"
+git push origin <vX.X.X>
+```
+
 ## Troubleshooting
 
-### JavaScript heap out of memory
+### `JavaScript heap out of memory`
 
 If you are getting `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory` during build process, you can [increase the swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04) as well as set memory limit in Node to a higher value:
 

@@ -62,11 +62,12 @@ const helmetMiddleware = helmet({
 				"'unsafe-inline'"
 			],
 			scriptSrc: [
-				"'self'",
+				"'self' 'unsafe-eval'",
 				"blob: *",
 				"'sha256-PT+YOJyhu3IamY7Pf1cnvQbDxlHIK2FjqtA7GQoyN5U='",
 				(_req, res) => `'nonce-${res.locals.nonce}'`
-			]
+			],
+			connectSrc: ["'self'", 'http://localhost:10000']
 		}
 	}
 });
