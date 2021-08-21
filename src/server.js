@@ -27,6 +27,7 @@ if (ENV_TYPE === 'qovery') {
 	serveStaticPath = '/mnt/static';
 } else {
 	// Custom production config
+	serveStaticPath = '/root/union-booth/static';
 }
 
 const FileStore = new sessionFileStore(session);

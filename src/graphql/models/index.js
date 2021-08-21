@@ -51,6 +51,16 @@ if (NODE_ENV === 'production') {
     );
   } else {
     // Custom production config
+    sequelize = new Sequelize(
+      DATABASE,
+      DATABASE_USER,
+      DATABASE_PASSWORD,
+      {
+        dialect: 'postgres',
+        pool: poolSettings,
+        logging: msg => Logger.info(msg)
+      }
+    );
   }
 } else {
   sequelize = new Sequelize(

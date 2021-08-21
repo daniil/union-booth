@@ -11,6 +11,7 @@ if (ENV_TYPE === 'qovery') {
   serveStaticPath = '/mnt/static';
 } else {
   // Custom production config
+  serveStaticPath = '/root/union-booth/static';
 }
 
 const avatarsFolder = NODE_ENV === 'production'

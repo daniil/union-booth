@@ -27,6 +27,10 @@ if (isProd) {
     }
   } else {
     // Custom production config
+    options = {
+      host: REDIS_DOMAIN_NAME,
+      port: REDIS_PORT_NUMBER
+    }
   }
 } else {
   options = {

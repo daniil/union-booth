@@ -1,8 +1,7 @@
 ## Tasks
 
 - Add user management admin functionality
-  - Add default inactive state for manager role registration
-  - Add default inactive state for user role registration
+  - Add "verify" functionality in user admin
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
   - Register and update profile pages
