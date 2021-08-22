@@ -1,4 +1,4 @@
-<style>
+<style lang="scss">
   .verification-msg {
     padding: 1rem 0 2rem;
     text-align: center;
@@ -14,6 +14,13 @@
     text-align: center;
     color: #7D6D61;
     font-size: 0.85rem;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    @media (min-width: 48rem) {
+      max-width: initial;
+      padding: 0;
+    }
   }
 </style>
 
