@@ -46,7 +46,13 @@
     justify-content: center;
   }
   .wrapper {
-    width: 30%;
+    width: 100%;
+    max-width: 15.6rem;
+    @media (min-width: 48rem) {
+      width: 30%;
+      max-width: initial;
+      min-width: 15.6rem;
+    }
   }
   h1 {
     margin-bottom: 2rem;
