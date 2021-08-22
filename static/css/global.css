@@ -281,7 +281,6 @@
 body {
 	margin: 0;
 	font-family: Poppins, sans-serif;
-	font-size: 14px;
 	line-height: 1.5;
 	color: #333;
 }
@@ -293,7 +292,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 2rem;
 }
 
 a {
@@ -324,10 +323,4 @@ code {
 input,
 button {
 	font-family: Poppins, sans-serif;
-}
-
-@media (min-width: 400px) {
-	body {
-		font-size: 16px;
-	}
 }

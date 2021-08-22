@@ -17,19 +17,30 @@
 		justify-content: center;
 		overflow: hidden;
 		h1 {
-			font-family: 'Lora';
-			font-weight: 500;
 			position: absolute;
 			top: 32%;
 			color: #5B3345;
+			font-family: 'Lora';
+			font-weight: 500;
+			font-size: 1.5rem;
+			@media (min-width: 48rem) {
+				font-size: 2rem;
+			}
 		}
 		h2 {
 			position: absolute;
 			top: 40%;
+			font-size: 1.1rem;
+			@media (min-width: 48rem) {
+				font-size: 1.5rem;
+			}
 		}
 		img {
-			width: 145%;
+			width: 51.5rem;
 			flex-shrink: 0;
+			@media (min-width: 48rem) {
+				width: 145%;
+			}
 		}
 	}
 	.actions {
@@ -40,11 +51,15 @@
 	}
 	.action {
 		margin: 0 1rem;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: #9D695B;
     text-decoration: none;
-    border-bottom: 3px solid #D496A7;
+    border-bottom: 2px solid #D496A7;
     padding-bottom: 0.25rem;
+		@media (min-width: 48rem) {
+			font-size: 1.5rem;
+			border-bottom-width: 3px;
+		}
 		&:hover {
 			border-bottom-color: #9D695B;
 			opacity: 0.8;

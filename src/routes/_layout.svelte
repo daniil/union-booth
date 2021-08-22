@@ -23,7 +23,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.page-container {
 		position: relative;
 		min-height: 100vh;
@@ -32,10 +32,13 @@
 		position: relative;
 		max-width: 56em;
 		background-color: white;
-		padding: 2em 2em 6em 2em;
+		padding: 2em 0 6em 0;
 		margin: 0 auto;
 		box-sizing: border-box;
 		z-index: 1;
+		@media (min-width: 48rem) {
+			padding: 2em 2em 6em 2em;
+		}
 	}
 </style>
 
