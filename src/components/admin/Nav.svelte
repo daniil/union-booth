@@ -22,8 +22,8 @@
     }
   }
   [aria-current] {
-    border-left: 2px solid #F19C79;
-    background-color: rgba(241, 156, 121, 0.25);
+    border-left: 2px solid #DECFDE;
+    background-color: rgba(247, 243, 247, 1);
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
   }
