@@ -65,9 +65,19 @@
   .container {
     display: flex;
     justify-content: center;
+    padding: 0 1rem;
+    @media (min-width: 48rem) {
+      padding: 0;
+    }
   }
   .wrapper {
-    width: 40%;
+    width: 100%;
+    max-width: 23rem;
+    @media (min-width: 48rem) {
+      width: 40%;
+      max-width: initial;
+      min-width: 23rem;
+    }
   }
   h1 {
     margin-bottom: 2rem;
@@ -85,6 +95,7 @@
   }
   .form-element {
     margin-bottom: 1rem;
+    flex-grow: 1;
     &.action {
       display: flex;
       justify-content: center;
