@@ -1,12 +1,13 @@
 {
   "name": "union-booth",
   "description": "Live Q/A Platform",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "scripts": {
     "dev": "concurrently \"redis-server\" \"sapper dev\"",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
-    "start": "forever start __sapper__/build/index.js"
+    "start": "node __sapper__/build",
+    "start:forever": "forever start __sapper__/build/index.js"
   },
   "dependencies": {
     "@multiavatar/multiavatar": "^1.0.5",

@@ -142,8 +142,8 @@ For deploying to a non Qovery environment, do a global search for `// Custom pro
 The application is configured to show the version of the app from Git tags (visible on the Admin section, at the bottom of the nav). To update the current version:
 
 ```
-git tag -a vX.X.X -m "vX.X.X"
-git push origin <vX.X.X>
+npm version <patch|minor|major>
+git push --follow-tags
 ```
 
 ## Troubleshooting
