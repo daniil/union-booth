@@ -28,9 +28,19 @@
   onDestroy(() => liveTopicSub.unsubscribe());
 </script>
 
-<style>
+<style lang="scss">
+  .container {
+    padding: 0 1rem;
+    @media (min-width: 48rem) {
+      padding: 0;
+    }
+  }
   h1 {
     margin-bottom: 2rem;
+    font-size: 1.5rem;
+    @media (min-width: 48rem) {
+      font-size: 2rem;
+    }
   }
   .no-topic {
     padding: 1rem 0 2rem;
@@ -48,13 +58,15 @@
 {#if loading}
   <Loading/>
 {:else}
-  {#if liveTopic}
-    <h1>{liveTopic.topic.title}</h1>
-    <TopicQuestions {liveTopic}/>
-  {:else}
-    <p class="no-topic">No Live Topic currently 🤷🏽‍♀️.</p>
-    <p class="review">You can review <a rel="prefetch" href="/topics">previous topics</a> meanwhile.</p>
-  {/if}
+  <div class="container">
+    {#if liveTopic}
+      <h1>{liveTopic.topic.title}</h1>
+      <TopicQuestions {liveTopic}/>
+    {:else}
+      <p class="no-topic">No Live Topic currently 🤷🏽‍♀️.</p>
+      <p class="review">You can review <a rel="prefetch" href="/topics">previous topics</a> meanwhile.</p>
+    {/if}
+  </div>
 {/if}
 
 
