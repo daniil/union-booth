@@ -18,10 +18,15 @@
 <style lang="scss">
   .answered-by {
     position: absolute;
-    top: -2rem;
-    right: -1rem;
-    font-size: 2.5rem;
+    top: -1.5rem;
+    right: -0.5rem;
+    font-size: 2rem;
     transform: translate3d(0, 0, 0);
+    @media (min-width: 48rem) {
+      top: -2rem;
+      right: -1rem;
+      font-size: 2.5rem;
+    }
   }
   .user-list {
     position: absolute;

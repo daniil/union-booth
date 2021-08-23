@@ -90,7 +90,7 @@
   onDestroy(() => cohortAnswerProgressUnsub());
 </script>
 
-<style>
+<style lang="scss">
   .question {
     position: relative;
     padding: 1.5rem 1.25rem 1.25rem 1.25rem;
@@ -106,6 +106,12 @@
   .is-answered {
     background-color: rgba(212, 224, 155, 0.15);
     border-color: rgb(212, 224, 155);
+  }
+  h3 {
+    font-size: 1.05rem;
+    @media (min-width: 48rem) {
+      font-size: 1.17rem;
+    }
   }
   h3 > :global(p) {
     margin-top: 0;
