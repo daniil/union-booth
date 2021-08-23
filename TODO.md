@@ -31,6 +31,7 @@
 
 ## Tweaks
 
+- Refactor Answer timestamp into AnswerFooter component
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component

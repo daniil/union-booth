@@ -35,21 +35,45 @@
   }
   h4 {
     margin-bottom: 0;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
     > :global(p) {
       margin-top: 0;
     }
+  }
+  .time-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
   time {
     display: flex;
     justify-content: space-between;
     color: rgba(1, 22, 56, 0.75);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    @media (min-width: 48rem) {
+      font-size: 0.8rem;
+    }
   }
   .last-updated {
+    display: none;
     margin-left: 1rem;
     opacity: 0.75;
     font-size: 0.65rem;
     font-style: italic;
+    text-align: right;
+    @media (min-width: 48rem) {
+      display: inline;
+      text-align: left;
+    }
+    &.mobile {
+      display: block;
+      @media (min-width: 48rem) {
+        display: none;
+      }
+    }
   }
 </style>
 
@@ -69,14 +93,19 @@
         />
       {/if}
     </div>
-    <time>
-      <span>
-        {time}
-        {#if details.createdAt !== details.updatedAt}
-          <span class="last-updated">Last updated {lastUpdated}</span>
-        {/if}
-      </span>
-      <span>{date}</span>
-    </time>
+    <div class="time-container">
+      <time>
+        <span>
+          {time}
+          {#if details.createdAt !== details.updatedAt}
+            <span class="last-updated">Last updated {lastUpdated}</span>
+          {/if}
+        </span>
+        <span>{date}</span>
+      </time>
+      {#if details.createdAt !== details.updatedAt}
+        <span class="last-updated mobile">Last updated {lastUpdated}</span>
+      {/if}
+    </div>
   </div>
 </div>

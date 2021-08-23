@@ -161,7 +161,10 @@
     display: flex;
     margin-bottom: 1rem;
     color: #3E6990;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
     > strong {
       margin-right: 0.25rem;
     }
@@ -174,7 +177,10 @@
     &:hover {
       filter: brightness(1.25);
       .expand-icon {
-        transform: translateY(-2px) rotate(90deg);
+        transform: translateY(-6px) rotate(90deg);
+        @media (min-width: 48rem) {
+          transform: translateY(-2px) rotate(90deg);
+        }
         &.is-expanded {
           transform: translateY(-6px) translateX(-4px) rotate(-90deg);
         }
@@ -183,9 +189,12 @@
   }
   .expand-icon {
     font-size: 1.5rem;
-    transform: translateY(-4px) rotate(90deg);
     margin-left: 0.75rem;
     transition: transform 0.25s ease-out;
+    transform: translateY(-6px) rotate(90deg);
+    @media (min-width: 48rem) {
+      transform: translateY(-4px) rotate(90deg);
+    }
     &.is-expanded {
       transform: translateY(-4px) translateX(-4px) rotate(-90deg);
     }
