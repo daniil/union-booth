@@ -93,12 +93,15 @@
 <style lang="scss">
   .question {
     position: relative;
-    padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+    padding: 1.5rem 1.25rem 2rem 1.25rem;
     border: 1px solid #DBD3D8;
     border-bottom-width: 2px;
     border-radius: 4px;
     margin-bottom: 2rem;
     transition: border-color 0.25s ease-out, background-color 0.25s ease-out;
+    @media (min-width: 48rem) {
+      padding-bottom: 1.25rem;
+    }
   }
   .is-being-answered {
     border-color: rgb(212, 224, 155);

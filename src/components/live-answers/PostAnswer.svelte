@@ -87,13 +87,40 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   form {
     margin-top: 2rem;
   }
   .action-bar {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    margin-top: 0.75rem;
+    @media (min-width: 48rem) {
+      flex-direction: row;
+      margin-top: 0;
+    }
+  }
+  .post-actions {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    @media (min-width: 48rem) {
+      width: auto;
+      justify-content: flex-start;
+      gap: 0;
+    }
+    :global(.button) {
+      justify-content: center;
+      flex-grow: 1;
+      margin-right: 0;
+      @media (min-width: 48rem) {
+        justify-content: flex-start;
+        flex-grow: 0;
+        margin-right: 0.5rem;
+      }
+    }
   }
   .post-answer {
     margin-top: 2rem;
@@ -113,7 +140,7 @@
       />
     </div>
     <div class="action-bar">
-      <div class="form-element">
+      <div class="form-element post-actions">
         {#if selectedAnswer}
           <Button type="submit" variant={buttonVariant} icon="✏️" label="Update Answer" disabled={postBtnDisabled}/>
         {:else}
