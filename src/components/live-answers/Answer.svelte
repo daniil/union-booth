@@ -1,22 +1,18 @@
 <script>
-  import { format } from 'timeago.js';
   import { stores } from '@sapper/app';
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
-  import { formatDate, formatTime } from 'utils/time';
   import Avatar from 'components/shared/Avatar.svelte';
   import AnswerActions from 'components/live-answers/AnswerActions.svelte';
+  import PostTimestamp from 'components/shared/PostTimestamp.svelte';
 
   export let details;
 
   const { session } = stores();
 
   $: content = parseMD(details.answer);
-  $: date = formatDate(details.createdAt);
-  $: time = formatTime(details.createdAt);
   $: isOwner = $session.user.id === details.user.id;
   $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || isOwner;
-  $: lastUpdated = format(details.updatedAt, 'en_US');
 </script>
 
 <style lang="scss">
@@ -43,38 +39,6 @@
       margin-top: 0;
     }
   }
-  .time-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  time {
-    display: flex;
-    justify-content: space-between;
-    color: rgba(1, 22, 56, 0.75);
-    font-size: 0.7rem;
-    @media (min-width: 48rem) {
-      font-size: 0.8rem;
-    }
-  }
-  .last-updated {
-    display: none;
-    margin-left: 1rem;
-    opacity: 0.75;
-    font-size: 0.65rem;
-    font-style: italic;
-    text-align: right;
-    @media (min-width: 48rem) {
-      display: inline;
-      text-align: left;
-    }
-    &.mobile {
-      display: block;
-      @media (min-width: 48rem) {
-        display: none;
-      }
-    }
-  }
 </style>
 
 <div class="answer">
@@ -93,19 +57,6 @@
         />
       {/if}
     </div>
-    <div class="time-container">
-      <time>
-        <span>
-          {time}
-          {#if details.createdAt !== details.updatedAt}
-            <span class="last-updated">Last updated {lastUpdated}</span>
-          {/if}
-        </span>
-        <span>{date}</span>
-      </time>
-      {#if details.createdAt !== details.updatedAt}
-        <span class="last-updated mobile">Last updated {lastUpdated}</span>
-      {/if}
-    </div>
+    <PostTimestamp {details} reduced/>
   </div>
 </div>
