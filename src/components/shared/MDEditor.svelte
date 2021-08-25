@@ -56,6 +56,17 @@
     }
     :global(.editor-toolbar) {
       background-color: #fff;
+      overflow: scroll;
+      white-space: nowrap;
+    }
+    :global(.editor-toolbar a:last-child) {
+      margin-right: 10px;
+    }
+    :global(.CodeMirror-wrap pre) {
+      font-size: 0.9rem;
+      @media (min-width: 48rem) {
+        font-size: inherit;
+      }
     }
     &.disabled {
       pointer-events: none;
