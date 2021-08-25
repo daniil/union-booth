@@ -64,11 +64,41 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .form-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
+    @media (min-width: 48rem) {
+      flex-direction: row;
+    }
+    :global(.checkbox-container) {
+      justify-content: flex-end;
+      width: 100%;
+    }
+  }
+  .post-buttons {
+    display: flex;
+    width: 100%;
+    margin: 0.75rem 0 1rem 0;
+    justify-content: space-between;
+    gap: 1rem;
+    @media (min-width: 48rem) {
+      justify-content: flex-start;
+      margin: 0;
+      gap: 0;
+    }
+    :global(.button) {
+      justify-content: center;
+      flex-grow: 1;
+      margin-right: 0;
+      @media (min-width: 48rem) {
+        justify-content: flex-start;
+        flex-grow: 0;
+        margin-right: 0.5rem;
+      }
+    }
   }
 </style>
 
@@ -83,16 +113,14 @@
       disabled={formDisabled}
     />
   </div>
-  <div class="form-controls">
-    <div>
+  <div class="form-controls post-actions">
+    <div class="post-buttons">
       {#if selectedQuestion}
         <Button type="submit" variant={buttonVariant} icon="✏️" label="Update Question" disabled={postBtnDisabled}/>
       {:else}
         <Button type="submit" variant={buttonVariant} icon="🖐🏽" label="Post Question" disabled={postBtnDisabled}/>
       {/if}
-      {#if !postBtnDisabled}
-        <Button icon="💨" label="Cancel" action={handleQuestionCancel} disabled={formDisabled} preventDefault/>
-      {/if}
+      <Button icon="💨" label="Cancel" action={handleQuestionCancel} disabled={formDisabled || postBtnDisabled} preventDefault/>
     </div>
     {#if !selectedQuestion}
       <Checkbox id="isAnonymous" label="Ask anonymously" disabled={formDisabled}/>
