@@ -148,6 +148,28 @@ git push --follow-tags
 
 ## Troubleshooting
 
+### Qovery stuck on deploying older commit after failed deploy
+
+You can retrigger a build for a specific commit via API - https://api-doc.qovery.com/#operation/deployApplication
+
+```
+POST https://api.qovery.com/application/{applicationId}/deploy
+
+Payload:
+
+{
+  "git_commit_id": "string"
+}
+
+Auth: 
+
+Bearer JWT Token
+```
+
+To acquire the JWT token, run `qovery auth` CLI command from terminal.
+
+You can then find the generated JWT token (as well as your applicationId) under `~/.qovery/context.json`.
+
 ### `JavaScript heap out of memory`
 
 If you are getting `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory` during build process, you can [increase the swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04) as well as set memory limit in Node to a higher value:
