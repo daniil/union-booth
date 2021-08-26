@@ -111,13 +111,14 @@
     border-color: rgb(212, 224, 155);
   }
   h3 {
-    font-size: 1.05rem;
+    font-size: 1rem;
     @media (min-width: 48rem) {
       font-size: 1.17rem;
     }
   }
   h3 > :global(p) {
     margin-top: 0;
+    line-height: 1.75;
   }
   .actions-container {
     position: absolute;

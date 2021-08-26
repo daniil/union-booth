@@ -2,6 +2,7 @@
 	import { stores } from '@sapper/app';
 	import AuthContent from 'components/auth/AuthContent.svelte';
 	import ProfileNav from 'components/profile/ProfileNav.svelte';
+	import MobileNav from 'components/layout/MobileNav.svelte';
 
 	export let segment;
 
@@ -33,6 +34,12 @@
 		float: left;
 	}
 	.nav-item {
+		display: none;
+		@media (min-width: 48rem) {
+			display: block;
+		}
+	}
+	.nav-item.first {
 		margin-left: 2rem;
 	}
 	.right-aligned {
@@ -70,6 +77,11 @@
 		font-size: 18px;
 		color: #5B3345;
 	}
+	.mobile-nav {
+		@media (min-width: 48rem) {
+			display: none;
+		}
+	}
 </style>
 
 <nav>
@@ -81,7 +93,7 @@
 		</li>
 		{#if $session.user}
 			{#if $session.user.isVerified}
-				<li class="nav-item">
+				<li class="nav-item first">
 					<a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/topics">
 						All Topics
 					</a>
@@ -91,8 +103,11 @@
 				<ProfileNav/>
 			</li>
 			{#if $session.user.isVerified}
+				<li class="right-aligned mobile-nav">
+					<MobileNav/>
+				</li>
 				<AuthContent role="manager">
-					<li class="right-aligned admin">
+					<li class="nav-item right-aligned admin">
 						<a rel="prefetch" aria-current="{segment === 'admin' ? 'page' : undefined}" href="/admin">Admin</a>
 					</li>
 				</AuthContent>
