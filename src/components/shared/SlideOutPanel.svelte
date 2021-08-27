@@ -2,7 +2,7 @@
   import { createEventDispatcher } from 'svelte';
   import { fade } from 'svelte/transition';
   import { quintInOut } from 'svelte/easing';
-  import Portal from "svelte-portal";
+  import Portal from 'svelte-portal';
 
   export let title;
   export let visible;

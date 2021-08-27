@@ -1,7 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
-  import { flip } from "svelte/animate";
-  import { dndzone } from "svelte-dnd-action";
+  import { flip } from 'svelte/animate';
+  import { dndzone } from 'svelte-dnd-action';
   import { mutation } from 'svelte-apollo';
   import Resource from 'components/admin/resources/Resource.svelte';
   import DragIcon from 'components/icons/DragIcon.svelte';

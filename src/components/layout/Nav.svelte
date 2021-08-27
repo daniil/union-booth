@@ -104,7 +104,7 @@
 			</li>
 			{#if $session.user.isVerified}
 				<li class="right-aligned mobile-nav">
-					<MobileNav/>
+					<MobileNav {segment}/>
 				</li>
 				<AuthContent role="manager">
 					<li class="nav-item right-aligned admin">
