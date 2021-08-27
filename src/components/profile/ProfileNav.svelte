@@ -5,6 +5,8 @@
   import { quintOut } from 'svelte/easing';
   import { LOGOUT } from 'graphql/queries/login';
   import Avatar from 'components/shared/Avatar.svelte';
+  import elementClickOff from 'utils/elementClickOff';
+
 
   const { session } = stores();
 	const logoutUser = mutation(LOGOUT);
@@ -24,9 +26,11 @@
     navVisible = !navVisible;
   }
 
-  const handleClickOff = () => {
+  const handleClickOff = e => {
     if (navVisible) {
-      navVisible = false;
+      elementClickOff(e, 'avatar-container', 'profile-nav', () => {
+        navVisible = false;
+      });
     }
   }
 </script>
@@ -108,7 +112,7 @@
 />
 
 {#if $session.user}
-  <div class="avatar-container" on:click|stopPropagation={toggleNav}>
+  <div class="avatar-container" data-id="profile-nav" on:click={toggleNav}>
     <Avatar
       user={$session.user}
       alt={`${fullName} Profile`}

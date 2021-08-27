@@ -3,6 +3,7 @@
   import { quintOut } from 'svelte/easing';
   import HamburgerIcon from 'components/icons/HamburgerIcon.svelte';
   import MobileNavItems from 'components/layout/MobileNavItems.svelte';
+  import elementClickOff from 'utils/elementClickOff';
 
   export let segment;
 
@@ -12,9 +13,11 @@
     navVisible = !navVisible;
   }
 
-  const handleClickOff = () => {
+  const handleClickOff = e => {
     if (navVisible) {
-      navVisible = false;
+      elementClickOff(e, 'mobile-nav-container', 'mobile-nav', () => {
+        navVisible = false;
+      });
     }
   }
 </script>
@@ -45,8 +48,8 @@
   on:click={handleClickOff}
 />
 
-<div class="mobile-nav-container" on:click|stopPropagation={toggleNav}>
-  <button class="mobile-nav-btn">
+<div class="mobile-nav-container" data-id="mobile-nav">
+  <button class="mobile-nav-btn" on:click={toggleNav}>
     <HamburgerIcon color="#05668D" label="Site Navigation"/>
   </button>
   {#if navVisible}
