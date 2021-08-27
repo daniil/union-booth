@@ -24,7 +24,7 @@
     navVisible = !navVisible;
   }
 
-  const handleClickOff = e => {
+  const handleClickOff = () => {
     if (navVisible) {
       navVisible = false;
     }

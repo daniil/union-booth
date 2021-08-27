@@ -6,14 +6,9 @@
 
 <style lang="scss">
   .mobile-nav-items {
-    position: absolute;
-    right: 50%;
-    top: 86%;
-    transform: translateX(50%);
     background-color: #fff;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     border-radius: 4px;
-    z-index: 1;
   }
   a {
     position: relative;
