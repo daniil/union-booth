@@ -37,9 +37,20 @@
   onDestroy(() => unlockedTopicsSub.unsubscribe());
 </script>
 
-<style>
+<style lang="scss">
+  .topics-container {
+    padding: 0 1rem;
+    @media (min-width: 48rem) {
+      padding: 0;
+    }
+  }
   h1 {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    @media (min-width: 48rem) {
+      margin-bottom: 2.5rem;
+      font-size: 2rem;
+    }
   }
   p {
     padding: 1rem 0 2rem;
@@ -48,12 +59,14 @@
   }
 </style>
 
-<h1>All Topics</h1>
+<div class="topics-container">
+  <h1>All Topics</h1>
 
-{#if unlockedTopics.length > 0}
-  {#each unlockedTopics as unlockedTopic (unlockedTopic.topic.id)}
-    <TopicListItem details={unlockedTopic}/>
-  {/each}
-{:else}
-  <p>No topics currently 🙍🏼‍♂️</p>
-{/if}
+  {#if unlockedTopics.length > 0}
+    {#each unlockedTopics as unlockedTopic (unlockedTopic.topic.id)}
+      <TopicListItem details={unlockedTopic}/>
+    {/each}
+  {:else}
+    <p>No topics currently 🙍🏼‍♂️</p>
+  {/if}
+</div>

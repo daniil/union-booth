@@ -12,7 +12,13 @@
     justify-content: space-between;
   }
   h2 {
-    margin-bottom: 1.5rem;
+    margin: 0 1rem 1rem 0;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    @media (min-width: 48rem) {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
   }
   a {
     text-decoration: none;
@@ -28,10 +34,19 @@
     border-radius: 6px;
     color: white;
     text-shadow: 0px 1px 0 rgb(0 0 0 / 30%);
-    font-size: 1rem;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
   }
   time {
+    padding-top: 0.3rem;
+    white-space: nowrap;
     color: #7D6D61;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
   }
 </style>
 
