@@ -15,7 +15,7 @@
 
   const handleClickOff = e => {
     if (navVisible) {
-      elementClickOff(e, 'mobile-nav-container', 'mobile-nav', () => {
+      elementClickOff(e, 'mobile-nav-btn', 'mobile-nav', () => {
         navVisible = false;
       });
     }
@@ -48,8 +48,8 @@
   on:click={handleClickOff}
 />
 
-<div class="mobile-nav-container" data-id="mobile-nav">
-  <button class="mobile-nav-btn" on:click={toggleNav}>
+<div class="mobile-nav-container">
+  <button class="mobile-nav-btn" data-id="mobile-nav" on:click={toggleNav}>
     <HamburgerIcon color="#05668D" label="Site Navigation"/>
   </button>
   {#if navVisible}
