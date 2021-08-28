@@ -16,7 +16,6 @@
     line-height: 1.5;
     font-size: 1.25rem;
     @media (min-width: 48rem) {
-      margin-bottom: 1.5rem;
       font-size: 1.5rem;
     }
   }

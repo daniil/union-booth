@@ -17,8 +17,11 @@
     }
   }
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     font-weight: 500;
+    @media (min-width: 48rem) {
+      font-size: 1.25rem;
+    }
   }
   h4 {
     margin-left: 1rem;

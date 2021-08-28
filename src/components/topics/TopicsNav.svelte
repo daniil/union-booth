@@ -12,9 +12,18 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    flex-direction: column;
+    gap: 1rem;
+    @media (min-width: 48rem) {
+      flex-direction: row;
+      gap: 0;
+    }
   }
   li {
-    margin-right: 3rem;
+    margin-right: 0;
+    @media (min-width: 48rem) {
+      margin-right: 3rem;
+    }
     &:last-child {
       margin-right: 0;
     }
@@ -32,6 +41,10 @@
   h2 {
     margin-bottom: 0.7rem;
     font-weight: 200;
+    font-size: 1.25rem;
+    @media (min-width: 48rem) {
+      font-size: 1.5rem;
+    }
   }
   [aria-current] {
     border-bottom-color: currentColor;

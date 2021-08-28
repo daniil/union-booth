@@ -26,6 +26,13 @@
     font-size: 0.8rem;
     text-align: right;
   }
+  h3 {
+    font-size: 1rem;
+    line-height: 1.5;
+    @media (min-width: 48rem) {
+      font-size: 1.17rem;
+    }
+  }
   .btn-answer {
     display: flex;
     justify-content: center;
@@ -45,6 +52,13 @@
     padding: 0.75rem 0;
     border-bottom: 3px solid #fff;
     font-weight: bold;
+  }
+  .answer {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
   }
 </style>
 

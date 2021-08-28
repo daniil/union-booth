@@ -33,21 +33,50 @@
 </script>
 
 <style lang="scss">
+  .topic-container {
+    padding: 0 1rem;
+    @media (min-width: 48rem) {
+      padding: 0;
+    }
+  }
   h1 {
     position: relative;
+    font-size: 1.5rem;
+    @media (min-width: 48rem) {
+      font-size: 2rem;
+    }
   }
   .back {
-    position: absolute;
-    right: 110%;
+    position: static;
+    display: block;
+    padding: 1rem 0;
+    margin-top: -1rem;
+    line-height: 1;
+    font-size: 0.9rem;
+    font-weight: 400;
     text-decoration: none;
     color: #05668D;
-    top: -19%;
-    font-size: 2.5rem;
-    font-weight: 200;
+    @media (min-width: 48rem) {
+      position: absolute;
+      right: 105%;
+      top: -19%;
+      padding: 0;
+      margin: 0;
+      line-height: inherit;
+      font-size: 2.5rem;
+      font-weight: 200;
+    }
     &:hover {
       .chevron {
         filter: brightness(1.25);
-        transform: translateX(-3px) scale(1.1);
+        @media (min-width: 48rem) {
+          transform: translateX(-3px) scale(1.1);
+        }
+      }
+    }
+    .label {
+      @media (min-width: 48rem) {
+        display: none;
       }
     }
   }
@@ -69,19 +98,23 @@
   }
 </style>
 
-<div class="title-wrapper">
-  <h1>
-    <a class="back" href="/topics"><div class="chevron">&lsaquo;</div></a>
-    {cohortTopic.topic.title}
-  </h1>
-  {#if cohortTopic.isLive}
-    <div class="live">LIVE</div>
-  {/if}
+<div class="topic-container">
+  <div class="title-wrapper">
+    <h1>
+      <a class="back" href="/topics">
+        <div class="chevron">&lsaquo; <span class="label">back</span></div>
+      </a>
+      {cohortTopic.topic.title}
+    </h1>
+    {#if cohortTopic.isLive}
+      <div class="live">LIVE</div>
+    {/if}
+  </div>
+  
+  <TopicsNav
+    {slug}
+    {segment}
+  />
+  
+  <slot></slot>
 </div>
-
-<TopicsNav
-  {slug}
-  {segment}
-/>
-
-<slot></slot>
