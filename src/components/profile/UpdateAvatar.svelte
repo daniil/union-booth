@@ -39,7 +39,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%;
+    width: 100%;
+    @media (min-width: 48rem) {
+      width: 20%;
+    }
     :global(.button) {
       margin: 1rem 0 0 0;
     }

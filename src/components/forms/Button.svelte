@@ -38,6 +38,7 @@
     box-shadow: rgba(50, 50, 93, 0.15) 0px 2px 5px -1px, rgba(0, 0, 0, 0.2) 0px 1px 3px -1px;
     cursor: pointer;
     font-size: 1.3rem;
+    white-space: nowrap;
     &:not(:disabled) {
       &:hover {
         background: rgba(219, 211, 216, 0.5);

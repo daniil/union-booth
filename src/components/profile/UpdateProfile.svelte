@@ -79,7 +79,13 @@
 <style lang="scss">
   form {
     position: relative;
-    width: 30%;
+    width: 100%;
+    max-width: 20rem;
+    @media (min-width: 48rem) {
+      width: 30%;
+      max-width: inherit;
+      min-width: 15rem;
+    }
   }
   .form-element {
     margin-bottom: 1rem;

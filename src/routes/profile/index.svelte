@@ -40,7 +40,15 @@
     display: flex;
     gap: 4rem;
     margin-bottom: 4rem;
+    padding: 0 1rem;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 48rem) {
+      align-items: flex-start;
+      flex-direction: row;
+      padding: 0;
+    }
   }
 </style>
 
