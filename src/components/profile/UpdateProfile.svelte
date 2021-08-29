@@ -84,7 +84,7 @@
     @media (min-width: 48rem) {
       width: 30%;
       max-width: inherit;
-      min-width: 15rem;
+      min-width: 16rem;
     }
   }
   .form-element {

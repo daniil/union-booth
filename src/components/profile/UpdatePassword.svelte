@@ -42,11 +42,15 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .password-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 1rem;
+    @media (min-width: 48rem) {
+      padding: 0;
+    }
   }
   h2 {
     margin-bottom: 2rem;
@@ -54,8 +58,23 @@
   }
   form {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: column;
     gap: 2rem;
+    width: 100%;
+    max-width: 20rem;
+    @media (min-width: 48rem) {
+      align-items: flex-end;
+      flex-direction: row;
+      width: inherit;
+      max-width: inherit;
+    }
+  }
+  .form-element:not(.action) {
+    width: 100%;
+    @media (min-width: 48rem) {
+      width: inherit;
+    }
   }
   .error-wrapper {
     display: flex;
