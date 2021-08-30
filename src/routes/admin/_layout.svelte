@@ -8,6 +8,7 @@
 
 <script>
   import Nav from 'components/admin/Nav.svelte';
+  import HamburgerIcon from 'components/icons/HamburgerIcon.svelte';
 
   export let segment;
 </script>
@@ -19,12 +20,43 @@
       padding: 0;
     }
   }
-  h1 {
+  .heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 2rem;
+    @media (min-width: 48rem) {
+      display: block;
+      margin-bottom: 0;
+    }
+    :global(.icon-container) {
+      transform: scale(0.7);
+    }
+  }
+  h1 {
+    margin-bottom: 0;
     font-size: 1.5rem;
     @media (min-width: 48rem) {
+      margin-bottom: 2rem;
       font-size: 2rem;
     }
+  }
+  .admin-nav-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    @media (min-width: 48rem) {
+      display: none;
+    }
+    &:hover {
+      filter: brightness(1.25);
+    }
+  }
+  .admin-nav-btn-label {
+    margin-left: 0.25rem;
+    font-size: 1rem;
+    color: #05668D;
   }
   .container {
     display: flex;
@@ -39,7 +71,13 @@
 </style>
 
 <div class="admin-container">
-  <h1>Admin</h1>
+  <div class="heading-container">
+    <h1>Admin</h1>
+    <button class="admin-nav-btn">
+      <HamburgerIcon color="#05668D" label="Admin Navigation"/>
+      <span class="admin-nav-btn-label">Menu</span>
+    </button>
+  </div>
 
   <div class="container">
     <aside class="nav-container">
