@@ -1,0 +1,17 @@
+%h2-admin {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  @media (min-width: 48rem) {
+    font-size: 1.5rem;
+  }
+}
+
+%h3-admin {
+  margin-bottom: 1rem;
+  color: rgba(85, 67, 72, 0.7);
+  font-size: 1rem;
+  line-height: 1.5;
+  @media (min-width: 48rem) {
+    font-size: 1.17rem;
+  }
+}

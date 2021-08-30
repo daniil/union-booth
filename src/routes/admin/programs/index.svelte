@@ -48,16 +48,16 @@
   onDestroy(() => programsSub.unsubscribe());
 </script>
 
-<style>
+<style lang="scss">
+  @use '../../../styles/partials/admin';
   section {
     margin-bottom: 2rem;
   }
   h2 {
-    margin-bottom: 1.5rem;
+    @extend %h2-admin;
   }
   h3 {
-    margin-bottom: 1rem;
-    color: rgba(85, 67, 72, 0.7);
+    @extend %h3-admin;
   }
 </style>
 

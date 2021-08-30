@@ -105,7 +105,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   section {
     position: relative;
     margin-bottom: 2rem;
@@ -120,10 +120,18 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
+    font-size: 1.25rem;
+    @media (min-width: 48rem) {
+      font-size: 1.5rem;
+    }
   }
   h3 {
     margin-bottom: 1rem;
     color: rgba(85, 67, 72, 0.7);
+    font-size: 1rem;
+    @media (min-width: 48rem) {
+      font-size: 1.17rem;
+    }
   }
 </style>
 
