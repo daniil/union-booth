@@ -62,8 +62,18 @@
     display: flex;
   }
   .nav-container {
+    position: absolute;
+    left: 0;
+    top: 0;
     margin-right: 3rem;
     min-width: 15%;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    z-index: 1;
+    @media (min-width: 48rem) {
+      position: static;
+      box-shadow: none;
+    }
   }
   .admin-section {
     flex-grow: 1;

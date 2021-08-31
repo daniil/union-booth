@@ -13,10 +13,15 @@
   }
   a {
     display: block;
-    padding: 0.5rem;
+    padding: 1rem 2rem 1rem 1rem;
     text-decoration: none;
     color: #05668D;
     font-weight: 500;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
     &:not([aria-current]):hover {
       filter: brightness(1.25);
     }
@@ -28,7 +33,10 @@
     border-bottom-right-radius: 4px;
   }
   .app-version-wrapper {
-    margin-left: 0.5rem;
+    margin: 0 1rem 1rem 1rem;
+    @media (min-width: 48rem) {
+      margin: 0 0 0 0.5rem;
+    }
   }
 </style>
 
