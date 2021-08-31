@@ -8,9 +8,15 @@
 
 <script>
   import Nav from 'components/admin/Nav.svelte';
-  import HamburgerIcon from 'components/icons/HamburgerIcon.svelte';
+  import MobileNavButton from 'components/admin/MobileNavButton.svelte';
 
   export let segment;
+
+  let menuIsOpen = false;
+
+  const toggleMobileNav = () => {
+    menuIsOpen = !menuIsOpen;
+  }
 </script>
 
 <style lang="scss">
@@ -41,23 +47,6 @@
       font-size: 2rem;
     }
   }
-  .admin-nav-btn {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    @media (min-width: 48rem) {
-      display: none;
-    }
-    &:hover {
-      filter: brightness(1.25);
-    }
-  }
-  .admin-nav-btn-label {
-    margin-left: 0.25rem;
-    font-size: 1rem;
-    color: #05668D;
-  }
   .container {
     display: flex;
   }
@@ -83,10 +72,7 @@
 <div class="admin-container">
   <div class="heading-container">
     <h1>Admin</h1>
-    <button class="admin-nav-btn">
-      <HamburgerIcon color="#05668D" label="Admin Navigation"/>
-      <span class="admin-nav-btn-label">Menu</span>
-    </button>
+    <MobileNavButton isOpen={menuIsOpen} on:click={toggleMobileNav}/>
   </div>
 
   <div class="container">
