@@ -44,27 +44,27 @@
   <ul class="nav-list">
     <AuthContent role="admin">
       <li>
-        <a rel="prefetch" aria-current="{segment === 'programs' ? 'page' : undefined}" href="/admin/programs">Programs</a>
+        <a rel="prefetch" aria-current="{segment === 'programs' ? 'page' : undefined}" href="/admin/programs" on:click>Programs</a>
       </li>
     </AuthContent>
     <li>
-      <a rel="prefetch" aria-current="{segment === 'cohorts' ? 'page' : undefined}" href="/admin/cohorts">Cohorts</a>
+      <a rel="prefetch" aria-current="{segment === 'cohorts' ? 'page' : undefined}" href="/admin/cohorts" on:click>Cohorts</a>
     </li>
     <li>
-      <a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/admin/topics">Topics</a>
+      <a rel="prefetch" aria-current="{segment === 'topics' ? 'page' : undefined}" href="/admin/topics" on:click>Topics</a>
     </li>
     <li>
-      <a rel="prefetch" aria-current="{segment === 'active-cohort' ? 'page' : undefined}" href="/admin/active-cohort">Active Cohort</a>
+      <a rel="prefetch" aria-current="{segment === 'active-cohort' ? 'page' : undefined}" href="/admin/active-cohort" on:click>Active Cohort</a>
     </li>
     <li>
-      <a rel="prefetch" aria-current="{segment === 'faqs' ? 'page' : undefined}" href="/admin/faqs">FAQs</a>
+      <a rel="prefetch" aria-current="{segment === 'faqs' ? 'page' : undefined}" href="/admin/faqs" on:click>FAQs</a>
     </li>
     <li>
-      <a rel="prefetch" aria-current="{segment === 'resources' ? 'page' : undefined}" href="/admin/resources">Resources</a>
+      <a rel="prefetch" aria-current="{segment === 'resources' ? 'page' : undefined}" href="/admin/resources" on:click>Resources</a>
     </li>
     <AuthContent role="manager">
       <li>
-        <a rel="prefetch" aria-current="{segment === 'users' ? 'page' : undefined}" href="/admin/users">Users</a>
+        <a rel="prefetch" aria-current="{segment === 'users' ? 'page' : undefined}" href="/admin/users" on:click>Users</a>
       </li>
     </AuthContent>
   </ul>

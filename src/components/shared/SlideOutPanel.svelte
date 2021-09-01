@@ -50,6 +50,9 @@
     transform: translateY(100%);
     transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
     z-index: 4;
+    &.visible {
+      transform: translateY(0%);
+    }
   }
   .slide-out-panel-container {
     width: 100%;
@@ -73,9 +76,6 @@
       border-color: #B09398;
       color: #B09398;
     }
-  }
-  .visible {
-    transform: translateY(0%);
   }
 </style>
 

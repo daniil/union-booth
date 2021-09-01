@@ -59,9 +59,15 @@
     background-color: white;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     z-index: 1;
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
     @media (min-width: 48rem) {
       position: static;
       box-shadow: none;
+      transform: translateX(0);
+    }
+    &.visible {
+      transform: translateX(0);
     }
   }
   .admin-section {
@@ -76,8 +82,8 @@
   </div>
 
   <div class="container">
-    <aside class="nav-container">
-      <Nav {segment}/>
+    <aside class="nav-container" class:visible={menuIsOpen}>
+      <Nav on:click={toggleMobileNav} {segment}/>
     </aside>
     <section class="admin-section">
       <slot></slot>

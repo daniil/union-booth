@@ -5,7 +5,7 @@
 
   export let isOpen;
 
-  let animationValues = { duration: 250, opacity: 0, start: 0.5, easing: quintOut };
+  let animationValues = { duration: 500, opacity: 0, start: 0.25, easing: quintOut };
 </script>
 
 <style lang="scss">
