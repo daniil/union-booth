@@ -42,7 +42,7 @@
   }
 </style>
 
-<button class="mobile-nav-btn" on:click>
+<button class="mobile-nav-btn" on:click data-id="mobile-nav-btn">
   {#if isOpen}
     <span class="close-icon" transition:scale="{animationValues}">X</span>
   {:else}

@@ -1,3 +1,4 @@
+// TODO: Add parameter explanation
 export default (event, elementClass, elementId, stateCb) => {
   let currTarget = event.target;
   while (currTarget.parentNode) {

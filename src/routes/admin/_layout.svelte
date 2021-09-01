@@ -9,13 +9,22 @@
 <script>
   import Nav from 'components/admin/Nav.svelte';
   import MobileNavButton from 'components/admin/MobileNavButton.svelte';
+  import elementClickOff from 'utils/elementClickOff';
 
   export let segment;
 
-  let menuIsOpen = false;
+  let navVisible = false;
 
   const toggleMobileNav = () => {
-    menuIsOpen = !menuIsOpen;
+    navVisible = !navVisible;
+  }
+
+  const handleClickOff = e => {
+    if (navVisible) {
+      elementClickOff(e, 'mobile-nav-btn', 'mobile-nav-btn', () => {
+        navVisible = false;
+      });
+    }
   }
 </script>
 
@@ -75,14 +84,18 @@
   }
 </style>
 
+<svelte:window
+  on:click={handleClickOff}
+/>
+
 <div class="admin-container">
   <div class="heading-container">
     <h1>Admin</h1>
-    <MobileNavButton isOpen={menuIsOpen} on:click={toggleMobileNav}/>
+    <MobileNavButton isOpen={navVisible} on:click={toggleMobileNav}/>
   </div>
 
   <div class="container">
-    <aside class="nav-container" class:visible={menuIsOpen}>
+    <aside class="nav-container" class:visible={navVisible} data-id="mobile-nav">
       <Nav on:click={toggleMobileNav} {segment}/>
     </aside>
     <section class="admin-section">
