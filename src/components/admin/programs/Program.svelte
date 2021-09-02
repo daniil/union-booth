@@ -3,6 +3,7 @@
   import { mutation } from 'svelte-apollo';
   import { TOGGLE_PROGRAM_SELECT, SELECTED_PROGRAM } from 'graphql/queries/admin/programs';
   import { SELECTED_COHORT } from 'graphql/queries/admin/cohorts';
+  import Checkbox from 'components/forms/Checkbox.svelte';
 
   export let selectedProgram;
   export let details;
@@ -61,27 +62,18 @@
     margin:0 1rem 0 0;
     line-height: 1.5;
   }
-  .active-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    white-space: nowrap;
-    color: #05668D;
-  }
 </style>
 
 <form action="update-program" method="post">
   <div class="wrapper" class:isActive={isSelected}>
     <h4>{details.title}</h4>
-    <div class="form-element active-checkbox">
-      <input
-        type="checkbox"
-        name="is-active-{details.id}"
-        id="is-active-{details.id}"
-        checked={isSelected}
-        on:change={handleActiveChange}>
-      <label for="is-active-{details.id}">Active</label>
-    </div>
+    <Checkbox
+      id="is-active-{details.id}"
+      label="Active"
+      color="#05668D"
+      checked={isSelected}
+      on:change={handleActiveChange}
+    />
   </div>
 </form>
 

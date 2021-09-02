@@ -123,7 +123,7 @@
       <Button icon="💨" label="Cancel" action={handleQuestionCancel} disabled={formDisabled || postBtnDisabled} preventDefault/>
     </div>
     {#if !selectedQuestion}
-      <Checkbox id="isAnonymous" label="Ask anonymously" disabled={formDisabled}/>
+      <Checkbox id="isAnonymous" label="Ask anonymously" disabled={formDisabled} color="#7D6D61"/>
     {/if}
   </div>
 </form>
