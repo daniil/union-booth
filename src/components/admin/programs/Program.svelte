@@ -44,8 +44,13 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 0.25rem 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
     &.isActive {
       background-color: rgba(212, 224, 155, 0.5);
       border: 1px solid rgb(212, 224, 155);
@@ -53,14 +58,22 @@
     }
   }
   h4 {
-    margin-bottom: 0;
+    margin:0 1rem 0 0;
+    line-height: 1.5;
+  }
+  .active-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+    color: #05668D;
   }
 </style>
 
 <form action="update-program" method="post">
   <div class="wrapper" class:isActive={isSelected}>
     <h4>{details.title}</h4>
-    <div class="form-element">
+    <div class="form-element active-checkbox">
       <input
         type="checkbox"
         name="is-active-{details.id}"

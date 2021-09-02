@@ -18,6 +18,7 @@
     color: #05668D;
     font-weight: 500;
     font-size: 0.9rem;
+    white-space: nowrap;
     @media (min-width: 48rem) {
       padding: 0.5rem;
       font-size: 1rem;

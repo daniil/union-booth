@@ -43,11 +43,17 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .form-element {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    &.add-program {
+      gap: 1rem;
+      :global(.button) {
+        margin-right: 0;
+      }
+    }
   }
   .input-wrapper {
     width: 75%;
@@ -55,7 +61,7 @@
 </style>
 
 <form action="/add-program" method="post" on:submit|preventDefault={handleSubmit}>
-  <div class="form-element">
+  <div class="form-element add-program">
     <div class="input-wrapper">
       <TextInput
         id="program"
