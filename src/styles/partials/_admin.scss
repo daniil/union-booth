@@ -15,3 +15,16 @@
     font-size: 1.17rem;
   }
 }
+
+%create-entity-form-elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  .input-wrapper {
+    width: 75%;
+  }
+  :global(.button) {
+    margin-right: 0;
+  }
+}

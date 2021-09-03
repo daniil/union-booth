@@ -2,6 +2,7 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { TOGGLE_COHORT_SELECT, SELECTED_COHORT } from 'graphql/queries/admin/cohorts';
+  import Checkbox from 'components/forms/Checkbox.svelte';
 
   export let selectedCohort;
   export let details;
@@ -37,8 +38,14 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
+    flex-direction: column;
     padding: 0.25rem 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
     &.is-active {
       background-color: rgba(212, 224, 155, 0.5);
       border: 1px solid rgb(212, 224, 155);
@@ -50,23 +57,25 @@
       }
     }
     &:not(.is-owner) {
-      .details {
+      h4,
+      .cohort-id {
         opacity: 0.75;
       }
     }
   }
-  .details {
-    display: flex;
-    align-items: flex-end;
-  }
   h4 {
-    margin-bottom: 0;
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
   }
   .cohort-id {
-    margin-left: 0.7rem;
     font-size: 0.7rem;
     font-weight: bold;
     color: rgba(85, 67, 72, 0.7);
+  }
+  .active-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 </style>
 
@@ -76,18 +85,16 @@
     class:is-active={isSelected}
     class:is-owner={isCohortOwner}
   >
-    <div class="details">
-      <h4>{details.title}</h4>
+    <h4>{details.title}</h4>
+    <div class="active-container">
       <span class="cohort-id">{details.id}</span>
-    </div>
-    <div class="form-element">
-      <input
-        type="checkbox"
-        name="is-active-{details.id}"
+      <Checkbox
         id="is-active-{details.id}"
+        label="Active"
+        color="#05668D"
         checked={isSelected}
-        on:change={handleActiveChange}>
-      <label for="is-active-{details.id}">Active</label>
+        on:change={handleActiveChange}
+      />
     </div>
   </div>
 </form>

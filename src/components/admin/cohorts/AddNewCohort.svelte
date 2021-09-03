@@ -54,19 +54,17 @@
   }
 </script>
 
-<style>
+<style lang="scss">
+  @use '../../../styles/partials/admin';
   .form-element {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .input-wrapper {
-    width: 75%;
+    &.add-cohort {
+      @extend %create-entity-form-elements;
+    }
   }
 </style>
 
 <form action="/add-cohort" method="post" on:submit|preventDefault={handleSubmit}>
-  <div class="form-element">
+  <div class="form-element add-cohort">
     <div class="input-wrapper">
       <TextInput
         id="cohort"
@@ -80,7 +78,7 @@
     <Button
       type="submit"
       variant={buttonVariant}
-      icon="🪆"
+      icon="👫"
       label="Create"
     />
   </div>

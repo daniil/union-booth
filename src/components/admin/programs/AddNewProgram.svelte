@@ -44,19 +44,11 @@
 </script>
 
 <style lang="scss">
+  @use '../../../styles/partials/admin';
   .form-element {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
     &.add-program {
-      gap: 1rem;
-      :global(.button) {
-        margin-right: 0;
-      }
+      @extend %create-entity-form-elements;
     }
-  }
-  .input-wrapper {
-    width: 75%;
   }
 </style>
 
