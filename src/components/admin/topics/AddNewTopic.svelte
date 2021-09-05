@@ -54,19 +54,17 @@
   }
 </script>
 
-<style>
+<style lang="scss">
+  @use '../../../styles/partials/admin';
   .form-element {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .input-wrapper {
-    width: 75%;
+    &.add-topic {
+      @extend %create-entity-form-elements;
+    }
   }
 </style>
 
 <form action="/add-topic" method="post" on:submit|preventDefault={handleSubmit}>
-  <div class="form-element">
+  <div class="form-element add-topic">
     <div class="input-wrapper">
       <TextInput
         id="topic"

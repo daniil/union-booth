@@ -2,10 +2,13 @@
   export let details;
 </script>
 
-<style>
+<style lang="scss">
   h4 {
-    font-size: 1.125rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.925rem;
+    margin-bottom: 0.875rem;
+    @media (min-width: 48rem) {
+      font-size: 1.1rem;
+    }
   }
 </style>
 
