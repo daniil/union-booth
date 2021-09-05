@@ -13,6 +13,9 @@
     gap: 0.25rem;
     white-space: nowrap;
   }
+  input:disabled + label {
+    opacity: 0.5;
+  }
 </style>
 
 <div class="checkbox-container">

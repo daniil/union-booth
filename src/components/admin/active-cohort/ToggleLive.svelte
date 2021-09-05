@@ -2,7 +2,8 @@
   import { stores } from '@sapper/app';
   import { mutation } from 'svelte-apollo';
   import { TOGGLE_COHORT_TOPIC_LIVE } from 'graphql/queries/admin/cohort-topic';
-  import { COHORT_TOPICS } from 'graphql/queries/admin/cohort-topic'; 
+  import { COHORT_TOPICS } from 'graphql/queries/admin/cohort-topic';
+  import Checkbox from 'components/forms/Checkbox.svelte';
 
   export let selectedCohort;
   export let details;
@@ -45,22 +46,11 @@
   }
 </script>
 
-<style>
-  .form-element {
-    margin-left: 1rem;
-  }
-  input:disabled + label {
-    opacity: 0.5;
-  }
-</style>
-
-<div class="form-element">
-  <input
-    type="checkbox"
-    name="is-live-{details.topic.id}"
-    id="is-live-{details.topic.id}"
-    checked={details.isLive}
-    disabled={!details.isUnlocked}
-    on:change={handleLiveChange}>
-  <label for="is-live-{details.topic.id}">Live</label>
-</div>
+<Checkbox
+  id="is-live-{details.id}"
+  label="Live"
+  color="#05668D"
+  checked={details.isLive}
+  disabled={!details.isUnlocked}
+  on:change={handleLiveChange}
+/>

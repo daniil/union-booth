@@ -3,6 +3,7 @@
   import { mutation } from 'svelte-apollo';
   import { TOGGLE_COHORT_TOPIC_UNLOCKED } from 'graphql/queries/admin/cohort-topic';
   import { COHORT_TOPICS } from 'graphql/queries/admin/cohort-topic';
+  import Checkbox from 'components/forms/Checkbox.svelte';
 
   export let selectedCohort;
   export let details;
@@ -45,18 +46,10 @@
   }
 </script>
 
-<style>
-  .form-element {
-    margin-left: 1rem;
-  }
-</style>
-
-<div class="form-element">
-  <input
-    type="checkbox"
-    name="is-unlocked-{details.topic.id}"
-    id="is-unlocked-{details.topic.id}"
-    checked={details.isUnlocked}
-    on:change={handleUnlockedChange}>
-  <label for="is-unlocked-{details.topic.id}">Unlocked</label>
-</div>
+<Checkbox
+  id="is-unlocked-{details.id}"
+  label="Unlocked"
+  color="#05668D"
+  checked={details.isUnlocked}
+  on:change={handleUnlockedChange}
+/>
