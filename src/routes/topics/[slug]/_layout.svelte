@@ -33,6 +33,7 @@
 </script>
 
 <style lang="scss">
+  @use '../../../styles/partials/buttons';
   .topic-container {
     padding: 0 1rem;
     @media (min-width: 48rem) {
@@ -47,15 +48,7 @@
     }
   }
   .back {
-    position: static;
-    display: block;
-    padding: 1rem 0;
-    margin-top: -1rem;
-    line-height: 1;
-    font-size: 0.9rem;
-    font-weight: 400;
-    text-decoration: none;
-    color: #05668D;
+    @extend %back-btn;
     @media (min-width: 48rem) {
       position: absolute;
       right: 105%;

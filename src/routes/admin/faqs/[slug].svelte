@@ -106,15 +106,22 @@
 </script>
 
 <style lang="scss">
+  @use '../../../styles/partials/buttons';
   section {
     position: relative;
     margin-bottom: 2rem;
   }
   .back {
-    position: absolute;
-    display: block;
-    top: -45px;
-    text-decoration: none;
+    @extend %back-btn;
+    @media (min-width: 48rem) {
+      position: absolute;
+      display: block;
+      margin-top: -2rem;
+      top: -45px;
+      text-decoration: none;
+      line-height: initial;
+      font-size: 1rem;
+    }
   }
   .title {
     display: flex;
