@@ -11,15 +11,17 @@
     &:hover {
       filter: brightness(1.25);
     }
-    > h4 {
-      display: inline-block;
-      padding-bottom: 0.2rem;
-      font-weight: 500;
-    }
   }
   h4 {
-    font-size: 1.125rem;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+    font-weight: 500;
     margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    @media (min-width: 48rem) {
+      font-size: 1rem;
+    }
   }
 </style>
 
