@@ -127,9 +127,22 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
     font-size: 1.25rem;
+    line-height: 1.5;
     @media (min-width: 48rem) {
+      flex-direction: row;
+      gap: 0;
+      margin-bottom: 1.5rem;
       font-size: 1.5rem;
+    }
+    :global(.button) {
+      justify-content: center;
+      @media (min-width: 48rem) {
+        justify-content: flex-start;
+      }
     }
   }
   h3 {
