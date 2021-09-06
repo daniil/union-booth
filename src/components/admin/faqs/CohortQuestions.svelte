@@ -16,10 +16,13 @@
   $: actionsVariant = filter === 'nonPublished' ? 'nonPublished' : 'publishedCohort';
 </script>
 
-<style>
+<style lang="scss">
   h4 {
     margin-bottom: 2rem;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    @media (min-width: 48rem) {
+      font-size: 1.1rem;
+    }
   }
   .question-actions {
     position: absolute;
