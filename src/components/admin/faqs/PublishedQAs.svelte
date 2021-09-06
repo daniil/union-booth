@@ -9,23 +9,24 @@
   export let variant;
 </script>
 
-<style>
+<style lang="scss">
+  @use '../../../styles/partials/admin';
   .published-qas {
     margin-bottom: 4rem;
   }
   h4 {
     margin-bottom: 2rem;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    @media (min-width: 48rem) {
+      font-size: 1.1rem;
+    }
   }
   h5 {
     margin-bottom: 0.75rem;
     color: #3E6990;
   }
   .question-actions {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 25%);
+    @extend %question-actions;
   }
 </style>
 

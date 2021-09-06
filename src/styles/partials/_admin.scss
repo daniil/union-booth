@@ -28,3 +28,17 @@
     margin-right: 0;
   }
 }
+
+%question-actions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  @media (min-width: 48rem) {
+    left: 50%;
+    top: auto;
+    bottom: 0;
+    transform: translate(-50%, 25%);
+    width: auto;
+  }
+}

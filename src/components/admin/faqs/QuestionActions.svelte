@@ -15,12 +15,21 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .actions-container:not(:empty) {
     background-color: white;
     padding: 0.75rem 1rem;
     border-radius: 4px;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    text-align: center;
+    @media (min-width: 48rem) {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      text-align: left;
+    }
   }
 </style>
 
