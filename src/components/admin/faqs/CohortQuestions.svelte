@@ -21,6 +21,7 @@
   h4 {
     margin-bottom: 2rem;
     font-size: 0.95rem;
+    line-height: 1.5;
     @media (min-width: 48rem) {
       font-size: 1.1rem;
     }
