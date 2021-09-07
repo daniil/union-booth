@@ -10,24 +10,47 @@
   .questions-filter {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     margin: 0.5rem 0 1.5rem;
+    @media (min-width: 48rem) {
+      flex-direction: row;
+      align-items: center;
+    }
   }
   .title {
+    width: 100%;
     padding: 0.25rem 0.5rem;
+    margin-bottom: 0.75rem;
     flex-grow: 1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-radius: 4px;
     background: rgba(85, 67, 72, 0.5);
     color: #FFFDF7;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      width: auto;
+      margin-bottom: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      font-size: 1rem;
+    }
   }
   .form-elements {
     display: flex;
+    gap: 1.5rem;
+    @media (min-width: 48rem) {
+      gap: 0;
+    }
   }
   .form-element {
-    margin-left: 1rem;
+    margin-left: 0;
     opacity: 0.6;
     transition: opacity 0.25s;
+    font-size: 0.9rem;
+    @media (min-width: 48rem) {
+      margin-left: 1rem;
+      font-size: 1rem;
+    }
     &.active {
       opacity: 1;
     }
