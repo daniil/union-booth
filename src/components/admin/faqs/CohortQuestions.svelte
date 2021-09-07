@@ -17,6 +17,7 @@
 </script>
 
 <style lang="scss">
+  @use '../../../styles/partials/admin';
   h4 {
     margin-bottom: 2rem;
     font-size: 0.95rem;
@@ -25,10 +26,7 @@
     }
   }
   .question-actions {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 25%);
+    @extend %question-actions;
   }
 </style>
 

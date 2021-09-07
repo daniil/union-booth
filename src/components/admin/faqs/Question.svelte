@@ -19,6 +19,7 @@
       border-bottom-right-radius: 0;
     }
     &.subtle {
+      margin-bottom: 3rem;
       filter: grayscale(0.75);
       opacity: 0.75;
     }
