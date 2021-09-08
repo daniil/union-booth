@@ -97,24 +97,23 @@
 </script>
 
 <style lang="scss">
+  @use '../../../styles/partials/buttons';
+  @use '../../../styles/partials/admin';
   section {
     position: relative;
     margin-bottom: 2rem;
   }
   .back {
-    position: absolute;
-    display: block;
-    top: -45px;
-    text-decoration: none;
+    @extend %back-btn;
+    @media (min-width: 48rem) {
+      position: absolute;
+      display: block;
+      top: -45px;
+      text-decoration: none;
+    }
   }
   .title {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    font-size: 1.25rem;
-    @media (min-width: 48rem) {
-      font-size: 1.5rem;
-    }
+    @extend %section-title;
   }
 </style>
 

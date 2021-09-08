@@ -107,6 +107,7 @@
 
 <style lang="scss">
   @use '../../../styles/partials/buttons';
+  @use '../../../styles/partials/admin';
   section {
     position: relative;
     margin-bottom: 2rem;
@@ -124,26 +125,7 @@
     }
   }
   .title {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    @media (min-width: 48rem) {
-      flex-direction: row;
-      gap: 0;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-    }
-    :global(.button) {
-      justify-content: center;
-      @media (min-width: 48rem) {
-        justify-content: flex-start;
-      }
-    }
+    @extend %section-title;
   }
   h3 {
     margin-bottom: 1rem;

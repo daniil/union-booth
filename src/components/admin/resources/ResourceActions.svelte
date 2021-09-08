@@ -14,9 +14,15 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .actions-container:not(:empty) {
     margin-left: -1.2rem;
+    :global(.button-text) {
+      font-size: 0.8rem;
+      @media (min-width: 48rem) {
+        font-size: 0.9rem;
+      }
+    }
   }
 </style>
 

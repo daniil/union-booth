@@ -16,7 +16,11 @@
     }
   }
   h3 {
+    font-size: 1rem;
     font-weight: 500;
+    @media (min-width: 48rem) {
+      font-size: 1.17rem;
+    }
     &.linksOnly {
       margin-bottom: 0.5rem;
     }
