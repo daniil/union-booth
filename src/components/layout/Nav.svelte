@@ -11,12 +11,19 @@
 
 <style lang="scss">
 	nav {
-		position: relative;
+		position: fixed;
+		top: 0;
+		width: 100%;
 		z-index: 2;
-		border-bottom: 1px solid rgba(222, 207, 222, 0.5);
-		background-color: rgba(247, 243, 247, 0.25);
-		font-weight: 300;
 		padding: 0 1em;
+		border-bottom: 1px solid rgba(222, 207, 222, 0.5);
+		background-color: #FDFCFD;
+		box-shadow: rgb(0 0 0 / 5%) 0px 4px 12px;
+		font-weight: 300;
+		@media (min-width: 48rem) {
+			position: relative;
+			box-shadow: none;
+		}
 	}
 	ul {
 		max-width: 1215px;

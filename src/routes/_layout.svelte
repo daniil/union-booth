@@ -32,7 +32,7 @@
 		position: relative;
 		max-width: 56em;
 		background-color: white;
-		padding: 2em 0 6em 0;
+		padding: 5.5em 0 6em 0;
 		margin: 0 auto;
 		box-sizing: border-box;
 		z-index: 1;
