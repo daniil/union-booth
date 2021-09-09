@@ -12,31 +12,68 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
     padding: 0.5rem 0.5rem;
     margin: 0.25rem 0;
     font-size: 0.85rem;
+    @media (min-width: 48rem) {
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+    }
     &:nth-of-type(even) {
       background-color: rgba(219, 211, 216, 0.125);
     }
-    &.inactive > .cell {
+    &.inactive .cell {
       opacity: 0.6;
     }
   }
+  .cell-wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    @media (min-width: 48rem) {
+      display: block;
+      width: 21%;
+    }
+    &.date-joined {
+      @media (min-width: 48rem) {
+        width: 16%;
+      }
+    }
+  }
+  .header-cell {
+    width: 12rem;
+    font-weight: 300;
+    opacity: 0.6;
+    @media (min-width: 48rem) {
+      display: none;
+    }
+  }
   .cell {
-    width: 21%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    width: 100%;
+    white-space: normal;
     padding-right: 0.5rem;
     transition: opacity 0.25s;
-    &.date-joined {
-      width: 16%;
+    @media (min-width: 48rem) {
+      display: block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
   .admin-icon {
     position: absolute;
-    right: 100%;
+    right: 0;
+    bottom: 0;
+    font-size: 1rem;
+    @media (min-width: 48rem) {
+      right: 100%;
+      bottom: auto;
+      font-size: 0.85rem;
+    }
   }
   .actions-container {
     position: absolute;
@@ -49,11 +86,26 @@
   {#if user.role === 'admin'}
     <span class="admin-icon" title="Admin">⭐</span>
   {/if}
-  <span class="cell first-name" title={user.firstName}>{user.firstName}</span>
-  <span class="cell last-name" title={user.lastName}>{user.lastName}</span>
-  <span class="cell username" title={user.username}>{user.username}</span>
-  <span class="cell email" title={user.email}>{user.email}</span>
-  <span class="cell date-joined" title={createdDate}>{createdDate}</span>
+  <span class="cell-wrapper first-name">
+    <span class="header-cell">First Name:</span>
+    <span class="cell" title={user.firstName}>{user.firstName}</span>
+  </span>
+  <span class="cell-wrapper last-name">
+    <span class="header-cell">Last Name:</span>
+    <span class="cell" title={user.lastName}>{user.lastName}</span>
+  </span>
+  <span class="cell-wrapper username">
+    <span class="header-cell">Username:</span>
+    <span class="cell" title={user.username}>{user.username}</span>
+  </span>
+  <span class="cell-wrapper email">
+    <span class="header-cell">Email:</span>
+    <span class="cell" title={user.email}>{user.email}</span>
+  </span>
+  <span class="cell-wrapper date-joined">
+    <span class="header-cell">Date Joined:</span>
+    <span class="cell" title={createdDate}>{createdDate}</span>
+  </span>
   <span class="actions-container" data-id={user.id}>
     <UserActions {user}/>
   </span>
