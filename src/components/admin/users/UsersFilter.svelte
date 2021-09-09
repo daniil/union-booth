@@ -3,30 +3,9 @@
 </script>
 
 <style lang="scss">
+  @use '../../../styles/partials/admin';
   .users-filter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.5rem 0 1.5rem;
-  }
-  .title {
-    padding: 0.25rem 0.5rem;
-    flex-grow: 1;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    background: rgba(85, 67, 72, 0.5);
-    color: #FFFDF7;
-  }
-  .form-elements {
-    display: flex;
-  }
-  .form-element {
-    margin-left: 1rem;
-    opacity: 0.6;
-    transition: opacity 0.25s;
-    &.active {
-      opacity: 1;
-    }
+    @extend %filter-radio-form;
   }
 </style>
 
