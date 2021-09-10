@@ -33,10 +33,10 @@
   onDestroy(() => usersSub.unsubscribe());
 </script>
 
-<style>
+<style lang="scss">
+  @use '../../../styles/partials/admin';
   .no-users {
-    text-align: center;
-    color: rgba(85, 67, 72, 0.7);
+    @extend %no-users;
   }
 </style>
 

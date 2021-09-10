@@ -69,7 +69,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    font-size: 1rem;
+    font-size: 1.25rem;
     @media (min-width: 48rem) {
       right: 100%;
       bottom: auto;
