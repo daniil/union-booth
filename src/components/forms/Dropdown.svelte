@@ -94,6 +94,7 @@
     left: 0;
     list-style: none;
     margin: 0;
+    z-index: 1;
     background-color: #FDFCFD;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     border-radius: 4px;

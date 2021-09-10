@@ -16,12 +16,13 @@
     flex-direction: column;
     gap: 0.25rem;
     padding: 0.5rem 0.5rem;
-    margin: 0.25rem 0;
+    margin: 0.25rem 0 1rem;
     font-size: 0.85rem;
     @media (min-width: 48rem) {
       flex-direction: row;
       align-items: center;
       gap: 0;
+      margin: 0.25rem 0;
     }
     &:nth-of-type(even) {
       background-color: rgba(219, 211, 216, 0.125);
