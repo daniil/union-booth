@@ -10,6 +10,7 @@ const userInformation = gql`
     role
     cohortId
     createdAt
+    isVerified
     isInactive
   }
 `;
