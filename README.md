@@ -137,6 +137,10 @@ Once your application is deployed to view the application logs you can use `qove
 
 For deploying to a non Qovery environment, do a global search for `// Custom production config` in the project and update the values accordingly to your server and environment configuration.
 
+#### Manual Deploy
+
+For VPS, `git pull` latest in `/union-booth` root folder, run `npm run build` to build the production package and then run `npm run start:forever`.
+
 ### Updating Version Tag
 
 The application is configured to show the version of the app from Git tags (visible on the Admin section, at the bottom of the nav). To update the current version:
