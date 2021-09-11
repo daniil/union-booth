@@ -48,7 +48,8 @@ export default {
         const users = await models.User.findAll({
           where: {
             cohortId,
-            role: 'user'
+            role: 'user',
+            isVerified: true
           },
           order: [
             ['firstName', 'ASC'],
@@ -68,7 +69,8 @@ export default {
         const users = await models.User.findAll({
           where: {
             cohortId,
-            role: 'moderator'
+            role: 'moderator',
+            isVerified: true
           },
           order: [
             ['firstName', 'ASC'],
@@ -99,6 +101,7 @@ export default {
           const users = await models.User.findAll({
             where: {
               selectedProgram: user.selectedProgram,
+              isVerified: true,
               role: {
                 [Op.in]: ['admin', 'manager']
               },
