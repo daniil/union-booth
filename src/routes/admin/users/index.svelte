@@ -18,6 +18,7 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import AuthContent from 'components/auth/AuthContent.svelte';
+  import UnverifiedUsers from 'components/admin/users/UnverifiedUsers.svelte';
   import ProgramUsers from 'components/admin/users/ProgramUsers.svelte';
   import CohortTeamUsers from 'components/admin/users/CohortTeamUsers.svelte';
   import CohortUsers from 'components/admin/users/CohortUsers.svelte';
@@ -71,6 +72,15 @@
 </style>
 
 <h2>Users</h2>
+
+{#if selectedProgram && selectedCohort}
+  <section>
+    <h3>
+      Unverified <span class="selected">{selectedProgram.title}</span> and <span class="selected">{selectedCohort.title}</span> Users
+    </h3>
+    <UnverifiedUsers cohortId={selectedCohort.id}/>
+  </section>
+{/if}
 
 <UsersFilter bind:value={filterValue}/>
 

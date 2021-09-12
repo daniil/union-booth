@@ -44,10 +44,24 @@ export default {
       isAuthenticated,
       checkRole('manager'),
       validateManagerCohort,
-      async (_, { cohortId }, { models }) => {
+      async (_, { cohortId }, { models, session }) => {
+        const user = await models.User.findOne({
+          where: {
+            id: session.user.id,
+            isInactive: false
+          }
+        });
+
+        if (!user) {
+          throw new ForbiddenError('This user is inactive.');
+        }
+
         const users = await models.User.findAll({
           where: {
-            cohortId,
+            [Op.or]: [
+              { cohortId },
+              { selectedProgram: user.selectedProgram }
+            ],
             isVerified: false
           },
           order: [
