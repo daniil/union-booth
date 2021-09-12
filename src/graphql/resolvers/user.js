@@ -40,6 +40,26 @@ export default {
       }
     ),
 
+    unverifiedUsers: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      validateManagerCohort,
+      async (_, { cohortId }, { models }) => {
+        const users = await models.User.findAll({
+          where: {
+            cohortId,
+            isVerified: false
+          },
+          order: [
+            ['firstName', 'ASC'],
+            ['lastName', 'ASC']
+          ]
+        });
+
+        return users;
+      }
+    ),
+
     cohortUsers: combineResolvers(
       isAuthenticated,
       checkRole('manager'),

@@ -135,6 +135,7 @@ const typeDefs = gql`
     answersInProgress(cohortQuestionId: ID!): [CohortAnswerInProgress]!
     topicFAQ(slug: ID!): TopicFAQ!
     topicResources(slug: ID!): TopicResources!
+    unverifiedUsers(cohortId: ID!): [User]!
     cohortUsers(cohortId: ID!): [User]!
     cohortTeamUsers(cohortId: ID!): [User]!
     programUsers: [User]!
