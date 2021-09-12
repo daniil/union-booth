@@ -93,7 +93,7 @@
       <TextInput id="passwordConfirm" type="password" label="Confirm Password" bind:value={passwordConfirm} required disabled={formDisabled}/>
     </div>
     <div class="form-element action">
-      <Button type="submit" variant={buttonVariant} icon="🪄" label="Update"/>
+      <Button type="submit" variant={buttonVariant} icon="🖋️" label="Update"/>
     </div>
   </form>
 </div>

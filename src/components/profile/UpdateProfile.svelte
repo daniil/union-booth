@@ -129,7 +129,7 @@
     <TextInput id="email" type="email" label="Email" value={userInfo?.email} required disabled={formDisabled}/>
   </div>
   <div class="form-element action">
-    <Button type="submit" variant={buttonVariant} icon="🪄" label="Update"/>
+    <Button type="submit" variant={buttonVariant} icon="🖋️" label="Update"/>
   </div>
   <FormErrors {errors}/>
   {#if fetchingData}

@@ -62,7 +62,7 @@
   .nav-container {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 3.5rem;
     margin-right: 3rem;
     min-width: 15%;
     background-color: white;
