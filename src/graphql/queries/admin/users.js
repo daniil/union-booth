@@ -15,6 +15,15 @@ const userInformation = gql`
   }
 `;
 
+const UNVERIFIED_USERS = gql`
+  query UnverifiedUsers($cohortId: ID!) {
+    unverifiedUsers(cohortId: $cohortId) {
+      ...UserInformation
+    }
+  }
+  ${userInformation}
+`;
+
 const COHORT_USERS = gql`
   query CohortUsers($cohortId: ID!) {
     cohortUsers(cohortId: $cohortId) {
@@ -61,6 +70,7 @@ const UPDATE_USER_ROLE = gql`
 `;
 
 export {
+  UNVERIFIED_USERS,
   COHORT_USERS,
   COHORT_TEAM_USERS,
   PROGRAM_USERS,
