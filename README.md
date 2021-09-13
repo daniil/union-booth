@@ -181,3 +181,13 @@ If you are getting `FATAL ERROR: Ineffective mark-compacts near heap limit Alloc
 ```
 export NODE_OPTIONS=--max-old-space-size=1024 #this will set it to 1G instead of default 512mb
 ```
+
+### `GraphQL error: out of shared memory`
+
+If you run into an `out of shared memory` exception, you can fix it by increasing the `max_locks_per_transaction`.
+
+You can increase it in the `postgresql.conf` file.
+
+If you are using [Postgres.app](https://postgresapp.com/), the file can be found in `/Users/$USERNAME$/Library/Application\ Support/Postgres/var-13/`.
+
+If you have installed Postgres using Homebrew you can find it in `/usr/local/var/postgres/`
