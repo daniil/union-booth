@@ -69,18 +69,13 @@
   .selected {
     color: rgba(85, 67, 72, 0.9);
   }
+  .unverified {
+    border-top: 3px solid rgba(85, 67, 72, 0.25);
+    padding-top: 1.5rem;
+  }
 </style>
 
 <h2>Users</h2>
-
-{#if selectedProgram && selectedCohort}
-  <section>
-    <h3>
-      Unverified <span class="selected">{selectedProgram.title}</span> and <span class="selected">{selectedCohort.title}</span> Users
-    </h3>
-    <UnverifiedUsers cohortId={selectedCohort.id}/>
-  </section>
-{/if}
 
 <UsersFilter bind:value={filterValue}/>
 
@@ -114,4 +109,13 @@
   {/if}
 {:else}
   <p>No active program selected currently 🙍🏼‍♂️. Please <a rel="prefetch" href="/admin/programs">select one</a></p>
+{/if}
+
+{#if selectedProgram && selectedCohort}
+  <section class="unverified">
+    <h3>
+      Unverified <span class="selected">{selectedProgram.title}</span> and <span class="selected">{selectedCohort.title}</span> Users
+    </h3>
+    <UnverifiedUsers cohortId={selectedCohort.id}/>
+  </section>
 {/if}
