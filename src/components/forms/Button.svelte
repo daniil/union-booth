@@ -65,6 +65,11 @@
       > .button-text {
         color: #395647;
       }
+      &.link {
+        > .button-text {
+          color: #418B64;
+        }
+      }
     }
     &.danger {
       background: rgba(239, 108, 139, 0.3);
