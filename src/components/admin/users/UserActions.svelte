@@ -6,6 +6,7 @@
   import elementClickOff from 'utils/elementClickOff';
 
   export let user;
+  export let actions;
   
   let navVisible = false;
 
@@ -53,6 +54,7 @@
   <div class="user-actions-nav-wrapper" transition:fly="{{ duration: 300, y: 5, opacity: 0, easing: quintOut }}">
     <UserActionsNav
       {user}
+      {actions}
       on:action-complete={handleActionComplete}
     />
   </div>

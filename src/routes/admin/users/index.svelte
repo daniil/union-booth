@@ -116,6 +116,6 @@
     <h3>
       Unverified <span class="selected">{selectedProgram.title}</span> and <span class="selected">{selectedCohort.title}</span> Users
     </h3>
-    <UnverifiedUsers cohortId={selectedCohort.id}/>
+    <UnverifiedUsers cohortId={selectedCohort.id} actions="unverified"/>
   </section>
 {/if}

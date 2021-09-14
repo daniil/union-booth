@@ -3,6 +3,7 @@
   import UserActions from 'components/admin/users/UserActions.svelte';
 
   export let user;
+  export let actions;
 
   $: createdDate = formatDate(user.createdAt, true);
 </script>
@@ -108,6 +109,6 @@
     <span class="cell" title={createdDate}>{createdDate}</span>
   </span>
   <span class="actions-container" data-id={user.id}>
-    <UserActions {user}/>
+    <UserActions {user} {actions}/>
   </span>
 </p>

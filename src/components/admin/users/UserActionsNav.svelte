@@ -13,6 +13,7 @@
   import Button from 'components/forms/Button.svelte';
 
   export let user;
+  export let actions;
 
   const { session } = stores();
   const dispatch = createEventDispatcher();
@@ -39,9 +40,14 @@
     admin: { query: PROGRAM_USERS, key: 'programUsers' }
   };
 
-  $: buttonVariant = deactivateBtnLoading ? 'loading' : user.isInactive ? '' : 'danger';
+  $: verifyBtnVariant = deactivateBtnLoading ? 'loading' : 'success';
+  $: activateBtnVariant = deactivateBtnLoading ? 'loading' : user.isInactive ? 'success' : 'danger';
   $: activeStatusLabel = user.isInactive ? 'Activate' : 'Deactivate';
 
+  const handleVerify = async () => {
+    console.log('Verify user');
+  }
+  
   const handleUpdateStatus = async () => {
     try {
       deactivateBtnLoading = true;
@@ -171,12 +177,16 @@
 </style>
 
 <nav class="user-actions-nav">
-  <Dropdown
-    label="Role"
-    value={user.role}
-    options={userRoles}
-    loading={roleDropdownLoading}
-    on:select={handleRoleSelect}
-  />
-  <Button style="link" variant={buttonVariant} label={activeStatusLabel} action={handleUpdateStatus}/>
+  {#if actions === 'unverified'}
+    <Button style="link" variant={verifyBtnVariant} label="Verify" action={handleVerify}/>
+  {:else}
+    <Dropdown
+      label="Role"
+      value={user.role}
+      options={userRoles}
+      loading={roleDropdownLoading}
+      on:select={handleRoleSelect}
+    />
+    <Button style="link" variant={activateBtnVariant} label={activeStatusLabel} action={handleUpdateStatus}/>
+  {/if}
 </nav>

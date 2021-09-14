@@ -7,6 +7,7 @@
   import UserRow from 'components/admin/users/UserRow.svelte';
 
   export let cohortId;
+  export let actions;
 
   const { session } = stores();
 
@@ -48,7 +49,7 @@
     <UsersHeader/>
   {/if}
   {#each users as user (user.id)}
-    <UserRow {user}/>
+    <UserRow {user} {actions}/>
   {:else}
     <p class="no-users">No users left to verify 👌</p>
   {/each}
