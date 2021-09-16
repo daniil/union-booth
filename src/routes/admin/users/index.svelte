@@ -114,7 +114,7 @@
 {#if selectedProgram && selectedCohort}
   <section class="unverified">
     <h3>
-      Unverified <span class="selected">{selectedProgram.title}</span> and <span class="selected">{selectedCohort.title}</span> Users
+      Unverified <AuthContent role="admin"><span class="selected">{selectedProgram.title}</span> and </AuthContent><span class="selected">{selectedCohort.title}</span> Users
     </h3>
     <UnverifiedUsers cohortId={selectedCohort.id} actions="unverified"/>
   </section>

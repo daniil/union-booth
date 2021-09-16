@@ -45,23 +45,26 @@ export default {
       checkRole('manager'),
       validateManagerCohort,
       async (_, { cohortId }, { models, session }) => {
-        const user = await models.User.findOne({
+        const manager = await models.User.findOne({
           where: {
             id: session.user.id,
             isInactive: false
           }
         });
 
-        if (!user) {
+        if (!manager) {
           throw new ForbiddenError('This user is inactive.');
+        }
+
+        let userFilter = [{ cohortId }];
+
+        if (manager.role === 'admin') {
+          userFilter.push({ selectedProgram: manager.selectedProgram });
         }
 
         const users = await models.User.findAll({
           where: {
-            [Op.or]: [
-              { cohortId },
-              { selectedProgram: user.selectedProgram }
-            ],
+            [Op.or]: userFilter,
             isVerified: false
           },
           order: [
@@ -344,6 +347,10 @@ export default {
 
           if (manager.id === user.id) {
             throw new UserInputError('You can not verify your own account');
+          }
+
+          if (manager.role === 'manager' && user.role === 'manager') {
+            throw new UserInputError('You do not have permissions to verify manager account');
           }
 
           if (user.role === 'user' && !user.cohort) {
