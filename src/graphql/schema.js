@@ -158,6 +158,7 @@ const typeDefs = gql`
     updateUserAvatar(userId: ID!): Boolean!
     updateUserInfo(userId: ID!, firstName: String, lastName: String, username: String, email: String): User!
     updateUserPassword(userId: ID!, password: String!): Boolean!
+    verifyUser(id: ID!): User!
     updateUserActiveStatus(id: ID!, isInactive: Boolean!): User!
     updateUserRole(id: ID!, newRole: String!): User!
     deactivateUserAccount: User!

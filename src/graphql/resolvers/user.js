@@ -315,6 +315,60 @@ export default {
       }
     ),
 
+    verifyUser: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      async (_, { id }, { models, session }) => {
+        try {
+          const manager = await models.User.findOne({
+            attributes: ['id', 'selectedProgram'],
+            where: {
+              id: session.user.id
+            }
+          });
+
+          const user = await models.User.findOne({
+            where: {
+              id
+            },
+            include: [{
+              model: models.Cohort,
+              attributes: ['programId'],
+              as: 'cohort'
+            }]
+          });
+
+          if (user.isVerified) {
+            throw new UserInputError('This user is already verified');
+          }
+
+          if (manager.id === user.id) {
+            throw new UserInputError('You can not verify your own account');
+          }
+
+          if (user.role === 'user' && !user.cohort) {
+            throw new UserInputError('This user does not seem to be a part of existing cohort');
+          }
+
+          if (user.selectedProgram && manager.selectedProgram !== user.selectedProgram) {
+            throw new UserInputError('You do not have permissions to verify manager from this program');
+          }
+
+          if (user.cohort && manager.selectedProgram !== user.cohort.programId) {
+            throw new UserInputError('You do not have permissions to verify user from this program');
+          }
+
+          await user.update({
+            isVerified: true
+          });
+
+          return user;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
+    ),
+
     updateUserActiveStatus: combineResolvers(
       isAuthenticated,
       checkRole('manager'),
@@ -352,11 +406,15 @@ export default {
             throw new UserInputError('You do not have permissions to deactivate manager or admin account');
           }
 
-          if (!user.cohort) {
+          if (user.role === 'user' && !user.cohort) {
             throw new UserInputError('This user does not seem to be a part of existing cohort');
           }
 
-          if (manager.selectedProgram !== user.cohort.programId) {
+          if (user.selectedProgram && manager.selectedProgram !== user.selectedProgram) {
+            throw new UserInputError('You do not have permissions to deactivate manager from this program');
+          }
+
+          if (user.cohort && manager.selectedProgram !== user.cohort.programId) {
             throw new UserInputError('You do not have permissions to deactivate user from this program');
           }
 
