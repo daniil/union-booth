@@ -70,7 +70,7 @@
     color: rgba(85, 67, 72, 0.9);
   }
   .unverified {
-    border-top: 3px solid rgba(85, 67, 72, 0.25);
+    border-top: 3px solid rgba(85, 67, 72, 0.15);
     padding-top: 1.5rem;
   }
 </style>

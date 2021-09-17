@@ -66,7 +66,7 @@
       overflow: hidden;
     }
   }
-  .admin-icon {
+  .user-type-icon {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -86,7 +86,10 @@
 
 <p class="user" class:inactive={user.isInactive}>
   {#if user.role === 'admin'}
-    <span class="admin-icon" title="Admin">⭐</span>
+    <span class="user-type-icon" title="Admin">⭐</span>
+  {/if}
+  {#if user.role === 'manager'}
+    <span class="user-type-icon" title="Team Member">🪖</span>
   {/if}
   <span class="cell-wrapper first-name">
     <span class="header-cell">First Name:</span>
