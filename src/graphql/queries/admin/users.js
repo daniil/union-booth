@@ -51,6 +51,15 @@ const PROGRAM_USERS = gql`
   ${userInformation}
 `;
 
+const VERIFY_USER = gql`
+  mutation VerifyUser($id: ID!) {
+    verifyUser(id: $id) {
+      ...UserInformation
+    }
+  }
+  ${userInformation}
+`;
+
 const UPDATE_USER_ACTIVE_STATUS = gql`
   mutation UpdateUserActiveStatus($id: ID!, $isInactive: Boolean!) {
     updateUserActiveStatus(id: $id, isInactive: $isInactive) {
@@ -74,6 +83,7 @@ export {
   COHORT_USERS,
   COHORT_TEAM_USERS,
   PROGRAM_USERS,
+  VERIFY_USER,
   UPDATE_USER_ACTIVE_STATUS,
   UPDATE_USER_ROLE
 }
