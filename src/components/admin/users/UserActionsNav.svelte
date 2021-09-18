@@ -3,6 +3,7 @@
   import { createEventDispatcher } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import {
+    UNVERIFIED_USERS,
     COHORT_USERS,
     COHORT_TEAM_USERS,
     PROGRAM_USERS,
@@ -36,6 +37,7 @@
   let roleDropdownLoading = false;
 
   const queries = {
+    unverified: { query: UNVERIFIED_USERS, key: 'unverifiedUsers' },
     user: { query: COHORT_USERS, key: 'cohortUsers' },
     moderator: { query: COHORT_TEAM_USERS, key: 'cohortTeamUsers' },
     manager: { query: PROGRAM_USERS, key: 'programUsers' },
@@ -56,7 +58,8 @@
         },
         update: (_, mutationResult) => {
           const verifiedUser = mutationResult.data.verifyUser;
-          updateUserQuery(verifiedUser);
+          updateUserQuery(queries['unverified'], user, 'remove');
+          updateUserQuery(queries[verifiedUser.role], verifiedUser, 'add');
         }
       });
 
@@ -78,7 +81,7 @@
         },
         update: (_, mutationResult) => {
           const updatedUser = mutationResult.data.updateUserActiveStatus;
-          updateUserQuery(updatedUser, 'update');
+          updateUserQuery(queries[updatedUser.role], updatedUser, 'update');
         }
       });
 
@@ -100,9 +103,8 @@
         },
         update: (_, mutationResult) => {
           const updatedUser = mutationResult.data.updateUserRole;
-
-          updateUserQuery(user, 'remove');
-          updateUserQuery(updatedUser, 'add');
+          updateUserQuery(queries[user.role], user, 'remove');
+          updateUserQuery(queries[updatedUser.role], updatedUser, 'add');
         }
       });
 
@@ -112,15 +114,13 @@
     }
   }
 
-  const updateUserQuery = (updatedUser, action) => {
-    const userQuery = queries[updatedUser.role];
-
+  const updateUserQuery = (updateQuery, updatedUser, action) => {
     const currentUsers = $session.apolloClient.readQuery({
-      query: userQuery.query,
+      query: updateQuery.query,
       variables: {
         cohortId: updatedUser.cohortId
       }
-    })[userQuery.key];
+    })[updateQuery.key];
 
     const updatedQueryData = {
       'add': currentUsers.concat([updatedUser]).sort(sortUsersAlphabetic),
@@ -135,12 +135,12 @@
     };
 
     $session.apolloClient.writeQuery({
-      query: userQuery.query,
+      query: updateQuery.query,
       variables: {
         cohortId: updatedUser.cohortId
       },
       data: {
-        [userQuery.key]: updatedQueryData[action]
+        [updateQuery.key]: updatedQueryData[action]
       }
     });
   }
