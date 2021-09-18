@@ -46,33 +46,6 @@
   $: activateBtnVariant = deactivateBtnLoading ? 'loading' : user.isInactive ? 'success' : 'danger';
   $: activeStatusLabel = user.isInactive ? 'Activate' : 'Deactivate';
 
-  const updateUserQuery = updatedUser => {
-    const userQuery = queries[updatedUser.role];
-
-    const currentUsers = $session.apolloClient.readQuery({
-      query: userQuery.query,
-      variables: {
-        cohortId: updatedUser.cohortId
-      }
-    })[userQuery.key];
-
-    $session.apolloClient.writeQuery({
-      query: userQuery.query,
-      variables: {
-        cohortId: updatedUser.cohortId
-      },
-      data: {
-        [userQuery.key]: currentUsers.map(user => {
-          if (updatedUser.id === user.id) {
-            return updatedUser;
-          } else {
-            return user;
-          }
-        })
-      }
-    });
-  }
-
   const handleVerify = async () => {
     try {
       deactivateBtnLoading = true;
@@ -105,7 +78,7 @@
         },
         update: (_, mutationResult) => {
           const updatedUser = mutationResult.data.updateUserActiveStatus;
-          updateUserQuery(updatedUser);
+          updateUserQuery(updatedUser, 'update');
         }
       });
 
@@ -127,42 +100,9 @@
         },
         update: (_, mutationResult) => {
           const updatedUser = mutationResult.data.updateUserRole;
-          const prevRoleUserQuery = queries[user.role];
-          const updatedUserQuery = queries[updatedUser.role];
 
-          const prevRoleUsers = $session.apolloClient.readQuery({
-            query: prevRoleUserQuery.query,
-            variables: {
-              cohortId: updatedUser.cohortId
-            }
-          })[prevRoleUserQuery.key];
-
-          $session.apolloClient.writeQuery({
-            query: prevRoleUserQuery.query,
-            variables: {
-              cohortId: updatedUser.cohortId
-            },
-            data: {
-              [prevRoleUserQuery.key]: prevRoleUsers.filter(user => updatedUser.id !== user.id)
-            }
-          });
-
-          const updatedRoleUsers = $session.apolloClient.readQuery({
-            query: updatedUserQuery.query,
-            variables: {
-              cohortId: updatedUser.cohortId
-            }
-          })[updatedUserQuery.key];
-
-          $session.apolloClient.writeQuery({
-            query: updatedUserQuery.query,
-            variables: {
-              cohortId: updatedUser.cohortId
-            },
-            data: {
-              [updatedUserQuery.key]: updatedRoleUsers.concat([updatedUser]).sort(sortUsersAlphabetic)
-            }
-          })
+          updateUserQuery(user, 'remove');
+          updateUserQuery(updatedUser, 'add');
         }
       });
 
@@ -170,6 +110,39 @@
     } catch(err) {
       console.log('ERROR: ', err);
     }
+  }
+
+  const updateUserQuery = (updatedUser, action) => {
+    const userQuery = queries[updatedUser.role];
+
+    const currentUsers = $session.apolloClient.readQuery({
+      query: userQuery.query,
+      variables: {
+        cohortId: updatedUser.cohortId
+      }
+    })[userQuery.key];
+
+    const updatedQueryData = {
+      'add': currentUsers.concat([updatedUser]).sort(sortUsersAlphabetic),
+      'update': currentUsers.map(user => {
+        if (updatedUser.id === user.id) {
+          return updatedUser;
+        } else {
+          return user;
+        }
+      }),
+      'remove': currentUsers.filter(user => updatedUser.id !== user.id)
+    };
+
+    $session.apolloClient.writeQuery({
+      query: userQuery.query,
+      variables: {
+        cohortId: updatedUser.cohortId
+      },
+      data: {
+        [userQuery.key]: updatedQueryData[action]
+      }
+    });
   }
 
   const sortUsersAlphabetic = (a,b) => {
