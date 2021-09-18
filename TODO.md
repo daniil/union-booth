@@ -1,7 +1,5 @@
 ## Tasks
 
-- Add user management admin functionality
-  - Add "verify" functionality in user admin
 - Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
   - Register and update profile pages
@@ -31,7 +29,7 @@
 
 ## Tweaks
 
-- Update radio buttons to be aligned properly
+- Update radio buttons to be aligned properly (for mobile particularly)
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
 - Add a nice tooltip to "Posted by" avatar in Live Question component
