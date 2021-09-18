@@ -6,6 +6,7 @@
     COHORT_USERS,
     COHORT_TEAM_USERS,
     PROGRAM_USERS,
+    VERIFY_USER,
     UPDATE_USER_ACTIVE_STATUS,
     UPDATE_USER_ROLE
   } from 'graphql/queries/admin/users';
@@ -18,6 +19,7 @@
   const { session } = stores();
   const dispatch = createEventDispatcher();
 
+  const verifyUser = mutation(VERIFY_USER);
   const updateUserActiveStatus = mutation(UPDATE_USER_ACTIVE_STATUS);
   const updateUserRole = mutation(UPDATE_USER_ROLE);
 
@@ -44,8 +46,52 @@
   $: activateBtnVariant = deactivateBtnLoading ? 'loading' : user.isInactive ? 'success' : 'danger';
   $: activeStatusLabel = user.isInactive ? 'Activate' : 'Deactivate';
 
+  const updateUserQuery = updatedUser => {
+    const userQuery = queries[updatedUser.role];
+
+    const currentUsers = $session.apolloClient.readQuery({
+      query: userQuery.query,
+      variables: {
+        cohortId: updatedUser.cohortId
+      }
+    })[userQuery.key];
+
+    $session.apolloClient.writeQuery({
+      query: userQuery.query,
+      variables: {
+        cohortId: updatedUser.cohortId
+      },
+      data: {
+        [userQuery.key]: currentUsers.map(user => {
+          if (updatedUser.id === user.id) {
+            return updatedUser;
+          } else {
+            return user;
+          }
+        })
+      }
+    });
+  }
+
   const handleVerify = async () => {
-    console.log('Verify user');
+    try {
+      deactivateBtnLoading = true;
+
+      await verifyUser({
+        variables: {
+          id: user.id
+        },
+        update: (_, mutationResult) => {
+          const verifiedUser = mutationResult.data.verifyUser;
+          updateUserQuery(verifiedUser);
+        }
+      });
+
+      dispatch('action-complete');
+      deactivateBtnLoading = false;
+    } catch(err) {
+      console.log('ERROR: ', err);
+    }
   }
   
   const handleUpdateStatus = async () => {
@@ -59,30 +105,7 @@
         },
         update: (_, mutationResult) => {
           const updatedUser = mutationResult.data.updateUserActiveStatus;
-          const userQuery = queries[updatedUser.role];
-
-          const currentUsers = $session.apolloClient.readQuery({
-            query: userQuery.query,
-            variables: {
-              cohortId: updatedUser.cohortId
-            }
-          })[userQuery.key];
-
-          $session.apolloClient.writeQuery({
-            query: userQuery.query,
-            variables: {
-              cohortId: updatedUser.cohortId
-            },
-            data: {
-              [userQuery.key]: currentUsers.map(user => {
-                if (updatedUser.id === user.id) {
-                  return updatedUser;
-                } else {
-                  return user;
-                }
-              })
-            }
-          });
+          updateUserQuery(updatedUser);
         }
       });
 
