@@ -32,6 +32,8 @@
     position: relative;
   }
   .trigger-action {
+    position: relative;
+    top: -0.4rem;
     background: transparent;
     border: none;
     cursor: pointer;

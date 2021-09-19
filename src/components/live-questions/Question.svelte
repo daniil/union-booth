@@ -9,6 +9,7 @@
   import QuestionAnswers from 'components/live-answers/QuestionAnswers.svelte';
   import QuestionStatus from 'components/live-questions/QuestionStatus.svelte'
   import QuestionActions from 'components/live-questions/QuestionActions.svelte';
+  import Upvote from 'components/shared/Upvote.svelte';
   
   export let details;
 
@@ -88,6 +89,10 @@
   }
 
   onDestroy(() => cohortAnswerProgressUnsub());
+
+  const handleUpvote = () => {
+    console.log('Handle Upvote');
+  }
 </script>
 
 <style lang="scss">
@@ -102,6 +107,9 @@
     @media (min-width: 48rem) {
       padding-bottom: 1.25rem;
     }
+  }
+  .question-container {
+    position: relative;
   }
   .is-being-answered {
     border-color: rgb(212, 224, 155);
@@ -132,9 +140,13 @@
 <article
   class="question"
   class:is-being-answered={isBeingAnswered}
-  class:is-answered={isAnswered}>
-  <h3>{@html content}</h3>
-  <QuestionFooter {details}/>
+  class:is-answered={isAnswered}
+>
+  <div class="question-container">
+    <h3>{@html content}</h3>
+    <QuestionFooter {details}/>
+    <Upvote on:click={handleUpvote}/>
+  </div>
   <QuestionAnswers
     questionId={details.id}
     {beingAnsweredBy}
