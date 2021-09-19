@@ -9,6 +9,7 @@
   .meta {
     display: flex;
     align-items: center;
+    width: calc(100% - 50px);
   }
 </style>
 

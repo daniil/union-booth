@@ -5,31 +5,31 @@
 <style lang="scss">
   .upvote {
     position: absolute;
-    top: -0.5rem;
-    left: -0.5rem;
-    width: calc(100% + 1rem);
-    height: calc(100% + 1rem);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    padding: 0;
     border-radius: 0.75rem;
-    opacity: 0;
-    transform: scale(0.95);
-    background-color: rgba(255, 255, 255, 0.75);
-    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    background-color: transparent;
+    cursor: pointer;
     color: transparent;
     &:hover {
-      cursor: pointer;
-      opacity: 1;
-      transform: scale(1);
+      filter: brightness(1.25);
     }
     :global(svg) {
       fill: #3E6990;
+      position: relative;
+      top: 0.6rem;
+      left: 0.7rem;
+      width: 35px;
     }
   }
 </style>
 
 <div class="upvote" on:click>
-  <ThumbsSVG width="75"/>
+  <ThumbsSVG/>
 </div>
