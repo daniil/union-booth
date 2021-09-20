@@ -1,15 +1,19 @@
 <script>
   import Avatar from 'components/shared/Avatar.svelte';
   import PostTimestamp from 'components/shared/PostTimestamp.svelte';
+  import Upvote from 'components/shared/Upvote.svelte';
 
   export let details;
+
+  const handleUpvote = () => {
+    console.log('Handle Upvote');
+  }
 </script>
 
 <style lang="scss">
   .meta {
     display: flex;
     align-items: center;
-    width: calc(100% - 50px);
   }
 </style>
 
@@ -23,4 +27,5 @@
     />
   {/if}
   <PostTimestamp {details}/>
+  <Upvote on:click={handleUpvote}/>
 </footer>

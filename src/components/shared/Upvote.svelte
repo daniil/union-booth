@@ -4,17 +4,6 @@
 
 <style lang="scss">
   .upvote {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 0;
-    bottom: 0;
-    width: auto;
-    height: auto;
-    padding: 0;
-    border-radius: 0.75rem;
-    background-color: transparent;
     cursor: pointer;
     color: transparent;
     &:hover {
@@ -23,8 +12,8 @@
     :global(svg) {
       fill: #3E6990;
       position: relative;
-      top: 0.6rem;
-      left: 0.7rem;
+      top: 0.1rem;
+      right: -0.7rem;
       width: 35px;
     }
   }
