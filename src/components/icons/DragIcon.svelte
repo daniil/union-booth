@@ -6,7 +6,6 @@
 
 <style lang="scss">
   .drag-icon {
-    color: transparent;
     :global(svg) {
       display: block;
       fill: rgba(85, 67, 72, 0.5);

@@ -19,7 +19,7 @@
   .answer {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
   }
   .answer-text {
     flex-grow: 1;

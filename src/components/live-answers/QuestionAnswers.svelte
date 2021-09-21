@@ -159,10 +159,11 @@
   }
   h3 {
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     color: #3E6990;
     font-size: 0.9rem;
     @media (min-width: 48rem) {
+      margin-bottom: 1rem;
       font-size: 1rem;
     }
     > strong {
