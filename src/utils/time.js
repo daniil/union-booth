@@ -17,7 +17,6 @@ export function formatTime(timestamp) {
 
   return dateObj.toLocaleTimeString('en-CA', {
     hour: 'numeric',
-    minute: '2-digit',
-    second: '2-digit'
+    minute: '2-digit'
   });
 }

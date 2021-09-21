@@ -32,7 +32,7 @@
   time {
     display: flex;
     flex: 1;
-    justify-content: space-between;
+    gap: 0.75rem;
     color: rgba(1, 22, 56, 0.75);
     font-size: 0.8rem;
     @media (min-width: 48rem) {
@@ -41,13 +41,12 @@
   }
   .last-updated {
     display: none;
-    margin-left: 1rem;
     opacity: 0.75;
     font-size: 0.65rem;
     font-style: italic;
-    text-align: right;
     @media (min-width: 48rem) {
       display: inline;
+      margin-left: 0.75rem;
       font-size: 0.75rem;
       text-align: left;
     }
@@ -62,13 +61,13 @@
 
 <div class="time-container" class:reduced>
   <time>
+    <span>{date}</span>
     <span>
       {time}
       {#if details.createdAt !== details.updatedAt}
         <span class="last-updated">Last updated {lastUpdated}</span>
       {/if}
     </span>
-    <span>{date}</span>
   </time>
   {#if details.createdAt !== details.updatedAt}
     <span class="last-updated mobile">Last updated {lastUpdated}</span>
