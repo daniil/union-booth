@@ -30,6 +30,9 @@ export default {
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
+			svelteSVG({
+				svgo: {}
+			}),
 			svelte({
 				compilerOptions: {
 					dev,
@@ -68,9 +71,7 @@ export default {
 				module: true
 			}),
 
-			includePaths({ paths: ["./src"] }),
-
-			svelteSVG({ dev })
+			includePaths({ paths: ["./src"] })
 		],
 
 		preserveEntrySignatures: false,
@@ -84,6 +85,9 @@ export default {
 			replace({
 				'process.browser': false,
 				'process.env.NODE_ENV': JSON.stringify(mode)
+			}),
+			svelteSVG({
+				svgo: {}
 			}),
 			svelte({
 				compilerOptions: {
@@ -103,8 +107,7 @@ export default {
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-			includePaths({ paths: ["./src"] }),
-			svelteSVG({ generate: "ssr", dev })
+			includePaths({ paths: ["./src"] })
 		],
 		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 
