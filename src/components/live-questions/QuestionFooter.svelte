@@ -6,7 +6,7 @@
   export let details;
 
   const handleUpvote = () => {
-    console.log('Handle Upvote');
+    console.log('Handle question upvote');
   }
 </script>
 

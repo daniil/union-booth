@@ -154,6 +154,10 @@
 </script>
 
 <style lang="scss">
+  .loader-container {
+    position: relative;
+    top: 1rem;
+  }
   section {
     margin: 2rem 0 0;
   }
@@ -207,7 +211,9 @@
 </style>
 
 {#if loading}
-  <Loading/>
+  <div class="loader-container">
+    <Loading/>
+  </div>
 {:else}
   {#if answers.length}
     <section>

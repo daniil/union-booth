@@ -5,6 +5,7 @@
   import Avatar from 'components/shared/Avatar.svelte';
   import AnswerActions from 'components/live-answers/AnswerActions.svelte';
   import PostTimestamp from 'components/shared/PostTimestamp.svelte';
+  import Upvote from 'components/shared/Upvote.svelte';
 
   export let details;
 
@@ -13,6 +14,10 @@
   $: content = parseMD(details.answer);
   $: isOwner = $session.user.id === details.user.id;
   $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || isOwner;
+
+  const handleUpvote = () => {
+    console.log('Handle answer upvote');
+  }
 </script>
 
 <style lang="scss">
@@ -21,17 +26,37 @@
     align-items: flex-start;
     margin-bottom: 2.5rem;
   }
-  .answer-text {
-    flex-grow: 1;
-  }
-  .content-container {
+  .answer-wrapper {
     display: flex;
+    flex-grow: 1;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .answer-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .answer-actions {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 48rem) {
+      flex-direction: row;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    :global(.actions-container) {
+      left: 0.3rem;
+      margin-bottom: -0.35rem;
+    }
+    :global(.upvote) {
+      top: 0;
+    }
   }
   h4 {
     margin-bottom: 0;
     font-size: 0.9rem;
+    line-height: 1.5;
     @media (min-width: 48rem) {
       font-size: 1rem;
     }
@@ -46,9 +71,12 @@
     user={details.user}
     alt={`Posted by: ${details.user.firstName} ${details.user.lastName}`}
   />
-  <div class="answer-text">
-    <div class="content-container">
+  <div class="answer-wrapper">
+    <div class="answer-content">
       <h4>{@html content}</h4>
+      <PostTimestamp {details} reduced/>
+    </div>
+    <div class="answer-actions">
       {#if questionActionsEnabled}
         <AnswerActions
           answerId={details.id}
@@ -56,7 +84,7 @@
           on:edit
         />
       {/if}
+      <Upvote on:click={handleUpvote}/>
     </div>
-    <PostTimestamp {details} reduced/>
   </div>
 </div>
