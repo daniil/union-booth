@@ -114,6 +114,49 @@ export default {
 
         return question;
       }
+    ),
+
+    toggleCohortQuestionUpvote: combineResolvers(
+      isAuthenticated,
+      async (_, { cohortQuestionId, isAdd }, { models, session }) => {
+        try {
+          const user = await models.User.findOne({
+            attributes: ['cohortId'],
+            where: {
+              id: session.user.id
+            }
+          });
+  
+          const question = await models.CohortQuestion.findOne({
+            attributes: ['cohortId'],
+            where: {
+              id: cohortQuestionId
+            }
+          });
+  
+          if (user.cohortId !== question.cohortId) {
+            throw new UserInputError(`Can not ${isAdd ? 'add' : 'remove'} vote for the question from different cohort`);
+          }
+  
+          if (isAdd) {
+            await models.CohortQuestionUpvote.upsert({
+              userId: session.user.id,
+              cohortQuestionId
+            });
+          } else {
+            await models.CohortQuestionUpvote.destroy({
+              where: {
+                userId: session.user.id,
+                cohortQuestionId
+              }
+            });
+          }
+
+          return true;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
     )
   },
 
