@@ -29,12 +29,17 @@ export const setupAssociations = models => {
   models.CohortTopic.belongsTo(models.Topic);
 
   models.CohortQuestion.hasMany(models.CohortAnswer, foreignKeyNonNull);
+  models.CohortQuestion.hasMany(models.CohortQuestionUpvote, foreignKeyNonNull);
   models.CohortQuestion.hasMany(models.CohortAnswerInProgress, foreignKeyNonNull);
   models.CohortQuestion.hasMany(models.TopicFAQ);
   models.CohortQuestion.belongsTo(models.Cohort);
   models.CohortQuestion.belongsTo(models.Topic);
   models.CohortQuestion.belongsTo(models.User);
   models.CohortQuestion.belongsToMany(models.User, { through: models.CohortAnswerInProgress });
+  models.CohortQuestion.belongsToMany(models.User, { through: models.CohortQuestionUpvote });
+
+  models.CohortQuestionUpvote.belongsTo(models.User);
+  models.CohortQuestionUpvote.belongsTo(models.CohortQuestion);
 
   models.CohortAnswer.belongsTo(models.CohortQuestion);
   models.CohortAnswer.belongsTo(models.User);

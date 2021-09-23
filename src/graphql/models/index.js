@@ -4,6 +4,7 @@ import cohortModel from './cohort';
 import topicModel from './topic';
 import cohortTopicModel from './cohort-topic';
 import cohortQuestionModel from './cohort-question';
+import cohortQuestionUpvoteModel from './cohort-question-upvote';
 import cohortAnswerModel from './cohort-answer';
 import cohortAnswerInProgressModel from './cohort-answer-in-progress';
 import topicFAQModel from './topic-faq';
@@ -81,6 +82,7 @@ const models = {
   Topic: topicModel(sequelize, DataTypes),
   CohortTopic: cohortTopicModel(sequelize, DataTypes),
   CohortQuestion: cohortQuestionModel(sequelize, DataTypes),
+  CohortQuestionUpvote: cohortQuestionUpvoteModel(sequelize, DataTypes),
   CohortAnswer: cohortAnswerModel(sequelize, DataTypes),
   CohortAnswerInProgress: cohortAnswerInProgressModel(sequelize, DataTypes),
   TopicFAQ: topicFAQModel(sequelize, DataTypes),
