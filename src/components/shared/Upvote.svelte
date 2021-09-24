@@ -1,5 +1,7 @@
 <script>
   import ThumbsSVG from '../../../static/icons/thumbs.svg';
+
+  export let isUpvoting;
 </script>
 
 <style lang="scss">
@@ -17,12 +19,20 @@
     @media (min-width: 48rem) {
       font-size: 0.75rem;
     }
+    &.triggered {
+      pointer-events: none;
+      :global(svg) {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+    }
     &:hover {
       filter: brightness(1.25);
     }
     :global(svg) {
       fill: #3E6990;
       width: 25px;
+      transition: opacity 0.35s, transform 0.25s;
     }
     .counter {
       margin-top: -0.1rem;
@@ -30,7 +40,11 @@
   }
 </style>
 
-<div class="upvote" on:click>
+<div
+  class="upvote"
+  class:triggered={isUpvoting}
+  on:click
+>
   <ThumbsSVG/>
   <div class="counter">0</div>
 </div>

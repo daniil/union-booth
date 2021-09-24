@@ -5,8 +5,14 @@
 
   export let details;
 
+  let isUpvoting = false;
+
   const handleUpvote = () => {
     console.log('Handle question upvote');
+    isUpvoting = true;
+    setTimeout(() => {
+      isUpvoting = false;
+    }, 1000);
   }
 </script>
 
@@ -27,5 +33,5 @@
     />
   {/if}
   <PostTimestamp {details}/>
-  <Upvote on:click={handleUpvote}/>
+  <Upvote on:click={handleUpvote} {isUpvoting}/>
 </footer>
