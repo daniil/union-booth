@@ -2,6 +2,7 @@
   import ThumbsSVG from '../../../static/icons/thumbs.svg';
 
   export let isUpvoting;
+  export let flipped;
 </script>
 
 <style lang="scss">
@@ -26,6 +27,11 @@
         transform: scale(0.9);
       }
     }
+    &.flipped {
+      :global(svg) {
+        transform: rotate(180deg);
+      }
+    }
     &:hover {
       filter: brightness(1.25);
     }
@@ -43,6 +49,7 @@
 <div
   class="upvote"
   class:triggered={isUpvoting}
+  class:flipped
   on:click
 >
   <ThumbsSVG/>

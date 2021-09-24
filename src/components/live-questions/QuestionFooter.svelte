@@ -6,11 +6,13 @@
   export let details;
 
   let isUpvoting = false;
+  let isFlipped = false;
 
   const handleUpvote = () => {
     console.log('Handle question upvote');
     isUpvoting = true;
     setTimeout(() => {
+      isFlipped = !isFlipped;
       isUpvoting = false;
     }, 1000);
   }
@@ -33,5 +35,9 @@
     />
   {/if}
   <PostTimestamp {details}/>
-  <Upvote on:click={handleUpvote} {isUpvoting}/>
+  <Upvote
+    on:click={handleUpvote}
+    {isUpvoting}
+    flipped={isFlipped}
+  />
 </footer>
