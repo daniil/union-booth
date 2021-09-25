@@ -121,14 +121,12 @@ export default {
       async (_, { cohortQuestionId, isAdd }, { models, session }) => {
         try {
           const user = await models.User.findOne({
-            attributes: ['cohortId'],
             where: {
               id: session.user.id
             }
           });
   
           const question = await models.CohortQuestion.findOne({
-            attributes: ['cohortId'],
             where: {
               id: cohortQuestionId
             }
@@ -151,6 +149,14 @@ export default {
               }
             });
           }
+
+          pubsub.publish('COHORT_QUESTION_UPVOTE_UPDATED', {
+            cohortQuestionUpvoteUpdated: {
+              cohortQuestion: question,
+              user,
+              isAdd
+            }
+          });
 
           return true;
         } catch(err) {
@@ -185,6 +191,14 @@ export default {
         (payload, variables) => {
           return payload.cohortQuestionDeactivated.cohortId === variables.cohortId &&
                  payload.cohortQuestionDeactivated.topicId === variables.topicId;
+        }
+      )
+    },
+    cohortQuestionUpvoteUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['COHORT_QUESTION_UPVOTE_UPDATED']),
+        (payload, variables) => {
+          return payload.cohortQuestionUpvoteUpdated.cohortQuestion.id === variables.cohortQuestionId;
         }
       )
     }

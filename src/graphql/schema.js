@@ -67,8 +67,7 @@ const typeDefs = gql`
   type CohortQuestionUpvote {
     cohortQuestion: CohortQuestion!
     user: User!
-    createdAt: Date!
-    updatedAt: Date!
+    isAdd: Boolean!
   }
 
   type CohortAnswer {
@@ -194,6 +193,7 @@ const typeDefs = gql`
     newCohortQuestion(cohortId: ID!, topicId: ID!): CohortQuestion!
     cohortQuestionUpdated(cohortId: ID!, topicId: ID!): CohortQuestion!
     cohortQuestionDeactivated(cohortId: ID!, topicId: ID!): CohortQuestion!
+    cohortQuestionUpvoteUpdated(cohortQuestionId: ID!): CohortQuestionUpvote!
     newCohortAnswer(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerUpdated(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerDeactivated(cohortQuestionId: ID!): CohortAnswer!
