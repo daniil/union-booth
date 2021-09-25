@@ -137,6 +137,7 @@ const typeDefs = gql`
     topic(slug: ID!): CohortTopic!
     liveTopic: CohortTopic
     liveQuestions(cohortId: ID!, topicId: ID!): [CohortQuestion]!
+    cohortQuestionUpvotes(cohortQuestionId: ID!): [CohortQuestionUpvote]!
     liveAnswers(cohortQuestionId: ID!): [CohortAnswer]!
     answersInProgress(cohortQuestionId: ID!): [CohortAnswerInProgress]!
     topicFAQ(slug: ID!): TopicFAQ!

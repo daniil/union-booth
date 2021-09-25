@@ -114,55 +114,6 @@ export default {
 
         return question;
       }
-    ),
-
-    toggleCohortQuestionUpvote: combineResolvers(
-      isAuthenticated,
-      async (_, { cohortQuestionId, isAdd }, { models, session }) => {
-        try {
-          const user = await models.User.findOne({
-            where: {
-              id: session.user.id
-            }
-          });
-  
-          const question = await models.CohortQuestion.findOne({
-            where: {
-              id: cohortQuestionId
-            }
-          });
-  
-          if (user.cohortId !== question.cohortId) {
-            throw new UserInputError(`Can not ${isAdd ? 'add' : 'remove'} vote for the question from different cohort`);
-          }
-  
-          if (isAdd) {
-            await models.CohortQuestionUpvote.upsert({
-              userId: session.user.id,
-              cohortQuestionId
-            });
-          } else {
-            await models.CohortQuestionUpvote.destroy({
-              where: {
-                userId: session.user.id,
-                cohortQuestionId
-              }
-            });
-          }
-
-          pubsub.publish('COHORT_QUESTION_UPVOTE_UPDATED', {
-            cohortQuestionUpvoteUpdated: {
-              cohortQuestion: question,
-              user,
-              isAdd
-            }
-          });
-
-          return true;
-        } catch(err) {
-          throw new UserInputError(parseSequelizeError(err));
-        }
-      }
     )
   },
 
@@ -191,14 +142,6 @@ export default {
         (payload, variables) => {
           return payload.cohortQuestionDeactivated.cohortId === variables.cohortId &&
                  payload.cohortQuestionDeactivated.topicId === variables.topicId;
-        }
-      )
-    },
-    cohortQuestionUpvoteUpdated: {
-      subscribe: withFilter(
-        () => pubsub.asyncIterator(['COHORT_QUESTION_UPVOTE_UPDATED']),
-        (payload, variables) => {
-          return payload.cohortQuestionUpvoteUpdated.cohortQuestion.id === variables.cohortQuestionId;
         }
       )
     }
