@@ -14,6 +14,9 @@
     position: relative;
     top: 0.1rem;
     right: -0.4rem;
+    padding: 0;
+    background: transparent;
+    border-style: none;
     font-size: 0.65rem;
     font-weight: 500;
     color: #3E6990;
@@ -46,7 +49,7 @@
   }
 </style>
 
-<div
+<button
   class="upvote"
   class:triggered={isUpvoting}
   class:flipped
@@ -54,4 +57,4 @@
 >
   <ThumbsSVG/>
   <div class="counter">0</div>
-</div>
+</button>
