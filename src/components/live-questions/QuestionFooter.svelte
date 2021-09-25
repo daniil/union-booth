@@ -1,4 +1,6 @@
 <script>
+  import { mutation } from 'svelte-apollo';
+  import { TOGGLE_COHORT_QUESTION_UPVOTE } from 'graphql/queries/cohort-question';
   import Avatar from 'components/shared/Avatar.svelte';
   import PostTimestamp from 'components/shared/PostTimestamp.svelte';
   import Upvote from 'components/shared/Upvote.svelte';
@@ -8,13 +10,20 @@
   let isUpvoting = false;
   let isFlipped = false;
 
-  const handleUpvote = () => {
-    console.log('Handle question upvote');
+  const toggleCohortQuestionUpvote = mutation(TOGGLE_COHORT_QUESTION_UPVOTE);
+
+  const handleUpvote = async () => {
     isUpvoting = true;
-    setTimeout(() => {
-      isFlipped = !isFlipped;
-      isUpvoting = false;
-    }, 1000);
+
+    await toggleCohortQuestionUpvote({
+      variables: {
+        cohortQuestionId: details.id,
+        isAdd: true
+      }
+    });
+
+    isFlipped = !isFlipped;
+    isUpvoting = false;
   }
 </script>
 
