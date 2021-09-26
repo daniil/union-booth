@@ -71,18 +71,11 @@ const COHORT_QUESTION_DEACTIVATED = gql`
   ${cohortQuestionInformation}
 `;
 
-const TOGGLE_COHORT_QUESTION_UPVOTE = gql`
-  mutation ToggleCohortQuestionUpvote($cohortQuestionId: ID!, $isAdd: Boolean!) {
-    toggleCohortQuestionUpvote(cohortQuestionId: $cohortQuestionId, isAdd: $isAdd)
-  }
-`;
-
 export {
   LIVE_QUESTIONS,
   ADD_COHORT_QUESTION,
   NEW_COHORT_QUESTION,
   COHORT_QUESTION_UPDATED,
   DEACTIVATE_COHORT_QUESTION,
-  COHORT_QUESTION_DEACTIVATED,
-  TOGGLE_COHORT_QUESTION_UPVOTE
+  COHORT_QUESTION_DEACTIVATED
 }
