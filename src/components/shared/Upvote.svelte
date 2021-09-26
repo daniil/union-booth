@@ -1,6 +1,7 @@
 <script>
   import ThumbsSVG from '../../../static/icons/thumbs.svg';
 
+  export let count;
   export let isUpvoting;
   export let flipped;
 </script>
@@ -56,5 +57,9 @@
   on:click
 >
   <ThumbsSVG/>
-  <div class="counter">0</div>
+  <div class="counter">
+    {#if count !== null}
+      {count}
+    {/if}
+  </div>
 </button>
