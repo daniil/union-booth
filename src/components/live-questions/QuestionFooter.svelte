@@ -14,12 +14,17 @@
   let upvotes = [];
   let fetchingUpvotes = true;
   let isUpvoting = false;
-  let isFlipped = false;
 
   const toggleCohortQuestionUpvote = mutation(TOGGLE_COHORT_QUESTION_UPVOTE);
 
-  $: upvoteCount = fetchingUpvotes ? null : upvotes.length;
+  $: isFlipped = checkUserVote(upvotes);
   $: cohortQuestionUpvotesSub = watchCohortQuestionUpvotesQuery(details);
+
+  const checkUserVote = upvotes => {
+    return upvotes.some(vote => {
+      return vote.user.id === $session.user.id;
+    });
+  }
 
   const watchCohortQuestionUpvotesQuery = details => {
     return $session.apolloClient
@@ -48,7 +53,6 @@
       }
     });
 
-    isFlipped = !isFlipped;
     isUpvoting = false;
   }
 </script>
@@ -70,10 +74,12 @@
     />
   {/if}
   <PostTimestamp {details}/>
-  <Upvote
-    count={upvoteCount}
-    on:click={handleUpvote}
-    {isUpvoting}
-    flipped={isFlipped}
-  />
+  {#if !fetchingUpvotes}
+    <Upvote
+      count={upvotes.length}
+      on:click={handleUpvote}
+      {isUpvoting}
+      flipped={isFlipped}
+    />
+  {/if}
 </footer>
