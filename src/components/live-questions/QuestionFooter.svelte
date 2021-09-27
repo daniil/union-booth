@@ -54,7 +54,31 @@
   const subscribeToCohortQuestionUpvoteUpdated = cohortQuestionId => {
     return cohortQuestionUpvoteUpdated.subscribe(value => {
       if (value.data) {
-        console.log('Update: ', value.data);
+        const upvoteData = value.data.cohortQuestionUpvoteUpdated;
+        const userVoted = upvotes.some(vote => {
+          return vote.user.id === upvoteData.user.id;
+        });
+        let updatedData = upvotes.slice();
+
+        if (upvoteData.isAdd) {
+          if (!userVoted) {
+            updatedData.push(upvoteData);
+          }
+        } else {
+          updatedData = upvotes.filter(vote => {
+            return vote.user.id !== upvoteData.user.id;
+          });
+        }
+
+        $session.apolloClient.writeQuery({
+          query: COHORT_QUESTION_UPVOTES,
+          variables: {
+            cohortQuestionId
+          },
+          data: {
+            cohortQuestionUpvotes: updatedData
+          }
+        })
       }
     })
   }
@@ -67,7 +91,7 @@
     await toggleCohortQuestionUpvote({
       variables: {
         cohortQuestionId: details.id,
-        isAdd: true
+        isAdd: !isFlipped
       }
     });
 
