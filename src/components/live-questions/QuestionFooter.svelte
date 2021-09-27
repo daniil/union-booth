@@ -1,8 +1,8 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-  import { mutation } from 'svelte-apollo';
-  import { COHORT_QUESTION_UPVOTES, TOGGLE_COHORT_QUESTION_UPVOTE } from 'graphql/queries/cohort-question-upvote';
+  import { mutation, subscribe } from 'svelte-apollo';
+  import { COHORT_QUESTION_UPVOTES, TOGGLE_COHORT_QUESTION_UPVOTE, COHORT_QUESTION_UPVOTE_UPDATED } from 'graphql/queries/cohort-question-upvote';
   import Avatar from 'components/shared/Avatar.svelte';
   import PostTimestamp from 'components/shared/PostTimestamp.svelte';
   import Upvote from 'components/shared/Upvote.svelte';
@@ -42,6 +42,24 @@
   }
 
   onDestroy(() => cohortQuestionUpvotesSub.unsubscribe());
+
+  $: cohortQuestionUpvoteUpdated = subscribe(COHORT_QUESTION_UPVOTE_UPDATED, {
+    variables: {
+      cohortQuestionId: details.id
+    }
+  });
+
+  $: cohortQuestionUpvoteUpdatedUnsub = subscribeToCohortQuestionUpvoteUpdated(details.id);
+
+  const subscribeToCohortQuestionUpvoteUpdated = cohortQuestionId => {
+    return cohortQuestionUpvoteUpdated.subscribe(value => {
+      if (value.data) {
+        console.log('Update: ', value.data);
+      }
+    })
+  }
+
+  onDestroy(() => cohortQuestionUpvoteUpdatedUnsub)
 
   const handleUpvote = async () => {
     isUpvoting = true;

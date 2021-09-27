@@ -20,7 +20,7 @@
 - Add timed unlock for topics
 - Add question and answer moderation before posting
 - Add speech-to-text question posting
-- Log user out after their session expires (ie: period of inactivity)
+- Log user out after their session expires (ie: period of inactivity). Also navigating to a route when logged out should redirect to login page.
 - Add SSO Login options
 - Add user invitation functionality (invite for program, invite for cohort)
 - Ensure that moderator functionality only works for cohort moderators are part of
