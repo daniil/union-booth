@@ -102,6 +102,8 @@
     }
   }
   .form-element {
+    display: flex;
+    align-items: center;
     margin-left: 0;
     opacity: 0.6;
     transition: opacity 0.25s;
@@ -112,6 +114,16 @@
     }
     &.active {
       opacity: 1;
+    }
+    input {
+      margin: 0;
+    }
+    label {
+      margin-left: 0.5rem;
+      padding-top: 0.1rem;
+      @media (min-width: 48rem) {
+        padding-top: 0.075rem;
+      }
     }
   }
 }

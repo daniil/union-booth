@@ -29,6 +29,7 @@
 
 ## Tweaks
 
+- Add "or Register" and "or Login" links
 - Update large viewport styling
 - Update radio buttons to be aligned properly (for mobile particularly)
 - Update all colors to use SASS variables

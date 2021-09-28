@@ -13,7 +13,8 @@
   }
   .counter {
     display: inline-block;
-    margin-left: 0.15rem;
+    margin-left: 0.25rem;
+    padding-top: 0.1rem;
     font-size: 0.75rem;
     color: rgba(85, 67, 72, 0.6);
   }
