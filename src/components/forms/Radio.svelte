@@ -9,13 +9,14 @@
 <style>
   .radio-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
   }
   input {
-    margin: 0.225rem 0 0 0;
+    margin: 0;
   }
   label {
     margin-left: 0.5rem;
+    padding-top: 0.075rem;
     color: #7D6D61;
     font-size: 0.9rem;
   }
