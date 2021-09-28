@@ -1,7 +1,7 @@
 {
   "name": "union-booth",
   "description": "Live Q/A Platform",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "scripts": {
     "dev": "concurrently \"redis-server\" \"sapper dev\"",
     "build": "sapper build --legacy",
