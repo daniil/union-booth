@@ -8,6 +8,7 @@ import cohortQuestionResolvers from './cohort-question';
 import cohortQuestionUpvoteResolvers from './cohort-question-upvote';
 import cohortAnswerResolvers from './cohort-answer';
 import cohortAnswerInProgressResolvers from './cohort-answer-in-progress';
+import cohortAnswerUpvoteResolvers from './cohort-answer-upvote';
 import topicFAQResolvers from './topic-faq';
 import topicFAQQuestionResolvers from './topic-faq-question';
 import topicResourcesResolvers from './topic-resources';
@@ -29,6 +30,7 @@ export default [
   cohortQuestionUpvoteResolvers,
   cohortAnswerResolvers,
   cohortAnswerInProgressResolvers,
+  cohortAnswerUpvoteResolvers,
   topicFAQResolvers,
   topicFAQQuestionResolvers,
   topicResourcesResolvers,
