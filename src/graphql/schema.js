@@ -87,6 +87,12 @@ const typeDefs = gql`
     createdAt: Date!
   }
 
+  type CohortAnswerUpvote {
+    cohortAnswer: CohortAnswer!
+    user: User!
+    isAdd: Boolean!
+  }
+
   type TopicFAQ {
     topic: Topic!
     topicFAQQuestions: [TopicFAQQuestion]!
@@ -140,6 +146,7 @@ const typeDefs = gql`
     cohortQuestionUpvotes(cohortQuestionId: ID!): [CohortQuestionUpvote]!
     liveAnswers(cohortQuestionId: ID!): [CohortAnswer]!
     answersInProgress(cohortQuestionId: ID!): [CohortAnswerInProgress]!
+    cohortAnswerUpvotes(cohortAnswerId: ID!): [CohortAnswerUpvote]!
     topicFAQ(slug: ID!): TopicFAQ!
     topicResources(slug: ID!): TopicResources!
     unverifiedUsers(cohortId: ID!): [User]!
