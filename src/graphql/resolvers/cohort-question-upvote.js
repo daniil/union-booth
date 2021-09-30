@@ -26,12 +26,14 @@ export default {
       async (_, { cohortQuestionId, isAdd }, { models, session }) => {
         try {
           const user = await models.User.findOne({
+            attributes: ['cohortId'],
             where: {
               id: session.user.id
             }
           });
   
           const question = await models.CohortQuestion.findOne({
+            attributes: ['cohortId'],
             where: {
               id: cohortQuestionId,
               isInactive: false
