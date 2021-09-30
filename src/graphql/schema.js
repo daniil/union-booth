@@ -189,6 +189,7 @@ const typeDefs = gql`
     addCohortAnswer(answerId: ID, cohortQuestionId: ID!, answer: String!): CohortAnswer!
     deactivateCohortAnswer(cohortAnswerId: ID!): CohortAnswer!
     updateCohortAnswerProgress(cohortQuestionId: ID!, status: Boolean!): CohortAnswerInProgress!
+    toggleCohortAnswerUpvote(cohortAnswerId: ID!, isAdd: Boolean!): Boolean!
     addTopicFAQQuestion(id: ID, topicId: ID!, cohortQuestionId: ID, question: String!, answer: String!): TopicFAQQuestion!
     deactivateTopicFAQQuestion(id: ID!): TopicFAQQuestion!
     addResource(id: ID, topicId: ID!, url: String!, title: String!, description: String!): Resource!

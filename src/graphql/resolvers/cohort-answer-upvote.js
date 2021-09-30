@@ -1,5 +1,7 @@
+import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated } from './auth';
+import parseSequelizeError from 'utils/parseSequelizeError';
 
 export default {
   Query: {
@@ -13,6 +15,25 @@ export default {
         });
 
         return answerUpvotes;
+      }
+    )
+  },
+
+  Mutation: {
+    toggleCohortAnswerUpvote: combineResolvers(
+      isAuthenticated,
+      async (_, { cohortAnswerId, isAdd }, { models, session }) => {
+        try {
+          const user = await models.User.findOne({
+            where: {
+              id: session.user.id
+            }
+          });
+
+          
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
       }
     )
   },

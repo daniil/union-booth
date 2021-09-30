@@ -33,12 +33,17 @@ export default {
   
           const question = await models.CohortQuestion.findOne({
             where: {
-              id: cohortQuestionId
+              id: cohortQuestionId,
+              isInactive: false
             }
           });
   
           if (user.cohortId !== question.cohortId) {
             throw new UserInputError(`Can not ${isAdd ? 'add' : 'remove'} vote for the question from different cohort`);
+          }
+
+          if (!question) {
+            throw new UserInputError('Can not upvote inactive question');
           }
   
           if (isAdd) {
