@@ -1,5 +1,7 @@
 <script>
   import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
+  import { COHORT_ANSWER_UPVOTES } from 'graphql/queries/cohort-answer-upvote';
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
   import Avatar from 'components/shared/Avatar.svelte';
@@ -11,12 +13,42 @@
 
   const { session } = stores();
 
+  let upvotes = [];
+  let fetchingUpvotes = true;
+  let isUpvoting = false;
+
   $: content = parseMD(details.answer);
   $: isOwner = $session.user.id === details.user.id;
   $: questionActionsEnabled = roleMap[$session.user.role].includes('moderator') || isOwner;
+  $: isFlipped = checkUserVote(upvotes);
+  $: cohortAnswerUpvotesSub = watchCohortAnswerUpvotesQuery(details);
+
+  const checkUserVote = upvotes => {
+    return upvotes.some(vote => {
+      return vote.user.id === $session.user.id;
+    });
+  }
+
+  const watchCohortAnswerUpvotesQuery = details => {
+    return $session.apolloClient
+      .watchQuery({
+        query: COHORT_ANSWER_UPVOTES,
+        variables: {
+          cohortAnswerId: details.id
+        }
+      })
+      .subscribe(({ data }) => {
+        if (!data) return;
+        upvotes = data.cohortAnswerUpvotes;
+        fetchingUpvotes = false;
+      })
+  }
+
+  onDestroy(() => cohortAnswerUpvotesSub.unsubscribe());
 
   const handleUpvote = () => {
     console.log('Handle answer upvote');
+    isUpvoting = true;
   }
 </script>
 
@@ -84,7 +116,14 @@
           on:edit
         />
       {/if}
-      <Upvote on:click={handleUpvote}/>
+      {#if !fetchingUpvotes}
+        <Upvote
+          count={upvotes.length}
+          on:click={handleUpvote}
+          {isUpvoting}
+          flipped={isFlipped}
+        />
+      {/if}
     </div>
   </div>
 </div>
