@@ -1,7 +1,8 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-  import { COHORT_ANSWER_UPVOTES } from 'graphql/queries/cohort-answer-upvote';
+  import { mutation } from 'svelte-apollo';
+  import { COHORT_ANSWER_UPVOTES, TOGGLE_COHORT_ANSWER_UPVOTE } from 'graphql/queries/cohort-answer-upvote';
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
   import Avatar from 'components/shared/Avatar.svelte';
@@ -16,6 +17,8 @@
   let upvotes = [];
   let fetchingUpvotes = true;
   let isUpvoting = false;
+
+  const toggleCohortAnswerUpvote = mutation(TOGGLE_COHORT_ANSWER_UPVOTE);
 
   $: content = parseMD(details.answer);
   $: isOwner = $session.user.id === details.user.id;
@@ -46,9 +49,17 @@
 
   onDestroy(() => cohortAnswerUpvotesSub.unsubscribe());
 
-  const handleUpvote = () => {
-    console.log('Handle answer upvote');
+  const handleUpvote = async () => {
     isUpvoting = true;
+
+    await toggleCohortAnswerUpvote({
+      variables: {
+        cohortAnswerId: details.id,
+        isAdd: !isFlipped
+      }
+    });
+
+    isUpvoting = false;
   }
 </script>
 
