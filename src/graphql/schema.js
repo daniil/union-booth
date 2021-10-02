@@ -207,6 +207,7 @@ const typeDefs = gql`
     cohortAnswerUpdated(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerDeactivated(cohortQuestionId: ID!): CohortAnswer!
     cohortAnswerProgress(cohortQuestionId: ID!): CohortAnswerInProgress!
+    cohortAnswerUpvoteUpdated(cohortAnswerId: ID!): CohortAnswerUpvote!
   }
 `;
 

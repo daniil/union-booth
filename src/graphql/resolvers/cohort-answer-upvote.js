@@ -1,7 +1,8 @@
-import { UserInputError } from 'apollo-server';
+import { withFilter, UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
+import pubsub from 'redis-pub-sub';
 
 export default {
   Query: {
@@ -64,12 +65,30 @@ export default {
             });
           }
 
+          pubsub.publish('COHORT_ANSWER_UPVOTE_UPDATED', {
+            cohortAnswerUpvoteUpdated: {
+              cohortAnswerId,
+              userId: session.user.id,
+              isAdd
+            }
+          });
+
           return true;
         } catch(err) {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
     )
+  },
+
+  Subscription: {
+    cohortAnswerUpvoteUpdated: {
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(['COHORT_ANSWER_UPVOTE_UPDATED']), (payload, variables) => {
+          return payload.cohortAnswerUpvoteUpdated.cohortAnswerId === variables.cohortAnswerId
+        }
+      )
+    }
   },
 
   CohortAnswerUpvote: {
