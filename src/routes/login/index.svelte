@@ -73,13 +73,13 @@
   }
   .or {
     opacity: 0.5;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   .link {
     color: #05668F;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     &:hover {
       filter: brightness(1.25);
     }

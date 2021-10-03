@@ -98,12 +98,27 @@
     flex-grow: 1;
     &.action {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
       padding-top: 1.5rem;
       border-top: 1px solid #DBD3D8;
     }
     &.group {
       margin-bottom: 0.75rem;
+    }
+  }
+  .or {
+    opacity: 0.5;
+    font-size: 0.75rem;
+  }
+  .link {
+    color: #05668F;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    &:hover {
+      filter: brightness(1.25);
     }
   }
   .account-section {
@@ -162,6 +177,8 @@
       </div>
       <div class="form-element action">
         <Button type="submit" variant={buttonVariant} icon="🎫" label="Register"/>
+        <span class="or">or</span>
+        <a href="/login" class="link">Login</a> 
       </div>
     </form>
   </div>
