@@ -19,7 +19,23 @@ const TOGGLE_COHORT_ANSWER_UPVOTE = gql`
   }
 `;
 
+const COHORT_ANSWER_UPVOTE_UPDATED = gql`
+  subscription CohortAnswerUpvoteUpdated($cohortAnswerId: ID!) {
+    cohortAnswerUpvoteUpdated(cohortAnswerId: $cohortAnswerId) {
+      cohortAnswer {
+        id
+      }
+      user {
+        id
+      }
+      isAdd
+    }
+  }
+`;
+
+
 export {
   COHORT_ANSWER_UPVOTES,
-  TOGGLE_COHORT_ANSWER_UPVOTE
+  TOGGLE_COHORT_ANSWER_UPVOTE,
+  COHORT_ANSWER_UPVOTE_UPDATED
 }
