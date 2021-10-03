@@ -1,8 +1,8 @@
 <script>
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
-  import { mutation } from 'svelte-apollo';
-  import { COHORT_ANSWER_UPVOTES, TOGGLE_COHORT_ANSWER_UPVOTE } from 'graphql/queries/cohort-answer-upvote';
+  import { mutation, subscribe } from 'svelte-apollo';
+  import { COHORT_ANSWER_UPVOTES, TOGGLE_COHORT_ANSWER_UPVOTE, COHORT_ANSWER_UPVOTE_UPDATED } from 'graphql/queries/cohort-answer-upvote';
   import { parseMD } from 'utils/markdown';
   import roleMap from 'utils/role-map';
   import Avatar from 'components/shared/Avatar.svelte';
@@ -48,6 +48,48 @@
   }
 
   onDestroy(() => cohortAnswerUpvotesSub.unsubscribe());
+
+  $: cohortAnswerUpvoteUpdated = subscribe(COHORT_ANSWER_UPVOTE_UPDATED, {
+    variables: {
+      cohortAnswerId: details.id
+    }
+  });
+
+  $: cohortAnswerUpvoteUpdatedUnsub = subscribeToCohortAnswerUpvoteUpdated(details.id);
+
+  const subscribeToCohortAnswerUpvoteUpdated = cohortAnswerId => {
+    return cohortAnswerUpvoteUpdated.subscribe(value => {
+      if (value.data) {
+        const upvoteData = value.data.cohortAnswerUpvoteUpdated;
+        const userVoted = upvotes.some(vote => {
+          return vote.user.id === upvoteData.user.id;
+        });
+        let updatedData = upvotes.slice();
+
+        if (upvoteData.isAdd) {
+          if (!userVoted) {
+            updatedData.push(upvoteData);
+          }
+        } else {
+          updatedData = upvotes.filter(vote => {
+            return vote.user.id !== upvoteData.user.id;
+          });
+        }
+
+        $session.apolloClient.writeQuery({
+          query: COHORT_ANSWER_UPVOTES,
+          variables: {
+            cohortAnswerId
+          },
+          data: {
+            cohortAnswerUpvotes: updatedData
+          }
+        })
+      }
+    });
+  }
+
+  onDestroy(() => cohortAnswerUpvoteUpdatedUnsub);
 
   const handleUpvote = async () => {
     isUpvoting = true;

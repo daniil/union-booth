@@ -1,6 +1,5 @@
 ## Tasks
 
-- Create likes (or +1) functionality for answers and maybe questions
 - Add realtime check (on blur) for username and email uniqueness
   - Register and update profile pages
 - Add Live Question topic Cheatsheet field (also available on individual topic page)
@@ -29,7 +28,6 @@
 
 ## Tweaks
 
-- Add "or Register" and "or Login" links
 - Update large viewport styling
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
