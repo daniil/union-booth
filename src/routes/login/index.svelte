@@ -64,9 +64,24 @@
     margin-bottom: 1rem;
     &.action {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
       padding-top: 1.5rem;
       border-top: 1px solid #DBD3D8;
+    }
+  }
+  .or {
+    opacity: 0.5;
+    font-size: 0.85rem;
+  }
+  .link {
+    color: #05668F;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    &:hover {
+      filter: brightness(1.25);
     }
   }
 </style>
@@ -83,6 +98,8 @@
       </div>
       <div class="form-element action">
         <Button type="submit" variant={buttonVariant} icon="🔑" label="Login"/>
+        <span class="or">or</span>
+        <a href="/register" class="link">Register</a> 
       </div>
     </form>
   </div>
