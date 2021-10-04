@@ -34,7 +34,7 @@
           questionId: selectedQuestion?.id,
           topicId: liveTopic.topic.id,
           question: questionText,
-          isAnonymous: e.target.isAnonymous?.checked ?? selectedQuestion.isAnonymous
+          isAnonymous: e.target['checkbox-isAnonymous']?.checked ?? selectedQuestion.isAnonymous
         }
       });
 
