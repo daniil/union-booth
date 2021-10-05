@@ -29,7 +29,7 @@ export default {
             id,
             isInactive: false
           },
-          attributes: ['id', 'firstName', 'lastName', 'username', 'email']
+          attributes: ['id', 'firstName', 'lastName', 'username', 'email', 'cohortId']
         });
 
         if (!user) {
@@ -530,7 +530,7 @@ export default {
 
   User: {
     cohort: async (parent, _, { loaders }) => {
-      return await loaders.cohort.load(parent.cohortId);
+      return parent.cohortId ? await loaders.cohort.load(parent.cohortId) : null;
     }
   }
 }

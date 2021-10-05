@@ -28,7 +28,7 @@ const typeDefs = gql`
     email: String!
     role: String!
     cohortId: ID
-    cohort: Cohort!
+    cohort: Cohort
     createdAt: Date!
     isVerified: Boolean!
     isInactive: Boolean!

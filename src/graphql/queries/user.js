@@ -8,6 +8,12 @@ const USER = gql`
       lastName
       username
       email
+      cohort {
+        title
+        program {
+          title
+        }
+      }
     }
   }
 `;
