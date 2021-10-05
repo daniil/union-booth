@@ -1,6 +1,5 @@
 <script>
   import { stores } from '@sapper/app';
-  import { onDestroy } from 'svelte';
   import { mutation } from 'svelte-apollo';
   import parseError from 'utils/parseError';
   import { USER, UPDATE_USER_INFO } from 'graphql/queries/user';
@@ -9,35 +8,17 @@
   import Loading from 'components/shared/Loading.svelte';
   import FormErrors from 'components/forms/FormErrors.svelte';
 
-  export let user;
+  export let userInfo;
+  export let fetching;
 
   const { session } = stores();
 
   const updateUserInfo = mutation(UPDATE_USER_INFO);
 
-  let userInfo;
   let errors;
   let formDisabled = false;
-  let fetchingData = true;
 
   $: buttonVariant = formDisabled ? 'loading' : 'success';
-
-  const userInfoSub = $session.apolloClient
-    .watchQuery({
-      query: USER,
-      variables: {
-        id: user.id
-      },
-      fetchPolicy: 'cache-and-network'
-    })
-    .subscribe(({ data }) => {
-      if (data) {
-        userInfo = data.user;
-        fetchingData = false;
-      }
-    });
-
-  onDestroy(() => userInfoSub.unsubscribe());
   
   const handleUpdate = async e => {
     formDisabled = true;
@@ -46,7 +27,7 @@
     try {
       await updateUserInfo({
         variables: {
-          userId: user.id,
+          userId: userInfo.id,
           firstName: e.target.firstName.value,
           lastName: e.target.lastName.value,
           username: e.target.username.value,
@@ -58,7 +39,7 @@
           $session.apolloClient.writeQuery({
             query: USER,
             variables: {
-              id: user.id
+              id: userInfo.id
             },
             data: {
               user: updatedUserInfo
@@ -132,7 +113,7 @@
     <Button type="submit" variant={buttonVariant} icon="🖋️" label="Update"/>
   </div>
   <FormErrors {errors}/>
-  {#if fetchingData}
+  {#if fetching}
     <div class="loading-container">
       <div class="loading-wrapper">
         <Loading/>

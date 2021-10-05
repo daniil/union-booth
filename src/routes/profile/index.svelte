@@ -14,12 +14,34 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { onDestroy } from 'svelte';
+  import { USER } from 'graphql/queries/user';
   import UpdateAvatar from 'components/profile/UpdateAvatar.svelte';
   import UpdateProfile from 'components/profile/UpdateProfile.svelte';
   import UpdatePassword from 'components/profile/UpdatePassword.svelte';
   import DeactivateAccount from 'components/profile/DeactivateAccount.svelte';
 
   const { session } = stores();
+
+  let userInfo;
+  let fetchingData = true;
+
+  const userInfoSub = $session.apolloClient
+    .watchQuery({
+      query: USER,
+      variables: {
+        id: $session.user.id
+      },
+      fetchPolicy: 'cache-and-network'
+    })
+    .subscribe(({ data }) => {
+      if (data) {
+        userInfo = data.user;
+        fetchingData = false;
+      }
+    });
+
+  onDestroy(() => userInfoSub.unsubscribe());
 </script>
 
 <style lang="scss">
@@ -57,7 +79,10 @@
     <h1>Profile</h1>
     <div class="profile-container">
       <UpdateAvatar user={$session.user}/>
-      <UpdateProfile user={$session.user}/>
+      <UpdateProfile
+        {userInfo}
+        fetching={fetchingData}
+      />
     </div>
     <UpdatePassword user={$session.user}/>
     <DeactivateAccount/>
