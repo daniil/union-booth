@@ -16,6 +16,7 @@
   import { stores } from '@sapper/app';
   import { onDestroy } from 'svelte';
   import { USER } from 'graphql/queries/user';
+  import ProgramDetails from 'components/profile/ProgramDetails.svelte';
   import UpdateAvatar from 'components/profile/UpdateAvatar.svelte';
   import UpdateProfile from 'components/profile/UpdateProfile.svelte';
   import UpdatePassword from 'components/profile/UpdatePassword.svelte';
@@ -72,13 +73,22 @@
       padding: 0;
     }
   }
+  .left-col {
+    width: 100%;
+    @media (min-width: 48rem) {
+      width: 20%;
+    }
+  }
 </style>
 
 <div class="container">
   <div class="wrapper">
     <h1>Profile</h1>
     <div class="profile-container">
-      <UpdateAvatar user={$session.user}/>
+      <div class="left-col">
+        <UpdateAvatar user={$session.user}/>
+        <ProgramDetails {userInfo}/>
+      </div>
       <UpdateProfile
         {userInfo}
         fetching={fetchingData}
