@@ -58,16 +58,6 @@
 </script>
 
 <style lang="scss">
-  form {
-    position: relative;
-    width: 100%;
-    max-width: 20rem;
-    @media (min-width: 48rem) {
-      width: 30%;
-      max-width: inherit;
-      min-width: 16rem;
-    }
-  }
   .form-element {
     margin-bottom: 1rem;
     &.action {

@@ -73,10 +73,14 @@
       padding: 0;
     }
   }
-  .left-col {
+  .right-col {
+    position: relative;
     width: 100%;
+    max-width: 20rem;
     @media (min-width: 48rem) {
-      width: 20%;
+      width: 30%;
+      max-width: inherit;
+      min-width: 16rem;
     }
   }
 </style>
@@ -85,14 +89,14 @@
   <div class="wrapper">
     <h1>Profile</h1>
     <div class="profile-container">
-      <div class="left-col">
-        <UpdateAvatar user={$session.user}/>
+      <UpdateAvatar user={$session.user}/>
+      <div class="right-col">
         <ProgramDetails {userInfo}/>
+        <UpdateProfile
+          {userInfo}
+          fetching={fetchingData}
+        />
       </div>
-      <UpdateProfile
-        {userInfo}
-        fetching={fetchingData}
-      />
     </div>
     <UpdatePassword user={$session.user}/>
     <DeactivateAccount/>
