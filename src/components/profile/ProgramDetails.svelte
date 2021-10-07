@@ -1,5 +1,33 @@
 <script>
   export let userInfo;
+
+  let details = {
+    program: '',
+    cohort: ''
+  };
+
+  $: getDetails(userInfo);
+
+  const getDetails = userInfo => {
+    if (!userInfo) {
+      return details = {
+        program: '...',
+        cohort: '...'
+      }
+    }
+    
+    if (!userInfo.cohort) {
+      return details = {
+        program: 'N/A',
+        cohort: 'N/A'
+      }
+    }
+
+    return details = {
+      program: userInfo.cohort.program.title,
+      cohort: userInfo.cohort.title
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -22,15 +50,13 @@
   }
 </style>
 
-{#if userInfo?.cohort}
-  <div class="program-details">
-    <div class="details-section">
-      <p class="label">Program</p>
-      <p class="value">{userInfo.cohort.program.title}</p>
-    </div>
-    <div class="details-section">
-      <p class="label">Cohort</p>
-      <p class="value">{userInfo.cohort.title}</p>
-    </div>
+<div class="program-details">
+  <div class="details-section">
+    <p class="label">Program</p>
+    <p class="value">{details.program}</p>
   </div>
-{/if}
+  <div class="details-section">
+    <p class="label">Cohort</p>
+    <p class="value">{details.cohort}</p>
+  </div>
+</div>
