@@ -49,4 +49,5 @@
   {required}
   {disabled}
   on:input={handleInput}
+  on:blur
 />

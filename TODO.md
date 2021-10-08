@@ -28,7 +28,6 @@
 
 ## Tweaks
 
-- Add Program and Cohort information to user profile
 - Update large viewport styling
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)

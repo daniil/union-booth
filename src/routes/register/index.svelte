@@ -8,6 +8,7 @@
   import { REGISTER } from 'graphql/queries/register';
   import parseError from 'utils/parseError';
   import FormErrors from 'components/forms/FormErrors.svelte';
+  import UsernameField from 'components/register/UsernameField.svelte';
   import TextInput from 'components/forms/TextInput.svelte';
   import Radio from 'components/forms/Radio.svelte';
   import Button from 'components/forms/Button.svelte';
@@ -143,7 +144,7 @@
       </div>
       <div class="form-block">
         <div class="form-element">
-          <TextInput id="username" type="text" label="Username" required disabled={formDisabled}/>
+          <UsernameField disabled={formDisabled}/>
         </div>
         <div class="form-element">
           <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
