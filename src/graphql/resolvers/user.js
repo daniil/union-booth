@@ -233,6 +233,11 @@ export default {
       return true;
     },
 
+    validateUsernameAndEmail: async (_, { login }, { models }) => {
+      const user = await models.User.findByLogin(login);
+      return !user;
+    },
+
     updateUserAvatar: combineResolvers(
       isAuthenticated,
       async (_, { userId }, { session }) => {

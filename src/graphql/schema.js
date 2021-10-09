@@ -169,6 +169,7 @@ const typeDefs = gql`
       cohortId: ID,
       programId: ID
     ): User
+    validateUsernameAndEmail(login: String!): Boolean!
     updateUserAvatar(userId: ID!): Boolean!
     updateUserInfo(userId: ID!, firstName: String, lastName: String, username: String, email: String): User!
     updateUserPassword(userId: ID!, password: String!): Boolean!
