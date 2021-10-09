@@ -18,6 +18,12 @@ const USER = gql`
   }
 `;
 
+const VALIDATE_USERNAME_AND_EMAIL = gql`
+  mutation ValidateUsernameAndEmail($login: String!) {
+    validateUsernameAndEmail(login: $login)
+  }
+`;
+
 const UPDATE_USER_AVATAR = gql`
   mutation UpdateUserAvatar($userId: ID!) {
     updateUserAvatar(userId: $userId)
@@ -59,6 +65,7 @@ const DEACTIVATE_USER_ACCOUNT = gql`
 
 export {
   USER,
+  VALIDATE_USERNAME_AND_EMAIL,
   UPDATE_USER_AVATAR,
   USER_AVATAR_UPDATED,
   UPDATE_USER_INFO,
