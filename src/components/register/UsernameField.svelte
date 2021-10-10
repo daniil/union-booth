@@ -6,6 +6,8 @@
 
   export let formDisabled;
 
+  let inputInvalid = false;
+
   const validateUsernameAndEmail = mutation(VALIDATE_USERNAME_AND_EMAIL);
 
   const handleValidation = async username => {
@@ -17,11 +19,15 @@
 
     const isUniqueValue = validate.data.validateUsernameAndEmail;
 
-    console.log('Is Unique?', isUniqueValue);
+    inputInvalid = !isUniqueValue;
   }
 
   const handleBlur = e => {
     handleValidation(e.target.value);
+  }
+
+  const handleKeyDown = () => {
+    inputInvalid = false;
   }
 
   const handleKeyPress = debounce(e => {
@@ -35,6 +41,8 @@
   label="Username"
   required
   disabled={formDisabled}
+  invalid={inputInvalid}
   on:blur={handleBlur}
+  on:keydown={handleKeyDown}
   on:keypress={handleKeyPress}
 />
