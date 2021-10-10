@@ -50,4 +50,5 @@
   {disabled}
   on:input={handleInput}
   on:blur
+  on:keypress
 />
