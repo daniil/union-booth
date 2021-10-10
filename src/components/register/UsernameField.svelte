@@ -6,10 +6,18 @@
 
   export let formDisabled;
 
-  const validateUsernameAndEmail = mutation('VALIDATE_USERNAME_AND_EMAIL');
+  const validateUsernameAndEmail = mutation(VALIDATE_USERNAME_AND_EMAIL);
 
-  const handleValidation = username => {
-    console.log(username);
+  const handleValidation = async username => {
+    const validate = await validateUsernameAndEmail({
+      variables: {
+        login: username
+      }
+    });
+
+    const isUniqueValue = validate.data.validateUsernameAndEmail;
+
+    console.log('Is Unique?', isUniqueValue);
   }
 
   const handleBlur = e => {
