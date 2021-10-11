@@ -16,11 +16,13 @@
       }
     });
 
-    console.log('Validate: ', e.detail.value)
-
     const isUniqueValue = validate.data.validateUsernameAndEmail;
 
     inputInvalid = !isUniqueValue;
+  }
+
+  const handleKeyDown = () => {
+    inputInvalid = false;
   }
 </script>
 
@@ -30,6 +32,8 @@
     label="Username"
     disabled={formDisabled}
     {inputInvalid}
+    validationMessage="Username already in use"
     on:validate={handleValidation}
+    on:keydown={handleKeyDown}
   />
 </div>
