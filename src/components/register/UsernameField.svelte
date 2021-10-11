@@ -1,8 +1,7 @@
 <script>
-  import { debounce } from 'debounce';
   import { mutation } from 'svelte-apollo';
   import { VALIDATE_USERNAME_AND_EMAIL } from 'graphql/queries/user';
-  import TextInput from 'components/forms/TextInput.svelte';
+  import ValidationTextInput from 'components/forms/ValidationTextInput.svelte';
 
   export let formDisabled;
 
@@ -10,39 +9,27 @@
 
   const validateUsernameAndEmail = mutation(VALIDATE_USERNAME_AND_EMAIL);
 
-  const handleValidation = async username => {
+  const handleValidation = async e => {
     const validate = await validateUsernameAndEmail({
       variables: {
-        login: username
+        login: e.detail.value
       }
     });
+
+    console.log('Validate: ', e.detail.value)
 
     const isUniqueValue = validate.data.validateUsernameAndEmail;
 
     inputInvalid = !isUniqueValue;
   }
-
-  const handleBlur = e => {
-    handleValidation(e.target.value);
-  }
-
-  const handleKeyDown = () => {
-    inputInvalid = false;
-  }
-
-  const handleKeyPress = debounce(e => {
-    handleValidation(e.target.value);
-  }, 350);
 </script>
 
-<TextInput
-  id="username"
-  type="text"
-  label="Username"
-  required
-  disabled={formDisabled}
-  invalid={inputInvalid}
-  on:blur={handleBlur}
-  on:keydown={handleKeyDown}
-  on:keypress={handleKeyPress}
-/>
+<div class="input-container">
+  <ValidationTextInput
+    id="username"
+    label="Username"
+    disabled={formDisabled}
+    {inputInvalid}
+    on:validate={handleValidation}
+  />
+</div>
