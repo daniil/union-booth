@@ -3,8 +3,9 @@
   import { VALIDATE_USERNAME_AND_EMAIL } from 'graphql/queries/user';
   import ValidationTextInput from 'components/forms/ValidationTextInput.svelte';
 
-  export let formDisabled;
-
+  export let value;
+  export let disabled;
+  
   let inputInvalid = false;
 
   const validateUsernameAndEmail = mutation(VALIDATE_USERNAME_AND_EMAIL);
@@ -30,7 +31,8 @@
   <ValidationTextInput
     id="username"
     label="Username"
-    disabled={formDisabled}
+    {value}
+    {disabled}
     {inputInvalid}
     validationMessage="Username already in use"
     on:validate={handleValidation}

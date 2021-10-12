@@ -7,7 +7,8 @@
 
   export let id;
   export let label;
-  export let formDisabled;
+  export let value;
+  export let disabled;
   export let inputInvalid;
   export let validationMessage;
 
@@ -50,8 +51,9 @@
     {id}
     type="text"
     {label}
+    {value}
     required
-    disabled={formDisabled}
+    {disabled}
     invalid={inputInvalid}
     on:blur={handleBlur}
     on:keydown
