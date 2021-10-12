@@ -11,6 +11,11 @@
   const validateUsernameAndEmail = mutation(VALIDATE_USERNAME_AND_EMAIL);
 
   const handleValidation = async e => {
+    if (value && value === e.detail.value) {
+      inputInvalid = false;
+      return;
+    }
+
     const validate = await validateUsernameAndEmail({
       variables: {
         login: e.detail.value
