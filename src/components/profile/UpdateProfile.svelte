@@ -4,7 +4,7 @@
   import parseError from 'utils/parseError';
   import { USER, UPDATE_USER_INFO } from 'graphql/queries/user';
   import TextInput from 'components/forms/TextInput.svelte';
-  import UsernameField from 'components/register/UsernameField.svelte';
+  import ValidationField from 'components/register/ValidationField.svelte';
   import Button from 'components/forms/Button.svelte';
   import Loading from 'components/shared/Loading.svelte';
   import FormErrors from 'components/forms/FormErrors.svelte';
@@ -95,7 +95,7 @@
     <TextInput id="lastName" type="text" label="Last Name" value={userInfo?.lastName} required disabled={formDisabled}/>
   </div>
   <div class="form-element">
-    <UsernameField value={userInfo?.username} disabled={formDisabled}/>
+    <ValidationField id="username" label="Username" value={userInfo?.username} disabled={formDisabled} validationMessage="Username already in use"/>
   </div>
   <div class="form-element">
     <TextInput id="email" type="email" label="Email" value={userInfo?.email} required disabled={formDisabled}/>

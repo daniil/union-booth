@@ -8,7 +8,7 @@
   import { REGISTER } from 'graphql/queries/register';
   import parseError from 'utils/parseError';
   import FormErrors from 'components/forms/FormErrors.svelte';
-  import UsernameField from 'components/register/UsernameField.svelte';
+  import ValidationField from 'components/register/ValidationField.svelte';
   import TextInput from 'components/forms/TextInput.svelte';
   import Radio from 'components/forms/Radio.svelte';
   import Button from 'components/forms/Button.svelte';
@@ -144,7 +144,7 @@
       </div>
       <div class="form-block">
         <div class="form-element">
-          <UsernameField disabled={formDisabled}/>
+          <ValidationField id="username" label="Username" disabled={formDisabled} validationMessage="Username already in use"/>
         </div>
         <div class="form-element">
           <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
