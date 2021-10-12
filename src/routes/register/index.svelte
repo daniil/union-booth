@@ -147,7 +147,7 @@
           <ValidationField id="username" label="Username" disabled={formDisabled} validationMessage="Username already in use"/>
         </div>
         <div class="form-element">
-          <TextInput id="email" type="email" label="Email" required disabled={formDisabled}/>
+          <ValidationField id="email" label="Email" disabled={formDisabled} validationMessage="Email already in use"/>
         </div>
       </div>
       <div class="form-block">

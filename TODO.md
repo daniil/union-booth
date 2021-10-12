@@ -1,7 +1,5 @@
 ## Tasks
 
-- Add realtime check (on blur) for username and email uniqueness
-  - Register and update profile pages
 - Add Live Question topic Cheatsheet field (also available on individual topic page)
 - Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality

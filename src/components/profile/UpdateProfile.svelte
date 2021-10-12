@@ -98,7 +98,7 @@
     <ValidationField id="username" label="Username" value={userInfo?.username} disabled={formDisabled} validationMessage="Username already in use"/>
   </div>
   <div class="form-element">
-    <TextInput id="email" type="email" label="Email" value={userInfo?.email} required disabled={formDisabled}/>
+    <ValidationField id="email" label="Email" value={userInfo?.email} disabled={formDisabled} validationMessage="Email already in use"/>
   </div>
   <div class="form-element action">
     <Button type="submit" variant={buttonVariant} icon="🖋️" label="Update"/>
