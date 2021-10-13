@@ -13,6 +13,9 @@ const topic = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    cheatsheet: {
+      type: DataTypes.TEXT
+    },
     slug: {
       type: DataTypes.STRING,
       unique: true
