@@ -38,8 +38,8 @@
     };
   }
 
-  const handleEditorChange = event => {
-    editorValues[event.detail.id] = event.detail.value;
+  const handleEditorChange = e => {
+    editorValues[e.detail.id] = e.detail.value;
   }
 
   const saveQA = async () => {
