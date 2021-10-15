@@ -20,6 +20,7 @@ const TOPIC = gql`
       topic {
         id
         title
+        cheatsheet
       }
       isLive
     }
@@ -32,6 +33,7 @@ const LIVE_TOPIC = gql`
       topic {
         id
         title
+        cheatsheet
       }
       cohortId
     }

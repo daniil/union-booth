@@ -40,6 +40,7 @@ const typeDefs = gql`
     program: Program!
     title: String!
     slug: String!
+    cheatsheet: String
     createdAt: Date!
   }
 
