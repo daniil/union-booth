@@ -7,6 +7,7 @@
   import { onDestroy } from 'svelte';
   import { LIVE_TOPIC } from 'graphql/queries/cohort-topic';
   import Loading from 'components/shared/Loading.svelte';
+  import TopicCheatsheet from 'components/topics/TopicCheatsheet.svelte';
   import TopicQuestions from 'components/live-questions/TopicQuestions.svelte';
 
   const { session } = stores();
@@ -61,6 +62,9 @@
   <div class="container">
     {#if liveTopic}
       <h1>{liveTopic.topic.title}</h1>
+      {#if liveTopic.topic.title}
+        <TopicCheatsheet topic={liveTopic.topic}/>
+      {/if}
       <TopicQuestions {liveTopic}/>
     {:else}
       <p class="no-topic">No Live Topic currently 🤷🏽‍♀️.</p>
