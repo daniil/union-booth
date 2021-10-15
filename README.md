@@ -139,7 +139,7 @@ For deploying to a non Qovery environment, do a global search for `// Custom pro
 
 #### Manual Deploy
 
-For VPS, `git pull` latest in `/union-booth` root folder, run `npm run build` to build the production package and then stop currently running project by listing forever processes with `forever list`, stopping the process (`forever stop <appId>`) and then running it again with `npm run start:forever`.
+For VPS, `git pull` latest in `/union-booth` root folder, run `npm run build` to build the production package and then stop currently running project by running `pm2 stop union-booth`, and then running it again with `npm run start:prod`.
 
 ### Updating Version Tag
 
