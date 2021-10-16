@@ -47,7 +47,7 @@
 </script>
 
 <Checkbox
-  id="is-live-{details.id}"
+  id="is-live-{details.topic.id}"
   label="Live"
   color="#05668D"
   checked={details.isLive}

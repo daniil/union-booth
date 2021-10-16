@@ -47,7 +47,7 @@
 </script>
 
 <Checkbox
-  id="is-unlocked-{details.id}"
+  id="is-unlocked-{details.topic.id}"
   label="Unlocked"
   color="#05668D"
   checked={details.isUnlocked}
