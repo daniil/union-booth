@@ -1,23 +1,39 @@
 <svelte:head>
-	<title>Union Booth :: Topic: {topic ? topic.title : 'Loading'}</title>
+	<title>Union Booth :: Topic: {topic ? topic.topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script context="module">
+  import { TOPIC } from 'graphql/queries/cohort-topic';
+
   export async function preload(page, session) {
-    // Load topic
+    await session.apolloClient.query({
+      query: TOPIC,
+      variables: { slug: page.params.slug }
+    });
+
+    return {
+      slug: page.params.slug
+    };
   }
 </script>
 
 <script>
+  import { stores } from '@sapper/app';
   import MDEditor from 'components/shared/MDEditor.svelte';
   import Button from 'components/forms/Button.svelte';
 
   export let slug;
 
-  let topic;
   let formDisabled = false;
 
   $: buttonVariant = formDisabled ? 'loading' : 'success';
+
+  const { session } = stores();
+
+  let topic = $session.apolloClient.readQuery({
+    query: TOPIC,
+    variables: { slug }
+  }).topic;
 
   const handleEditorChange = e => {
     console.log(e.detail.value);
@@ -62,12 +78,12 @@
 
 <section>
   <a class="back" href="/admin/topics">&#10092; back</a>
-  <h2 class="title">{topic?.title}</h2>
+  <h2 class="title">{topic?.topic.title}</h2>
   <MDEditor
     id="cheatsheet"
     label="Topic Cheatsheet"
     placeholder="Topic Cheatsheet"
-    value={topic?.cheatsheet}
+    value={topic?.topic.cheatsheet || ''}
     on:change={handleEditorChange}
     disabled={formDisabled}
   />
