@@ -49,6 +49,28 @@ export default {
           throw new UserInputError(parseSequelizeError(err));
         }
       }
+    ),
+
+    addTopicCheatsheet: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      async (_, { topicId, details }, { models }) => {
+        try {
+          const topic = await models.Topic.findOne({
+            where: {
+              id: topicId
+            }
+          });
+
+          await topic.update({
+            cheatsheet: details
+          });
+
+          return topic;
+        } catch(err) {
+          throw new UserInputError(parseSequelizeError(err));
+        }
+      }
     )
   },
 
