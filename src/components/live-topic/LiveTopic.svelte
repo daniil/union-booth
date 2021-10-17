@@ -62,7 +62,7 @@
   <div class="container">
     {#if liveTopic}
       <h1>{liveTopic.topic.title}</h1>
-      {#if liveTopic.topic.title}
+      {#if liveTopic.topic.cheatsheet}
         <TopicCheatsheet topic={liveTopic.topic}/>
       {/if}
       <TopicQuestions {liveTopic}/>
