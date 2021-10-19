@@ -10,6 +10,16 @@ const ADD_TOPIC = gql`
   }
 `;
 
+const ADD_TOPIC_CHEATSHEET = gql`
+  mutation AddTopicCheatsheet($topicId: ID!, $details: String!) {
+    addTopicCheatsheet(topicId: $topicId, details: $details) {
+      id
+      title
+      cheatsheet
+    }
+  }
+`;
+
 const TOPICS = gql`
   query Topics($programId: ID!) {
     topics(programId: $programId) {
@@ -22,5 +32,6 @@ const TOPICS = gql`
 
 export {
   ADD_TOPIC,
+  ADD_TOPIC_CHEATSHEET,
   TOPICS
 }
