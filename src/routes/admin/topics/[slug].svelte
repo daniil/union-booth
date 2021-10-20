@@ -19,15 +19,13 @@
 
 <script>
   import { stores } from '@sapper/app';
+  import { mutation } from 'svelte-apollo';
+  import { ADD_TOPIC_CHEATSHEET } from 'graphql/queries/admin/topics';
   import MDEditor from 'components/shared/MDEditor.svelte';
   import Button from 'components/forms/Button.svelte';
 
   export let slug;
-
-  let formDisabled = false;
-
-  $: buttonVariant = formDisabled ? 'loading' : 'success';
-
+  
   const { session } = stores();
 
   let topic = $session.apolloClient.readQuery({
@@ -35,13 +33,33 @@
     variables: { slug }
   }).topic;
 
+  let formDisabled = false;
+  let editorValue = topic?.topic.cheatsheet || '';
+
+  $: buttonVariant = formDisabled ? 'loading' : 'success';
+
+  const addTopicCheatsheet = mutation(ADD_TOPIC_CHEATSHEET);
+
   const handleEditorChange = e => {
-    console.log(e.detail.value);
+    editorValue = e.detail.value;
   }
 
-  const saveCheatsheet = () => {
-    console.log('Save cheatsheet');
+  const saveCheatsheet = async () => {
     formDisabled = true;
+
+    try {
+      await addTopicCheatsheet({
+        variables: {
+          topicId: topic.topic.id,
+          details: editorValue
+        }
+      });
+
+      formDisabled = false;
+    } catch(err) {
+      formDisabled = false;
+      console.log('ERROR: ', err);
+    }
   }
 </script>
 
@@ -83,7 +101,7 @@
     id="cheatsheet"
     label="Topic Cheatsheet"
     placeholder="Topic Cheatsheet"
-    value={topic?.topic.cheatsheet || ''}
+    value={editorValue}
     on:change={handleEditorChange}
     disabled={formDisabled}
   />
