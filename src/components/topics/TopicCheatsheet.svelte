@@ -1,11 +1,14 @@
 <script>
+  import { parseMD } from 'utils/markdown';
+
   export let topic;
 </script>
 
 <style lang="scss">
   .topic-cheatsheet {
     margin-bottom: 3rem;
-    background-color: rgba(222, 207, 222, 0.25);
+    border-bottom: 2px solid rgba(222, 207, 222, 0.5);
+    background-color: rgba(222, 207, 222, 0.15);
     border-radius: 4px;
     padding: 1.25rem;
   }
@@ -27,5 +30,5 @@
 
 <div class="topic-cheatsheet">
   <h2>Key Concepts</h2>
-  <h3>{topic.cheatsheet}</h3>
+  <h3>{@html parseMD(topic.cheatsheet)}</h3>
 </div>
