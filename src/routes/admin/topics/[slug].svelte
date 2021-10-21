@@ -48,12 +48,25 @@
     formDisabled = true;
 
     try {
-      await addTopicCheatsheet({
+      const updatedTopic = await addTopicCheatsheet({
         variables: {
           topicId: topic.topic.id,
           details: editorValue
         }
       });
+
+      $session.apolloClient.writeQuery({
+        query: TOPIC,
+        variables: { slug },
+        data: {
+          topic: {
+            ...topic,
+            topic: {
+              ...updatedTopic.data.addTopicCheatsheet
+            }
+          }
+        }
+      })
 
       formDisabled = false;
     } catch(err) {
