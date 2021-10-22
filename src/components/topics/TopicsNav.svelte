@@ -58,6 +58,11 @@
 <nav>
   <ul>
     <li>
+      <a rel="prefetch" aria-current="{segment === 'cheatsheet' ? 'page' : undefined}" href={`/topics/${slug}/cheatsheet`}>
+        <h2>Cheatsheet</h2>
+      </a>
+    </li>
+    <li>
       <a rel="prefetch" aria-current="{segment === 'faqs' ? 'page' : undefined}" href={`/topics/${slug}/faqs`}>
         <h2>Frequently Asked Questions</h2>
       </a>
