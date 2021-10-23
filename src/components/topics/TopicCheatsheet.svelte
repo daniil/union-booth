@@ -22,6 +22,7 @@
   }
   h3 {
     font-size: 1rem;
+    line-height: 1.5;
     @media (min-width: 48rem) {
       font-size: 1.17rem;
     }
