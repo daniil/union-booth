@@ -1,11 +1,13 @@
 <script>
   import { parseMD } from 'utils/markdown';
+  import CollapseButton from 'components/shared/CollapseButton.svelte';
 
   export let topic;
 </script>
 
 <style lang="scss">
   .topic-cheatsheet {
+    position: relative;
     margin-bottom: 3rem;
     border-bottom: 2px solid rgba(222, 207, 222, 0.5);
     background-color: rgba(222, 207, 222, 0.15);
@@ -27,9 +29,23 @@
       font-size: 1.17rem;
     }
   }
+  .collapse-container {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    z-index: 1;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+  }
 </style>
 
 <div class="topic-cheatsheet">
   <h2>Key Concepts</h2>
   <h3>{@html parseMD(topic.cheatsheet)}</h3>
+  <div class="collapse-container">
+    <CollapseButton/>
+  </div>
 </div>
