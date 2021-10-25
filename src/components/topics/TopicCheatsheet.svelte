@@ -3,6 +3,12 @@
   import CollapseButton from 'components/shared/CollapseButton.svelte';
 
   export let topic;
+
+  let isCollapsed = false;
+
+  const handleCollapse = () => {
+    isCollapsed = !isCollapsed;
+  }
 </script>
 
 <style lang="scss">
@@ -46,6 +52,6 @@
   <h2>Key Concepts</h2>
   <h3>{@html parseMD(topic.cheatsheet)}</h3>
   <div class="collapse-container">
-    <CollapseButton/>
+    <CollapseButton pointDown={isCollapsed} on:click={handleCollapse}/>
   </div>
 </div>
