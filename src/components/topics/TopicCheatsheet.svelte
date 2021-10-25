@@ -2,14 +2,16 @@
   import { slide } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
   import { parseMD } from 'utils/markdown';
+  import userSettings from 'utils/userSettings';
   import CollapseButton from 'components/shared/CollapseButton.svelte';
 
   export let topic;
 
-  let isCollapsed = false;
+  let isCollapsed = userSettings.get('cheatsheetCollapsed');
 
   const handleCollapse = () => {
     isCollapsed = !isCollapsed;
+    userSettings.set('cheatsheetCollapsed', isCollapsed);
   }
 </script>
 

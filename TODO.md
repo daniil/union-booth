@@ -1,6 +1,5 @@
 ## Tasks
 
-- Add Live Question topic Cheatsheet field (also available on individual topic page)
 - Add subscription to switching the active topic (Live page)
 - Open Studio Queue functionality
   - Queue for an educator
