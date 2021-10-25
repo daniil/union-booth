@@ -1,4 +1,6 @@
 <script>
+  import { slide } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
   import { parseMD } from 'utils/markdown';
   import CollapseButton from 'components/shared/CollapseButton.svelte';
 
@@ -21,6 +23,7 @@
     padding: 1.25rem;
   }
   h2 {
+    margin-bottom: 0;
     line-height: 1.5;
     font-size: 1.25rem;
     color: #5B3345;
@@ -50,7 +53,11 @@
 
 <div class="topic-cheatsheet">
   <h2>Key Concepts</h2>
-  <h3>{@html parseMD(topic.cheatsheet)}</h3>
+  {#if !isCollapsed}
+    <h3 transition:slide|local="{{ duration: 300, easing: cubicOut }}">
+      {@html parseMD(topic.cheatsheet)}
+    </h3>
+  {/if}
   <div class="collapse-container">
     <CollapseButton pointDown={isCollapsed} on:click={handleCollapse}/>
   </div>
