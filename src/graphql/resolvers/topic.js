@@ -2,7 +2,7 @@ import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
-import session from 'express-session';
+import { loadersContext } from '../server';
 
 export default {
   Query: {
@@ -98,6 +98,8 @@ export default {
           await topic.update({
             cheatsheet: details
           });
+
+          loadersContext.topic.clear(topic.id);
 
           return topic;
         } catch(err) {

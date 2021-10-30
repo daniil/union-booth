@@ -25,8 +25,7 @@
 
 ## Tweaks
 
-- Fix cheatsheet is null issue on individual topic page
-- Fix topic cheatsheet throwing 500 on topic admin page
+- Handle the switching the topics error on the front end
 - Update large viewport styling
 - Update all colors to use SASS variables
 - Add toast messages (ie: when QA question is published)
