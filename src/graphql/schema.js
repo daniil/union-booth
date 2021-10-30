@@ -139,6 +139,7 @@ const typeDefs = gql`
     cohorts(programId: ID!): [Cohort]!
     selectedCohort: Cohort
     topics(programId: ID!): [Topic]!
+    adminTopic(slug: ID!): Topic!
     cohortTopics(cohortId: ID!): [CohortTopic]!
     unlockedTopics: [CohortTopic]!
     topic(slug: ID!): CohortTopic!

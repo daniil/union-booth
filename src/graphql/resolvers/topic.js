@@ -2,6 +2,7 @@ import { UserInputError } from 'apollo-server';
 import { combineResolvers } from 'graphql-resolvers';
 import { isAuthenticated, checkRole } from './auth';
 import parseSequelizeError from 'utils/parseSequelizeError';
+import session from 'express-session';
 
 export default {
   Query: {
@@ -16,6 +17,36 @@ export default {
           ]
         });
         return topics;
+      }
+    ),
+
+    adminTopic: combineResolvers(
+      isAuthenticated,
+      checkRole('manager'),
+      async (_, { slug }, { models }) => {
+        const topic = await models.Topic.findOne({
+          where: {
+            slug
+          }
+        });
+
+        if (!topic) {
+          throw new UserInputError('This topic can not be found');
+        }
+
+        const user = await models.User.findOne({
+          attributes: ['selectedProgram'],
+          where: {
+            id: session.user.id,
+            selectedProgram: topic.programId
+          }
+        });
+
+        if (!user) {
+          throw new UserInputError('This user has no access to this topic');
+        }
+
+        return topic;
       }
     )
   },
