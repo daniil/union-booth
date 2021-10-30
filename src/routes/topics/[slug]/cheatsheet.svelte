@@ -53,6 +53,15 @@
       font-size: 1.17rem;
     }
   }
+  p {
+    padding: 1rem 0 2rem;
+    text-align: center;
+    color: #7D6D61;
+  }
 </style>
 
-<h3>{@html parseMD(topic.topic.cheatsheet)}</h3>
+{#if topic.topic.cheatsheet}
+  <h3>{@html parseMD(topic.topic.cheatsheet)}</h3>
+{:else}
+  <p>No Cheatsheet currently 🪴</p>
+{/if}
