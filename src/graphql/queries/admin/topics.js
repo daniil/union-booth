@@ -30,8 +30,19 @@ const TOPICS = gql`
   }
 `;
 
+const ADMIN_TOPIC = gql`
+  query AdminTopic($slug: ID!) {
+    adminTopic(slug: $slug) {
+      id
+      title
+      cheatsheet
+    }
+  }
+`;
+
 export {
   ADD_TOPIC,
   ADD_TOPIC_CHEATSHEET,
-  TOPICS
+  TOPICS,
+  ADMIN_TOPIC
 }

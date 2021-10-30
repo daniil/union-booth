@@ -1,13 +1,13 @@
 <svelte:head>
-	<title>Union Booth :: Topic: {topic ? topic.topic.title : 'Loading'}</title>
+	<title>Union Booth :: Topic: {topic ? topic.title : 'Loading'}</title>
 </svelte:head>
 
 <script context="module">
-  import { TOPIC } from 'graphql/queries/cohort-topic';
+  import { ADMIN_TOPIC } from 'graphql/queries/admin/topics';
 
   export async function preload(page, session) {
     await session.apolloClient.query({
-      query: TOPIC,
+      query: ADMIN_TOPIC,
       variables: { slug: page.params.slug }
     });
 
@@ -29,12 +29,12 @@
   const { session } = stores();
 
   let topic = $session.apolloClient.readQuery({
-    query: TOPIC,
+    query: ADMIN_TOPIC,
     variables: { slug }
-  }).topic;
+  }).adminTopic;
 
   let formDisabled = false;
-  let editorValue = topic?.topic.cheatsheet || '';
+  let editorValue = topic?.cheatsheet || '';
 
   $: buttonVariant = formDisabled ? 'loading' : 'success';
 
@@ -50,20 +50,17 @@
     try {
       const updatedTopic = await addTopicCheatsheet({
         variables: {
-          topicId: topic.topic.id,
+          topicId: topic.id,
           details: editorValue
         }
       });
 
       $session.apolloClient.writeQuery({
-        query: TOPIC,
+        query: ADMIN_TOPIC,
         variables: { slug },
         data: {
-          topic: {
-            ...topic,
-            topic: {
-              ...updatedTopic.data.addTopicCheatsheet
-            }
+          adminTopic: {
+            ...updatedTopic.data.addTopicCheatsheet
           }
         }
       })
@@ -109,7 +106,7 @@
 
 <section>
   <a class="back" href="/admin/topics">&#10092; back</a>
-  <h2 class="title">{topic?.topic.title}</h2>
+  <h2 class="title">{topic?.title}</h2>
   <MDEditor
     id="cheatsheet"
     label="Topic Cheatsheet"

@@ -23,7 +23,7 @@ export default {
     adminTopic: combineResolvers(
       isAuthenticated,
       checkRole('manager'),
-      async (_, { slug }, { models }) => {
+      async (_, { slug }, { models, session }) => {
         const topic = await models.Topic.findOne({
           where: {
             slug
@@ -45,6 +45,8 @@ export default {
         if (!user) {
           throw new UserInputError('This user has no access to this topic');
         }
+
+        console.log('Topic', topic)
 
         return topic;
       }
