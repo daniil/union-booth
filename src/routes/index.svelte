@@ -93,5 +93,6 @@
 			<a class="action" href="/login">Login</a>
 		</section>
 		<a class="attribution" href="https://www.freepik.com/vectors/poster" target="_blank">Poster vector created by pch.vector - www.freepik.com</a>
+		<div>Jenkins Test</div>
 	</section>
 {/if}
