@@ -1,7 +1,8 @@
 #!/bin/sh
 
-cd ~/union-booth/
-npx pm2 stop union-booth
+cd /root/union-booth/
+npm i pm2 -g
+pm2 stop union-booth
 git pull
 npm install - production
 npm run build
