@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd ~/union-booth/
+npx pm2 stop union-booth
+git pull
+npm install - production
+npm run build
+npm run start:prod
