@@ -9,6 +9,9 @@ let serveStaticPath;
 
 if (ENV_TYPE === 'qovery') {
   serveStaticPath = '/mnt/static';
+} else if (ENV_TYPE === 'jenkins') {
+  // Custom production config
+  serveStaticPath = '/var/lib/jenkins/workspace/union-booth/static';
 } else {
   // Custom production config
   serveStaticPath = '/root/union-booth/static';
