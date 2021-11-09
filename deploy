@@ -1,8 +1,8 @@
 #!/bin/sh
 
 sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace
-sudo pm2 stop union-booth
+pm2 stop union-booth
 git pull
 npm install - production
 npm run build
-sudo npm run start:prod
+npm run start:prod
