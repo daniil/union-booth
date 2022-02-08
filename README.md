@@ -139,7 +139,7 @@ For deploying to a non Qovery environment, do a global search for `// Custom pro
 
 #### Manual Deploy
 
-For VPS, `git pull` latest in `/union-booth` root folder, run `npm run build` to build the production package and then stop currently running project by running `pm2 stop union-booth`, and then running it again with `npm run start:prod`.
+For VPS, `git pull` latest in `/union-booth` root folder (for Jenkins build it's `/var/lib/jenkins/workspace/union-booth`), run `npm run build` to build the production package and then stop currently running project by running `pm2 stop union-booth`, and then running it again with `npm run start:prod`.
 
 ### Updating Version Tag
 
